@@ -1,5 +1,7 @@
 import { FC, useEffect, useState } from 'react'
 
+import { MagnifiedViewModal } from '@/components/modals/magnifiedViewModal'
+import { useModal } from '@/hooks/useModal'
 import { ProductPhotoType } from '@/types/productType'
 
 type PropsType = {
@@ -7,8 +9,10 @@ type PropsType = {
 }
 
 export const ProductCardView: FC<PropsType> = ({ photos }) => {
-  const [activePhoto, setActivePhoto] = useState(photos[0])
+  const [activePhoto, setActivePhoto] = useState<ProductPhotoType>(photos[0])
   const [isHover, setIsHover] = useState(false)
+
+  const { open, close, isOpen } = useModal()
 
   const mouseMoveHandler = (photo: ProductPhotoType): void => {
     setActivePhoto(photo)
@@ -25,7 +29,13 @@ export const ProductCardView: FC<PropsType> = ({ photos }) => {
   }, [photos])
 
   return (
-    <div className={`flex aspect-square w-full justify-between  ${activePhoto.url}`}>
+    <div
+      role="button"
+      tabIndex={0}
+      onClick={open}
+      onKeyDown={e => e.key === 'Enter' && open()}
+      className={`flex aspect-square w-full justify-between ${activePhoto.url}`}
+    >
       {photos.map(photo => (
         <div
           key={photo.id}
@@ -40,6 +50,12 @@ export const ProductCardView: FC<PropsType> = ({ photos }) => {
           />
         </div>
       ))}
+      <MagnifiedViewModal
+        closeModal={close}
+        isOpen={isOpen}
+        photos={photos}
+        activePhoto={activePhoto}
+      />
     </div>
   )
 }
