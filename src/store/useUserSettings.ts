@@ -1,4 +1,5 @@
 import { create } from 'zustand'
+import { persist } from 'zustand/middleware'
 
 import { ECost, TCost } from '@/enums/cost'
 
@@ -14,7 +15,12 @@ type Store = UserSettingsStateType & {
   setCurrentCurrency: (currentCurrency: TCost) => void
 }
 
-export const useUserSettings = create<Store>(set => ({
-  ...initialState,
-  setCurrentCurrency: currentCurrency => set({ currentCurrency }),
-}))
+export const useUserSettings = create(
+  persist<Store>(
+    set => ({
+      ...initialState,
+      setCurrentCurrency: currentCurrency => set({ currentCurrency }),
+    }),
+    { name: 'userSettings' }
+  )
+)

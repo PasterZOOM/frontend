@@ -1,5 +1,5 @@
 export enum CurrencySign {
-  BYN = 'Br.',
+  BYN = 'Br',
   CNY = '¥',
   EUR = '€',
   GBP = '£',
@@ -7,5 +7,5 @@ export enum CurrencySign {
   RUB = '₽',
   UAH = '₴',
   USD = '$',
-  PLN = 'zł.',
+  PLN = 'zł',
 }

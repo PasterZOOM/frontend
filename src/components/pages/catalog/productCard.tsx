@@ -60,7 +60,3 @@ export const ProductCard: FC<PropsType> = ({ defPrice = ECost.USD, product }) =>
     </div>
   )
 }
-
-ProductCard.defaultProps = {
-  defPrice: ECost.USD,
-}

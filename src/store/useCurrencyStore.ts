@@ -2,7 +2,7 @@ import { create } from 'zustand'
 
 import { CostType } from '@/types/costType'
 
-const initialState: CostType = {
+export const initialCurrencyState: CostType = {
   BYN: 1,
   JPY: 1,
   CNY: 1,
@@ -18,6 +18,6 @@ type Store = CostType & {
   setActualRates: (actualRates: CostType) => void
 }
 export const useCurrencyStore = create<Store>(set => ({
-  ...initialState,
+  ...initialCurrencyState,
   setActualRates: actualRates => set(actualRates),
 }))
