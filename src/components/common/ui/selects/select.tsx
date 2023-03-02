@@ -71,13 +71,13 @@ export const Select: FC<PropsType<any>> = ({
           isOpen ? 'block' : 'hidden'
         } absolute box-content w-full border border-anthracite-gray`}
       >
-        {items.map((item, index) => {
+        {items.map(item => {
           return (
             <div
+              key={item.id}
               role="menuitem"
               tabIndex={0}
               onKeyDown={e => e.key === 'Enter' && onClickItem(item)}
-              key={+index}
               className={`${classes.itemClassName} ${
                 activeItem === item ? 'bg-gray-300 hover:bg-gray-300' : ''
               } hover:bg-gray-100`}

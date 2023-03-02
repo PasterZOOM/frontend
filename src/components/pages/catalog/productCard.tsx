@@ -29,9 +29,7 @@ export const ProductCard: FC<PropsType> = ({ defPrice = ECost.USD, product }) =>
 
   return (
     <div className="p-3">
-      <Link href={`/products/${product.type}`}>
-        <ProductCardView photos={product.photos[activeColor]} />
-      </Link>
+      <ProductCardView photos={product.photos[activeColor]} />
       <div className="mt-10">
         <Link href={`/products/${product.type}`}>
           <div className="mt-4 mb-3 text-custom-xl font-bold">{product.title}</div>

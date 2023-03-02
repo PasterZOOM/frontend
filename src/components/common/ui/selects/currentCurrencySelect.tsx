@@ -88,7 +88,7 @@ export const CurrentCurrencySelect: FC = () => {
     currency.find(el => el.code === currentCurrency) || currency[0]
   )
 
-  const handler = (newActiveCurrency: CurrencyType): void => {
+  const setActiveItemHandler = (newActiveCurrency: CurrencyType): void => {
     setCurrentCurrency(newActiveCurrency.code)
     setActiveCurrency(newActiveCurrency)
   }
@@ -96,7 +96,7 @@ export const CurrentCurrencySelect: FC = () => {
   return (
     <Select
       activeItem={activeCurrency}
-      setActiveItem={handler}
+      setActiveItem={setActiveItemHandler}
       items={currency}
       elementToLabel={CurrencyElement}
     />

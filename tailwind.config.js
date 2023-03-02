@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./src/**/*.{js,ts,jsx,tsx}'],
+  darkMode: 'class',
   theme: {
     extend: {
       space: {
@@ -15,6 +16,7 @@ module.exports = {
       },
       boxShadow: {
         'button-hover': '0px 0px 0px 2px rgba(47, 49, 50, 1) inset',
+        'button-hover-dark': '0px 0px 0px 2px rgba(225, 225, 225, 1) inset',
       },
       gridTemplateColumns: {
         'catalog-products': 'repeat(auto-fill, minmax(20rem, 1fr))',
