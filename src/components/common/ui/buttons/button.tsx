@@ -8,7 +8,7 @@ export const Button: FC<PropsType> = ({ children, className, ...restProps }) => 
   return (
     <button
       type="button"
-      className={`transform bg-anthracite-gray px-8 py-4 uppercase text-white duration-300 hover:bg-white hover:text-anthracite-gray hover:shadow-button-hover ${className}`}
+      className={`transform bg-anthracite-gray px-8 py-4 uppercase text-white duration-300 hover:transform hover:bg-white hover:text-anthracite-gray hover:shadow-button-hover hover:duration-300 ${className}`}
       {...restProps}
     >
       {children}
