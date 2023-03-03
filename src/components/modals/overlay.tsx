@@ -41,8 +41,14 @@ export const ModalOverlay: FC<PropsType> = ({ children, onClose, isOpen }) => {
   }, [])
 
   useEffect(() => {
-    if (isOpen) document.addEventListener('keydown', onEscape)
-    else document.removeEventListener('keydown', onEscape)
+    if (isOpen) {
+      document.body.style.overflow = 'hidden'
+      document.addEventListener('keydown', onEscape)
+    } else {
+      document.body.style.overflow = 'auto'
+
+      document.removeEventListener('keydown', onEscape)
+    }
 
     return () => {
       document.removeEventListener('keydown', onEscape)
