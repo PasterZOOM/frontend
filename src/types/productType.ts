@@ -22,7 +22,7 @@ export type ProductType = {
   costCurrency: TCost
   description?: string
   leather: string
-  photos: { [key: string]: ProductPhotoType[] }
+  photos: Record<string, ProductPhotoType[]>
   punchPitch: EPunchPitch
   size: string
   title: string

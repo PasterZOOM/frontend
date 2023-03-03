@@ -32,7 +32,7 @@ export const ProductCard: FC<PropsType> = ({ defPrice = ECost.USD, product }) =>
   const productColors = getProductColors(product.colors)
 
   return (
-    <div className="p-3">
+    <div>
       {width > DESKTOP ? (
         <ProductCardView photos={product.photos[activeColor]} />
       ) : (

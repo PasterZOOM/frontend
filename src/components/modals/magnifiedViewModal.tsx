@@ -19,7 +19,7 @@ export const MagnifiedViewModal: FC<PropsType> = ({ closeModal, isOpen, photos, 
 
   return (
     <ModalOverlay isOpen={isOpen} onClose={closeModal}>
-      <div className="relative h-[45rem] w-[64rem] border-2 border-anthracite-gray bg-white dark:border-white dark:bg-anthracite-gray">
+      <div className="relative h-[95%] w-[95%]">
         <button type="button" onClick={closeModal} className="absolute top-4 right-4 z-10 text-lg">
           close
         </button>

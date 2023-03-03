@@ -3,12 +3,20 @@ module.exports = {
   content: ['./src/**/*.{js,ts,jsx,tsx}'],
   darkMode: 'class',
   theme: {
+    screens: {
+      sm: '640px',
+      md: '768px',
+      lg: '1025px',
+      xl: '1280px',
+      '2xl': '1536px',
+    },
     extend: {
       space: {
         100: '25rem', // 400px
       },
       colors: {
         'anthracite-gray': '#2F3132',
+        'light-gray': '#E1E2E3',
       },
       fontSize: {
         'custom-lg': ['1.125rem', '1.125rem'], // [18px, 18px]
@@ -21,7 +29,21 @@ module.exports = {
         'line-dark': '0px 2px 2px rgba(255, 255, 255, 0.2)',
       },
       gridTemplateColumns: {
-        'catalog-products': 'repeat(auto-fill, minmax(20rem, 1fr))',
+        'catalog-products': 'repeat(auto-fill, minmax(18rem, 1fr))',
+      },
+      animation: {
+        opening: 'open var(--duration, 500ms) forwards',
+        closing: 'closing var(--duration, 500ms) forwards',
+      },
+      keyframes: {
+        open: {
+          '0%': { height: 0 },
+          '100%': { height: 'var(--h)' },
+        },
+        closing: {
+          '0%': { height: 'var(--h)' },
+          '100%': { height: 0 },
+        },
       },
     },
   },

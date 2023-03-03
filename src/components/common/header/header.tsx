@@ -26,8 +26,8 @@ const Header: FC = () => {
   return (
     <div
       className={`${
-        isVisible ? '' : 'opacity-0'
-      } sticky top-0 z-30 flex items-center justify-around bg-inherit px-3 py-5 shadow-line dark:shadow-line-dark`}
+        isVisible ? '' : '-top-20'
+      } sticky top-0 z-30 flex transform items-center justify-around bg-inherit py-5 px-3 shadow-line duration-300 dark:shadow-line-dark`}
     >
       <CurrentCurrencySelect />
       <SwitchTheme />

@@ -44,7 +44,7 @@ export const ProductCardView: FC<PropsType> = ({ photos }) => {
           className="relative flex w-full cursor-zoom-in justify-center"
         >
           <div
-            className={`absolute bottom-1  h-1 w-11/12 rounded-full bg-white dark:bg-anthracite-gray ${
+            className={`absolute bottom-1 h-1 w-11/12 rounded-full bg-white dark:bg-anthracite-gray ${
               isHover ? '' : 'hidden'
             } ${activePhoto.id !== photo.id ? 'opacity-50' : ''}`}
           />

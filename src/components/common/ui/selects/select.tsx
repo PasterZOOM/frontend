@@ -16,7 +16,7 @@ type PropsType<T> = {
   elementToLabel: FC<T>
 }
 
-export const Select: FC<PropsType<any>> = ({
+export const Select: FC<PropsType<{ id: string; title: string } & any>> = ({
   items = [],
   activeItem,
   setActiveItem,
@@ -56,7 +56,7 @@ export const Select: FC<PropsType<any>> = ({
       ref={dropdownRef}
     >
       <div
-        role="menu"
+        role="button"
         tabIndex={0}
         onKeyDown={e => e.key === 'Enter' && setIsOpen(prevState => !prevState)}
         className={`${classes.activeItemClassName} `}
@@ -75,7 +75,8 @@ export const Select: FC<PropsType<any>> = ({
           return (
             <div
               key={item.id}
-              role="menuitem"
+              role="button"
+              aria-label={item.title}
               tabIndex={0}
               onKeyDown={e => e.key === 'Enter' && onClickItem(item)}
               className={`${classes.itemClassName} ${

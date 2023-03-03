@@ -6,7 +6,7 @@ import { products } from '@/mocks/products'
 
 const Products: FC = () => {
   return (
-    <div className="grid w-full grid-cols-catalog-products">
+    <div className="grid w-full grid-cols-catalog-products gap-4 md:gap-6 lg:gap-8">
       {products.map(product => (
         <ProductCard key={product._id} product={product} />
       ))}

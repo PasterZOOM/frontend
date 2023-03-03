@@ -1,6 +1,6 @@
 import create from 'zustand'
 
-import { CurrencyService } from '@/pages/api/currency/currencyApi'
+import { CurrencyService } from '@/api/currency/currencyApi'
 
 type Store = {
   currencyService: CurrencyService
