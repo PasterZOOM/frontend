@@ -1,6 +1,7 @@
 import { FC } from 'react'
 
-import { ProductCard } from '@/components/pages/catalog/productCard'
+import { ProductCard } from './productCard/productCard'
+
 import { products } from '@/mocks/products'
 
 const Products: FC = () => {

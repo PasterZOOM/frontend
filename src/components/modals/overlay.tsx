@@ -2,7 +2,6 @@ import {
   FC,
   KeyboardEvent,
   MouseEvent,
-  MutableRefObject,
   ReactNode,
   useCallback,
   useEffect,
@@ -18,7 +17,7 @@ type PropsType = {
   onClose?: () => void
 }
 export const ModalOverlay: FC<PropsType> = ({ children, onClose, isOpen }) => {
-  const containerRef = useRef() as MutableRefObject<HTMLDivElement>
+  const containerRef = useRef<HTMLDivElement | null>(null)
 
   const [container, setContainer] = useState<Element | null>(null)
 
@@ -42,11 +41,11 @@ export const ModalOverlay: FC<PropsType> = ({ children, onClose, isOpen }) => {
   }, [])
 
   useEffect(() => {
-    if (isOpen) containerRef.current?.addEventListener('keydown', onEscape)
-    else containerRef.current?.removeEventListener('keydown', onEscape)
+    if (isOpen) document.addEventListener('keydown', onEscape)
+    else document.removeEventListener('keydown', onEscape)
 
     return () => {
-      containerRef.current?.removeEventListener('keydown', onEscape)
+      document.removeEventListener('keydown', onEscape)
     }
   }, [isOpen])
 
@@ -57,12 +56,12 @@ export const ModalOverlay: FC<PropsType> = ({ children, onClose, isOpen }) => {
       {ReactDOM.createPortal(
         <div
           role="button"
-          onKeyDown={e => e.key === 'Escape' && handleClick(e)}
+          onKeyDown={() => {}}
           tabIndex={0}
           id="modal"
           ref={containerRef}
           onClick={e => handleClick(e)}
-          className="fixed inset-0 z-10 flex h-screen items-center justify-center overflow-y-auto bg-black bg-opacity-50 p-4"
+          className="fixed inset-0 z-50 flex h-screen items-center justify-center overflow-y-auto bg-black bg-opacity-50"
         >
           {children}
         </div>,

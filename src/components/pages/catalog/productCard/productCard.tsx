@@ -4,9 +4,12 @@ import Link from 'next/link'
 
 import { Button } from '@/components/common/ui/buttons/button'
 import { LeatherColorButton } from '@/components/common/ui/buttons/leatherColorButton'
-import { ProductCardView } from '@/components/pages/catalog/productCardView'
+import { ProductCardView } from '@/components/pages/catalog/productCard/productCardView'
+import { ProductCardViewMobile } from '@/components/pages/catalog/productCard/productCardViewMobile'
+import { DESKTOP } from '@/constants/sizes/screenSizes'
 import { ECost } from '@/enums/cost'
 import { useGetPriceInCurrentCurrency } from '@/hooks/useGetPriceInCurrentCurrency'
+import { useWindowSize } from '@/hooks/useWindowSize'
 import { useGetPriceInCurrency } from '@/store/useGetPriceInCurrency'
 import { useUserSettings } from '@/store/useUserSettings'
 import { ProductType } from '@/types/productType'
@@ -18,6 +21,7 @@ type PropsType = {
 }
 
 export const ProductCard: FC<PropsType> = ({ defPrice = ECost.USD, product }) => {
+  const { width } = useWindowSize()
   const [activeColor, setActiveColor] = useState(product.colors[0])
 
   const currentCurrency = useUserSettings(state => state.currentCurrency)
@@ -29,7 +33,11 @@ export const ProductCard: FC<PropsType> = ({ defPrice = ECost.USD, product }) =>
 
   return (
     <div className="p-3">
-      <ProductCardView photos={product.photos[activeColor]} />
+      {width > DESKTOP ? (
+        <ProductCardView photos={product.photos[activeColor]} />
+      ) : (
+        <ProductCardViewMobile photos={product.photos[activeColor]} />
+      )}
       <div className="mt-10">
         <Link href={`/products/${product.type}`}>
           <div className="mt-4 mb-3 text-custom-xl font-bold">{product.title}</div>
