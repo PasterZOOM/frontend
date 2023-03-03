@@ -39,8 +39,8 @@ export const Select: FC<PropsType<any>> = ({
   }
 
   useEffect(() => {
-    const onClick = (e: any): void => {
-      if (!dropdownRef.current!.contains(e.target)) setIsOpen(false)
+    const onClick = (e: MouseEvent): void => {
+      if (!dropdownRef.current!.contains(e.target as Node)) setIsOpen(false)
     }
 
     if (isOpen) {
@@ -69,7 +69,7 @@ export const Select: FC<PropsType<any>> = ({
       <div
         className={`${classes.dropClassName} ${
           isOpen ? 'block' : 'hidden'
-        } absolute box-content w-full border border-anthracite-gray`}
+        } absolute z-20 box-content w-full border border-anthracite-gray bg-white dark:border-white dark:bg-anthracite-gray`}
       >
         {items.map(item => {
           return (

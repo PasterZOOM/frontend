@@ -43,7 +43,9 @@ export const products: ProductType[] = [
         { id: v1(), url: 'bg-red-200' },
         { id: v1(), url: 'bg-red-500' },
         { id: v1(), url: 'bg-red-100' },
+        { id: v1(), url: 'bg-red-300' },
         { id: v1(), url: 'bg-red-700' },
+        { id: v1(), url: 'bg-red-900' },
       ],
       [greenColorId]: [
         { id: v1(), url: 'bg-green-200' },
@@ -70,7 +72,6 @@ export const products: ProductType[] = [
       [redColorId]: [
         { id: v1(), url: 'bg-red-200' },
         { id: v1(), url: 'bg-red-500' },
-        { id: v1(), url: 'bg-red-100' },
         { id: v1(), url: 'bg-red-700' },
       ],
       [blackColorId]: [

@@ -3,8 +3,6 @@ import { FC, useEffect } from 'react'
 import { GetStaticProps } from 'next'
 
 import { CurrencyService } from '@/api/currency/currencyApi'
-import { CurrentCurrencySelect } from '@/components/common/ui/selects/currentCurrencySelect'
-import SwitchTheme from '@/components/common/ui/switchTheme/switchTheme'
 import Products from '@/components/pages/catalog/products'
 import { TWELVE_HOURS } from '@/constants/date/time'
 import { ECost, TCost } from '@/enums/cost'
@@ -18,15 +16,7 @@ const Catalog: FC<{ rates: CostType }> = ({ rates }) => {
     setActualRates(rates)
   }, [])
 
-  return (
-    <div className="flex gap-2 dark:bg-anthracite-gray">
-      <div className="w-full max-w-xs">
-        <CurrentCurrencySelect />
-        <SwitchTheme />
-      </div>
-      <Products />
-    </div>
-  )
+  return <Products />
 }
 
 export const getStaticProps: GetStaticProps = async () => {

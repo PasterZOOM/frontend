@@ -1,4 +1,4 @@
-import { FC, ReactElement, useState } from 'react'
+import { FC, useState } from 'react'
 
 import { v1 } from 'uuid'
 
@@ -70,10 +70,8 @@ const currency: CurrencyType[] = [
     title: 'Китайский юань',
   },
 ]
-const CurrencyElement = ({
-  sign,
-  title,
-}: Pick<CurrencyType, 'sign' | 'title'>): ReactElement<any, any> => (
+
+const CurrencyElement: FC<Pick<CurrencyType, 'sign' | 'title'>> = ({ sign, title }) => (
   <div className="flex items-center gap-2">
     <div className="flex w-5 justify-center">{sign}</div>
     <span>{title}</span>

@@ -6,12 +6,15 @@ import { FC } from 'react'
 
 import type { AppProps } from 'next/app'
 
+import Header from '@/components/common/header/header'
+
 const App: FC<AppProps> = ({ Component, pageProps }) => {
   return (
-    <>
+    <div className="bg-white dark:bg-anthracite-gray">
       <div id="modals" />
+      <Header />
       <Component {...pageProps} />
-    </>
+    </div>
   )
 }
 

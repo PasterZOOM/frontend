@@ -17,6 +17,8 @@ module.exports = {
       boxShadow: {
         'button-hover': '0px 0px 0px 2px rgba(47, 49, 50, 1) inset',
         'button-hover-dark': '0px 0px 0px 2px rgba(225, 225, 225, 1) inset',
+        line: '0px 2px 2px rgba(0, 0, 0, 0.1)',
+        'line-dark': '0px 2px 2px rgba(255, 255, 255, 0.2)',
       },
       gridTemplateColumns: {
         'catalog-products': 'repeat(auto-fill, minmax(20rem, 1fr))',

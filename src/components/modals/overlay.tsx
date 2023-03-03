@@ -62,7 +62,7 @@ export const ModalOverlay: FC<PropsType> = ({ children, onClose, isOpen }) => {
           id="modal"
           ref={containerRef}
           onClick={e => handleClick(e)}
-          className="fixed inset-0 z-10 flex h-screen items-center justify-center overflow-y-auto bg-black bg-opacity-50 p-4 dark:bg-white dark:bg-opacity-50"
+          className="fixed inset-0 z-10 flex h-screen items-center justify-center overflow-y-auto bg-black bg-opacity-50 p-4"
         >
           {children}
         </div>,
