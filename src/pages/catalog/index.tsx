@@ -3,10 +3,9 @@ import { FC, useEffect, useState } from 'react'
 import { GetStaticProps } from 'next'
 
 import { CurrencyService } from '@/api/currency/currencyApi'
-import FilterContainer from '@/components/common/containers/filterContainer'
 import { MainContainer } from '@/components/common/containers/mainContainer'
-import AccordionWrapper from '@/components/common/ui/accordion/accordionWrapper'
 import FilterButtons from '@/components/common/ui/buttons/filterButtons'
+import { CatalogFilters } from '@/components/pages/catalog/filters/catalogFilters'
 import Products from '@/components/pages/catalog/products'
 import { TWELVE_HOURS } from '@/constants/date/time'
 import { ECost, TCost } from '@/enums/cost'
@@ -15,7 +14,7 @@ import { CostType } from '@/types/costType'
 
 const Catalog: FC<{ rates: CostType }> = ({ rates }) => {
   const setActualRates = useCurrencyStore(store => store.setActualRates)
-  const [isOpenFilters, setIsOpenFilters] = useState(true)
+  const [isOpenFilters, setIsOpenFilters] = useState(false)
 
   useEffect(() => {
     setActualRates(rates)
@@ -24,36 +23,14 @@ const Catalog: FC<{ rates: CostType }> = ({ rates }) => {
   return (
     <>
       <MainContainer className="grid-cols-12 gap-6 py-5 lg:grid">
-        <div className="col-span-2">
-          <FilterContainer open={isOpenFilters} setOpen={setIsOpenFilters} className="lg:top-18">
-            <AccordionWrapper title="Категории" classes={{ wrapper: 'px-4 md:px-6 lg:px-0' }}>
-              <div className="pt-4">
-                <div>Для карт</div>
-                <div>Для купюр</div>
-                <div>Для документов</div>
-                <div>Для монет</div>
-              </div>
-            </AccordionWrapper>
-            <AccordionWrapper title="Кожа" classes={{ wrapper: 'px-4 md:px-6 lg:px-0' }}>
-              <div className="pt-4">
-                <div>Buttero</div>
-                <div>WAX</div>
-                <div>Pueblo</div>
-              </div>
-            </AccordionWrapper>
-            <AccordionWrapper title="Цвета" classes={{ wrapper: 'px-4 md:px-6 lg:px-0' }}>
-              <div className="pt-4">
-                <div>Красный</div>
-                <div>Черный</div>
-                <div>Зеленый</div>
-              </div>
-            </AccordionWrapper>
-          </FilterContainer>
-        </div>
-        <div className="col-span-10">
-          <Products />
-        </div>
+        <CatalogFilters
+          isOpenFilters={isOpenFilters}
+          setIsOpenFilters={setIsOpenFilters}
+          className="col-span-2"
+        />
+        <Products className="col-span-10" />
       </MainContainer>
+      {/* кнопи фильтров для мобильной версии */}
       <FilterButtons open={isOpenFilters} setOpen={setIsOpenFilters} />
     </>
   )

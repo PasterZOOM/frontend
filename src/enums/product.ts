@@ -1,4 +1,4 @@
-export enum EProductCategory {
+export enum EProductAssignment {
   FOR_CLOTH = 'FOR_CLOTH',
   FOR_CARDS = 'FOR_CARDS',
   FOR_CASH = 'FOR_CASH',
@@ -7,7 +7,7 @@ export enum EProductCategory {
   FOR_WATCH = 'FOR_WATCH',
   FOR_AIRPODS = 'FOR_AIRPODS',
 }
-export enum EProductType {
+export enum EProductCategory {
   AUTODOC_HOLDER = 'AUTODOC_HOLDER',
   BELT = 'BELT',
   BIFOLD_WALLET = 'BIFOLD_WALLET',
@@ -18,5 +18,5 @@ export enum EProductType {
   WATCH_STRAP = 'WATCH_STRAP',
 }
 
+export type TProductAssignment = keyof typeof EProductAssignment
 export type TProductCategory = keyof typeof EProductCategory
-export type TProductType = keyof typeof EProductType

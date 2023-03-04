@@ -1,45 +1,71 @@
 import { v1 } from 'uuid'
 
 import { ECost } from '@/enums/cost'
-import { EPunchPitch } from '@/enums/materials'
-import { EProductCategory, EProductType } from '@/enums/product'
-import { LeatherColorType, ProductType } from '@/types/productType'
+import { EButteroCode, ELeather, ELeatherColor, EPunchPitch, EWaxCode } from '@/enums/materials'
+import { EProductAssignment, EProductCategory } from '@/enums/product'
+import { LeatherColorType, LeathersType, ProductType } from '@/types/productType'
 
-const redColorId = v1()
-const blackColorId = v1()
-const greenColorId = v1()
-
-export const colors: LeatherColorType[] = [
+export const butteroColors: LeatherColorType<EButteroCode>[] = [
   {
-    _id: redColorId,
+    _id: v1(),
     photo: 'bg-red-700',
-    article: '',
-    code: '102',
-    name: 'red',
+    article: ELeather.BUTTERO,
+    code: EButteroCode.RED,
+    title: 'Красная',
+    value: ELeatherColor.RED,
     description: 'описание цвета',
   },
   {
-    _id: blackColorId,
+    _id: v1(),
     photo: 'bg-black',
-    article: '',
-    code: '100',
-    name: 'black',
+    article: ELeather.BUTTERO,
+    code: EButteroCode.BLACK,
+    title: 'Черный',
+    value: ELeatherColor.BLACK,
     description: 'описание цвета',
   },
   {
-    _id: greenColorId,
+    _id: v1(),
     photo: 'bg-green-700',
-    article: '',
-    code: '36',
-    name: 'green',
+    article: ELeather.BUTTERO,
+    code: EButteroCode.GREEN,
+    title: 'Зеленый',
+    value: ELeatherColor.GREEN,
     description: 'описание цвета',
   },
 ]
+export const waxColors: LeatherColorType<EWaxCode>[] = [
+  {
+    _id: v1(),
+    photo: 'bg-green-700',
+    article: ELeather.WAX,
+    code: EWaxCode.GREEN,
+    title: 'Красный',
+    value: ELeatherColor.GREEN,
+    description: 'описание цвета',
+  },
+  {
+    _id: v1(),
+    photo: 'bg-yellow-700',
+    article: ELeather.WAX,
+    code: EWaxCode.YELLOW,
+    title: 'Желтый',
+    value: ELeatherColor.YELLOW,
+    description: 'описание цвета',
+  },
+]
+
+export const leathers: LeathersType = {
+  [ELeather.BUTTERO]: butteroColors,
+  [ELeather.WAX]: waxColors,
+  [ELeather.PUEBLO]: [],
+}
+
 export const products: ProductType[] = [
   {
     _id: v1(),
     photos: {
-      [redColorId]: [
+      [EButteroCode.RED]: [
         { id: v1(), url: 'bg-red-200' },
         { id: v1(), url: 'bg-red-500' },
         { id: v1(), url: 'bg-red-100' },
@@ -47,7 +73,7 @@ export const products: ProductType[] = [
         { id: v1(), url: 'bg-red-700' },
         { id: v1(), url: 'bg-red-900' },
       ],
-      [greenColorId]: [
+      [EButteroCode.GREEN]: [
         { id: v1(), url: 'bg-green-200' },
         { id: v1(), url: 'bg-green-500' },
         { id: v1(), url: 'bg-green-100' },
@@ -56,31 +82,29 @@ export const products: ProductType[] = [
     },
     title: 'Холдер с монетницей из кожи Buttero',
     description: 'Компактный холдер с монетницей',
-    type: EProductType.CARD_HOLDER,
+    category: EProductCategory.CARD_HOLDER,
     cost: 32,
     costCurrency: ECost.USD,
-    category: [EProductCategory.FOR_CASH, EProductCategory.FOR_CARDS],
-    comment: 'Комментарий',
+    assignments: [EProductAssignment.FOR_CASH, EProductAssignment.FOR_CARDS],
     punchPitch: EPunchPitch.LARGE,
     size: '12x9x2',
-    leather: 'buttero',
-    colors: [redColorId, greenColorId],
+    leather: ELeather.BUTTERO,
   },
   {
     _id: v1(),
     photos: {
-      [redColorId]: [
+      [EButteroCode.RED]: [
         { id: v1(), url: 'bg-red-200' },
         { id: v1(), url: 'bg-red-500' },
         { id: v1(), url: 'bg-red-700' },
       ],
-      [blackColorId]: [
+      [EButteroCode.BLACK]: [
         { id: v1(), url: 'bg-gray-200' },
         { id: v1(), url: 'bg-gray-500' },
         { id: v1(), url: 'bg-gray-100' },
         { id: v1(), url: 'bg-gray-700' },
       ],
-      [greenColorId]: [
+      [EButteroCode.GREEN]: [
         { id: v1(), url: 'bg-green-200' },
         { id: v1(), url: 'bg-green-500' },
         { id: v1(), url: 'bg-green-100' },
@@ -89,288 +113,58 @@ export const products: ProductType[] = [
     },
     title: 'Бифолд из кожи Buttero',
     description: 'Компактный склодной кошелек с монетницей',
-    type: EProductType.CARD_HOLDER,
-    cost: 60,
+    category: EProductCategory.BIFOLD_WALLET,
+    cost: 61,
     costCurrency: ECost.USD,
-    category: [EProductCategory.FOR_CASH, EProductCategory.FOR_CARDS],
-    comment: 'Комментарий',
+    assignments: [EProductAssignment.FOR_CASH, EProductAssignment.FOR_CARDS],
     punchPitch: EPunchPitch.LARGE,
     size: '12x9x2',
-    leather: 'buttero',
-    colors: [greenColorId, blackColorId, redColorId],
+    leather: ELeather.BUTTERO,
   },
   {
     _id: v1(),
     photos: {
-      [blackColorId]: [
-        { id: v1(), url: 'bg-gray-200' },
-        { id: v1(), url: 'bg-gray-500' },
-        { id: v1(), url: 'bg-gray-100' },
-        { id: v1(), url: 'bg-gray-700' },
-      ],
-    },
-    title: 'Обложка для паспорта из кожи Buttero',
-    description: 'Классическая обложка для паспорта из плотной кожи',
-    type: EProductType.CARD_HOLDER,
-    cost: 20,
-    costCurrency: ECost.USD,
-    category: [EProductCategory.FOR_CASH, EProductCategory.FOR_CARDS],
-    comment: 'Комментарий',
-    punchPitch: EPunchPitch.LARGE,
-    size: '12x9x2',
-    leather: 'buttero',
-    colors: [blackColorId],
-  },
-  {
-    _id: v1(),
-    photos: {
-      [redColorId]: [
-        { id: v1(), url: 'bg-red-200' },
-        { id: v1(), url: 'bg-red-500' },
-        { id: v1(), url: 'bg-red-100' },
-        { id: v1(), url: 'bg-red-700' },
-      ],
-      [greenColorId]: [
+      [EWaxCode.GREEN]: [
         { id: v1(), url: 'bg-green-200' },
         { id: v1(), url: 'bg-green-500' },
         { id: v1(), url: 'bg-green-100' },
         { id: v1(), url: 'bg-green-700' },
       ],
     },
-    title: 'Холдер с монетницей из кожи Buttero',
-    description: 'Компактный холдер с монетницей',
-    type: EProductType.CARD_HOLDER,
-    cost: 32,
-    costCurrency: ECost.USD,
-    category: [EProductCategory.FOR_CASH, EProductCategory.FOR_CARDS],
-    comment: 'Комментарий',
-    punchPitch: EPunchPitch.LARGE,
-    size: '12x9x2',
-    leather: 'buttero',
-    colors: [redColorId, greenColorId],
-  },
-  {
-    _id: v1(),
-    photos: {
-      [redColorId]: [
-        { id: v1(), url: 'bg-red-200' },
-        { id: v1(), url: 'bg-red-500' },
-        { id: v1(), url: 'bg-red-100' },
-        { id: v1(), url: 'bg-red-700' },
-      ],
-      [blackColorId]: [
-        { id: v1(), url: 'bg-gray-200' },
-        { id: v1(), url: 'bg-gray-500' },
-        { id: v1(), url: 'bg-gray-100' },
-        { id: v1(), url: 'bg-gray-700' },
-      ],
-      [greenColorId]: [
-        { id: v1(), url: 'bg-green-200' },
-        { id: v1(), url: 'bg-green-500' },
-        { id: v1(), url: 'bg-green-100' },
-        { id: v1(), url: 'bg-green-700' },
-      ],
-    },
-    title: 'Бифолд из кожи Buttero',
+    title: 'Бифолд из кожи WAX',
     description: 'Компактный склодной кошелек с монетницей',
-    type: EProductType.CARD_HOLDER,
-    cost: 60,
+    category: EProductCategory.BIFOLD_WALLET,
+    cost: 61,
     costCurrency: ECost.USD,
-    category: [EProductCategory.FOR_CASH, EProductCategory.FOR_CARDS],
-    comment: 'Комментарий',
+    assignments: [EProductAssignment.FOR_CASH, EProductAssignment.FOR_CARDS],
     punchPitch: EPunchPitch.LARGE,
     size: '12x9x2',
-    leather: 'buttero',
-    colors: [greenColorId, blackColorId, redColorId],
+    leather: ELeather.WAX,
   },
   {
     _id: v1(),
     photos: {
-      [blackColorId]: [
-        { id: v1(), url: 'bg-gray-200' },
-        { id: v1(), url: 'bg-gray-500' },
-        { id: v1(), url: 'bg-gray-100' },
-        { id: v1(), url: 'bg-gray-700' },
+      [EWaxCode.GREEN]: [
+        { id: v1(), url: 'bg-green-200' },
+        { id: v1(), url: 'bg-green-500' },
+        { id: v1(), url: 'bg-green-100' },
+        { id: v1(), url: 'bg-green-700' },
+      ],
+      [EWaxCode.YELLOW]: [
+        { id: v1(), url: 'bg-yellow-200' },
+        { id: v1(), url: 'bg-yellow-500' },
+        { id: v1(), url: 'bg-yellow-100' },
+        { id: v1(), url: 'bg-yellow-700' },
       ],
     },
-    title: 'Обложка для паспорта из кожи Buttero',
+    title: 'Обложка для паспорта из кожи Wax',
     description: 'Классическая обложка для паспорта из плотной кожи',
-    type: EProductType.CARD_HOLDER,
+    category: EProductCategory.PASSPORT_COVER,
     cost: 20,
     costCurrency: ECost.USD,
-    category: [EProductCategory.FOR_CASH, EProductCategory.FOR_CARDS],
-    comment: 'Комментарий',
+    assignments: [EProductAssignment.FOR_DOCUMENTS],
     punchPitch: EPunchPitch.LARGE,
     size: '12x9x2',
-    leather: 'buttero',
-    colors: [blackColorId],
-  },
-  {
-    _id: v1(),
-    photos: {
-      [redColorId]: [
-        { id: v1(), url: 'bg-red-200' },
-        { id: v1(), url: 'bg-red-500' },
-        { id: v1(), url: 'bg-red-100' },
-        { id: v1(), url: 'bg-red-700' },
-      ],
-      [greenColorId]: [
-        { id: v1(), url: 'bg-green-200' },
-        { id: v1(), url: 'bg-green-500' },
-        { id: v1(), url: 'bg-green-100' },
-        { id: v1(), url: 'bg-green-700' },
-      ],
-    },
-    title: 'Холдер с монетницей из кожи Buttero',
-    description: 'Компактный холдер с монетницей',
-    type: EProductType.CARD_HOLDER,
-    cost: 32,
-    costCurrency: ECost.USD,
-    category: [EProductCategory.FOR_CASH, EProductCategory.FOR_CARDS],
-    comment: 'Комментарий',
-    punchPitch: EPunchPitch.LARGE,
-    size: '12x9x2',
-    leather: 'buttero',
-    colors: [redColorId, greenColorId],
-  },
-  {
-    _id: v1(),
-    photos: {
-      [redColorId]: [
-        { id: v1(), url: 'bg-red-200' },
-        { id: v1(), url: 'bg-red-500' },
-        { id: v1(), url: 'bg-red-100' },
-        { id: v1(), url: 'bg-red-700' },
-      ],
-      [blackColorId]: [
-        { id: v1(), url: 'bg-gray-200' },
-        { id: v1(), url: 'bg-gray-500' },
-        { id: v1(), url: 'bg-gray-100' },
-        { id: v1(), url: 'bg-gray-700' },
-      ],
-      [greenColorId]: [
-        { id: v1(), url: 'bg-green-200' },
-        { id: v1(), url: 'bg-green-500' },
-        { id: v1(), url: 'bg-green-100' },
-        { id: v1(), url: 'bg-green-700' },
-      ],
-    },
-    title: 'Бифолд из кожи Buttero',
-    description: 'Компактный склодной кошелек с монетницей',
-    type: EProductType.CARD_HOLDER,
-    cost: 60,
-    costCurrency: ECost.USD,
-    category: [EProductCategory.FOR_CASH, EProductCategory.FOR_CARDS],
-    comment: 'Комментарий',
-    punchPitch: EPunchPitch.LARGE,
-    size: '12x9x2',
-    leather: 'buttero',
-    colors: [greenColorId, blackColorId, redColorId],
-  },
-  {
-    _id: v1(),
-    photos: {
-      [blackColorId]: [
-        { id: v1(), url: 'bg-gray-200' },
-        { id: v1(), url: 'bg-gray-500' },
-        { id: v1(), url: 'bg-gray-100' },
-        { id: v1(), url: 'bg-gray-700' },
-      ],
-    },
-    title: 'Обложка для паспорта из кожи Buttero',
-    description: 'Классическая обложка для паспорта из плотной кожи',
-    type: EProductType.CARD_HOLDER,
-    cost: 20,
-    costCurrency: ECost.USD,
-    category: [EProductCategory.FOR_CASH, EProductCategory.FOR_CARDS],
-    comment: 'Комментарий',
-    punchPitch: EPunchPitch.LARGE,
-    size: '12x9x2',
-    leather: 'buttero',
-    colors: [blackColorId],
-  },
-  {
-    _id: v1(),
-    photos: {
-      [redColorId]: [
-        { id: v1(), url: 'bg-red-200' },
-        { id: v1(), url: 'bg-red-500' },
-        { id: v1(), url: 'bg-red-100' },
-        { id: v1(), url: 'bg-red-700' },
-      ],
-      [greenColorId]: [
-        { id: v1(), url: 'bg-green-200' },
-        { id: v1(), url: 'bg-green-500' },
-        { id: v1(), url: 'bg-green-100' },
-        { id: v1(), url: 'bg-green-700' },
-      ],
-    },
-    title: 'Холдер с монетницей из кожи Buttero',
-    description: 'Компактный холдер с монетницей',
-    type: EProductType.CARD_HOLDER,
-    cost: 32,
-    costCurrency: ECost.USD,
-    category: [EProductCategory.FOR_CASH, EProductCategory.FOR_CARDS],
-    comment: 'Комментарий',
-    punchPitch: EPunchPitch.LARGE,
-    size: '12x9x2',
-    leather: 'buttero',
-    colors: [redColorId, greenColorId],
-  },
-  {
-    _id: v1(),
-    photos: {
-      [redColorId]: [
-        { id: v1(), url: 'bg-red-200' },
-        { id: v1(), url: 'bg-red-500' },
-        { id: v1(), url: 'bg-red-100' },
-        { id: v1(), url: 'bg-red-700' },
-      ],
-      [blackColorId]: [
-        { id: v1(), url: 'bg-gray-200' },
-        { id: v1(), url: 'bg-gray-500' },
-        { id: v1(), url: 'bg-gray-100' },
-        { id: v1(), url: 'bg-gray-700' },
-      ],
-      [greenColorId]: [
-        { id: v1(), url: 'bg-green-200' },
-        { id: v1(), url: 'bg-green-500' },
-        { id: v1(), url: 'bg-green-100' },
-        { id: v1(), url: 'bg-green-700' },
-      ],
-    },
-    title: 'Бифолд из кожи Buttero',
-    description: 'Компактный склодной кошелек с монетницей',
-    type: EProductType.CARD_HOLDER,
-    cost: 60,
-    costCurrency: ECost.USD,
-    category: [EProductCategory.FOR_CASH, EProductCategory.FOR_CARDS],
-    comment: 'Комментарий',
-    punchPitch: EPunchPitch.LARGE,
-    size: '12x9x2',
-    leather: 'buttero',
-    colors: [greenColorId, blackColorId, redColorId],
-  },
-  {
-    _id: v1(),
-    photos: {
-      [blackColorId]: [
-        { id: v1(), url: 'bg-gray-200' },
-        { id: v1(), url: 'bg-gray-500' },
-        { id: v1(), url: 'bg-gray-100' },
-        { id: v1(), url: 'bg-gray-700' },
-      ],
-    },
-    title: 'Обложка для паспорта из кожи Buttero',
-    description: 'Классическая обложка для паспорта из плотной кожи',
-    type: EProductType.CARD_HOLDER,
-    cost: 20,
-    costCurrency: ECost.USD,
-    category: [EProductCategory.FOR_CASH, EProductCategory.FOR_CARDS],
-    comment: 'Комментарий',
-    punchPitch: EPunchPitch.LARGE,
-    size: '12x9x2',
-    leather: 'buttero',
-    colors: [blackColorId],
+    leather: ELeather.WAX,
   },
 ]

@@ -22,14 +22,14 @@ type PropsType = {
 
 export const ProductCard: FC<PropsType> = ({ defPrice = ECost.USD, product }) => {
   const { width } = useWindowSize()
-  const [activeColor, setActiveColor] = useState(product.colors[0])
+  const [activeColor, setActiveColor] = useState(Object.keys(product.photos)[0])
 
   const currentCurrency = useUserSettings(state => state.currentCurrency)
 
   const priceInCurrentCurrency = useGetPriceInCurrentCurrency(product.cost, product.costCurrency)
   const priceInDefaultCurrency = useGetPriceInCurrency(product.cost, product.costCurrency, defPrice)
 
-  const productColors = getProductColors(product.colors)
+  const productColors = getProductColors(Object.keys(product.photos), product.leather)
 
   return (
     <div>
@@ -39,7 +39,7 @@ export const ProductCard: FC<PropsType> = ({ defPrice = ECost.USD, product }) =>
         <ProductCardViewMobile photos={product.photos[activeColor]} />
       )}
       <div className="mt-10">
-        <Link href={`/products/${product.type}`}>
+        <Link href={`/products/${product.category}`}>
           <div className="mt-4 mb-3 text-custom-xl font-bold">{product.title}</div>
           <div className="my-3 font-light">{product.description}</div>
         </Link>
@@ -49,7 +49,7 @@ export const ProductCard: FC<PropsType> = ({ defPrice = ECost.USD, product }) =>
               key={color._id}
               photo={color.photo}
               isActive={color._id === activeColor}
-              onClick={() => setActiveColor(color._id)}
+              onClick={() => setActiveColor(color.code)}
             />
           ))}
         </div>

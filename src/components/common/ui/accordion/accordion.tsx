@@ -8,7 +8,7 @@ interface AccordionProps {
   className?: string
 }
 
-const Accordion: FC<AccordionProps> = ({ open, children, className }) => {
+const Accordion: FC<AccordionProps> = ({ open, children, className = '' }) => {
   const accordionRef = useRef<HTMLDivElement | null>(null)
   const onResize = useCallback((size: ObservedSize) => {
     if (accordionRef.current) {
@@ -46,7 +46,7 @@ const Accordion: FC<AccordionProps> = ({ open, children, className }) => {
   }, [open])
 
   return (
-    <div className={`${className || ''}`}>
+    <div className={`${className}`}>
       <div
         ref={accordionRef}
         {...{ open }}

@@ -1,31 +1,36 @@
 import { TCost } from '@/enums/cost'
-import { EPunchPitch } from '@/enums/materials'
-import { TProductCategory, TProductType } from '@/enums/product'
+import { EButteroCode, EPunchPitch, EWaxCode, TLeather } from '@/enums/materials'
+import { TProductAssignment, TProductCategory } from '@/enums/product'
 
-export type LeatherColorType = {
+export type LeatherColorType<T extends EButteroCode | EWaxCode> = {
   _id: string
-  article: string
-  code: string
+  article: TLeather
+  code: T
   photo: string
-  name: string
+  title: string
+  value: string
   description: string
 }
+
 export type ProductPhotoType = {
   id: string
   url: string
 }
+
 export type ProductType = {
   _id: string
-  category: TProductCategory[]
-  comment: string
+  assignments: TProductAssignment[]
+  category: TProductCategory
   cost: number
   costCurrency: TCost
-  description?: string
-  leather: string
-  photos: Record<string, ProductPhotoType[]>
+  description: string
+  leather: TLeather
+  photos: PhotosType
   punchPitch: EPunchPitch
   size: string
   title: string
-  type: TProductType
-  colors: string[]
 }
+
+export type PhotosType = Record<string, ProductPhotoType[]>
+export type GeneralLeatherColorType = LeatherColorType<EButteroCode | EWaxCode>
+export type LeathersType = Record<TLeather, GeneralLeatherColorType[]>

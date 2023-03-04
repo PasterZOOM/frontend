@@ -13,6 +13,7 @@ module.exports = {
     extend: {
       inset: {
         22: '5.5rem', // 88px
+        26: '6.5rem', // 104px
       },
       space: {
         100: '25rem', // 400px
