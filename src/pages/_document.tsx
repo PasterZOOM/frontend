@@ -6,7 +6,7 @@ const Document: FC = () => {
   return (
     <Html lang="en">
       <Head />
-      <body className="dark:text-white">
+      <body className="text-anthracite-gray dark:bg-anthracite-gray dark:text-white">
         <Main />
         <NextScript />
       </body>

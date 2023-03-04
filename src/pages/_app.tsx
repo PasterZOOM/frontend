@@ -10,7 +10,7 @@ import Header from '@/components/common/header/header'
 
 const App: FC<AppProps> = ({ Component, pageProps }) => {
   return (
-    <div className="bg-white dark:bg-anthracite-gray">
+    <div>
       <div id="modals" />
       <Header />
       <Component {...pageProps} />

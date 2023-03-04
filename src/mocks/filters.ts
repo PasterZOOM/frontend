@@ -14,6 +14,11 @@ export type FilterType<T extends TProductAssignment | TProductCategory | TLeathe
     value: T
     title: string
   }
+
+export type GeneralFilterType = FilterType<
+  TProductAssignment | TProductCategory | TLeather | TLeatherColor
+>
+
 export const assignmentFilters: FilterType<TProductAssignment>[] = [
   { id: v1(), title: 'Для карт', value: EProductAssignment.FOR_CARDS },
   { id: v1(), title: 'Для купюр', value: EProductAssignment.FOR_CASH },
@@ -31,8 +36,8 @@ export const leatherFilters: FilterType<TLeather>[] = [
   { id: v1(), title: 'Pueblo', value: ELeather.PUEBLO },
 ]
 export const leatherColorFilters: FilterType<TLeatherColor>[] = [
-  { id: v1(), title: 'Черная', value: ELeatherColor.BLACK },
-  { id: v1(), title: 'Красная', value: ELeatherColor.RED },
-  { id: v1(), title: 'Зеленая', value: ELeatherColor.GREEN },
+  { id: v1(), title: 'Черный', value: ELeatherColor.BLACK },
+  { id: v1(), title: 'Красный', value: ELeatherColor.RED },
+  { id: v1(), title: 'Зеленый', value: ELeatherColor.GREEN },
   { id: v1(), title: 'Желтый', value: ELeatherColor.YELLOW },
 ]
