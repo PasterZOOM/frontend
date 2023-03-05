@@ -1,26 +1,22 @@
 import { create } from 'zustand'
 
-export type FiltersKeysType = keyof typeof initialState.filters
+import { EFilterKeys } from '@/mocks/filters'
+
 type FilterStateType = {
-  filters: {
-    assignments: string[]
-    category: string[]
-    leather: string[]
-    leatherColor: string[]
-  }
+  filters: Record<EFilterKeys, string>
 }
 
 const initialState: FilterStateType = {
   filters: {
-    assignments: [],
-    leather: [],
-    leatherColor: [],
-    category: [],
+    assignments: '',
+    leathers: '',
+    leatherColors: '',
+    categories: '',
   },
 }
 
 type Store = FilterStateType & {
-  setFilter: (filterKey: FiltersKeysType, value: string[]) => void
+  setFilter: (filterKey: EFilterKeys, value: string) => void
 }
 
 export const useFilterStore = create<Store>((set, get) => ({

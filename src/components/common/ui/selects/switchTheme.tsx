@@ -1,4 +1,4 @@
-import { FC, ReactElement, useEffect, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 
 import { v1 } from 'uuid'
 
@@ -28,7 +28,7 @@ const themes: ThemeType[] = [
     title: 'Темная',
   },
 ]
-const ThemeElement = ({ title }: { title: string }): ReactElement<any, any> => <span>{title}</span>
+const ThemeElement: FC<Pick<ThemeType, 'title'>> = ({ title }) => <span>{title}</span>
 
 const SwitchTheme: FC = () => {
   const theme = useUserSettings(state => state.theme)

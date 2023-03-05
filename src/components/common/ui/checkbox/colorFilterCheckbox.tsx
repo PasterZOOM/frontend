@@ -1,19 +1,18 @@
 import { FC, useMemo, useRef } from 'react'
 
-import { ELeatherColor, TLeatherColor } from '@/enums/materials'
-import { useChangeQueryParams } from '@/hooks/useChangeQueryParams'
-import { FilterType } from '@/mocks/filters'
-import { FiltersKeysType } from '@/store/useFilterStore'
+import { ELeatherColor } from '@/enums/materials'
+import { useChangeMultipleQueryParams } from '@/hooks/useChangeMultipleQueryParams'
+import { EFilterKeys, FilterType } from '@/mocks/filters'
 
 type PropsType = {
-  color: FilterType<TLeatherColor>
-  filterKey: FiltersKeysType
+  color: FilterType<ELeatherColor>
+  filterKey: EFilterKeys
 }
 
 export const ColorFilterCheckbox: FC<PropsType> = ({ color, filterKey }) => {
   const checkboxRef = useRef<HTMLInputElement | null>(null)
 
-  const { setQueryParams, queryParams } = useChangeQueryParams(filterKey, color.value)
+  const { setQueryParams, queryParams } = useChangeMultipleQueryParams(filterKey, color.value)
 
   const bg = useMemo(() => {
     switch (color.value) {

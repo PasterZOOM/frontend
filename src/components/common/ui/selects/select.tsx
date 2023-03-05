@@ -8,15 +8,14 @@ type ClassesType = {
 
 type PropsType<T> = {
   items: T[]
-  activeItem: T | undefined
+  activeItem: T
   setActiveItem: (newActiveItem: T) => void
   classes?: ClassesType
   className?: string
-  placeholder?: string
   elementToLabel: FC<T>
 }
 
-export const Select: FC<PropsType<{ id: string; title: string } & any>> = ({
+export const Select: FC<PropsType<{ id: string; title: string } & unknown>> = ({
   items = [],
   activeItem,
   setActiveItem,
@@ -26,14 +25,13 @@ export const Select: FC<PropsType<{ id: string; title: string } & any>> = ({
     itemClassName: '',
   },
   className = '',
-  placeholder = '',
   elementToLabel,
 }) => {
   const dropdownRef = useRef<HTMLDivElement | null>(null)
 
   const [isOpen, setIsOpen] = useState(false)
 
-  const onClickItem = (item: any): void => {
+  const onClickItem = (item: typeof activeItem): void => {
     setActiveItem(item)
     setIsOpen(false)
   }
@@ -64,7 +62,7 @@ export const Select: FC<PropsType<{ id: string; title: string } & any>> = ({
           setIsOpen(e => !e)
         }}
       >
-        {activeItem ? elementToLabel(activeItem) : placeholder}
+        {elementToLabel(activeItem)}
       </div>
       <div
         className={`${classes.dropClassName} ${

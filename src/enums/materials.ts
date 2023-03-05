@@ -4,16 +4,16 @@ export enum EPunchPitch {
   LARGE = '3.85',
 }
 export enum ELeather {
-  BUTTERO = 'BUTTERO',
-  WAX = 'WAX',
-  PUEBLO = 'PUEBLO',
+  BUTTERO = 'buttero',
+  WAX = 'wax',
+  PUEBLO = 'pueblo',
 }
 
 export enum ELeatherColor {
-  BLACK = 'BLACK',
-  RED = 'RED',
-  GREEN = 'GREEN',
-  YELLOW = 'YELLOW',
+  BLACK = 'black',
+  RED = 'red',
+  GREEN = 'green',
+  YELLOW = 'yellow',
 }
 export enum EButteroCode {
   RED = '1',
@@ -24,7 +24,3 @@ export enum EWaxCode {
   GREEN = '1',
   YELLOW = '2',
 }
-export type TButteroCode = keyof typeof EButteroCode
-export type TWaxCode = keyof typeof EWaxCode
-export type TLeather = keyof typeof ELeather
-export type TLeatherColor = keyof typeof ELeatherColor

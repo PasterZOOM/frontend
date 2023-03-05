@@ -19,9 +19,9 @@ export const MagnifiedViewModal: FC<PropsType> = ({ closeModal, isOpen, photos, 
 
   return (
     <ModalOverlay isOpen={isOpen} onClose={closeModal}>
-      <div className="relative h-[95%] w-[95%]">
+      <div className="relative h-[95%] w-[95%] bg-white dark:bg-anthracite-gray">
         <button type="button" onClick={closeModal} className="absolute top-4 right-4 z-10 text-lg">
-          close
+          закрыть
         </button>
         <Swiper
           initialSlide={initSlide}

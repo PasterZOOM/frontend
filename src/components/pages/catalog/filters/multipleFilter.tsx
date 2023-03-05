@@ -1,18 +1,17 @@
 import { FC } from 'react'
 
-import { useChangeQueryParams } from '@/hooks/useChangeQueryParams'
-import { GeneralFilterType } from '@/mocks/filters'
-import { FiltersKeysType } from '@/store/useFilterStore'
+import { useChangeMultipleQueryParams } from '@/hooks/useChangeMultipleQueryParams'
+import { EFilterKeys, GeneralFilterType } from '@/mocks/filters'
 
 type PropsType = {
-  filterKey: FiltersKeysType
+  filterKey: EFilterKeys
   item: GeneralFilterType
 }
 
-export const Filter: FC<PropsType> = ({ filterKey, item }) => {
+export const MultipleFilter: FC<PropsType> = ({ filterKey, item }) => {
   const id = `checkbox_${item.value}`
 
-  const { setQueryParams, queryParams } = useChangeQueryParams(filterKey, item.value)
+  const { setQueryParams, queryParams } = useChangeMultipleQueryParams(filterKey, item.value)
 
   return (
     <div className="flex gap-2">
