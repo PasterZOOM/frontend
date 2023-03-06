@@ -3,13 +3,13 @@ import { FC, useEffect, useState } from 'react'
 import { GetStaticProps } from 'next'
 
 import { CurrencyService } from '@/api/currency/currencyApi'
-import { ProductsService } from '@/api/products/productsApi'
 import { MainContainer } from '@/components/common/containers/mainContainer'
 import FilterButtons from '@/components/common/ui/buttons/filterButtons'
 import { CatalogFilters } from '@/components/pages/catalog/filters/catalogFilters'
 import Products from '@/components/pages/catalog/products'
 import { TWELVE_HOURS } from '@/constants/date/time'
 import { ECost, TCost } from '@/enums/cost'
+import { productsMock } from '@/mocks/productsMock'
 import { initialCurrencyState, useCurrencyStore } from '@/store/useCurrencyStore'
 import { useProductStore } from '@/store/useProductStore'
 import { CostType } from '@/types/costType'
@@ -44,9 +44,10 @@ const Catalog: FC<PropsType> = ({ rates, products }) => {
 
 export const getStaticProps: GetStaticProps = async () => {
   const currencyService = new CurrencyService()
-  const productsService = new ProductsService()
-
-  const products = await productsService.getProducts()
+  // const productsService = new ProductsService()
+  //
+  // const products = await productsService.getProducts()
+  const products = productsMock
 
   const rates: CostType = initialCurrencyState
 
