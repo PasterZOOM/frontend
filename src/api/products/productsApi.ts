@@ -3,8 +3,6 @@ import { productsMock } from '@/mocks/productsMock'
 import { ProductType } from '@/types/productType'
 
 export class ProductsService {
-  BASE_URL = 'api'
-
   getProducts: (filters?: Record<EFilterKeys, string>) => Promise<ProductType[]> = async () => {
     // const res = await axios.get(`${this.BASE_URL}/products`, {
     //   params: {
