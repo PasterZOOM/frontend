@@ -3,7 +3,7 @@ import { FC, useEffect } from 'react'
 import { ProductCard } from './productCard/productCard'
 
 import ActiveFilters from '@/components/pages/catalog/filters/activeFilters'
-import useServiceStore from '@/store/servises'
+import { useServiceStore } from '@/store/servises'
 import { useFilterStore } from '@/store/useFilterStore'
 import { useProductStore } from '@/store/useProductStore'
 

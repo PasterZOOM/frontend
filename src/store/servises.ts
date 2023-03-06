@@ -7,7 +7,7 @@ type Store = {
   currencyService: CurrencyService
   productsService: ProductsService
 }
-const useServiceStore = create<Store>(() => {
+export const useServiceStore = create<Store>(() => {
   const currencyService = new CurrencyService()
   const productsService = new ProductsService()
 
@@ -16,5 +16,3 @@ const useServiceStore = create<Store>(() => {
     productsService,
   }
 })
-
-export default useServiceStore
