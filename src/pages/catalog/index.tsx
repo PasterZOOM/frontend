@@ -1,12 +1,13 @@
 import { FC, useEffect, useState } from 'react'
 
-import { GetServerSideProps } from 'next'
+import { GetStaticProps } from 'next'
 
 import { CurrencyService } from '@/api/currency/currencyApi'
 import { MainContainer } from '@/components/common/containers/mainContainer'
 import FilterButtons from '@/components/common/ui/buttons/filterButtons'
 import { CatalogFilters } from '@/components/pages/catalog/filters/catalogFilters'
 import Products from '@/components/pages/catalog/products'
+import { TWELVE_HOURS } from '@/constants/date/time'
 import { ECost, TCost } from '@/enums/cost'
 import { productsMock } from '@/mocks/productsMock'
 import { initialCurrencyState, useCurrencyStore } from '@/store/useCurrencyStore'
@@ -41,7 +42,7 @@ const Catalog: FC<PropsType> = ({ rates, products }) => {
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   const currencyService = new CurrencyService()
 
   const products = productsMock
@@ -58,6 +59,6 @@ export const getServerSideProps: GetServerSideProps = async () => {
       })
   )
 
-  return { props: { rates, products } }
+  return { props: { rates, products }, revalidate: TWELVE_HOURS }
 }
 export default Catalog
