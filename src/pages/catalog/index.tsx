@@ -44,9 +44,7 @@ const Catalog: FC<PropsType> = ({ rates, products }) => {
 
 export const getStaticProps: GetStaticProps = async () => {
   const currencyService = new CurrencyService()
-  // const productsService = new ProductsService()
-  //
-  // const products = await productsService.getProducts()
+
   const products = productsMock
 
   const rates: CostType = initialCurrencyState
