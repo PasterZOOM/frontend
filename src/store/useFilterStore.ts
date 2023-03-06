@@ -15,11 +15,11 @@ const initialState: FilterStateType = {
   },
 }
 
-type Store = FilterStateType & {
+type StoreType = FilterStateType & {
   setFilter: (filterKey: EFilterKeys, value: string) => void
 }
 
-export const useFilterStore = create<Store>((set, get) => ({
+export const useFilterStore = create<StoreType>((set, get) => ({
   ...initialState,
   setFilter: (filterKey, value) => {
     const { filters } = get()

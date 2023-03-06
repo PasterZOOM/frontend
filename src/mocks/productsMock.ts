@@ -61,7 +61,7 @@ export const leathers: LeathersType = {
   [ELeather.PUEBLO]: [],
 }
 
-export const products: ProductType[] = [
+export const productsMock: ProductType[] = [
   {
     _id: v1(),
     photos: {

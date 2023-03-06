@@ -14,10 +14,10 @@ export const initialCurrencyState: CostType = {
   PLN: 1,
 }
 
-type Store = CostType & {
+type StoreType = CostType & {
   setActualRates: (actualRates: CostType) => void
 }
-export const useCurrencyStore = create<Store>(set => ({
+export const useCurrencyStore = create<StoreType>(set => ({
   ...initialCurrencyState,
   setActualRates: actualRates => set(actualRates),
 }))

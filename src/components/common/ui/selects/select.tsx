@@ -15,7 +15,7 @@ type PropsType<T> = {
   elementToLabel: FC<T>
 }
 
-export const Select: FC<PropsType<{ id: string; title: string } & unknown>> = ({
+export const Select: FC<PropsType<{ id: string; title: string } & any>> = ({
   items = [],
   activeItem,
   setActiveItem,

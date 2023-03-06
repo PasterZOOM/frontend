@@ -1,5 +1,5 @@
 import { ELeather } from '@/enums/materials'
-import { leathers } from '@/mocks/products'
+import { leathers } from '@/mocks/productsMock'
 import { GeneralLeatherColorType } from '@/types/productType'
 
 export const getProductColors = (codes: string[], leather: ELeather): GeneralLeatherColorType[] => {

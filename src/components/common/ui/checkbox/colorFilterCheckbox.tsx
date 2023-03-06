@@ -5,7 +5,7 @@ import { useChangeMultipleQueryParams } from '@/hooks/useChangeMultipleQueryPara
 import { EFilterKeys, FilterType } from '@/mocks/filters'
 
 type PropsType = {
-  color: FilterType<ELeatherColor>
+  color: FilterType<ELeatherColor, EFilterKeys.LEATHER_COLORS>
   filterKey: EFilterKeys
 }
 

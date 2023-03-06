@@ -39,7 +39,7 @@ const ActiveFilters: FC<PropsType> = ({ className = '' }) => {
       {activeFilters.map(activeFilter => (
         <button
           type="button"
-          className="rounded-full border border-anthracite-gray px-2 dark:border-light-gray"
+          className="h-fit rounded-full border border-anthracite-gray px-2 dark:border-light-gray"
           key={activeFilter.id}
           onClick={() => removeQueryParam(activeFilter.filterKey, activeFilter.value)}
         >
@@ -50,7 +50,7 @@ const ActiveFilters: FC<PropsType> = ({ className = '' }) => {
         <button
           type="button"
           onClick={clearAll}
-          className="rounded-full border border-anthracite-gray px-2 dark:border-light-gray"
+          className="h-fit rounded-full border border-anthracite-gray px-2 dark:border-light-gray"
         >
           Очистить все
         </button>

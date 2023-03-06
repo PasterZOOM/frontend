@@ -14,13 +14,13 @@ const initialState: UserSettingsStateType = {
   theme: ETheme.AUTO,
 }
 
-type Store = UserSettingsStateType & {
+type StoreType = UserSettingsStateType & {
   setCurrentCurrency: (currentCurrency: TCost) => void
   setTheme: (theme: ETheme) => void
 }
 
 export const useUserSettings = create(
-  persist<Store>(
+  persist<StoreType>(
     set => ({
       ...initialState,
       setCurrentCurrency: currentCurrency => set({ currentCurrency }),
