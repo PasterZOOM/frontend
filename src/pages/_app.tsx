@@ -5,16 +5,22 @@ import 'swiper/css/pagination'
 import { FC } from 'react'
 
 import type { AppProps } from 'next/app'
+import { QueryClient, QueryClientProvider } from 'react-query'
 
 import Header from '@/components/common/header/header'
 
+const queryClient = new QueryClient({
+  defaultOptions: { queries: { refetchOnWindowFocus: false } },
+})
+
 const App: FC<AppProps> = ({ Component, pageProps }) => {
   return (
-    <div>
+    <QueryClientProvider client={queryClient}>
       <div id="modals" />
+      <div id="confirmModal" />
       <Header />
       <Component {...pageProps} />
-    </div>
+    </QueryClientProvider>
   )
 }
 

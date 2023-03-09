@@ -15,14 +15,23 @@ type PropsType = {
   isOpen: boolean
   children: ReactNode
   onClose?: () => void
+  modalContainer?: string
 }
-export const ModalOverlay: FC<PropsType> = ({ children, onClose, isOpen }) => {
+export const ModalOverlay: FC<PropsType> = ({
+  children,
+  onClose,
+  isOpen,
+  modalContainer = '#modals',
+}) => {
   const containerRef = useRef<HTMLDivElement | null>(null)
 
   const [container, setContainer] = useState<Element | null>(null)
 
   const onEscape = useCallback((e: globalThis.KeyboardEvent) => {
-    if (e.key === 'Escape' && onClose) onClose()
+    if (e.key === 'Escape' && onClose) {
+      onClose()
+      e.stopPropagation()
+    }
   }, [])
 
   const handleClick = useCallback(
@@ -37,7 +46,7 @@ export const ModalOverlay: FC<PropsType> = ({ children, onClose, isOpen }) => {
   )
 
   useEffect(() => {
-    setContainer(document.querySelector('#modals'))
+    setContainer(document.querySelector(modalContainer))
   }, [])
 
   useEffect(() => {
@@ -46,7 +55,6 @@ export const ModalOverlay: FC<PropsType> = ({ children, onClose, isOpen }) => {
       document.addEventListener('keydown', onEscape)
     } else {
       document.body.style.overflow = 'auto'
-
       document.removeEventListener('keydown', onEscape)
     }
 

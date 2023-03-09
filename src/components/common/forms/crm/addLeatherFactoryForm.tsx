@@ -4,6 +4,8 @@ import { Form, Formik } from 'formik'
 import { v1 } from 'uuid'
 
 import { CreateLeatherFactoryParamsType } from '@/api/crm/leatherFactoryApi/types'
+import { FormikInput } from '@/components/common/forms/formikInput'
+import { FormikSelect } from '@/components/common/forms/formikSelect'
 import { Button } from '@/components/common/ui/buttons/button'
 import { H5 } from '@/components/common/ui/headers/h5'
 import { ECountry } from '@/enums/countries'
@@ -15,12 +17,12 @@ const initialValues: CreateLeatherFactoryParamsType = {
   description: '',
   name: '',
 }
-const countries: { id: string; value: ECountry; title: string }[] = [
-  { id: v1(), value: ECountry.ITALY, title: 'Italy' },
-  { id: v1(), value: ECountry.AMERICA, title: 'America' },
-  { id: v1(), value: ECountry.BELARUS, title: 'Belarus' },
-  { id: v1(), value: ECountry.FRANCE, title: 'France' },
-  { id: v1(), value: ECountry.RUSSIA, title: 'Russia' },
+const countries: { _id: string; value: ECountry; name: string }[] = [
+  { _id: v1(), value: ECountry.ITALY, name: 'Italy' },
+  { _id: v1(), value: ECountry.AMERICA, name: 'America' },
+  { _id: v1(), value: ECountry.BELARUS, name: 'Belarus' },
+  { _id: v1(), value: ECountry.FRANCE, name: 'France' },
+  { _id: v1(), value: ECountry.RUSSIA, name: 'Russia' },
 ]
 
 export const AddLeatherFactoryForm: FC = () => {
@@ -38,21 +40,19 @@ export const AddLeatherFactoryForm: FC = () => {
           <Form>
             <div>
               <div>Название фабрики:</div>
-              <input type="text" name={ECreateLeatherFactoryParams.NAME} className="border" />
+              <FormikInput name={ECreateLeatherFactoryParams.NAME} className="border" />
             </div>
             <div>
               <div>Страна в которой расположена фабрика:</div>
-              <select name={ECreateLeatherFactoryParams.COUNTRY} className="border p-2">
-                {countries.map(country => (
-                  <option key={country.id} value={country.value}>
-                    {country.title}
-                  </option>
-                ))}
-              </select>
+              <FormikSelect
+                name={ECreateLeatherFactoryParams.COUNTRY}
+                className="border p-2"
+                items={countries}
+              />
             </div>
             <div>
-              <div>Описание:</div>{' '}
-              <textarea name={ECreateLeatherFactoryParams.DESCRIPTION} className="border" />
+              <div>Описание:</div>
+              <FormikInput name={ECreateLeatherFactoryParams.DESCRIPTION} className="border" />
             </div>
             <Button type="submit">Создать</Button>
           </Form>

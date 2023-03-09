@@ -11,7 +11,7 @@ export class LeatherFactoryService {
   create: (params: CreateLeatherFactoryParamsType) => Promise<LeatherFactoryType> =
     async params => {
       const res = await axios.post<LeatherFactoryType>(`${this.BASE_URL}`, {
-        params,
+        ...params,
       })
 
       return res.data
@@ -37,7 +37,7 @@ export class LeatherFactoryService {
     return res.data
   }
 
-  delete: (id: string) => Promise<LeatherFactoryType> = async id => {
+  remove: (id: string) => Promise<LeatherFactoryType> = async id => {
     const res = await axios.delete<LeatherFactoryType>(`${this.BASE_URL}/${id}`)
 
     return res.data

@@ -1,37 +1,56 @@
-import { FC, useEffect, useState } from 'react'
+import { FC } from 'react'
 
-import { LeatherFactoryType } from '@/api/crm/leatherFactoryApi/types'
+import { useQuery } from 'react-query'
+
+import { AddLeatherArticleForm } from '@/components/common/forms/crm/addLeatherArticleForm'
 import { AddLeatherFactoryForm } from '@/components/common/forms/crm/addLeatherFactoryForm'
 import { CrmMenuLayout } from '@/components/common/layouts/crmMenuLayout'
 import { H1 } from '@/components/common/ui/headers/h1'
+import { LeatherArticleModal } from '@/components/modals/crm/leatherArticleModal'
+import { LeatherFactoryModal } from '@/components/modals/crm/leatherFactoryModal'
+import { TableItem } from '@/components/pages/crm/tableItem'
 import { useSrmServiceStore } from '@/store/crmServises'
 
 const Leather: FC = () => {
-  const [factories, setFactories] = useState<LeatherFactoryType[]>([])
   const leatherFactoryService = useSrmServiceStore(state => state.leatherFactoryService)
+  const leatherArticlesService = useSrmServiceStore(state => state.leatherArticlesService)
 
-  useEffect(() => {
-    leatherFactoryService.getAll().then(res => setFactories(res))
-  }, [])
+  const { data: factories } = useQuery('getAllFactories', leatherFactoryService.getAll)
+  const { data: articles } = useQuery('getAllArticles', leatherArticlesService.getAll)
 
   return (
     <CrmMenuLayout>
       <H1 className="text-center">Кожа</H1>
-      <AddLeatherFactoryForm />
-      <table>
-        <thead>
-          <tr>
-            <th>name</th>
-          </tr>
-        </thead>
-        <tbody>
-          {factories.map(factory => (
-            <tr key={factory._id}>
-              <td>{factory.name}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+
+      <div className="flex gap-4">
+        <div className="space-y-2">
+          <AddLeatherFactoryForm />
+          <div>
+            {factories &&
+              factories.map(factory => (
+                <TableItem key={factory._id} name={factory.name}>
+                  {({ close, isOpen }) => (
+                    <LeatherFactoryModal closeModal={close} isOpen={isOpen} factory={factory} />
+                  )}
+                </TableItem>
+              ))}
+          </div>
+        </div>
+
+        <div className="space-y-2">
+          <AddLeatherArticleForm />
+          <div>
+            {articles &&
+              articles.map(article => (
+                <TableItem key={article._id} name={article.name}>
+                  {({ close, isOpen }) => (
+                    <LeatherArticleModal closeModal={close} isOpen={isOpen} article={article} />
+                  )}
+                </TableItem>
+              ))}
+          </div>
+        </div>
+      </div>
     </CrmMenuLayout>
   )
 }
