@@ -1,18 +1,24 @@
+import axios from 'axios'
+
 import { EFilterKeys } from '@/mocks/filters'
-import { productsMock } from '@/mocks/productsMock'
 import { ProductType } from '@/types/productType'
 
 export class ProductsService {
-  getProducts: (filters?: Record<EFilterKeys, string>) => Promise<ProductType[]> = async () => {
-    // const res = await axios.get(`${this.BASE_URL}/products`, {
-    //   params: {
-    //     assignments: filters?.assignments.length ? filters.assignments : undefined,
-    //     categories: filters?.categories.length ? filters.categories : undefined,
-    //     leatherColors: filters?.leatherColors.length ? filters.leatherColors : undefined,
-    //     leathers: filters?.leathers.length ? filters.leathers : undefined,
-    //   },
-    // })
+  BASE_URL = 'http://localhost:8001'
 
-    return productsMock
-  }
+  getProducts: (filters?: Record<EFilterKeys, string>) => Promise<ProductType[]> =
+    async filters => {
+      const assignments = filters?.assignments.length ? filters.assignments.split(',') : undefined
+      const categories = filters?.categories.length ? filters.categories.split(',') : undefined
+      const leatherColors = filters?.leatherColors.length
+        ? filters.leatherColors.split(',')
+        : undefined
+      const leathers = filters?.leathers.length ? filters.leathers.split(',') : undefined
+
+      const res = await axios.get(`${this.BASE_URL}/basic-products`, {
+        params: { assignments, categories, leatherColors, leathers },
+      })
+
+      return res.data
+    }
 }

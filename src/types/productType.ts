@@ -4,7 +4,7 @@ import { EProductAssignment, EProductCategory } from '@/enums/product'
 
 export type LeatherColorType<T extends EButteroCode | EWaxCode> = {
   _id: string
-  article: ELeather
+  article: string
   code: T
   photo: string
   title: string
@@ -31,6 +31,6 @@ export type ProductType = {
   title: string
 }
 
-export type PhotosType = Record<string, ProductPhotoType[]>
+export type PhotosType = Record<string, ProductPhotoType[]> // string - _id из LeatherColorType
 export type GeneralLeatherColorType = LeatherColorType<EButteroCode | EWaxCode>
 export type LeathersType = Record<ELeather, GeneralLeatherColorType[]>

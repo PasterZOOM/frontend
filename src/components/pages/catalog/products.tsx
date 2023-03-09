@@ -11,10 +11,12 @@ type PropsType = {
   className?: string
 }
 const Products: FC<PropsType> = ({ className = '' }) => {
+  const productsService = useServiceStore(state => state.productsService)
+
+  const filters = useFilterStore(state => state.filters)
+
   const products = useProductStore(store => store.products)
   const setProducts = useProductStore(store => store.setProducts)
-  const filters = useFilterStore(state => state.filters)
-  const productsService = useServiceStore(state => state.productsService)
 
   useEffect(() => {
     productsService.getProducts(filters).then(res => setProducts(res))

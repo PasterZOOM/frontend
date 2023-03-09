@@ -1,4 +1,4 @@
-import create from 'zustand'
+import { create } from 'zustand'
 
 import { CurrencyService } from '@/api/currency/currencyApi'
 import { ProductsService } from '@/api/products/productsApi'
