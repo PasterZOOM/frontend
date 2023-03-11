@@ -36,9 +36,9 @@ export const CatalogFilters: FC<PropsType> = ({
 
   return (
     <div className={`${className}`}>
-      <FilterContainer open={isOpenFilters} setOpen={setIsOpenFilters} className="lg:top-18">
-        <AccordionWrapper title="Назначение" classes={{ wrapper: 'lg:-mt-5' }}>
-          <div className="px-4 pb-4 md:px-6 lg:px-0">
+      <FilterContainer open={isOpenFilters} setOpen={setIsOpenFilters} className="xl:top-18">
+        <AccordionWrapper title="Назначение" classes={{ wrapper: 'xl:-mt-5' }}>
+          <div className="px-4 pb-4 md:px-6 xl:px-0">
             {assignments.map(assignment => (
               <MultipleFilter
                 key={assignment.id}
@@ -49,7 +49,7 @@ export const CatalogFilters: FC<PropsType> = ({
           </div>
         </AccordionWrapper>
         <AccordionWrapper title="Категории">
-          <div className="px-4 pb-4 md:px-6 lg:px-0">
+          <div className="px-4 pb-4 md:px-6 xl:px-0">
             {categories.map(category => (
               <MultipleFilter
                 key={category.id}
@@ -60,14 +60,14 @@ export const CatalogFilters: FC<PropsType> = ({
           </div>
         </AccordionWrapper>
         <AccordionWrapper title="Кожа">
-          <div className="px-4 pb-4 md:px-6 lg:px-0">
+          <div className="px-4 pb-4 md:px-6 xl:px-0">
             {leathers.map(leather => (
               <MultipleFilter key={leather.id} item={leather} filterKey={EFilterKeys.LEATHERS} />
             ))}
           </div>
         </AccordionWrapper>
         <AccordionWrapper title="Цвет">
-          <div className="flex flex-wrap gap-3 px-4 pb-4 md:px-6 lg:px-0">
+          <div className="flex flex-wrap gap-3 px-4 pb-4 md:px-6 xl:px-0">
             {colors.map(color => (
               <ColorFilterCheckbox
                 key={color.id}

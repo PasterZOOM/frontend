@@ -16,16 +16,13 @@ const Products: FC<PropsType> = ({ className = '' }) => {
 
   const filters = useFilterStore(state => state.filters)
 
-  // const products = useProductStore(store => store.products)
-  // const setProducts = useProductStore(store => store.setProducts)
-
   const { data: products } = useQuery(['getAllFactories', filters], () =>
     productsService.getProducts(filters)
   )
 
   return (
     <div
-      className={`grid w-full auto-rows-max grid-cols-catalog-products gap-4 md:gap-6 lg:gap-8 ${className}`}
+      className={`grid w-full grid-cols-catalog-products gap-4 md:gap-6 xl:auto-rows-max xl:gap-8 ${className}`}
     >
       <ActiveFilters className="col-span-full" />
       {products && products.map(product => <ProductCard key={product._id} product={product} />)}

@@ -19,8 +19,8 @@ const FilterContainer: FC<FilterContainerProps> = ({ children, className = '', o
 
   return (
     <div
-      className={`fixed left-0 right-0 z-10 bg-white transition-all duration-300 dark:bg-anthracite-gray lg:static
-         lg:z-auto ${
+      className={`fixed left-0 right-0 z-10 bg-white transition-all duration-300 dark:bg-anthracite-gray xl:static
+         xl:z-auto ${
            open
              ? 'bottom-22 shadow-line-top dark:shadow-line-top-dark md:bottom-26'
              : '-bottom-full'

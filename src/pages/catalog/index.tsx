@@ -23,7 +23,7 @@ const Catalog: FC<PropsType> = ({ rates }) => {
 
   return (
     <>
-      <MainContainer className="grid-cols-12 gap-6 py-5 lg:grid">
+      <MainContainer className="min-h-[calc(100vh-9.625rem)] grid-cols-12 gap-6 py-5 md:min-h-[calc(100vh-10.625rem)] xl:grid xl:min-h-fit">
         <CatalogFilters
           isOpenFilters={isOpenFilters}
           setIsOpenFilters={setIsOpenFilters}
