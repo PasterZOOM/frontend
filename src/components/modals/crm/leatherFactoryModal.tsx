@@ -1,20 +1,34 @@
 import { FC } from 'react'
 
-import { LeatherFactoryType } from '@/api/crm/leatherFactoryApi/types'
+import { useMutation, useQuery, useQueryClient } from 'react-query'
+
 import { Button } from '@/components/common/ui/buttons/button'
 import { ConfirmDeleteModal } from '@/components/modals/confirmDeleteModal'
 import { ModalOverlay } from '@/components/modals/overlay'
+import { queryKey } from '@/enums/crm/queryKey'
 import { useModal } from '@/hooks/useModal'
 import { useSrmServiceStore } from '@/store/crmServises'
 
 type PropsType = {
   isOpen: boolean
   closeModal: () => void
-  factory: LeatherFactoryType
+  factoryId: string
 }
 
-export const LeatherFactoryModal: FC<PropsType> = ({ isOpen, closeModal, factory }) => {
+export const LeatherFactoryModal: FC<PropsType> = ({ isOpen, closeModal, factoryId }) => {
   const leatherFactoryService = useSrmServiceStore(state => state.leatherFactoryService)
+
+  const queryClient = useQueryClient()
+  const { data: factory } = useQuery(`${queryKey.GET_FACTORY}-${factoryId}`, async () =>
+    leatherFactoryService.getOne(factoryId)
+  )
+  const { mutateAsync: removeFactory } = useMutation(leatherFactoryService.remove, {
+    onSuccess: async () => {
+      await queryClient.invalidateQueries([queryKey.GET_ALL_FACTORIES])
+      await queryClient.invalidateQueries([queryKey.GET_ALL_ARTICLES])
+    },
+  })
+
   const {
     open: openConfirmModal,
     close: closeConfirmModal,
@@ -22,8 +36,9 @@ export const LeatherFactoryModal: FC<PropsType> = ({ isOpen, closeModal, factory
   } = useModal()
 
   const onConfirm = async (): Promise<void> => {
-    await leatherFactoryService.remove(factory._id)
+    await removeFactory(factoryId)
     closeConfirmModal()
+    closeModal()
   }
 
   return (
@@ -39,11 +54,26 @@ export const LeatherFactoryModal: FC<PropsType> = ({ isOpen, closeModal, factory
         >
           удалить
         </Button>
+
+        {factory && (
+          <>
+            <div>ID: {factory._id}</div>
+            <div>Название фабрики: {factory.name}</div>
+            <div>Страна: {factory.country}</div>
+            <div>Описание: {factory.description}</div>
+            <div>
+              Артирулы:
+              {factory.articles.map(article => {
+                return <div key={article._id}>{article.name}</div>
+              })}
+            </div>
+          </>
+        )}
       </div>
       <ConfirmDeleteModal
         closeModal={closeConfirmModal}
         isOpen={isOpenConfirmModal}
-        itemName={factory.name}
+        itemName={factory?.name}
         onConfirm={onConfirm}
       />
     </ModalOverlay>

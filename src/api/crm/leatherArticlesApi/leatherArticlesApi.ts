@@ -10,14 +10,13 @@ export class LeatherArticlesService {
 
   create: (params: CreateLeatherArticleParamsType) => Promise<LeatherArticleType> =
     async params => {
-      const res = await axios.post<LeatherArticleType>(`${this.BASE_URL}`, {
-        body: params,
-      })
+      const { factoryId, ...restParams } = params
+      const res = await axios.post<LeatherArticleType>(`${this.BASE_URL}/${factoryId}`, restParams)
 
       return res.data
     }
 
-  getAll: () => Promise<LeatherArticleType[]> = async () => {
+  getAll: () => Promise<Pick<LeatherArticleType, '_id' | 'name'>[]> = async () => {
     const res = await axios.get<LeatherArticleType[]>(`${this.BASE_URL}`)
 
     return res.data

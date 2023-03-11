@@ -9,14 +9,15 @@ import { H1 } from '@/components/common/ui/headers/h1'
 import { LeatherArticleModal } from '@/components/modals/crm/leatherArticleModal'
 import { LeatherFactoryModal } from '@/components/modals/crm/leatherFactoryModal'
 import { TableItem } from '@/components/pages/crm/tableItem'
+import { queryKey } from '@/enums/crm/queryKey'
 import { useSrmServiceStore } from '@/store/crmServises'
 
 const Leather: FC = () => {
   const leatherFactoryService = useSrmServiceStore(state => state.leatherFactoryService)
   const leatherArticlesService = useSrmServiceStore(state => state.leatherArticlesService)
 
-  const { data: factories } = useQuery('getAllFactories', leatherFactoryService.getAll)
-  const { data: articles } = useQuery('getAllArticles', leatherArticlesService.getAll)
+  const { data: factories } = useQuery(queryKey.GET_ALL_FACTORIES, leatherFactoryService.getAll)
+  const { data: articles } = useQuery(queryKey.GET_ALL_ARTICLES, leatherArticlesService.getAll)
 
   return (
     <CrmMenuLayout>
@@ -30,7 +31,11 @@ const Leather: FC = () => {
               factories.map(factory => (
                 <TableItem key={factory._id} name={factory.name}>
                   {({ close, isOpen }) => (
-                    <LeatherFactoryModal closeModal={close} isOpen={isOpen} factory={factory} />
+                    <LeatherFactoryModal
+                      closeModal={close}
+                      isOpen={isOpen}
+                      factoryId={factory._id}
+                    />
                   )}
                 </TableItem>
               ))}
@@ -38,13 +43,17 @@ const Leather: FC = () => {
         </div>
 
         <div className="space-y-2">
-          <AddLeatherArticleForm />
+          <AddLeatherArticleForm factories={factories || []} />
           <div>
             {articles &&
               articles.map(article => (
                 <TableItem key={article._id} name={article.name}>
                   {({ close, isOpen }) => (
-                    <LeatherArticleModal closeModal={close} isOpen={isOpen} article={article} />
+                    <LeatherArticleModal
+                      closeModal={close}
+                      isOpen={isOpen}
+                      articleId={article._id}
+                    />
                   )}
                 </TableItem>
               ))}

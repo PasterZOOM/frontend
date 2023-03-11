@@ -1,19 +1,21 @@
 import { FC } from 'react'
 
-import { LeatherArticleType } from '@/api/crm/leatherArticlesApi/types'
+import { useMutation, useQuery, useQueryClient } from 'react-query'
+
 import { Button } from '@/components/common/ui/buttons/button'
 import { ConfirmDeleteModal } from '@/components/modals/confirmDeleteModal'
 import { ModalOverlay } from '@/components/modals/overlay'
+import { queryKey } from '@/enums/crm/queryKey'
 import { useModal } from '@/hooks/useModal'
 import { useSrmServiceStore } from '@/store/crmServises'
 
 type PropsType = {
   isOpen: boolean
   closeModal: () => void
-  article: LeatherArticleType
+  articleId: string
 }
 
-export const LeatherArticleModal: FC<PropsType> = ({ isOpen, closeModal, article }) => {
+export const LeatherArticleModal: FC<PropsType> = ({ isOpen, closeModal, articleId }) => {
   const leatherArticlesService = useSrmServiceStore(state => state.leatherArticlesService)
   const {
     open: openConfirmModal,
@@ -21,9 +23,20 @@ export const LeatherArticleModal: FC<PropsType> = ({ isOpen, closeModal, article
     isOpen: isOpenConfirmModal,
   } = useModal()
 
+  const queryClient = useQueryClient()
+  const { data: article } = useQuery([queryKey.GET_ARTICLE, articleId], async () =>
+    leatherArticlesService.getOne(articleId)
+  )
+  const { mutateAsync: removeArticle } = useMutation(leatherArticlesService.remove, {
+    onSuccess: async data => {
+      await queryClient.invalidateQueries([queryKey.GET_ALL_ARTICLES])
+      await queryClient.invalidateQueries(`${queryKey.GET_FACTORY}-${data.factory}`)
+    },
+  })
   const onConfirm = async (): Promise<void> => {
-    await leatherArticlesService.remove(article._id)
+    await removeArticle(articleId)
     closeConfirmModal()
+    closeModal()
   }
 
   return (
@@ -43,7 +56,7 @@ export const LeatherArticleModal: FC<PropsType> = ({ isOpen, closeModal, article
       <ConfirmDeleteModal
         closeModal={closeConfirmModal}
         isOpen={isOpenConfirmModal}
-        itemName={article.name}
+        itemName={article?.name}
         onConfirm={onConfirm}
       />
     </ModalOverlay>

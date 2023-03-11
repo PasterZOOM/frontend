@@ -3,7 +3,7 @@ import { ECreateLeatherFactoryParams } from '@/enums/crm/leatherFactory'
 
 export type LeatherFactoryType = {
   _id: string
-  articles: string[]
+  articles: { _id: string; name: string }[]
   country: ECountry
   description: string
   name: string
