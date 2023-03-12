@@ -9,7 +9,7 @@ type PropsType = {
 export const CrmMenuLayout: FC<PropsType> = ({ children }) => {
   return (
     <div className="flex">
-      <div className="w-1/6 space-y-2 border-r border-anthracite-gray pr-2 dark:border-light-gray">
+      <div className="w-1/6 space-y-2 pr-2">
         <div className="flex flex-col gap-2 pl-2">
           <div>Материалы</div>
           <Link href="/crm/materials/leather" className="pl-2 text-blue-500 hover:text-blue-400">

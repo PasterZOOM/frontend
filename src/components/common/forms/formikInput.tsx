@@ -10,5 +10,7 @@ type PropsType = {
 export const FormikInput: FC<PropsType> = ({ name, className }) => {
   const [field] = useField(name)
 
-  return <input type="text" {...field} className={className || ''} />
+  return (
+    <input type="text" {...field} className={`p-2 dark:bg-anthracite-gray ${className || ''}`} />
+  )
 }

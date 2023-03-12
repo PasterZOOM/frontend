@@ -17,7 +17,7 @@ export const FormikSelect: FC<PropsType> = ({ name, className, items, valueField
   }, [items])
 
   return (
-    <select {...field} className={className || ''}>
+    <select {...field} className={`dark:bg-anthracite-gray ${className || ''}`}>
       {items &&
         items.map(item => (
           <option key={item._id} value={item[valueField]}>

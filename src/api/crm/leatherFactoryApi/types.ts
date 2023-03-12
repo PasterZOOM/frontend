@@ -1,5 +1,8 @@
 import { ECountry } from '@/enums/countries'
-import { ECreateLeatherFactoryParams } from '@/enums/crm/leatherFactory'
+import {
+  ECreateLeatherFactoryParams,
+  EUpdateLeatherFactoryParams,
+} from '@/enums/crm/leatherFactory'
 
 export type LeatherFactoryType = {
   _id: string
@@ -9,3 +12,4 @@ export type LeatherFactoryType = {
   name: string
 }
 export type CreateLeatherFactoryParamsType = Record<ECreateLeatherFactoryParams, string>
+export type UpdateLeatherFactoryParamsType = Record<EUpdateLeatherFactoryParams, string>
