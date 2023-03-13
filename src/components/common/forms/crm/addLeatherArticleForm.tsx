@@ -6,7 +6,7 @@ import { CreateLeatherArticleParamsType } from '@/api/crm/leatherArticlesApi/typ
 import { FieldWrapper } from '@/components/common/forms/fieldWrapper'
 import { FormikInput } from '@/components/common/forms/formikInput'
 import { FormikSelect } from '@/components/common/forms/formikSelect'
-import { Button } from '@/components/common/ui/buttons/button'
+import { CreateButton } from '@/components/common/ui/buttons/createButton'
 import { H5 } from '@/components/common/ui/headers/h5'
 import { ECreateLeatherArticleParams } from '@/enums/crm/leatherArticle'
 import { useCreateLeatherArticle } from '@/hooks/crm/leatherArticles/useCreateLeatherArticle'
@@ -30,7 +30,7 @@ export const AddLeatherArticleForm: FC = () => {
     <div>
       <H5 className="mb-4 font-bold">Создать артикул</H5>
       <Formik initialValues={initialValues} onSubmit={onSubmit}>
-        {() => (
+        {({ values }) => (
           <Form className="space-y-3">
             <FieldWrapper name={ECreateLeatherArticleParams.NAME} title="Название артикула:">
               {name => <FormikInput name={name} />}
@@ -44,9 +44,23 @@ export const AddLeatherArticleForm: FC = () => {
               {name => <FormikInput name={name} />}
             </FieldWrapper>
 
-            <Button type="submit" className="w-full">
-              Создать
-            </Button>
+            <CreateButton
+              onConfirm={() => onSubmit(values)}
+              modalChildren={
+                <div className="space-y-2">
+                  <div>
+                    Вы уверены что хотите создать артикул для фабрики{' '}
+                    {
+                      factories.find(f => f._id === values[ECreateLeatherArticleParams.FACTORY_ID])
+                        ?.name
+                    }
+                    ?
+                  </div>
+                  <div>Название артикула: {values[ECreateLeatherArticleParams.NAME]}</div>
+                  <div>Описание: {values[ECreateLeatherArticleParams.DESCRIPTION]}</div>
+                </div>
+              }
+            />
           </Form>
         )}
       </Formik>

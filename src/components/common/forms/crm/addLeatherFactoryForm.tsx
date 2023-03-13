@@ -6,9 +6,11 @@ import { CreateLeatherFactoryParamsType } from '@/api/crm/leatherFactoryApi/type
 import { FieldWrapper } from '@/components/common/forms/fieldWrapper'
 import { FormikInput } from '@/components/common/forms/formikInput'
 import { FormikSelect } from '@/components/common/forms/formikSelect'
-import { Button } from '@/components/common/ui/buttons/button'
+import { CreateButton } from '@/components/common/ui/buttons/createButton'
 import { H5 } from '@/components/common/ui/headers/h5'
 import { countriesForSelect } from '@/constants/countries/countriesForSelect'
+import { countriesName } from '@/constants/countries/countriesName'
+import { ECountry } from '@/enums/countries'
 import { ECreateLeatherFactoryParams } from '@/enums/crm/leatherFactory'
 import { useCreateLeatherFactory } from '@/hooks/crm/leatherFactories/useCreateLeatherFactory'
 
@@ -25,12 +27,12 @@ export const AddLeatherFactoryForm: FC = () => {
     await createFactory(values)
   }
 
-  // TODO Сделать кнопку с модалкой для аодтверждения создания и изменения
+  // TODO Сделать кнопку с модалкой для подтверждения изменения
   return (
     <div>
       <H5 className="mb-4 font-bold">Создать фабрику</H5>
       <Formik initialValues={initialValues} onSubmit={onSubmit}>
-        {() => (
+        {({ values }) => (
           <Form className="space-y-3">
             <FieldWrapper name={ECreateLeatherFactoryParams.NAME} title="Название фабрики:">
               {name => <FormikInput name={name} />}
@@ -47,9 +49,21 @@ export const AddLeatherFactoryForm: FC = () => {
               {name => <FormikInput name={name} />}
             </FieldWrapper>
 
-            <Button type="submit" className="w-full">
-              Создать
-            </Button>
+            <CreateButton
+              onConfirm={() => onSubmit(values)}
+              modalChildren={
+                <div className="space-y-2">
+                  <div>
+                    Вы уверены что хотите создать фабрику {values[ECreateLeatherFactoryParams.NAME]}
+                    ?
+                  </div>
+                  <div>
+                    Страна: {countriesName[values[ECreateLeatherFactoryParams.COUNTRY] as ECountry]}
+                  </div>
+                  <div>Описание: {values[ECreateLeatherFactoryParams.DESCRIPTION]}</div>
+                </div>
+              }
+            />
           </Form>
         )}
       </Formik>
