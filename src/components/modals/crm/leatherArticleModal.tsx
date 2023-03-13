@@ -20,6 +20,7 @@ export const LeatherArticleModal: FC<PropsType> = ({ isOpen, closeModal, id }) =
     closeModal()
   }
 
+  // TODO вынести в отдельный компонент поля в разметке
   return (
     <ModalOverlay isOpen={isOpen} onClose={closeModal}>
       <div className="relative max-w-[95%] cursor-default bg-white dark:bg-anthracite-gray">
