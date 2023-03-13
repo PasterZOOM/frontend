@@ -1,11 +1,9 @@
 import { FC } from 'react'
 
-import { Button } from '@/components/common/ui/buttons/button'
-import { ConfirmDeleteModal } from '@/components/modals/confirmDeleteModal'
+import { RemoveButton } from '@/components/common/ui/buttons/removeButton'
 import { ModalOverlay } from '@/components/modals/overlay'
 import { useGetLeatherArticle } from '@/hooks/crm/leatherArticles/useGetLeatherArticle'
 import { useRemoveLeatherArticle } from '@/hooks/crm/leatherArticles/useRemoveLeatherArticle'
-import { useModal } from '@/hooks/useModal'
 
 type PropsType = {
   isOpen: boolean
@@ -17,15 +15,8 @@ export const LeatherArticleModal: FC<PropsType> = ({ isOpen, closeModal, id }) =
   const removeArticle = useRemoveLeatherArticle()
   const article = useGetLeatherArticle(id, isOpen)
 
-  const {
-    open: openConfirmModal,
-    close: closeConfirmModal,
-    isOpen: isOpenConfirmModal,
-  } = useModal()
-
-  const onConfirm = async (): Promise<void> => {
+  const onDeleteConfirm = async (): Promise<void> => {
     await removeArticle(id)
-    closeConfirmModal()
     closeModal()
   }
 
@@ -78,24 +69,21 @@ export const LeatherArticleModal: FC<PropsType> = ({ isOpen, closeModal, id }) =
                     </div>
                   </div>
                 </div>
-                <Button variant="delete" onClick={openConfirmModal} className="mt-3">
-                  удалить
-                </Button>
+                <RemoveButton
+                  onConfirm={onDeleteConfirm}
+                  className="mt-3"
+                  modalChildren={
+                    <>
+                      Вместе с артикулем <b>{article?.name}</b> будут удалены все связаные с ним
+                      цвета
+                    </>
+                  }
+                />
               </div>
             </div>
           </>
         )}
       </div>
-      <ConfirmDeleteModal
-        closeModal={closeConfirmModal}
-        isOpen={isOpenConfirmModal}
-        onConfirm={onConfirm}
-        info={
-          <>
-            Вместе с артикулем <b>{article?.name}</b> будут удалены все связаные с ним цвета
-          </>
-        }
-      />
     </ModalOverlay>
   )
 }

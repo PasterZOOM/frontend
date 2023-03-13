@@ -1,6 +1,6 @@
 import { FC } from 'react'
 
-import { Button } from '@/components/common/ui/buttons/button'
+import { Button, ButtonVariant } from '@/components/common/ui/buttons/button'
 
 interface FilterButtonsProps {
   open: boolean
@@ -16,7 +16,7 @@ const FilterButtons: FC<FilterButtonsProps> = ({ open, setOpen }) => {
     >
       {open ? (
         <>
-          <Button className="w-full" variant="secondary">
+          <Button className="w-full" variant={ButtonVariant.SECONDARY}>
             Очистить
           </Button>
           <Button className="w-full" onClick={() => setOpen(false)}>

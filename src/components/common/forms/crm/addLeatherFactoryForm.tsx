@@ -3,6 +3,7 @@ import { FC } from 'react'
 import { Form, Formik } from 'formik'
 
 import { CreateLeatherFactoryParamsType } from '@/api/crm/leatherFactoryApi/types'
+import { FieldWrapper } from '@/components/common/forms/fieldWrapper'
 import { FormikInput } from '@/components/common/forms/formikInput'
 import { FormikSelect } from '@/components/common/forms/formikSelect'
 import { Button } from '@/components/common/ui/buttons/button'
@@ -30,26 +31,21 @@ export const AddLeatherFactoryForm: FC = () => {
       <Formik initialValues={initialValues} onSubmit={onSubmit}>
         {() => (
           <Form className="space-y-3">
-            <div>
-              <div>Название фабрики:</div>
-              <FormikInput name={ECreateLeatherFactoryParams.NAME} className="w-full border" />
-            </div>
-            <div>
-              <div>Страна в которой расположена фабрика:</div>
-              <FormikSelect
-                name={ECreateLeatherFactoryParams.COUNTRY}
-                className="w-full border p-2"
-                items={countriesForSelect}
-                valueField="value"
-              />
-            </div>
-            <div>
-              <div>Описание:</div>
-              <FormikInput
-                name={ECreateLeatherFactoryParams.DESCRIPTION}
-                className="w-full border"
-              />
-            </div>
+            <FieldWrapper name={ECreateLeatherFactoryParams.NAME} title="Название фабрики:">
+              {name => <FormikInput name={name} />}
+            </FieldWrapper>
+
+            <FieldWrapper
+              name={ECreateLeatherFactoryParams.COUNTRY}
+              title="Страна в которой расположена фабрика:"
+            >
+              {name => <FormikSelect name={name} items={countriesForSelect} valueField="value" />}
+            </FieldWrapper>
+
+            <FieldWrapper name={ECreateLeatherFactoryParams.DESCRIPTION} title="Описание:">
+              {name => <FormikInput name={name} />}
+            </FieldWrapper>
+
             <Button type="submit" className="w-full">
               Создать
             </Button>

@@ -1,13 +1,11 @@
 import { FC } from 'react'
 
 import { UpdateLeatherFactoryForm } from '@/components/common/forms/crm/updateLeatherFactoryForm'
-import { Button } from '@/components/common/ui/buttons/button'
-import { ConfirmDeleteModal } from '@/components/modals/confirmDeleteModal'
+import { RemoveButton } from '@/components/common/ui/buttons/removeButton'
 import { ModalOverlay } from '@/components/modals/overlay'
 import { countriesName } from '@/constants/countries/countriesName'
 import { useGetLeatherFactory } from '@/hooks/crm/leatherFactories/useGetLeatherFactory'
 import { useRemoveLeatherFactory } from '@/hooks/crm/leatherFactories/useRemoveLeatherFactory'
-import { useModal } from '@/hooks/useModal'
 
 type PropsType = {
   isOpen: boolean
@@ -19,15 +17,8 @@ export const LeatherFactoryModal: FC<PropsType> = ({ isOpen, closeModal, id }) =
   const factory = useGetLeatherFactory(id, isOpen)
   const removeFactory = useRemoveLeatherFactory()
 
-  const {
-    open: openConfirmDeleteModal,
-    close: closeConfirmDeleteModal,
-    isOpen: isOpenConfirmDeleteModal,
-  } = useModal()
-
-  const onConfirmDelete = async (): Promise<void> => {
+  const onDeleteConfirm = async (): Promise<void> => {
     await removeFactory(id)
-    closeConfirmDeleteModal()
     closeModal()
   }
 
@@ -80,25 +71,21 @@ export const LeatherFactoryModal: FC<PropsType> = ({ isOpen, closeModal, id }) =
                     </div>
                   </div>
                 </div>
-                <Button variant="delete" onClick={openConfirmDeleteModal} className="mt-3">
-                  удалить
-                </Button>
+                <RemoveButton
+                  onConfirm={onDeleteConfirm}
+                  className="mt-3"
+                  modalChildren={
+                    <>
+                      Вместе с фабрикой <b>{factory?.name}</b> будут удалены все связаные с ней
+                      артикулы и их цвета
+                    </>
+                  }
+                />
               </div>
             </div>
           </>
         )}
       </div>
-      <ConfirmDeleteModal
-        closeModal={closeConfirmDeleteModal}
-        isOpen={isOpenConfirmDeleteModal}
-        onConfirm={onConfirmDelete}
-        info={
-          <>
-            Вместе с фабрикой <b>{factory?.name}</b> будут удалены все связаные с ней артикулы и их
-            цвета
-          </>
-        }
-      />
     </ModalOverlay>
   )
 }

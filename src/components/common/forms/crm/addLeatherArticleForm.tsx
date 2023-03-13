@@ -3,6 +3,7 @@ import { FC } from 'react'
 import { Form, Formik } from 'formik'
 
 import { CreateLeatherArticleParamsType } from '@/api/crm/leatherArticlesApi/types'
+import { FieldWrapper } from '@/components/common/forms/fieldWrapper'
 import { FormikInput } from '@/components/common/forms/formikInput'
 import { FormikSelect } from '@/components/common/forms/formikSelect'
 import { Button } from '@/components/common/ui/buttons/button'
@@ -31,27 +32,18 @@ export const AddLeatherArticleForm: FC = () => {
       <Formik initialValues={initialValues} onSubmit={onSubmit}>
         {() => (
           <Form className="space-y-3">
-            <div>
-              <div>Название артикула:</div>
-              <FormikInput name={ECreateLeatherArticleParams.NAME} className="w-full border" />
-            </div>
-            <div>
-              <div>Фабрика:</div>
+            <FieldWrapper name={ECreateLeatherArticleParams.NAME} title="Название артикула:">
+              {name => <FormikInput name={name} />}
+            </FieldWrapper>
 
-              <FormikSelect
-                name={ECreateLeatherArticleParams.FACTORY_ID}
-                className="w-full border p-2"
-                items={factories}
-                valueField="_id"
-              />
-            </div>
-            <div>
-              <div>Описание:</div>
-              <FormikInput
-                name={ECreateLeatherArticleParams.DESCRIPTION}
-                className="w-full border"
-              />
-            </div>
+            <FieldWrapper name={ECreateLeatherArticleParams.FACTORY_ID} title="Фабрика:">
+              {name => <FormikSelect name={name} items={factories} valueField="_id" />}
+            </FieldWrapper>
+
+            <FieldWrapper name={ECreateLeatherArticleParams.DESCRIPTION} title="Описание:">
+              {name => <FormikInput name={name} />}
+            </FieldWrapper>
+
             <Button type="submit" className="w-full">
               Создать
             </Button>

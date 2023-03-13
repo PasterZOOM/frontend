@@ -6,6 +6,7 @@ import {
   LeatherFactoryType,
   UpdateLeatherFactoryParamsType,
 } from '@/api/crm/leatherFactoryApi/types'
+import { FieldWrapper } from '@/components/common/forms/fieldWrapper'
 import { FormikInput } from '@/components/common/forms/formikInput'
 import { FormikSelect } from '@/components/common/forms/formikSelect'
 import { Button } from '@/components/common/ui/buttons/button'
@@ -35,23 +36,21 @@ export const UpdateLeatherFactoryForm: FC<PropsType> = ({ factory }) => {
     <Formik initialValues={initialValues} onSubmit={onSubmit}>
       {() => (
         <Form className="w-full space-y-3">
-          <div>
-            <div>Название фабрики:</div>
-            <FormikInput name={EUpdateLeatherFactoryParams.NAME} className="w-full border" />
-          </div>
-          <div>
-            <div>Страна в которой расположена фабрика:</div>
-            <FormikSelect
-              name={EUpdateLeatherFactoryParams.COUNTRY}
-              className="w-full border p-2"
-              items={countriesForSelect}
-              valueField="value"
-            />
-          </div>
-          <div>
-            <div>Описание:</div>
-            <FormikInput name={EUpdateLeatherFactoryParams.DESCRIPTION} className="w-full border" />
-          </div>
+          <FieldWrapper name={EUpdateLeatherFactoryParams.NAME} title="Название фабрики:">
+            {name => <FormikInput name={name} />}
+          </FieldWrapper>
+
+          <FieldWrapper
+            name={EUpdateLeatherFactoryParams.COUNTRY}
+            title="Страна в которой расположена фабрика:"
+          >
+            {name => <FormikSelect name={name} items={countriesForSelect} valueField="value" />}
+          </FieldWrapper>
+
+          <FieldWrapper name={EUpdateLeatherFactoryParams.DESCRIPTION} title="Описание:">
+            {name => <FormikInput name={name} />}
+          </FieldWrapper>
+
           <Button type="submit" className="w-full">
             Изменить
           </Button>
