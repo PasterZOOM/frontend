@@ -20,6 +20,7 @@ const Leather: FC = () => {
       <H1 className="mb-6 text-center">Кожа</H1>
 
       <div className="flex gap-4">
+        {/* TODO сделать врапер для форм и списков */}
         <div>
           <AddLeatherFactoryForm />
           <H5 className="mb-2 mt-4 font-bold">Список фабрик:</H5>

@@ -25,6 +25,7 @@ export const AddLeatherFactoryForm: FC = () => {
     await createFactory(values)
   }
 
+  // TODO Сделать кнопку с модалкой для аодтверждения создания и изменения
   return (
     <div>
       <H5 className="mb-4 font-bold">Создать фабрику</H5>
