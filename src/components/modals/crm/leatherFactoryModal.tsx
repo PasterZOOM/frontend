@@ -12,11 +12,11 @@ import { useModal } from '@/hooks/useModal'
 type PropsType = {
   isOpen: boolean
   closeModal: () => void
-  factoryId: string
+  id: string
 }
 
-export const LeatherFactoryModal: FC<PropsType> = ({ isOpen, closeModal, factoryId }) => {
-  const factory = useGetLeatherFactory(factoryId, isOpen)
+export const LeatherFactoryModal: FC<PropsType> = ({ isOpen, closeModal, id }) => {
+  const factory = useGetLeatherFactory(id, isOpen)
   const removeFactory = useRemoveLeatherFactory()
 
   const {
@@ -26,7 +26,7 @@ export const LeatherFactoryModal: FC<PropsType> = ({ isOpen, closeModal, factory
   } = useModal()
 
   const onConfirmDelete = async (): Promise<void> => {
-    await removeFactory(factoryId)
+    await removeFactory(id)
     closeConfirmDeleteModal()
     closeModal()
   }
@@ -46,7 +46,7 @@ export const LeatherFactoryModal: FC<PropsType> = ({ isOpen, closeModal, factory
             </div>
 
             <div className="flex gap-4 p-4">
-              <UpdateLeatherFactoryForm factory={factory} className="w-full" />
+              <UpdateLeatherFactoryForm factory={factory} />
               <div className="flex w-full flex-col justify-between">
                 <div>
                   <div className="w-fit space-y-1">

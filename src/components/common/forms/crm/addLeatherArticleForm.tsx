@@ -27,7 +27,7 @@ export const AddLeatherArticleForm: FC = () => {
 
   return (
     <div>
-      <H5 className="mb-4 font-bold">Добавить артикул</H5>
+      <H5 className="mb-4 font-bold">Создать артикул</H5>
       <Formik initialValues={initialValues} onSubmit={onSubmit}>
         {() => (
           <Form className="space-y-3">

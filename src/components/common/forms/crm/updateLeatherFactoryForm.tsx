@@ -1,7 +1,6 @@
 import { FC } from 'react'
 
 import { Form, Formik } from 'formik'
-import { useMutation, useQueryClient } from 'react-query'
 
 import {
   LeatherFactoryType,
@@ -12,16 +11,14 @@ import { FormikSelect } from '@/components/common/forms/formikSelect'
 import { Button } from '@/components/common/ui/buttons/button'
 import { countriesForSelect } from '@/constants/countries/countriesForSelect'
 import { EUpdateLeatherFactoryParams } from '@/enums/crm/leatherFactory'
-import { queryKey } from '@/enums/crm/queryKey'
-import { useSrmServiceStore } from '@/store/crmServises'
+import { useUpdateLeatherFactory } from '@/hooks/crm/leatherFactories/useUpdateLeatherFactory'
 
 type PropsType = {
   factory: LeatherFactoryType
-  className: string
 }
 
-export const UpdateLeatherFactoryForm: FC<PropsType> = ({ factory, className }) => {
-  const leatherFactoryService = useSrmServiceStore(state => state.leatherFactoryService)
+export const UpdateLeatherFactoryForm: FC<PropsType> = ({ factory }) => {
+  const updateFactory = useUpdateLeatherFactory()
 
   const initialValues: UpdateLeatherFactoryParamsType = {
     [EUpdateLeatherFactoryParams.COUNTRY]: countriesForSelect[0]?.value,
@@ -30,13 +27,6 @@ export const UpdateLeatherFactoryForm: FC<PropsType> = ({ factory, className }) 
     [EUpdateLeatherFactoryParams.ID]: factory._id,
   }
 
-  const queryClient = useQueryClient()
-  const { mutateAsync: updateFactory } = useMutation(leatherFactoryService.update, {
-    onSuccess: async data => {
-      await queryClient.setQueryData([queryKey.GET_FACTORY, factory._id], data)
-      await queryClient.invalidateQueries([queryKey.GET_ALL_FACTORIES])
-    },
-  })
   const onSubmit = async (values: UpdateLeatherFactoryParamsType): Promise<void> => {
     await updateFactory(values)
   }
@@ -44,7 +34,7 @@ export const UpdateLeatherFactoryForm: FC<PropsType> = ({ factory, className }) 
   return (
     <Formik initialValues={initialValues} onSubmit={onSubmit}>
       {() => (
-        <Form className={`space-y-3 ${className}`}>
+        <Form className="w-full space-y-3">
           <div>
             <div>Название фабрики:</div>
             <FormikInput name={EUpdateLeatherFactoryParams.NAME} className="w-full border" />

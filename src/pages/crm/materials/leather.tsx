@@ -24,18 +24,13 @@ const Leather: FC = () => {
           <AddLeatherFactoryForm />
           <H5 className="mb-2 mt-4 font-bold">Список фабрик:</H5>
           <div className="ml-4">
-            {factories &&
-              factories.map(factory => (
-                <TableItem key={factory._id} name={factory.name}>
-                  {({ close, isOpen }) => (
-                    <LeatherFactoryModal
-                      closeModal={close}
-                      isOpen={isOpen}
-                      factoryId={factory._id}
-                    />
-                  )}
-                </TableItem>
-              ))}
+            {factories.map(factory => (
+              <TableItem key={factory._id} name={factory.name}>
+                {({ close, isOpen }) => (
+                  <LeatherFactoryModal closeModal={close} isOpen={isOpen} id={factory._id} />
+                )}
+              </TableItem>
+            ))}
           </div>
         </div>
 
@@ -43,18 +38,13 @@ const Leather: FC = () => {
           <AddLeatherArticleForm />
           <H5 className="mb-2 mt-4 font-bold">Список артикулов:</H5>
           <div className="ml-4">
-            {articles &&
-              articles.map(article => (
-                <TableItem key={article._id} name={article.name}>
-                  {({ close, isOpen }) => (
-                    <LeatherArticleModal
-                      closeModal={close}
-                      isOpen={isOpen}
-                      articleId={article._id}
-                    />
-                  )}
-                </TableItem>
-              ))}
+            {articles.map(article => (
+              <TableItem key={article._id} name={article.name}>
+                {({ close, isOpen }) => (
+                  <LeatherArticleModal closeModal={close} isOpen={isOpen} id={article._id} />
+                )}
+              </TableItem>
+            ))}
           </div>
         </div>
       </div>

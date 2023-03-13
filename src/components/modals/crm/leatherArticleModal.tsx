@@ -10,12 +10,12 @@ import { useModal } from '@/hooks/useModal'
 type PropsType = {
   isOpen: boolean
   closeModal: () => void
-  articleId: string
+  id: string
 }
 
-export const LeatherArticleModal: FC<PropsType> = ({ isOpen, closeModal, articleId }) => {
+export const LeatherArticleModal: FC<PropsType> = ({ isOpen, closeModal, id }) => {
   const removeArticle = useRemoveLeatherArticle()
-  const article = useGetLeatherArticle(articleId, isOpen)
+  const article = useGetLeatherArticle(id, isOpen)
 
   const {
     open: openConfirmModal,
@@ -24,7 +24,7 @@ export const LeatherArticleModal: FC<PropsType> = ({ isOpen, closeModal, article
   } = useModal()
 
   const onConfirm = async (): Promise<void> => {
-    await removeArticle(articleId)
+    await removeArticle(id)
     closeConfirmModal()
     closeModal()
   }
