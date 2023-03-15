@@ -3,14 +3,13 @@ import { FC } from 'react'
 import { Form, Formik } from 'formik'
 
 import { CreateLeatherFactoryParamsType } from '@/api/crm/leatherFactoryApi/types'
+import { LeatherFactoryCreatConfirmModalBody } from '@/components/common/forms/crm/LeatherFactory/LeatherFactoryCreatConfirmModalBody'
 import { FieldWrapper } from '@/components/common/forms/fieldWrapper'
 import { FormikInput } from '@/components/common/forms/formikInput'
 import { FormikSelect } from '@/components/common/forms/formikSelect'
 import { CreateButton } from '@/components/common/ui/buttons/createButton'
 import { H5 } from '@/components/common/ui/headers/h5'
 import { countriesForSelect } from '@/constants/countries/countriesForSelect'
-import { countriesName } from '@/constants/countries/countriesName'
-import { ECountry } from '@/enums/countries'
 import { ECreateLeatherFactoryParams } from '@/enums/crm/leatherFactory'
 import { useCreateLeatherFactory } from '@/hooks/crm/leatherFactories/useCreateLeatherFactory'
 
@@ -51,18 +50,7 @@ export const AddLeatherFactoryForm: FC = () => {
 
             <CreateButton
               onConfirm={() => onSubmit(values)}
-              modalChildren={
-                <div className="space-y-2">
-                  <div>
-                    Вы уверены что хотите создать фабрику {values[ECreateLeatherFactoryParams.NAME]}
-                    ?
-                  </div>
-                  <div>
-                    Страна: {countriesName[values[ECreateLeatherFactoryParams.COUNTRY] as ECountry]}
-                  </div>
-                  <div>Описание: {values[ECreateLeatherFactoryParams.DESCRIPTION]}</div>
-                </div>
-              }
+              modalChildren={<LeatherFactoryCreatConfirmModalBody values={values} />}
             />
           </Form>
         )}

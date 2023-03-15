@@ -47,6 +47,7 @@ export const AddLeatherArticleForm: FC = () => {
             <CreateButton
               onConfirm={() => onSubmit(values)}
               modalChildren={
+                // TODO вынести в отдельную компоненту
                 <div className="space-y-2">
                   <div>
                     Вы уверены что хотите создать артикул для фабрики{' '}

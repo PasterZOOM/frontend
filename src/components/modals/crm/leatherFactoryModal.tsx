@@ -1,6 +1,6 @@
 import { FC } from 'react'
 
-import { UpdateLeatherFactoryForm } from '@/components/common/forms/crm/updateLeatherFactoryForm'
+import { UpdateLeatherFactoryForm } from '@/components/common/forms/crm/LeatherFactory/updateLeatherFactoryForm'
 import { RemoveButton } from '@/components/common/ui/buttons/removeButton'
 import { ModalOverlay } from '@/components/modals/overlay'
 import { countriesName } from '@/constants/countries/countriesName'
@@ -56,7 +56,7 @@ export const LeatherFactoryModal: FC<PropsType> = ({ isOpen, closeModal, id }) =
                   </div>
                 </div>
                 <div className="mt-1">
-                  <div>Артирулы:</div>
+                  <div>Артикулы:</div>
                   <div className="ml-5">
                     {factory.articles.map(article => {
                       return (

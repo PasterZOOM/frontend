@@ -1,7 +1,7 @@
 import { FC } from 'react'
 
-import { AddLeatherArticleForm } from '@/components/common/forms/crm/addLeatherArticleForm'
-import { AddLeatherFactoryForm } from '@/components/common/forms/crm/addLeatherFactoryForm'
+import { AddLeatherArticleForm } from '@/components/common/forms/crm/leatherArticle/addLeatherArticleForm'
+import { AddLeatherFactoryForm } from '@/components/common/forms/crm/LeatherFactory/addLeatherFactoryForm'
 import { CrmMenuLayout } from '@/components/common/layouts/crmMenuLayout'
 import { H1 } from '@/components/common/ui/headers/h1'
 import { CreateFormAndListWrapper } from '@/components/common/wrappers/createFormAndListWrapper'
