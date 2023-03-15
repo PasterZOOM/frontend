@@ -3,8 +3,7 @@ import { FC } from 'react'
 import { Keyboard, Mousewheel, Navigation, Pagination } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
-import { ModalOverlay } from './overlay'
-
+import { ModalOverlay } from '@/components/modals/modalOverlay'
 import { ProductPhotoType } from '@/types/productType'
 
 type PropsType = {

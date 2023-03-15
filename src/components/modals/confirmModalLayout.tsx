@@ -2,7 +2,7 @@ import { FC, ReactNode } from 'react'
 
 import { Button, ButtonVariant } from '@/components/common/ui/buttons/button'
 import { DefaultButtonPropsType } from '@/components/common/ui/buttons/defaultButtonType'
-import { ModalOverlay } from '@/components/modals/overlay'
+import { ModalOverlay } from '@/components/modals/modalOverlay'
 
 type PropsType = {
   isOpen: boolean
