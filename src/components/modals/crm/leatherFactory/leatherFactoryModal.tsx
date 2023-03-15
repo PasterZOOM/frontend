@@ -2,6 +2,8 @@ import { FC } from 'react'
 
 import { UpdateLeatherFactoryForm } from '@/components/common/forms/crm/leatherFactory/updateLeatherFactoryForm'
 import { RemoveButton } from '@/components/common/ui/buttons/removeButton'
+import { PropertyWithUnderline } from '@/components/common/ui/properties/propertyWithUnderline'
+import { PropertyPreviewWrapper } from '@/components/common/wrappers/propertyPreviewWrapper'
 import { LeatherFactoryRemoveConfirmModalBody } from '@/components/modals/crm/leatherFactory/leatherFactoryRemoveConfirmModalBody'
 import { ModalOverlay } from '@/components/modals/overlay'
 import { countriesName } from '@/constants/countries/countriesName'
@@ -39,35 +41,33 @@ export const LeatherFactoryModal: FC<PropsType> = ({ isOpen, closeModal, id }) =
             <div className="flex w-full flex-col justify-between">
               <div>
                 <div className="w-fit space-y-1">
-                  <div className="flex items-end justify-between gap-10 border-b border-anthracite-gray border-opacity-20 dark:border-white">
-                    <div>Идентификационный номер:</div>
-                    <div>{factory._id}</div>
-                  </div>
-                  <div className="flex items-end justify-between gap-10 border-b border-anthracite-gray border-opacity-20 dark:border-white">
-                    <div>Название фабрики:</div>
-                    <div>{factory.name}</div>
-                  </div>
-                  <div className="flex items-end justify-between gap-10 border-b border-anthracite-gray border-opacity-20 dark:border-white">
-                    <div>Страна:</div>
-                    <div>{countriesName[factory.country]}</div>
-                  </div>
-                  <div>
-                    <div>Описание:</div>
-                    <div className="ml-5">{factory.description}</div>
-                  </div>
+                  <PropertyWithUnderline title="Идентификационный номер:">
+                    {factory._id}
+                  </PropertyWithUnderline>
+
+                  <PropertyWithUnderline title="Название фабрики:">
+                    {factory.name}
+                  </PropertyWithUnderline>
+
+                  <PropertyWithUnderline title="Страна:">
+                    {countriesName[factory.country]}
+                  </PropertyWithUnderline>
+
+                  <PropertyPreviewWrapper title="Описание:" childrenClassName="ml-5">
+                    {factory.description}
+                  </PropertyPreviewWrapper>
                 </div>
-                <div className="mt-1">
-                  <div>Артикулы:</div>
-                  <div className="ml-5">
-                    {factory.articles.map(article => {
-                      return (
-                        <div key={article._id} className="w-fit">
-                          {article.name}
-                        </div>
-                      )
-                    })}
-                  </div>
-                </div>
+                <PropertyPreviewWrapper
+                  title="Артикулы:"
+                  wrapperClassName="mt-1"
+                  childrenClassName="ml-5"
+                >
+                  {factory.articles.map(article => (
+                    <div key={article._id} className="w-fit">
+                      {article.name}
+                    </div>
+                  ))}
+                </PropertyPreviewWrapper>
               </div>
               <RemoveButton
                 onConfirm={onDeleteConfirm}
