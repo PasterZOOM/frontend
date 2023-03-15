@@ -15,20 +15,20 @@ export const RemoveButton: FC<PropsType> = ({
   onConfirm: onDeleteConfirm,
   className,
 }) => {
-  const { open, close, isOpen } = useModal()
+  const { openModal, closeModal, isOpen } = useModal()
 
   const onConfirm = async (): Promise<void> => {
     await onDeleteConfirm()
-    close()
+    closeModal()
   }
 
   return (
     <>
-      <Button variant={ButtonVariant.DELETE} onClick={open} className={className || ''}>
+      <Button variant={ButtonVariant.DELETE} onClick={openModal} className={className || ''}>
         удалить
       </Button>
       <ConfirmModalLayout
-        closeModal={close}
+        closeModal={closeModal}
         isOpen={isOpen}
         title="Удаление"
         confirmButton={{

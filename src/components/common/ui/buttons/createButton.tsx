@@ -15,20 +15,20 @@ export const CreateButton: FC<PropsType> = ({
   onConfirm: onCreateConfirm,
   modalChildren,
 }) => {
-  const { open, close, isOpen } = useModal()
+  const { openModal, closeModal, isOpen } = useModal()
 
   const onConfirm = async (): Promise<void> => {
     await onCreateConfirm()
-    close()
+    closeModal()
   }
 
   return (
     <>
-      <Button onClick={open} className={`w-full ${className || ''}`}>
+      <Button onClick={openModal} className={`w-full ${className || ''}`}>
         создать
       </Button>
       <ConfirmModalLayout
-        closeModal={close}
+        closeModal={closeModal}
         isOpen={isOpen}
         title="Создание"
         confirmButton={{

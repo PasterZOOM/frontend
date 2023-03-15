@@ -1,11 +1,10 @@
 import { FC } from 'react'
 
-import { UpdateLeatherFactoryForm } from '@/components/common/forms/crm/LeatherFactory/updateLeatherFactoryForm'
 import { RemoveButton } from '@/components/common/ui/buttons/removeButton'
+import { LeatherArticleRemoveConfirmModalBody } from '@/components/modals/crm/leatherArticle/leatherArticleRemoveConfirmModalBody'
 import { ModalOverlay } from '@/components/modals/overlay'
-import { countriesName } from '@/constants/countries/countriesName'
-import { useGetLeatherFactory } from '@/hooks/crm/leatherFactories/useGetLeatherFactory'
-import { useRemoveLeatherFactory } from '@/hooks/crm/leatherFactories/useRemoveLeatherFactory'
+import { useGetLeatherArticle } from '@/hooks/crm/leatherArticles/useGetLeatherArticle'
+import { useRemoveLeatherArticle } from '@/hooks/crm/leatherArticles/useRemoveLeatherArticle'
 
 type PropsType = {
   isOpen: boolean
@@ -13,55 +12,56 @@ type PropsType = {
   id: string
 }
 
-export const LeatherFactoryModal: FC<PropsType> = ({ isOpen, closeModal, id }) => {
-  const factory = useGetLeatherFactory(id, isOpen)
-  const removeFactory = useRemoveLeatherFactory()
+export const LeatherArticleModal: FC<PropsType> = ({ isOpen, closeModal, id }) => {
+  const removeArticle = useRemoveLeatherArticle()
+  const article = useGetLeatherArticle(id, isOpen)
 
   const onDeleteConfirm = async (): Promise<void> => {
-    await removeFactory(id)
+    await removeArticle(id)
     closeModal()
   }
 
-  // TODO создать общий layout для всех модалок, чилдом прокидывать форму обновления и информацию
+  // TODO вынести в отдельный компонент поля в разметке
+  // TODO использовать layout
   return (
     <ModalOverlay isOpen={isOpen} onClose={closeModal}>
       <div className="relative max-w-[95%] cursor-default bg-white dark:bg-anthracite-gray">
         <div className="flex justify-between gap-2 border-b border-anthracite-gray border-opacity-20 p-4 dark:border-white">
-          <div className="text-xl">Информация о фабрике {factory && factory.name}</div>
+          <div className="text-xl">Информация об артикле {article && article.name}</div>
           <button type="button" onClick={closeModal} className="h-fit text-lg">
             закрыть
           </button>
         </div>
-        {factory && (
+
+        {article && (
           <div className="flex gap-4 p-4">
-            <UpdateLeatherFactoryForm factory={factory} />
             <div className="flex w-full flex-col justify-between">
               <div>
                 <div className="w-fit space-y-1">
                   <div className="flex items-end justify-between gap-10 border-b border-anthracite-gray border-opacity-20 dark:border-white">
                     <div>Идентификационный номер:</div>
-                    <div>{factory._id}</div>
+                    <div>{article._id}</div>
                   </div>
                   <div className="flex items-end justify-between gap-10 border-b border-anthracite-gray border-opacity-20 dark:border-white">
-                    <div>Название фабрики:</div>
-                    <div>{factory.name}</div>
+                    <div>Название артикула:</div>
+                    <div>{article.name}</div>
                   </div>
                   <div className="flex items-end justify-between gap-10 border-b border-anthracite-gray border-opacity-20 dark:border-white">
-                    <div>Страна:</div>
-                    <div>{countriesName[factory.country]}</div>
+                    <div>Фабрика производитель:</div>
+                    <div>{article.factory.name}</div>
                   </div>
                   <div>
                     <div>Описание:</div>
-                    <div className="ml-5">{factory.description}</div>
+                    <div className="ml-5">{article.description}</div>
                   </div>
                 </div>
                 <div className="mt-1">
-                  <div>Артикулы:</div>
+                  <div>Цвета:</div>
                   <div className="ml-5">
-                    {factory.articles.map(article => {
+                    {article.colors.map(color => {
                       return (
-                        <div key={article._id} className="w-fit">
-                          {article.name}
+                        <div key={color._id} className="w-fit">
+                          {color.title}
                         </div>
                       )
                     })}
@@ -71,12 +71,7 @@ export const LeatherFactoryModal: FC<PropsType> = ({ isOpen, closeModal, id }) =
               <RemoveButton
                 onConfirm={onDeleteConfirm}
                 className="mt-3"
-                modalChildren={
-                  <>
-                    Вместе с фабрикой <b>{factory?.name}</b> будут удалены все связаные с ней
-                    артикулы и их цвета
-                  </>
-                }
+                modalChildren={<LeatherArticleRemoveConfirmModalBody article={article} />}
               />
             </div>
           </div>

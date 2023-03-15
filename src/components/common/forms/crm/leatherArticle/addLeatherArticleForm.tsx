@@ -8,6 +8,7 @@ import { FormikInput } from '@/components/common/forms/formikInput'
 import { FormikSelect } from '@/components/common/forms/formikSelect'
 import { CreateButton } from '@/components/common/ui/buttons/createButton'
 import { H5 } from '@/components/common/ui/headers/h5'
+import { LeatherArticleCreateConfirmModalBody } from '@/components/modals/crm/leatherArticle/leatherArticleCreateConfirmModalBody'
 import { ECreateLeatherArticleParams } from '@/enums/crm/leatherArticle'
 import { useCreateLeatherArticle } from '@/hooks/crm/leatherArticles/useCreateLeatherArticle'
 import { useGetAllLeatherFactories } from '@/hooks/crm/leatherFactories/useGetAllLeatherFactories'
@@ -46,21 +47,7 @@ export const AddLeatherArticleForm: FC = () => {
 
             <CreateButton
               onConfirm={() => onSubmit(values)}
-              modalChildren={
-                // TODO вынести в отдельную компоненту
-                <div className="space-y-2">
-                  <div>
-                    Вы уверены что хотите создать артикул для фабрики{' '}
-                    {
-                      factories.find(f => f._id === values[ECreateLeatherArticleParams.FACTORY_ID])
-                        ?.name
-                    }
-                    ?
-                  </div>
-                  <div>Название артикула: {values[ECreateLeatherArticleParams.NAME]}</div>
-                  <div>Описание: {values[ECreateLeatherArticleParams.DESCRIPTION]}</div>
-                </div>
-              }
+              modalChildren={<LeatherArticleCreateConfirmModalBody values={values} />}
             />
           </Form>
         )}
