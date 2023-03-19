@@ -9,7 +9,8 @@ import {
 import { FieldWrapper } from '@/components/common/forms/fieldWrapper'
 import { FormikInput } from '@/components/common/forms/formikInput'
 import { FormikSelect } from '@/components/common/forms/formikSelect'
-import { Button } from '@/components/common/ui/buttons/button'
+import { UpdateButton } from '@/components/common/ui/buttons/updateButton'
+import { LeatherFactoryUpdateConfirmModalBody } from '@/components/modals/crm/leatherFactory/leatherFactoryUpdateConfirmModalBody'
 import { countriesForSelect } from '@/constants/countries/countriesForSelect'
 import { EUpdateLeatherFactoryParams } from '@/enums/crm/leatherFactory'
 import { useUpdateLeatherFactory } from '@/hooks/crm/leatherFactories/useUpdateLeatherFactory'
@@ -34,7 +35,7 @@ export const UpdateLeatherFactoryForm: FC<PropsType> = ({ factory }) => {
 
   return (
     <Formik initialValues={initialValues} onSubmit={onSubmit}>
-      {() => (
+      {({ values }) => (
         <Form className="w-full space-y-3">
           <FieldWrapper name={EUpdateLeatherFactoryParams.NAME} title="Название фабрики:">
             {name => <FormikInput name={name} />}
@@ -51,9 +52,10 @@ export const UpdateLeatherFactoryForm: FC<PropsType> = ({ factory }) => {
             {name => <FormikInput name={name} />}
           </FieldWrapper>
 
-          <Button type="submit" className="w-full">
-            Изменить
-          </Button>
+          <UpdateButton
+            onConfirm={() => onSubmit(values)}
+            modalChildren={<LeatherFactoryUpdateConfirmModalBody values={values} />}
+          />
         </Form>
       )}
     </Formik>

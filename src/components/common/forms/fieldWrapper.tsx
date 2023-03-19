@@ -9,8 +9,10 @@ type PropsType = {
 export const FieldWrapper: FC<PropsType> = ({ title, children, name = '' }) => {
   return (
     <div>
-      <div>{title}</div>
-      {typeof children === 'function' ? children(name) : children}
+      <label htmlFor="name" className="block">
+        {title}
+        {typeof children === 'function' ? children(name) : children}
+      </label>
     </div>
   )
 }
