@@ -1,18 +1,22 @@
 import { create } from 'zustand'
 
 import { LeatherArticlesService } from '@/api/crm/leatherArticlesApi/leatherArticlesApi'
-import { LeatherFactoryService } from '@/api/crm/leatherFactoryApi/leatherFactoryApi'
+import { LeatherColorsService } from '@/api/crm/leatherColorsApi/leatherColorsApi'
+import { LeatherFactoriesService } from '@/api/crm/leatherFactoriesApi/leatherFactoriesApi'
 
 type Store = {
-  leatherFactoryService: LeatherFactoryService
+  leatherFactoriesService: LeatherFactoriesService
   leatherArticlesService: LeatherArticlesService
+  leatherColorsService: LeatherColorsService
 }
 export const useSrmServiceStore = create<Store>(() => {
-  const leatherFactoryService = new LeatherFactoryService()
+  const leatherFactoriesService = new LeatherFactoriesService()
   const leatherArticlesService = new LeatherArticlesService()
+  const leatherColorsService = new LeatherColorsService()
 
   return {
-    leatherFactoryService,
+    leatherFactoriesService,
     leatherArticlesService,
+    leatherColorsService,
   }
 })

@@ -5,7 +5,7 @@ import { Form, Formik } from 'formik'
 import {
   LeatherFactoryType,
   UpdateLeatherFactoryParamsType,
-} from '@/api/crm/leatherFactoryApi/types'
+} from '@/api/crm/leatherFactoriesApi/types'
 import { UpdateButton } from '@/components/common/ui/buttons/updateButton'
 import { FieldWrapper } from '@/components/forms/fieldWrapper'
 import { FormikInput } from '@/components/forms/formikInput'

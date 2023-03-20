@@ -2,7 +2,7 @@ import { FC } from 'react'
 
 import { Form, Formik } from 'formik'
 
-import { CreateLeatherFactoryParamsType } from '@/api/crm/leatherFactoryApi/types'
+import { CreateLeatherFactoryParamsType } from '@/api/crm/leatherFactoriesApi/types'
 import { CreateButton } from '@/components/common/ui/buttons/createButton'
 import { H5 } from '@/components/common/ui/headers/h5'
 import { FieldWrapper } from '@/components/forms/fieldWrapper'

@@ -8,13 +8,14 @@ import {
 export class LeatherArticlesService {
   BASE_URL = 'http://localhost:8001/leather-articles'
 
-  create: (params: CreateLeatherArticleParamsType) => Promise<LeatherArticleType> =
-    async params => {
-      const { factoryId, ...restParams } = params
-      const res = await axios.post<LeatherArticleType>(`${this.BASE_URL}/${factoryId}`, restParams)
+  create: (params: CreateLeatherArticleParamsType) => Promise<LeatherArticleType> = async ({
+    factoryId,
+    ...restParams
+  }) => {
+    const res = await axios.post<LeatherArticleType>(`${this.BASE_URL}/${factoryId}`, restParams)
 
-      return res.data
-    }
+    return res.data
+  }
 
   getAll: () => Promise<Pick<LeatherArticleType, '_id' | 'name'>[]> = async () => {
     const res = await axios.get<LeatherArticleType[]>(`${this.BASE_URL}`)

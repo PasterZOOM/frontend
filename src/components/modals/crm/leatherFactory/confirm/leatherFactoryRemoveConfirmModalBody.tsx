@@ -1,6 +1,6 @@
 import { FC } from 'react'
 
-import { LeatherFactoryType } from '@/api/crm/leatherFactoryApi/types'
+import { LeatherFactoryType } from '@/api/crm/leatherFactoriesApi/types'
 
 type PropsType = {
   factory: LeatherFactoryType

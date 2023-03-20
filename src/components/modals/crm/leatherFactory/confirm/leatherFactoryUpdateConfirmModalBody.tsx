@@ -1,6 +1,6 @@
 import { FC } from 'react'
 
-import { UpdateLeatherFactoryParamsType } from '@/api/crm/leatherFactoryApi/types'
+import { UpdateLeatherFactoryParamsType } from '@/api/crm/leatherFactoriesApi/types'
 import { countriesName } from '@/constants/countries/countriesName'
 import { ECountry } from '@/enums/countries'
 import { EUpdateLeatherFactoryParams } from '@/enums/crm/leatherFactory'

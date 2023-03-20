@@ -4,9 +4,9 @@ import {
   CreateLeatherFactoryParamsType,
   LeatherFactoryType,
   UpdateLeatherFactoryParamsType,
-} from '@/api/crm/leatherFactoryApi/types'
+} from '@/api/crm/leatherFactoriesApi/types'
 
-export class LeatherFactoryService {
+export class LeatherFactoriesService {
   BASE_URL = 'http://localhost:8001/leather-factories'
 
   create: (params: CreateLeatherFactoryParamsType) => Promise<LeatherFactoryType> =
