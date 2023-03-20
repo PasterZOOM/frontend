@@ -1,7 +1,7 @@
 import { FC } from 'react'
 
-import { AddLeatherFactoryForm } from '@/components/common/forms/crm/leatherFactory/addLeatherFactoryForm'
 import { CreateFormAndListWrapper } from '@/components/common/wrappers/createFormAndListWrapper'
+import { AddLeatherFactoryForm } from '@/components/forms/crm/leatherFactory/addLeatherFactoryForm'
 import { LeatherFactoryModal } from '@/components/modals/crm/leatherFactory/leatherFactoryModal'
 import { TableItem } from '@/components/pages/crm/tableItem'
 import { useGetAllLeatherFactories } from '@/hooks/crm/leatherFactories/useGetAllLeatherFactories'

@@ -30,7 +30,7 @@ export class LeatherFactoryService {
 
   update: (params: Partial<UpdateLeatherFactoryParamsType>) => Promise<LeatherFactoryType> =
     async ({ _id, ...params }) => {
-      const res = await axios.patch<LeatherFactoryType>(`${this.BASE_URL}/${_id}`, { ...params })
+      const res = await axios.patch<LeatherFactoryType>(`${this.BASE_URL}/${_id}`, params)
 
       return res.data
     }

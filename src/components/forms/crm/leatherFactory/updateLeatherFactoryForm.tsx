@@ -6,11 +6,11 @@ import {
   LeatherFactoryType,
   UpdateLeatherFactoryParamsType,
 } from '@/api/crm/leatherFactoryApi/types'
-import { FieldWrapper } from '@/components/common/forms/fieldWrapper'
-import { FormikInput } from '@/components/common/forms/formikInput'
-import { FormikSelect } from '@/components/common/forms/formikSelect'
 import { UpdateButton } from '@/components/common/ui/buttons/updateButton'
-import { LeatherFactoryUpdateConfirmModalBody } from '@/components/modals/crm/leatherFactory/leatherFactoryUpdateConfirmModalBody'
+import { FieldWrapper } from '@/components/forms/fieldWrapper'
+import { FormikInput } from '@/components/forms/formikInput'
+import { FormikSelect } from '@/components/forms/formikSelect'
+import { LeatherFactoryUpdateConfirmModalBody } from '@/components/modals/crm/leatherFactory/confirm/leatherFactoryUpdateConfirmModalBody'
 import { countriesForSelect } from '@/constants/countries/countriesForSelect'
 import { EUpdateLeatherFactoryParams } from '@/enums/crm/leatherFactory'
 import { useUpdateLeatherFactory } from '@/hooks/crm/leatherFactories/useUpdateLeatherFactory'

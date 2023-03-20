@@ -6,7 +6,7 @@ import { useSrmServiceStore } from '@/store/crmServises'
 
 export const useGetLeatherFactory = (
   factoryId: string,
-  enabled?: boolean
+  enabled: boolean = false
 ): LeatherFactoryType | undefined => {
   const leatherFactoryService = useSrmServiceStore(state => state.leatherFactoryService)
 

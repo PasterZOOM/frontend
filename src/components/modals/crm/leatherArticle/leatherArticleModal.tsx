@@ -1,9 +1,11 @@
 import { FC } from 'react'
 
+import { LeatherArticleRemoveConfirmModalBody } from './confirm/leatherArticleRemoveConfirmModalBody'
+
 import { RemoveButton } from '@/components/common/ui/buttons/removeButton'
 import { PropertyWithUnderline } from '@/components/common/ui/properties/propertyWithUnderline'
 import { PropertyPreviewWrapper } from '@/components/common/wrappers/propertyPreviewWrapper'
-import { LeatherArticleRemoveConfirmModalBody } from '@/components/modals/crm/leatherArticle/leatherArticleRemoveConfirmModalBody'
+import { UpdateLeatherArticleForm } from '@/components/forms/crm/leatherArticle/updateLeatherArticleForm'
 import { ModalLayout } from '@/components/modals/crm/modalLayout'
 import { useGetLeatherArticle } from '@/hooks/crm/leatherArticles/useGetLeatherArticle'
 import { useRemoveLeatherArticle } from '@/hooks/crm/leatherArticles/useRemoveLeatherArticle'
@@ -31,6 +33,7 @@ export const LeatherArticleModal: FC<PropsType> = ({ isOpen, closeModal, id }) =
     >
       {article && (
         <div className="flex gap-4 p-4">
+          <UpdateLeatherArticleForm article={article} />
           <div className="flex w-full flex-col justify-between">
             <div>
               <div className="w-fit space-y-1">

@@ -29,9 +29,9 @@ export class LeatherArticlesService {
   }
 
   update: (
-    params: Partial<Omit<LeatherArticleType, '_id' | 'colors' | 'factory'>>
-  ) => Promise<LeatherArticleType> = async params => {
-    const res = await axios.patch<LeatherArticleType>(`${this.BASE_URL}`, { data: params })
+    params: Partial<Omit<LeatherArticleType, 'colors' | 'factory'>>
+  ) => Promise<LeatherArticleType> = async ({ _id, ...params }) => {
+    const res = await axios.patch<LeatherArticleType>(`${this.BASE_URL}/${_id}`, params)
 
     return res.data
   }

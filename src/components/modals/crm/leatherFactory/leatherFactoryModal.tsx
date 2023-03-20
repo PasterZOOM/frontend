@@ -1,10 +1,10 @@
 import { FC } from 'react'
 
-import { UpdateLeatherFactoryForm } from '@/components/common/forms/crm/leatherFactory/updateLeatherFactoryForm'
 import { RemoveButton } from '@/components/common/ui/buttons/removeButton'
 import { PropertyWithUnderline } from '@/components/common/ui/properties/propertyWithUnderline'
 import { PropertyPreviewWrapper } from '@/components/common/wrappers/propertyPreviewWrapper'
-import { LeatherFactoryRemoveConfirmModalBody } from '@/components/modals/crm/leatherFactory/leatherFactoryRemoveConfirmModalBody'
+import { UpdateLeatherFactoryForm } from '@/components/forms/crm/leatherFactory/updateLeatherFactoryForm'
+import { LeatherFactoryRemoveConfirmModalBody } from '@/components/modals/crm/leatherFactory/confirm/leatherFactoryRemoveConfirmModalBody'
 import { ModalLayout } from '@/components/modals/crm/modalLayout'
 import { countriesName } from '@/constants/countries/countriesName'
 import { useGetLeatherFactory } from '@/hooks/crm/leatherFactories/useGetLeatherFactory'
