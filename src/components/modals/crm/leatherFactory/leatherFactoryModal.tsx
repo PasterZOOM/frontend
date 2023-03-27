@@ -1,8 +1,8 @@
 import { FC } from 'react'
 
 import { UpdateLeatherFactoryForm } from '@/components/forms/crm/leatherFactory/updateLeatherFactoryForm'
-import { LeatherFactoryInfo } from '@/components/modals/crm/leatherFactory/leatherFactoryInfo'
 import { ModalLayout } from '@/components/modals/crm/modalLayout'
+import { LeatherFactoryInfo } from '@/components/pages/crm/leather/leatherFactories/leatherFactoryInfo'
 import { useGetLeatherFactory } from '@/hooks/crm/leatherFactories/useGetLeatherFactory'
 import { useRemoveLeatherFactory } from '@/hooks/crm/leatherFactories/useRemoveLeatherFactory'
 
