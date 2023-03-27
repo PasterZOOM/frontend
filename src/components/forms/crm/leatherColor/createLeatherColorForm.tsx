@@ -1,6 +1,6 @@
 import { FC } from 'react'
 
-import { Form, Formik } from 'formik'
+import { Form, Formik, FormikHelpers } from 'formik'
 
 import { CreateLeatherColorParamsType } from '@/api/crm/leatherColorsApi/types'
 import { CreateButton } from '@/components/common/ui/buttons/createButton'
@@ -15,7 +15,7 @@ import { ELeatherColor } from '@/enums/materials'
 import { useGetAllLeatherArticles } from '@/hooks/crm/leatherArticles/useGetAllLeatherArticles'
 import { useCreateLeatherColor } from '@/hooks/crm/leatherColors/useCreateLeatherColor'
 
-export const AddLeatherColorForm: FC = () => {
+export const CreateLeatherColorForm: FC = () => {
   const articles = useGetAllLeatherArticles()
   const createColor = useCreateLeatherColor()
 
@@ -28,15 +28,20 @@ export const AddLeatherColorForm: FC = () => {
     [ECreateLeatherColorParams.PHOTO]: '',
   }
 
-  const onSubmit = async (values: CreateLeatherColorParamsType): Promise<void> => {
+  const onSubmit = async (
+    values: CreateLeatherColorParamsType,
+    { resetForm }: FormikHelpers<CreateLeatherColorParamsType>
+  ): Promise<void> => {
     await createColor(values)
+
+    resetForm()
   }
 
   return (
     <div>
       <H5 className="mb-4 font-bold">Создать артикул</H5>
       <Formik initialValues={initialValues} onSubmit={onSubmit}>
-        {({ values }) => (
+        {({ values, submitForm }) => (
           <Form className="space-y-3">
             <FieldWrapper name={ECreateLeatherColorParams.ARTICLE_ID} title="Артикулы:">
               {name => <FormikSelect name={name} items={articles} valueField="_id" />}
@@ -63,7 +68,7 @@ export const AddLeatherColorForm: FC = () => {
             </FieldWrapper>
 
             <CreateButton
-              onConfirm={() => onSubmit(values)}
+              onConfirm={submitForm}
               modalChildren={<LeatherColorCreatConfirmModalBody values={values} />}
             />
           </Form>

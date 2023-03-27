@@ -1,6 +1,6 @@
 import { FC } from 'react'
 
-import { Form, Formik } from 'formik'
+import { Form, Formik, FormikHelpers } from 'formik'
 
 import { CreateLeatherFactoryParamsType } from '@/api/crm/leatherFactoriesApi/types'
 import { CreateButton } from '@/components/common/ui/buttons/createButton'
@@ -19,19 +19,23 @@ const initialValues: CreateLeatherFactoryParamsType = {
   name: '',
 }
 
-export const AddLeatherFactoryForm: FC = () => {
+export const CreateLeatherFactoryForm: FC = () => {
   const createFactory = useCreateLeatherFactory()
 
-  const onSubmit = async (values: CreateLeatherFactoryParamsType): Promise<void> => {
+  const onSubmit = async (
+    values: CreateLeatherFactoryParamsType,
+    { resetForm }: FormikHelpers<CreateLeatherFactoryParamsType>
+  ): Promise<void> => {
     await createFactory(values)
+
+    resetForm()
   }
 
-  // ! TODO Сделать кнопку с модалкой для подтверждения изменения
   return (
     <div>
       <H5 className="mb-4 font-bold">Создать фабрику</H5>
       <Formik initialValues={initialValues} onSubmit={onSubmit}>
-        {({ values }) => (
+        {({ values, submitForm }) => (
           <Form className="space-y-3">
             <FieldWrapper name={ECreateLeatherFactoryParams.NAME} title="Название фабрики:">
               {name => <FormikInput name={name} />}
@@ -49,7 +53,7 @@ export const AddLeatherFactoryForm: FC = () => {
             </FieldWrapper>
 
             <CreateButton
-              onConfirm={() => onSubmit(values)}
+              onConfirm={submitForm}
               modalChildren={<LeatherFactoryCreatConfirmModalBody values={values} />}
             />
           </Form>

@@ -1,7 +1,7 @@
 import { FC } from 'react'
 
 import { CreateFormAndListWrapper } from '@/components/common/wrappers/createFormAndListWrapper'
-import { AddLeatherArticleForm } from '@/components/forms/crm/leatherArticle/addLeatherArticleForm'
+import { CreateLeatherArticleForm } from '@/components/forms/crm/leatherArticle/createLeatherArticleForm'
 import { LeatherArticleModal } from '@/components/modals/crm/leatherArticle/leatherArticleModal'
 import { TableItem } from '@/components/pages/crm/tableItem'
 import { useGetAllLeatherArticles } from '@/hooks/crm/leatherArticles/useGetAllLeatherArticles'
@@ -16,7 +16,7 @@ export const LeatherArticles: FC<PropsType> = ({ className }) => {
   return (
     <CreateFormAndListWrapper
       title="Список артикулов:"
-      form={<AddLeatherArticleForm />}
+      form={<CreateLeatherArticleForm />}
       className={className}
     >
       {articles.map(article => (

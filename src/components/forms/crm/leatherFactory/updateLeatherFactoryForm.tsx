@@ -35,7 +35,7 @@ export const UpdateLeatherFactoryForm: FC<PropsType> = ({ factory }) => {
 
   return (
     <Formik initialValues={initialValues} onSubmit={onSubmit}>
-      {({ values }) => (
+      {({ values, submitForm }) => (
         <Form className="w-full space-y-3">
           <FieldWrapper name={EUpdateLeatherFactoryParams.NAME} title="Название фабрики:">
             {name => <FormikInput name={name} />}
@@ -53,7 +53,7 @@ export const UpdateLeatherFactoryForm: FC<PropsType> = ({ factory }) => {
           </FieldWrapper>
 
           <UpdateButton
-            onConfirm={() => onSubmit(values)}
+            onConfirm={submitForm}
             modalChildren={<LeatherFactoryUpdateConfirmModalBody values={values} />}
           />
         </Form>

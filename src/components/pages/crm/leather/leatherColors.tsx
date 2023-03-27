@@ -1,7 +1,7 @@
 import { FC } from 'react'
 
 import { CreateFormAndListWrapper } from '@/components/common/wrappers/createFormAndListWrapper'
-import { AddLeatherColorForm } from '@/components/forms/crm/leatherColor/addLeatherColorForm'
+import { CreateLeatherColorForm } from '@/components/forms/crm/leatherColor/createLeatherColorForm'
 import { LeatherColorModal } from '@/components/modals/crm/leatherColor/leatherColorModal'
 import { TableItem } from '@/components/pages/crm/tableItem'
 import { useGetAllLeatherColors } from '@/hooks/crm/leatherColors/useGetAllLeatherColors'
@@ -16,7 +16,7 @@ export const LeatherColors: FC<PropsType> = ({ className }) => {
   return (
     <CreateFormAndListWrapper
       title="Список артикулов:"
-      form={<AddLeatherColorForm />}
+      form={<CreateLeatherColorForm />}
       className={className}
     >
       {colors.map(color => (

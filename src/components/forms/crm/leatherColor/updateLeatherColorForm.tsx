@@ -34,7 +34,7 @@ export const UpdateLeatherColorForm: FC<PropsType> = ({ color }) => {
 
   return (
     <Formik initialValues={initialValues} onSubmit={onSubmit}>
-      {({ values }) => (
+      {({ values, submitForm }) => (
         <Form className="w-full space-y-3">
           <FieldWrapper name={EUpdateLeatherColorParams.VALUE} title="Значение цвета:">
             {name => <FormikSelect name={name} items={colorsForSelect} valueField="value" />}
@@ -57,7 +57,7 @@ export const UpdateLeatherColorForm: FC<PropsType> = ({ color }) => {
           </FieldWrapper>
 
           <UpdateButton
-            onConfirm={() => onSubmit(values)}
+            onConfirm={submitForm}
             modalChildren={<LeatherColorUpdateConfirmModalBody values={values} />}
           />
         </Form>

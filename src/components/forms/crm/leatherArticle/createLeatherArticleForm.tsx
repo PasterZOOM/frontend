@@ -1,6 +1,6 @@
 import { FC } from 'react'
 
-import { Form, Formik } from 'formik'
+import { Form, Formik, FormikHelpers } from 'formik'
 
 import { CreateLeatherArticleParamsType } from '@/api/crm/leatherArticlesApi/types'
 import { CreateButton } from '@/components/common/ui/buttons/createButton'
@@ -13,7 +13,7 @@ import { ECreateLeatherArticleParams } from '@/enums/crm/leatherArticle'
 import { useCreateLeatherArticle } from '@/hooks/crm/leatherArticles/useCreateLeatherArticle'
 import { useGetAllLeatherFactories } from '@/hooks/crm/leatherFactories/useGetAllLeatherFactories'
 
-export const AddLeatherArticleForm: FC = () => {
+export const CreateLeatherArticleForm: FC = () => {
   const factories = useGetAllLeatherFactories()
   const createArticle = useCreateLeatherArticle()
 
@@ -23,15 +23,20 @@ export const AddLeatherArticleForm: FC = () => {
     [ECreateLeatherArticleParams.NAME]: '',
   }
 
-  const onSubmit = async (values: CreateLeatherArticleParamsType): Promise<void> => {
+  const onSubmit = async (
+    values: CreateLeatherArticleParamsType,
+    { resetForm }: FormikHelpers<CreateLeatherArticleParamsType>
+  ): Promise<void> => {
     await createArticle(values)
+
+    resetForm()
   }
 
   return (
     <div>
       <H5 className="mb-4 font-bold">Создать артикул</H5>
       <Formik initialValues={initialValues} onSubmit={onSubmit}>
-        {({ values }) => (
+        {({ values, submitForm }) => (
           <Form className="space-y-3">
             <FieldWrapper name={ECreateLeatherArticleParams.NAME} title="Название артикула:">
               {name => <FormikInput name={name} />}
@@ -46,7 +51,7 @@ export const AddLeatherArticleForm: FC = () => {
             </FieldWrapper>
 
             <CreateButton
-              onConfirm={() => onSubmit(values)}
+              onConfirm={submitForm}
               modalChildren={<LeatherArticleCreateConfirmModalBody values={values} />}
             />
           </Form>
