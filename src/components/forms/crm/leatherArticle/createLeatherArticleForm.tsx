@@ -29,7 +29,9 @@ export const CreateLeatherArticleForm: FC = () => {
   ): Promise<void> => {
     await createArticle(values)
 
-    resetForm()
+    resetForm({
+      values: { ...initialValues, [ECreateLeatherArticleParams.FACTORY_ID]: values.factoryId },
+    })
   }
 
   return (

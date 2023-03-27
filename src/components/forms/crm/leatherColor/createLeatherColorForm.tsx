@@ -20,7 +20,7 @@ export const CreateLeatherColorForm: FC = () => {
   const createColor = useCreateLeatherColor()
 
   const initialValues: CreateLeatherColorParamsType = {
-    [ECreateLeatherColorParams.ARTICLE_ID]: articles[0]?._id || '',
+    [ECreateLeatherColorParams.ARTICLE_ID]: articles[0]?._id,
     [ECreateLeatherColorParams.DESCRIPTION]: '',
     [ECreateLeatherColorParams.TITLE]: '',
     [ECreateLeatherColorParams.CODE]: '',
@@ -34,7 +34,9 @@ export const CreateLeatherColorForm: FC = () => {
   ): Promise<void> => {
     await createColor(values)
 
-    resetForm()
+    resetForm({
+      values: { ...initialValues, [ECreateLeatherColorParams.ARTICLE_ID]: values.articleId },
+    })
   }
 
   return (
