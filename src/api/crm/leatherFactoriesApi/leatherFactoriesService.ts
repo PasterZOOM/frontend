@@ -5,9 +5,10 @@ import {
   LeatherFactoryType,
   UpdateLeatherFactoryParamsType,
 } from '@/api/crm/leatherFactoriesApi/types'
+import { UpdateParamsType } from '@/api/paramsTypes'
 
 export class LeatherFactoriesService {
-  BASE_URL = 'http://localhost:8001/leather-factories'
+  BASE_URL = `${process.env.NEXT_PUBLIC_BASE_URL}/leather-factories`
 
   create: (params: CreateLeatherFactoryParamsType) => Promise<LeatherFactoryType> =
     async params => {
@@ -28,12 +29,13 @@ export class LeatherFactoriesService {
     return res.data
   }
 
-  update: (params: Partial<UpdateLeatherFactoryParamsType>) => Promise<LeatherFactoryType> =
-    async ({ _id, ...params }) => {
-      const res = await axios.patch<LeatherFactoryType>(`${this.BASE_URL}/${_id}`, params)
+  update: (
+    params: UpdateParamsType<UpdateLeatherFactoryParamsType>
+  ) => Promise<LeatherFactoryType> = async ({ _id, params }) => {
+    const res = await axios.patch<LeatherFactoryType>(`${this.BASE_URL}/${_id}`, params)
 
-      return res.data
-    }
+    return res.data
+  }
 
   remove: (id: string) => Promise<LeatherFactoryType> = async id => {
     const res = await axios.delete<LeatherFactoryType>(`${this.BASE_URL}/${id}`)

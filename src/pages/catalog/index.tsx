@@ -31,7 +31,7 @@ const Catalog: FC<PropsType> = ({ rates }) => {
         />
         <Products className="col-span-10" />
       </MainContainer>
-      {/* кнопи фильтров для мобильной версии */}
+      {/* кнопки фильтров для мобильной версии */}
       <FilterButtons open={isOpenFilters} setOpen={setIsOpenFilters} />
     </>
   )

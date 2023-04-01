@@ -1,6 +1,7 @@
 import { UseMutateAsyncFunction, useMutation, useQueryClient } from 'react-query'
 
 import { CreateLeatherColorParamsType, LeatherColorType } from '@/api/crm/leatherColorsApi/types'
+import { CreateType } from '@/api/paramsTypes'
 import { queryKey } from '@/enums/crm/queryKey'
 import { useGetAllLeatherColors } from '@/hooks/crm/leatherColors/useGetAllLeatherColors'
 import { useSrmServiceStore } from '@/store/crmServises'
@@ -8,7 +9,7 @@ import { useSrmServiceStore } from '@/store/crmServises'
 export const useCreateLeatherColor = (): UseMutateAsyncFunction<
   LeatherColorType,
   unknown,
-  CreateLeatherColorParamsType,
+  CreateType<CreateLeatherColorParamsType>,
   unknown
 > => {
   const leatherColorsService = useSrmServiceStore(state => state.leatherColorsService)

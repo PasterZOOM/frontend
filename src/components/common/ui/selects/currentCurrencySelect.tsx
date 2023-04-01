@@ -13,6 +13,7 @@ type CurrencyType = {
   code: TCost
   title: string
 }
+// TODO: переделать на объект с ключами ECost
 const currency: CurrencyType[] = [
   {
     id: v1(),
@@ -55,7 +56,7 @@ const currency: CurrencyType[] = [
     id: v1(),
     code: ECost.PLN,
     sign: CurrencySign.PLN,
-    title: 'Злоты',
+    title: 'Злотый',
   },
   {
     id: v1(),

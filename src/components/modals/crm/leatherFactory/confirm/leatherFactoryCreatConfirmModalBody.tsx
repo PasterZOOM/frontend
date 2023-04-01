@@ -6,7 +6,7 @@ import { ECountry } from '@/enums/countries'
 import { ECreateLeatherFactoryParams } from '@/enums/crm/leatherFactory'
 
 type PropsType = {
-  values: CreateLeatherFactoryParamsType
+  values: CreateLeatherFactoryParamsType // TODO: заменить на CreateLeatherFactoryFormType
 }
 
 export const LeatherFactoryCreatConfirmModalBody: FC<PropsType> = ({ values }) => {

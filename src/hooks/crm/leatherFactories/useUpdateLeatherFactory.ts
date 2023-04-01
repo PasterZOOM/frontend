@@ -1,4 +1,4 @@
-import { UseMutateAsyncFunction, useMutation, useQueryClient } from 'react-query'
+import { useMutation, useQueryClient } from 'react-query'
 
 import {
   LeatherFactoryType,
@@ -7,12 +7,15 @@ import {
 import { queryKey } from '@/enums/crm/queryKey'
 import { useSrmServiceStore } from '@/store/crmServises'
 
-export const useUpdateLeatherFactory = (): UseMutateAsyncFunction<
-  LeatherFactoryType,
-  unknown,
-  Partial<UpdateLeatherFactoryParamsType>,
-  unknown
-> => {
+export const useUpdateLeatherFactory = (
+  _id: string
+): {
+  updateLeatherFactory: (
+    params: Partial<UpdateLeatherFactoryParamsType>
+  ) => Promise<LeatherFactoryType>
+  updateLeatherFactoryName: (title: string) => Promise<void>
+  updateLeatherFactoryDescription: (description: string) => Promise<void>
+} => {
   const leatherFactoriesService = useSrmServiceStore(state => state.leatherFactoriesService)
 
   const queryClient = useQueryClient()
@@ -24,5 +27,22 @@ export const useUpdateLeatherFactory = (): UseMutateAsyncFunction<
     },
   })
 
-  return mutateAsync
+  const updateLeatherFactory = async (
+    params: Partial<UpdateLeatherFactoryParamsType>
+  ): Promise<LeatherFactoryType> => {
+    return mutateAsync({ _id, params })
+  }
+
+  const updateLeatherFactoryName = async (name: string): Promise<void> => {
+    await updateLeatherFactory({ name })
+  }
+  const updateLeatherFactoryDescription = async (description: string): Promise<void> => {
+    await updateLeatherFactory({ description })
+  }
+
+  return {
+    updateLeatherFactory,
+    updateLeatherFactoryName,
+    updateLeatherFactoryDescription,
+  }
 }

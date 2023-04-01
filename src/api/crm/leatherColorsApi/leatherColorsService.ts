@@ -5,15 +5,16 @@ import {
   LeatherColorType,
   UpdateLeatherColorParamsType,
 } from '@/api/crm/leatherColorsApi/types'
+import { CreateType, UpdateParamsType } from '@/api/paramsTypes'
 
 export class LeatherColorsService {
-  BASE_URL = 'http://localhost:8001/leather-colors'
+  BASE_URL = `${process.env.NEXT_PUBLIC_BASE_URL}/leather-colors`
 
-  create: (params: CreateLeatherColorParamsType) => Promise<LeatherColorType> = async ({
-    articleId,
-    ...params
+  create: (params: CreateType<CreateLeatherColorParamsType>) => Promise<LeatherColorType> = async ({
+    _id,
+    params,
   }) => {
-    const res = await axios.post<LeatherColorType>(`${this.BASE_URL}/${articleId}`, params)
+    const res = await axios.post<LeatherColorType>(`${this.BASE_URL}/${_id}`, params)
 
     return res.data
   }
@@ -30,14 +31,12 @@ export class LeatherColorsService {
     return res.data
   }
 
-  update: (params: Partial<UpdateLeatherColorParamsType>) => Promise<LeatherColorType> = async ({
-    _id,
-    ...params
-  }) => {
-    const res = await axios.patch<LeatherColorType>(`${this.BASE_URL}/${_id}`, params)
+  update: (params: UpdateParamsType<UpdateLeatherColorParamsType>) => Promise<LeatherColorType> =
+    async ({ _id, params }) => {
+      const res = await axios.patch<LeatherColorType>(`${this.BASE_URL}/${_id}`, params)
 
-    return res.data
-  }
+      return res.data
+    }
 
   remove: (id: string) => Promise<LeatherColorType> = async id => {
     const res = await axios.delete<LeatherColorType>(`${this.BASE_URL}/${id}`)

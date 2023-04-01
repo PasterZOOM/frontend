@@ -1,6 +1,5 @@
 import { FC } from 'react'
 
-import { UpdateLeatherFactoryForm } from '@/components/forms/crm/leatherFactory/updateLeatherFactoryForm'
 import { ModalLayout } from '@/components/modals/crm/modalLayout'
 import { LeatherFactoryInfo } from '@/components/pages/crm/leather/leatherFactories/leatherFactoryInfo'
 import { useGetLeatherFactory } from '@/hooks/crm/leatherFactories/useGetLeatherFactory'
@@ -29,8 +28,6 @@ export const LeatherFactoryModal: FC<PropsType> = ({ isOpen, closeModal, id }) =
     >
       {factory && (
         <div className="flex gap-4 p-4">
-          <UpdateLeatherFactoryForm factory={factory} />
-
           <LeatherFactoryInfo factory={factory} onDeleteConfirm={onDeleteConfirm} />
         </div>
       )}

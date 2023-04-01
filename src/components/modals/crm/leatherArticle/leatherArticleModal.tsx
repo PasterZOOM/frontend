@@ -1,6 +1,5 @@
 import { FC } from 'react'
 
-import { UpdateLeatherArticleForm } from '@/components/forms/crm/leatherArticle/updateLeatherArticleForm'
 import { ModalLayout } from '@/components/modals/crm/modalLayout'
 import { LeatherArticleInfo } from '@/components/pages/crm/leather/leatherArticles/leatherArticleInfo'
 import { useGetLeatherArticle } from '@/hooks/crm/leatherArticles/useGetLeatherArticle'
@@ -29,8 +28,6 @@ export const LeatherArticleModal: FC<PropsType> = ({ isOpen, closeModal, id }) =
     >
       {article && (
         <div className="flex gap-4 p-4">
-          <UpdateLeatherArticleForm article={article} />
-
           <LeatherArticleInfo article={article} onDeleteConfirm={onDeleteConfirm} />
         </div>
       )}

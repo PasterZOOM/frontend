@@ -3,19 +3,19 @@ import axios from 'axios'
 import {
   CreateLeatherArticleParamsType,
   LeatherArticleType,
+  UpdateLeatherArticleParamsType,
 } from '@/api/crm/leatherArticlesApi/types'
+import { CreateType, UpdateParamsType } from '@/api/paramsTypes'
 
 export class LeatherArticlesService {
-  BASE_URL = 'http://localhost:8001/leather-articles'
+  BASE_URL = `${process.env.NEXT_PUBLIC_BASE_URL}/leather-articles`
 
-  create: (params: CreateLeatherArticleParamsType) => Promise<LeatherArticleType> = async ({
-    factoryId,
-    ...restParams
-  }) => {
-    const res = await axios.post<LeatherArticleType>(`${this.BASE_URL}/${factoryId}`, restParams)
+  create: (params: CreateType<CreateLeatherArticleParamsType>) => Promise<LeatherArticleType> =
+    async ({ _id, params }) => {
+      const res = await axios.post<LeatherArticleType>(`${this.BASE_URL}/${_id}`, params)
 
-    return res.data
-  }
+      return res.data
+    }
 
   getAll: () => Promise<Pick<LeatherArticleType, '_id' | 'name'>[]> = async () => {
     const res = await axios.get<LeatherArticleType[]>(`${this.BASE_URL}`)
@@ -30,8 +30,8 @@ export class LeatherArticlesService {
   }
 
   update: (
-    params: Partial<Omit<LeatherArticleType, 'colors' | 'factory'>>
-  ) => Promise<LeatherArticleType> = async ({ _id, ...params }) => {
+    params: UpdateParamsType<UpdateLeatherArticleParamsType>
+  ) => Promise<LeatherArticleType> = async ({ _id, params }) => {
     const res = await axios.patch<LeatherArticleType>(`${this.BASE_URL}/${_id}`, params)
 
     return res.data

@@ -2,9 +2,9 @@ import { FC } from 'react'
 
 import { Form, Formik, FormikHelpers } from 'formik'
 
-import { CreateLeatherColorParamsType } from '@/api/crm/leatherColorsApi/types'
 import { CreateButton } from '@/components/common/ui/buttons/createButton'
 import { H5 } from '@/components/common/ui/headers/h5'
+import { CreateLeatherColorFormType } from '@/components/forms/crm/leatherColors/type'
 import { FieldWrapper } from '@/components/forms/fieldWrapper'
 import { FormikInput } from '@/components/forms/formikInput'
 import { FormikSelect } from '@/components/forms/formikSelect'
@@ -19,8 +19,8 @@ export const CreateLeatherColorForm: FC = () => {
   const articles = useGetAllLeatherArticles()
   const createColor = useCreateLeatherColor()
 
-  const initialValues: CreateLeatherColorParamsType = {
-    [ECreateLeatherColorParams.ARTICLE_ID]: articles[0]?._id,
+  const initialValues: CreateLeatherColorFormType = {
+    [ECreateLeatherColorParams.ARTICLE_ID]: '',
     [ECreateLeatherColorParams.DESCRIPTION]: '',
     [ECreateLeatherColorParams.TITLE]: '',
     [ECreateLeatherColorParams.CODE]: '',
@@ -29,14 +29,12 @@ export const CreateLeatherColorForm: FC = () => {
   }
 
   const onSubmit = async (
-    values: CreateLeatherColorParamsType,
-    { resetForm }: FormikHelpers<CreateLeatherColorParamsType>
+    { articleId, ...params }: CreateLeatherColorFormType,
+    { resetForm }: FormikHelpers<CreateLeatherColorFormType>
   ): Promise<void> => {
-    await createColor(values)
+    await createColor({ _id: articleId || articles[0]?._id, params })
 
-    resetForm({
-      values: { ...initialValues, [ECreateLeatherColorParams.ARTICLE_ID]: values.articleId },
-    })
+    resetForm()
   }
 
   return (
@@ -45,7 +43,7 @@ export const CreateLeatherColorForm: FC = () => {
       <Formik initialValues={initialValues} onSubmit={onSubmit}>
         {({ values, submitForm }) => (
           <Form className="space-y-3">
-            <FieldWrapper name={ECreateLeatherColorParams.ARTICLE_ID} title="Артикулы:">
+            <FieldWrapper name={ECreateLeatherColorParams.ARTICLE_ID} title="Артикул:">
               {name => <FormikSelect name={name} items={articles} valueField="_id" />}
             </FieldWrapper>
 

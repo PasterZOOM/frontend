@@ -1,11 +1,11 @@
 import { FC } from 'react'
 
-import { CreateLeatherColorParamsType } from '@/api/crm/leatherColorsApi/types'
+import { CreateLeatherColorFormType } from '@/components/forms/crm/leatherColors/type'
 import { ECreateLeatherColorParams } from '@/enums/crm/leatherColor'
 import { useGetAllLeatherArticles } from '@/hooks/crm/leatherArticles/useGetAllLeatherArticles'
 
 type PropsType = {
-  values: CreateLeatherColorParamsType
+  values: CreateLeatherColorFormType
 }
 
 export const LeatherColorCreatConfirmModalBody: FC<PropsType> = ({ values }) => {

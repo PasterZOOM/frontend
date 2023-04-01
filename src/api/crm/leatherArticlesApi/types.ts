@@ -1,8 +1,3 @@
-import {
-  ECreateLeatherArticleParams,
-  EUpdateLeatherArticleParams,
-} from '@/enums/crm/leatherArticle'
-
 export type LeatherArticleType = {
   _id: string
   colors: { _id: string; title: string }[]
@@ -10,5 +5,8 @@ export type LeatherArticleType = {
   factory: { _id: string; name: string }
   name: string
 }
-export type CreateLeatherArticleParamsType = Record<ECreateLeatherArticleParams, string>
-export type UpdateLeatherArticleParamsType = Record<EUpdateLeatherArticleParams, string>
+export type CreateLeatherArticleParamsType = {
+  name: string
+  description: string
+}
+export type UpdateLeatherArticleParamsType = Partial<CreateLeatherArticleParamsType>

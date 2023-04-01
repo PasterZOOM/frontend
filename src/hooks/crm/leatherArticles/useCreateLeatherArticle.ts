@@ -4,6 +4,7 @@ import {
   CreateLeatherArticleParamsType,
   LeatherArticleType,
 } from '@/api/crm/leatherArticlesApi/types'
+import { CreateType } from '@/api/paramsTypes'
 import { queryKey } from '@/enums/crm/queryKey'
 import { useGetAllLeatherArticles } from '@/hooks/crm/leatherArticles/useGetAllLeatherArticles'
 import { useSrmServiceStore } from '@/store/crmServises'
@@ -11,7 +12,7 @@ import { useSrmServiceStore } from '@/store/crmServises'
 export const useCreateLeatherArticle = (): UseMutateAsyncFunction<
   LeatherArticleType,
   unknown,
-  CreateLeatherArticleParamsType,
+  CreateType<CreateLeatherArticleParamsType>,
   unknown
 > => {
   const leatherArticlesService = useSrmServiceStore(state => state.leatherArticlesService)

@@ -2,9 +2,9 @@ import { FC } from 'react'
 
 import { Form, Formik, FormikHelpers } from 'formik'
 
-import { CreateLeatherArticleParamsType } from '@/api/crm/leatherArticlesApi/types'
 import { CreateButton } from '@/components/common/ui/buttons/createButton'
 import { H5 } from '@/components/common/ui/headers/h5'
+import { CreateLeatherArticleFormType } from '@/components/forms/crm/leatherArticles/type'
 import { FieldWrapper } from '@/components/forms/fieldWrapper'
 import { FormikInput } from '@/components/forms/formikInput'
 import { FormikSelect } from '@/components/forms/formikSelect'
@@ -17,21 +17,19 @@ export const CreateLeatherArticleForm: FC = () => {
   const factories = useGetAllLeatherFactories()
   const createArticle = useCreateLeatherArticle()
 
-  const initialValues: CreateLeatherArticleParamsType = {
-    [ECreateLeatherArticleParams.FACTORY_ID]: factories[0]?._id || '',
+  const initialValues: CreateLeatherArticleFormType = {
+    [ECreateLeatherArticleParams.FACTORY_ID]: '',
     [ECreateLeatherArticleParams.DESCRIPTION]: '',
     [ECreateLeatherArticleParams.NAME]: '',
   }
 
   const onSubmit = async (
-    values: CreateLeatherArticleParamsType,
-    { resetForm }: FormikHelpers<CreateLeatherArticleParamsType>
+    { factoryId, ...params }: CreateLeatherArticleFormType,
+    { resetForm }: FormikHelpers<CreateLeatherArticleFormType>
   ): Promise<void> => {
-    await createArticle(values)
+    await createArticle({ _id: factoryId || factories[0]?._id, params })
 
-    resetForm({
-      values: { ...initialValues, [ECreateLeatherArticleParams.FACTORY_ID]: values.factoryId },
-    })
+    resetForm()
   }
 
   return (

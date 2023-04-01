@@ -12,7 +12,7 @@ import { LeatherFactoryCreatConfirmModalBody } from '@/components/modals/crm/lea
 import { countriesForSelect } from '@/constants/countries/countriesForSelect'
 import { ECreateLeatherFactoryParams } from '@/enums/crm/leatherFactory'
 import { useCreateLeatherFactory } from '@/hooks/crm/leatherFactories/useCreateLeatherFactory'
-
+// TODO: сделать отдельный тип для формы CreateLeatherFactoryFormType
 const initialValues: CreateLeatherFactoryParamsType = {
   country: countriesForSelect[0]?.value,
   description: '',

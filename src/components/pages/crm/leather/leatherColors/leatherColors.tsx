@@ -1,7 +1,7 @@
 import { FC } from 'react'
 
 import { CreateFormAndListWrapper } from '@/components/common/wrappers/createFormAndListWrapper'
-import { CreateLeatherColorForm } from '@/components/forms/crm/leatherColor/createLeatherColorForm'
+import { CreateLeatherColorForm } from '@/components/forms/crm/leatherColors/createLeatherColorForm'
 import { LeatherColorModal } from '@/components/modals/crm/leatherColor/leatherColorModal'
 import { TableItem } from '@/components/pages/crm/tableItem'
 import { useGetAllLeatherColors } from '@/hooks/crm/leatherColors/useGetAllLeatherColors'

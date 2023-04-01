@@ -1,4 +1,3 @@
-import { ECreateLeatherColorParams, EUpdateLeatherColorParams } from '@/enums/crm/leatherColor'
 import { ELeatherColor } from '@/enums/materials'
 
 export type LeatherColorType = {
@@ -10,9 +9,11 @@ export type LeatherColorType = {
   value: ELeatherColor
   description: string
 }
-export type CreateLeatherColorParamsType = Record<ECreateLeatherColorParams, string> & {
-  [ECreateLeatherColorParams.VALUE]: ELeatherColor
+export type CreateLeatherColorParamsType = {
+  code: string
+  photo: string
+  title: string
+  value: ELeatherColor
+  description: string
 }
-export type UpdateLeatherColorParamsType = Record<EUpdateLeatherColorParams, string> & {
-  [EUpdateLeatherColorParams.VALUE]: ELeatherColor
-}
+export type UpdateLeatherColorParamsType = Partial<CreateLeatherColorParamsType>

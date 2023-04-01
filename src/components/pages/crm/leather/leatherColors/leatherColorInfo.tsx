@@ -2,9 +2,11 @@ import { FC } from 'react'
 
 import { LeatherColorType } from '@/api/crm/leatherColorsApi/types'
 import { RemoveButton } from '@/components/common/ui/buttons/removeButton'
+import { EditableSpanInput } from '@/components/common/ui/editable/editableSpanInput'
 import { PropertyWithUnderline } from '@/components/common/ui/properties/propertyWithUnderline'
 import { PropertyPreviewWrapper } from '@/components/common/wrappers/propertyPreviewWrapper'
 import { LeatherColorRemoveConfirmModalBody } from '@/components/modals/crm/leatherColor/confirm/leatherColorRemoveConfirmModalBody'
+import { useUpdateLeatherColor } from '@/hooks/crm/leatherColors/useUpdateLeatherColor'
 
 type PropsType = {
   className?: string
@@ -13,6 +15,13 @@ type PropsType = {
 }
 
 export const LeatherColorInfo: FC<PropsType> = ({ className, color, onDeleteConfirm }) => {
+  const {
+    updateLeatherColorDescription,
+    updateLeatherColorPhoto,
+    updateLeatherColorName,
+    updateLeatherColorCode,
+  } = useUpdateLeatherColor(color._id)
+
   return (
     <div className={`${className ?? ''} flex w-full flex-col justify-between`}>
       <div>
@@ -21,18 +30,26 @@ export const LeatherColorInfo: FC<PropsType> = ({ className, color, onDeleteConf
             {color._id}
           </PropertyWithUnderline>
 
-          <PropertyWithUnderline title="Название цвета:">{color.title}</PropertyWithUnderline>
+          <PropertyWithUnderline title="Название цвета:">
+            <EditableSpanInput onChange={updateLeatherColorName}>{color.title}</EditableSpanInput>
+          </PropertyWithUnderline>
 
-          <PropertyWithUnderline title="Код цвета:">{color.code}</PropertyWithUnderline>
+          <PropertyWithUnderline title="Код цвета:">
+            <EditableSpanInput onChange={updateLeatherColorCode}>{color.code}</EditableSpanInput>
+          </PropertyWithUnderline>
 
           <PropertyWithUnderline title="Значение цвета:">{color.value}</PropertyWithUnderline>
 
           <PropertyWithUnderline title="Артикул:">{color.article.name}</PropertyWithUnderline>
 
-          <PropertyWithUnderline title="Фото:">{color.photo}</PropertyWithUnderline>
+          <PropertyWithUnderline title="Фото:">
+            <EditableSpanInput onChange={updateLeatherColorPhoto}>{color.photo}</EditableSpanInput>
+          </PropertyWithUnderline>
 
           <PropertyPreviewWrapper title="Описание:" childrenClassName="ml-5">
-            {color.description}
+            <EditableSpanInput onChange={updateLeatherColorDescription}>
+              {color.description}
+            </EditableSpanInput>
           </PropertyPreviewWrapper>
         </div>
       </div>
