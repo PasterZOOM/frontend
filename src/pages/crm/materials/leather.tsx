@@ -2,9 +2,9 @@ import { FC } from 'react'
 
 import { CrmMenuLayout } from '@/components/common/layouts/crmMenuLayout'
 import { H1 } from '@/components/common/ui/headers/h1'
-import { LeatherArticles } from '@/components/pages/crm/leather/leatherArticles/leatherArticles'
-import { LeatherColors } from '@/components/pages/crm/leather/leatherColors/leatherColors'
-import LeatherFactories from '@/components/pages/crm/leather/leatherFactories/leatherFactories'
+import { LeatherArticles } from '@/features/leatherArticles/pages/leatherArticles'
+import { LeatherColors } from '@/features/leatherColors/pages/leatherColors'
+import LeatherFactories from '@/features/leatherFactories/pages/leatherFactories'
 
 const Leather: FC = () => {
   return (

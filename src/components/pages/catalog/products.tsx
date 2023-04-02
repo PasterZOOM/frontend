@@ -12,6 +12,7 @@ type PropsType = {
   className?: string
 }
 const Products: FC<PropsType> = ({ className = '' }) => {
+  // TODO: забирать basicProducts с бэка, productsService удалить
   const productsService = useServiceStore(state => state.productsService)
 
   const filters = useFilterStore(state => state.filters)

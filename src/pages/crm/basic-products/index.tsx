@@ -2,7 +2,7 @@ import { FC } from 'react'
 
 import { CrmMenuLayout } from '@/components/common/layouts/crmMenuLayout'
 import { H1 } from '@/components/common/ui/headers/h1'
-import { BasicProducts } from '@/components/pages/crm/leather/basicProducts/basicProducts'
+import { BasicProducts } from '@/features/basicProducts/pages/basicProducts'
 
 const BasicProductsPage: FC = () => {
   return (
