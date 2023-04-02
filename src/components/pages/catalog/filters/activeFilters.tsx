@@ -1,8 +1,7 @@
 import { FC, useEffect, useState } from 'react'
 
-import { useRouter } from 'next/router'
-
-import { useRemoveMultipleQueryParam } from '@/hooks/useRemoveMultipleQueryParam'
+import { useClearAllQueryParams } from '@/hooks/queryParams/useClearAllQueryParams'
+import { useRemoveMultipleQueryParam } from '@/hooks/queryParams/useRemoveMultipleQueryParam'
 import { EFilterKeys, filters as filtersMock, GeneralFilterType } from '@/mocks/filters'
 import { useBasicProductsFilterStore } from '@/store/useBasicProductsFilterStore'
 
@@ -10,13 +9,10 @@ type PropsType = {
   className?: string
 }
 const ActiveFilters: FC<PropsType> = ({ className = '' }) => {
-  const { replace, pathname } = useRouter()
+  const clearAll = useClearAllQueryParams()
+
   const filters = useBasicProductsFilterStore(state => state.filters)
   const [activeFilters, setActiveFilters] = useState<GeneralFilterType[]>([])
-
-  const clearAll = (): void => {
-    replace(pathname, undefined, { shallow: true }).then()
-  }
 
   const removeQueryParam = useRemoveMultipleQueryParam()
 
@@ -24,12 +20,12 @@ const ActiveFilters: FC<PropsType> = ({ className = '' }) => {
     let newFilters: GeneralFilterType[] = []
 
     Object.entries(filters).forEach(([filterKey, filterValue]) => {
-      const filt = filterValue
+      const temp = filterValue
         .split(',')
         .map(filter => filtersMock[filterKey as EFilterKeys].find(el => el.value === filter))
         .filter(filter => !!filter)
 
-      newFilters = [...newFilters, ...filt] as GeneralFilterType[]
+      newFilters = [...newFilters, ...temp] as GeneralFilterType[]
     })
     setActiveFilters(newFilters)
   }, [filters])

@@ -5,16 +5,16 @@ import { EFilterKeys } from '@/mocks/filters'
 export const useRemoveMultipleQueryParam = (): ((
   filterKey: EFilterKeys,
   filterValue: string
-) => void) => {
+) => Promise<void>) => {
   const { pathname, query, replace } = useRouter()
 
-  return (filterKey, filterValue): void => {
+  return async (filterKey, filterValue) => {
     const param = `${query[filterKey]}`
       .replace(`,${filterValue}`, '')
       .replace(filterValue, '')
       .replace(/^,/, '')
 
-    replace(
+    await replace(
       {
         pathname,
         query: {
@@ -24,6 +24,6 @@ export const useRemoveMultipleQueryParam = (): ((
       },
       undefined,
       { shallow: true }
-    ).then()
+    )
   }
 }

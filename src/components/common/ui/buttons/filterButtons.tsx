@@ -1,6 +1,7 @@
 import { FC } from 'react'
 
 import { Button, ButtonVariant } from '@/components/common/ui/buttons/button'
+import { useClearAllQueryParams } from '@/hooks/queryParams/useClearAllQueryParams'
 
 interface FilterButtonsProps {
   open: boolean
@@ -8,6 +9,8 @@ interface FilterButtonsProps {
 }
 
 const FilterButtons: FC<FilterButtonsProps> = ({ open, setOpen }) => {
+  const clearAll = useClearAllQueryParams()
+
   return (
     <div
       className={`sticky bottom-0 left-0 right-0 z-50 flex w-full gap-3 bg-white p-4 dark:bg-anthracite-gray md:p-6 xl:hidden ${
@@ -16,7 +19,7 @@ const FilterButtons: FC<FilterButtonsProps> = ({ open, setOpen }) => {
     >
       {open ? (
         <>
-          <Button className="w-full" variant={ButtonVariant.SECONDARY}>
+          <Button className="w-full" variant={ButtonVariant.SECONDARY} onClick={clearAll}>
             Очистить
           </Button>
           <Button className="w-full" onClick={() => setOpen(false)}>
@@ -25,7 +28,7 @@ const FilterButtons: FC<FilterButtonsProps> = ({ open, setOpen }) => {
         </>
       ) : (
         <Button onClick={() => setOpen(true)} className="w-full">
-          Фильра
+          Фильтра
         </Button>
       )}
     </div>

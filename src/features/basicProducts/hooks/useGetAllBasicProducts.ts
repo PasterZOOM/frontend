@@ -11,7 +11,7 @@ export const useGetAllBasicProducts = (enabled = true): BasicProductType[] => {
   const basicProductsService = useSrmServiceStore(state => state.basicProductsService)
 
   const { data } = useQuery(
-    [queryKey.GET_ALL_BASIC_PRODUCTS, filters],
+    filters ? [queryKey.GET_ALL_BASIC_PRODUCTS, filters] : queryKey.GET_ALL_BASIC_PRODUCTS,
     () => basicProductsService.getAll(filters),
     {
       enabled,

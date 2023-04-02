@@ -7,4 +7,5 @@ export type CreateBasicProductFormType = Record<ECreateBasicProductParams, strin
   [ECreateBasicProductParams.CATEGORY]: EProductCategory
   [ECreateBasicProductParams.COST_CURRENCY]: ECost
   [ECreateBasicProductParams.PUNCH_PITCH]: EPunchPitch
+  // [ECreateBasicProductParams.ASSIGNMENTS]: EProductAssignment[]
 }

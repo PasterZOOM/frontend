@@ -14,14 +14,6 @@ const queryClient = new QueryClient({
 })
 
 const App: FC<AppProps> = ({ Component, pageProps }) => {
-  // const queryClientRef = useRef<QueryClient>()
-  //
-  // if (!queryClientRef.current) {
-  //   queryClientRef.current = new QueryClient({
-  //     defaultOptions: { queries: { refetchOnWindowFocus: false } },
-  //   })
-  // }
-
   return (
     <QueryClientProvider client={queryClient}>
       <Hydrate state={pageProps.dehydratedState}>

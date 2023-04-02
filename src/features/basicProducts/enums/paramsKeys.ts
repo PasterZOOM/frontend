@@ -1,4 +1,5 @@
 export enum ECreateBasicProductParams {
+  ASSIGNMENTS = 'assignments',
   CATEGORY = 'category',
   COST = 'cost',
   COST_CURRENCY = 'costCurrency',

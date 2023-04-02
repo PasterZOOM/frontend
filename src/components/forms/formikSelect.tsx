@@ -9,14 +9,16 @@ type PropsType = {
   className?: string
   items?: SelectItemType<string>[]
   valueField: '_id' | 'value'
+  isMulti?: boolean
 }
 
-export const FormikSelect: FC<PropsType> = ({ name, className, items, valueField }) => {
+export const FormikSelect: FC<PropsType> = ({ name, className, items, valueField, isMulti }) => {
   return (
     <Field
       name={name}
       component="select"
       className={`w-full border p-2 dark:bg-anthracite-gray ${className || ''}`}
+      multiple={isMulti}
     >
       {items &&
         items.map(item => (

@@ -8,7 +8,7 @@ export const useGetAllLeatherColors: useGetAllLeatherColorsType = (filter, enabl
   const leatherColorsService = useSrmServiceStore(state => state.leatherColorsService)
 
   const { data } = useQuery(
-    [queryKey.GET_ALL_COLORS, filter],
+    filter ? [queryKey.GET_ALL_COLORS, filter] : queryKey.GET_ALL_COLORS,
     () => leatherColorsService.getAll(filter),
     {
       enabled,

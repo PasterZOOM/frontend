@@ -13,6 +13,7 @@ import { initialCurrencyState, useCurrencyStore } from '@/store/useCurrencyStore
 import { CostType } from '@/types/costType'
 
 type PropsType = { rates: CostType }
+
 const Catalog: FC<PropsType> = ({ rates }) => {
   const setActualRates = useCurrencyStore(store => store.setActualRates)
   const [isOpenFilters, setIsOpenFilters] = useState(false)

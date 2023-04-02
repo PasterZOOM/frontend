@@ -3,13 +3,16 @@ import { persist } from 'zustand/middleware'
 
 import { ECost, TCost } from '@/enums/cost'
 import { ETheme } from '@/enums/theme'
+import { UserStatus } from '@/enums/userStatus'
 
 type UserSettingsStateType = {
+  userStatus: UserStatus
   currentCurrency: TCost
   theme: ETheme
 }
 
 const initialState: UserSettingsStateType = {
+  userStatus: UserStatus.NONE,
   currentCurrency: ECost.BYN,
   theme: ETheme.AUTO,
 }
@@ -17,6 +20,7 @@ const initialState: UserSettingsStateType = {
 type StoreType = UserSettingsStateType & {
   setCurrentCurrency: (currentCurrency: TCost) => void
   setTheme: (theme: ETheme) => void
+  setUserStatus: (userStatus: UserStatus) => void
 }
 
 export const useUserSettings = create(
@@ -25,6 +29,7 @@ export const useUserSettings = create(
       ...initialState,
       setCurrentCurrency: currentCurrency => set({ currentCurrency }),
       setTheme: theme => set({ theme }),
+      setUserStatus: userStatus => set({ userStatus }),
     }),
     { name: 'userSettings' }
   )

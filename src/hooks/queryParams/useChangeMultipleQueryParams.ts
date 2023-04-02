@@ -2,21 +2,24 @@ import { ChangeEvent } from 'react'
 
 import { useRouter } from 'next/router'
 
+import { useRemoveMultipleQueryParam } from '@/hooks/queryParams/useRemoveMultipleQueryParam'
 import { useChangeFilterParams } from '@/hooks/useChangeFilterParams'
-import { useRemoveMultipleQueryParam } from '@/hooks/useRemoveMultipleQueryParam'
 import { EFilterKeys } from '@/mocks/filters'
 
 export const useChangeMultipleQueryParams = (
   filterKey: EFilterKeys,
   filterValue: string
-): { setQueryParams: (e: ChangeEvent<HTMLInputElement>) => void; queryParams: boolean } => {
+): {
+  setQueryParams: (e: ChangeEvent<HTMLInputElement>) => Promise<void>
+  queryParams: boolean
+} => {
   const { pathname, query, replace } = useRouter()
 
   const removeQueryParam = useRemoveMultipleQueryParam()
 
   useChangeFilterParams(filterKey)
 
-  const setQueryParams = (e: ChangeEvent<HTMLInputElement>): void => {
+  const setQueryParams = async (e: ChangeEvent<HTMLInputElement>): Promise<void> => {
     if (e.currentTarget.checked) {
       replace(
         {
@@ -30,7 +33,7 @@ export const useChangeMultipleQueryParams = (
         { shallow: true }
       ).then()
     } else {
-      removeQueryParam(filterKey, filterValue)
+      await removeQueryParam(filterKey, filterValue)
     }
   }
 

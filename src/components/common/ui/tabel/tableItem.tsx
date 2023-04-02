@@ -12,7 +12,7 @@ export const TableItem: FC<PropsType> = ({ name, children }) => {
 
   return (
     <>
-      <div onClick={openModal} className="p-1" aria-hidden="true">
+      <div onClick={openModal} className="cursor-pointer p-1" aria-hidden="true">
         {name}
       </div>
       {children({ isOpen, closeModal })}

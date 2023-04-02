@@ -1,6 +1,6 @@
 import { FC } from 'react'
 
-import { useChangeMultipleQueryParams } from '@/hooks/useChangeMultipleQueryParams'
+import { useChangeMultipleQueryParams } from '@/hooks/queryParams/useChangeMultipleQueryParams'
 import { EFilterKeys, GeneralFilterType } from '@/mocks/filters'
 
 type PropsType = {

@@ -18,6 +18,7 @@ import { useGetAllLeatherArticles } from '@/features/leatherArticles/hooks/useGe
 import { currencyForSelect } from '@/objects/currency/currency'
 import { punchPatchForSelect } from '@/objects/materials/punchPatch'
 import { productCategoriesForSelect } from '@/objects/products/productCategories'
+import { productAssignmentsForSelect } from '@/objects/products/productsAssignments'
 
 const CreateBasicProductForm: FC = () => {
   const articles = useGetAllLeatherArticles()
@@ -33,6 +34,7 @@ const CreateBasicProductForm: FC = () => {
     [ECreateBasicProductParams.COST_CURRENCY]: ECost.USD,
     [ECreateBasicProductParams.PUNCH_PITCH]: EPunchPitch.LITTLE,
     [ECreateBasicProductParams.SIZE]: '',
+    [ECreateBasicProductParams.ASSIGNMENTS]: '',
   }
 
   const onSubmit = async (
@@ -69,6 +71,17 @@ const CreateBasicProductForm: FC = () => {
             <FieldWrapper name={ECreateBasicProductParams.CATEGORY} title="Категория:">
               {name => (
                 <FormikSelect name={name} items={productCategoriesForSelect} valueField="value" />
+              )}
+            </FieldWrapper>
+
+            <FieldWrapper name={ECreateBasicProductParams.ASSIGNMENTS} title="Назначения:">
+              {name => (
+                <FormikSelect
+                  name={name}
+                  items={productAssignmentsForSelect}
+                  isMulti
+                  valueField="value"
+                />
               )}
             </FieldWrapper>
 
