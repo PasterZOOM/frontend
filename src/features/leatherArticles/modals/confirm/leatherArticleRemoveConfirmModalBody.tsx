@@ -9,7 +9,7 @@ type PropsType = {
 export const LeatherArticleRemoveConfirmModalBody: FC<PropsType> = ({ article }) => {
   return (
     <>
-      Вместе с артикулом <b>{article?.name}</b> будут удалены все связанные с ним цвета
+      Вместе с артикулом <b>{article?.title}</b> будут удалены все связанные с ним цвета
     </>
   )
 }

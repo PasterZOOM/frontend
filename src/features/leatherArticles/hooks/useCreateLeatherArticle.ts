@@ -21,8 +21,8 @@ export const useCreateLeatherArticle = (): UseMutateAsyncFunction<
   const articles = useGetAllLeatherArticles()
 
   const { mutateAsync } = useMutation(leatherArticlesService.create, {
-    onSuccess: ({ _id, name }) => {
-      queryClient.setQueryData(queryKey.GET_ALL_ARTICLES, [...articles, { _id, name }])
+    onSuccess: ({ _id, title }) => {
+      queryClient.setQueryData(queryKey.GET_ALL_ARTICLES, [...articles, { _id, title }])
     },
   })
 

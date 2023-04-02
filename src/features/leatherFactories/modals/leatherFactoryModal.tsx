@@ -24,7 +24,7 @@ export const LeatherFactoryModal: FC<PropsType> = ({ isOpen, closeModal, id }) =
     <ModalLayout
       isOpen={isOpen}
       closeModal={closeModal}
-      title={`Информация о фабрике ${factory && factory.name}`}
+      title={`Информация о фабрике ${factory && factory.title}`}
     >
       {factory && (
         <div className="flex gap-4 p-4">

@@ -12,6 +12,7 @@ import { useBasicProductsFilterStore } from '@/store/useBasicProductsFilterStore
 type PropsType = {
   className?: string
 }
+
 const Products: FC<PropsType> = ({ className = '' }) => {
   const basicProductsService = useSrmServiceStore(state => state.basicProductsService)
 

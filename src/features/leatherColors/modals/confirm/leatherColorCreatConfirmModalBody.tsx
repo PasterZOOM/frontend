@@ -9,13 +9,13 @@ type PropsType = {
 }
 
 export const LeatherColorCreatConfirmModalBody: FC<PropsType> = ({ values }) => {
-  const articles = useGetAllLeatherArticles(false)
+  const articles = useGetAllLeatherArticles()
 
   return (
     <div className="space-y-2">
       <div>
         Вы уверены что хотите создать цвет для артикула{' '}
-        {articles.find(f => f._id === values[ECreateLeatherColorParams.ARTICLE_ID])?.name}?
+        {articles.find(f => f._id === values[ECreateLeatherColorParams.ARTICLE_ID])?.title}?
       </div>
       <div>Название цвета: {values[ECreateLeatherColorParams.TITLE]}</div>
       <div>Код цвета: {values[ECreateLeatherColorParams.CODE]}</div>

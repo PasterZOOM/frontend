@@ -16,7 +16,7 @@ import { countriesForSelect } from '@/objects/countries/countriesForSelect'
 const initialValues: CreateLeatherFactoryParamsType = {
   country: countriesForSelect[0]?.value,
   description: '',
-  name: '',
+  title: '',
 }
 
 export const CreateLeatherFactoryForm: FC = () => {
@@ -37,7 +37,7 @@ export const CreateLeatherFactoryForm: FC = () => {
       <Formik initialValues={initialValues} onSubmit={onSubmit}>
         {({ values, submitForm }) => (
           <Form className="space-y-3">
-            <FieldWrapper name={ECreateLeatherFactoryParams.NAME} title="Название фабрики:">
+            <FieldWrapper name={ECreateLeatherFactoryParams.TITLE} title="Название фабрики:">
               {name => <FormikInput name={name} />}
             </FieldWrapper>
 

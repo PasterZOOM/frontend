@@ -15,14 +15,17 @@ import { CreateBasicProductFormType } from '@/features/basicProducts/forms/type'
 import { useCreateBasicProduct } from '@/features/basicProducts/hooks/useCreateBasicProduct'
 import { BasicProductCreatConfirmModalBody } from '@/features/basicProducts/modals/confirm/basicProductCreatConfirmModalBody'
 import { useGetAllLeatherArticles } from '@/features/leatherArticles/hooks/useGetAllLeatherArticles'
+import { EFilterKeys, productAssignmentsFilters, productCategoriesFilters } from '@/mocks/filters'
 import { currencyForSelect } from '@/objects/currency/currency'
 import { punchPatchForSelect } from '@/objects/materials/punchPatch'
-import { productCategoriesForSelect } from '@/objects/products/productCategories'
-import { productAssignmentsForSelect } from '@/objects/products/productsAssignments'
 
 const CreateBasicProductForm: FC = () => {
-  const articles = useGetAllLeatherArticles()
-
+  const articles = useGetAllLeatherArticles().map(({ title, _id }) => ({
+    _id,
+    title,
+    value: title,
+    filterKey: EFilterKeys.LEATHERS,
+  }))
   const createBasicProduct = useCreateBasicProduct()
 
   const initialValues: CreateBasicProductFormType = {
@@ -70,7 +73,7 @@ const CreateBasicProductForm: FC = () => {
 
             <FieldWrapper name={ECreateBasicProductParams.CATEGORY} title="Категория:">
               {name => (
-                <FormikSelect name={name} items={productCategoriesForSelect} valueField="value" />
+                <FormikSelect name={name} items={productCategoriesFilters} valueField="value" />
               )}
             </FieldWrapper>
 
@@ -78,7 +81,7 @@ const CreateBasicProductForm: FC = () => {
               {name => (
                 <FormikSelect
                   name={name}
-                  items={productAssignmentsForSelect}
+                  items={productAssignmentsFilters}
                   isMulti
                   valueField="value"
                 />

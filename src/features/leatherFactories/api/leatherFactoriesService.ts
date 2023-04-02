@@ -17,8 +17,8 @@ export class LeatherFactoriesService {
       return res.data
     }
 
-  getAll: () => Promise<Pick<LeatherFactoryType, '_id' | 'name'>[]> = async () => {
-    const res = await axios.get<Pick<LeatherFactoryType, '_id' | 'name'>[]>(`${this.BASE_URL}`)
+  getAll: () => Promise<Pick<LeatherFactoryType, '_id' | 'title'>[]> = async () => {
+    const res = await axios.get<Pick<LeatherFactoryType, '_id' | 'title'>[]>(`${this.BASE_URL}`)
 
     return res.data
   }

@@ -4,15 +4,15 @@ import FilterContainer from '@/components/common/containers/filterContainer'
 import AccordionWrapper from '@/components/common/ui/accordion/accordionWrapper'
 import { ColorFilterCheckbox } from '@/components/common/ui/checkbox/colorFilterCheckbox'
 import { MultipleFilter } from '@/components/pages/catalog/filters/multipleFilter'
-import { ELeather, ELeatherColor } from '@/enums/materials'
+import { ELeatherColor } from '@/enums/materials'
 import { EProductAssignment, EProductCategory } from '@/enums/product'
+import { useGetAllLeatherArticles } from '@/features/leatherArticles/hooks/useGetAllLeatherArticles'
 import {
-  assignmentFilters,
-  categoryFilters,
   EFilterKeys,
   FilterType,
   leatherColorFilters,
-  leatherFilters,
+  productAssignmentsFilters,
+  productCategoriesFilters,
 } from '@/mocks/filters'
 
 type PropsType = {
@@ -26,11 +26,20 @@ export const CatalogFilters: FC<PropsType> = ({
   setIsOpenFilters,
   className = '',
 }) => {
+  // TODO: вынести в хук, заменить там, где еще используется
+  const articles: FilterType<string, EFilterKeys.LEATHERS>[] = useGetAllLeatherArticles().map(
+    ({ title, _id }) => ({
+      _id,
+      title,
+      value: title,
+      filterKey: EFilterKeys.LEATHERS,
+    })
+  )
   const [assignments] =
-    useState<FilterType<EProductAssignment, EFilterKeys.ASSIGNMENTS>[]>(assignmentFilters)
+    useState<FilterType<EProductAssignment, EFilterKeys.ASSIGNMENTS>[]>(productAssignmentsFilters)
   const [categories] =
-    useState<FilterType<EProductCategory, EFilterKeys.CATEGORIES>[]>(categoryFilters)
-  const [leathers] = useState<FilterType<ELeather, EFilterKeys.LEATHERS>[]>(leatherFilters)
+    useState<FilterType<EProductCategory, EFilterKeys.CATEGORIES>[]>(productCategoriesFilters)
+  const [leathers] = useState<FilterType<string, EFilterKeys.LEATHERS>[]>(articles)
   const [colors] =
     useState<FilterType<ELeatherColor, EFilterKeys.LEATHER_COLORS>[]>(leatherColorFilters)
 
@@ -41,7 +50,7 @@ export const CatalogFilters: FC<PropsType> = ({
           <div className="px-4 pb-4 md:px-6 xl:px-0">
             {assignments.map(assignment => (
               <MultipleFilter
-                key={assignment.id}
+                key={assignment._id}
                 item={assignment}
                 filterKey={EFilterKeys.ASSIGNMENTS}
               />
@@ -52,7 +61,7 @@ export const CatalogFilters: FC<PropsType> = ({
           <div className="px-4 pb-4 md:px-6 xl:px-0">
             {categories.map(category => (
               <MultipleFilter
-                key={category.id}
+                key={category._id}
                 item={category}
                 filterKey={EFilterKeys.CATEGORIES}
               />
@@ -62,7 +71,7 @@ export const CatalogFilters: FC<PropsType> = ({
         <AccordionWrapper title="Кожа">
           <div className="px-4 pb-4 md:px-6 xl:px-0">
             {leathers.map(leather => (
-              <MultipleFilter key={leather.id} item={leather} filterKey={EFilterKeys.LEATHERS} />
+              <MultipleFilter key={leather._id} item={leather} filterKey={EFilterKeys.LEATHERS} />
             ))}
           </div>
         </AccordionWrapper>
@@ -70,7 +79,7 @@ export const CatalogFilters: FC<PropsType> = ({
           <div className="flex flex-wrap gap-3 px-4 pb-4 md:px-6 xl:px-0">
             {colors.map(color => (
               <ColorFilterCheckbox
-                key={color.id}
+                key={color._id}
                 color={color}
                 filterKey={EFilterKeys.LEATHER_COLORS}
               />

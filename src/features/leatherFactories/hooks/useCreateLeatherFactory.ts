@@ -20,8 +20,8 @@ export const useCreateLeatherFactory = (): UseMutateAsyncFunction<
   const factories = useGetAllLeatherFactories()
 
   const { mutateAsync } = useMutation(leatherFactoriesService.create, {
-    onSuccess: ({ _id, name }) => {
-      queryClient.setQueryData(queryKey.GET_ALL_FACTORIES, [...factories, { _id, name }])
+    onSuccess: ({ _id, title }) => {
+      queryClient.setQueryData(queryKey.GET_ALL_FACTORIES, [...factories, { _id, title }])
     },
   })
 

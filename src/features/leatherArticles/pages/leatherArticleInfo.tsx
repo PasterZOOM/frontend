@@ -29,12 +29,12 @@ export const LeatherArticleInfo: FC<PropsType> = ({ className, article, onDelete
 
           <PropertyWithUnderline title="Название артикула:">
             <EditableSpanInput onChange={updateLeatherArticleName}>
-              {article.name}
+              {article.title}
             </EditableSpanInput>
           </PropertyWithUnderline>
 
           <PropertyWithUnderline title="Фабрика производитель:">
-            {article.factory.name}
+            {article.factory.title}
           </PropertyWithUnderline>
 
           <PropertyPreviewWrapper title="Описание:" childrenClassName="ml-5">

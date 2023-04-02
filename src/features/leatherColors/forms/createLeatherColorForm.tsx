@@ -13,10 +13,17 @@ import { ECreateLeatherColorParams } from '@/features/leatherColors/enums/params
 import { CreateLeatherColorFormType } from '@/features/leatherColors/forms/type'
 import { useCreateLeatherColor } from '@/features/leatherColors/hooks/useCreateLeatherColor'
 import { LeatherColorCreatConfirmModalBody } from '@/features/leatherColors/modals/confirm/leatherColorCreatConfirmModalBody'
+import { EFilterKeys } from '@/mocks/filters'
 import { colorsForSelect } from '@/objects/colors/colorsForSelect'
 
 export const CreateLeatherColorForm: FC = () => {
-  const articles = useGetAllLeatherArticles()
+  const articles = useGetAllLeatherArticles().map(({ title, _id }) => ({
+    _id,
+    title,
+    value: title,
+    filterKey: EFilterKeys.LEATHERS,
+  }))
+
   const createColor = useCreateLeatherColor()
 
   const initialValues: CreateLeatherColorFormType = {

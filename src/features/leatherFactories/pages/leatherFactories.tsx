@@ -19,7 +19,7 @@ const LeatherFactories: FC<PropsType> = ({ className }) => {
       className={className}
     >
       {factories.map(factory => (
-        <TableItem key={factory._id} name={factory.name}>
+        <TableItem key={factory._id} title={factory.title}>
           {({ closeModal, isOpen }) => (
             <LeatherFactoryModal closeModal={closeModal} isOpen={isOpen} id={factory._id} />
           )}

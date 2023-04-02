@@ -9,7 +9,7 @@ type PropsType = {
 }
 
 export const BasicProductCreatConfirmModalBody: FC<PropsType> = ({ values }) => {
-  const articles = useGetAllLeatherArticles(false)
+  const articles = useGetAllLeatherArticles()
 
   return (
     <div className="space-y-2">
@@ -18,7 +18,7 @@ export const BasicProductCreatConfirmModalBody: FC<PropsType> = ({ values }) => 
       </div>
       <div>
         Артикул кожи:{' '}
-        {articles.find(f => f._id === values[ECreateBasicProductParams.LEATHER_ARTICLE])?.name}
+        {articles.find(f => f._id === values[ECreateBasicProductParams.LEATHER_ARTICLE])?.title}
       </div>
       <div>Стоимость: {values[ECreateBasicProductParams.COST]}</div>
       <div>Валюта: {values[ECreateBasicProductParams.COST_CURRENCY]}</div>

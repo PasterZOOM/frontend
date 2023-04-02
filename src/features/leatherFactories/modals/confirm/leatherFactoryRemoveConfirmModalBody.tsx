@@ -9,7 +9,8 @@ type PropsType = {
 export const LeatherFactoryRemoveConfirmModalBody: FC<PropsType> = ({ factory }) => {
   return (
     <>
-      Вместе с фабрикой <b>{factory?.name}</b> будут удалены все связанные с ней артикулы и их цвета
+      Вместе с фабрикой <b>{factory?.title}</b> будут удалены все связанные с ней артикулы и их
+      цвета
     </>
   )
 }

@@ -2,12 +2,12 @@ import { FC } from 'react'
 
 import { Field } from 'formik'
 
-export type SelectItemType<T> = { _id: string; name: string; value?: T }
+import { GeneralFilterType } from '@/mocks/filters'
 
 type PropsType = {
   name: string
   className?: string
-  items?: SelectItemType<string>[]
+  items?: GeneralFilterType[]
   valueField: '_id' | 'value'
   isMulti?: boolean
 }
@@ -23,7 +23,7 @@ export const FormikSelect: FC<PropsType> = ({ name, className, items, valueField
       {items &&
         items.map(item => (
           <option key={item._id} value={item[valueField]}>
-            {item.name}
+            {item.title}
           </option>
         ))}
     </Field>

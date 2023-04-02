@@ -20,7 +20,7 @@ export const BasicProducts: FC<PropsType> = ({ className }) => {
       className={className}
     >
       {baseProducts.map(baseProduct => (
-        <TableItem key={baseProduct._id} name={baseProduct.title}>
+        <TableItem key={baseProduct._id} title={baseProduct.title}>
           {({ closeModal, isOpen }) => (
             <BasicProductModal closeModal={closeModal} isOpen={isOpen} id={baseProduct._id} />
           )}

@@ -1,8 +1,15 @@
 import { FC, useEffect, useState } from 'react'
 
+import { useGetAllLeatherArticles } from '@/features/leatherArticles/hooks/useGetAllLeatherArticles'
 import { useClearAllQueryParams } from '@/hooks/queryParams/useClearAllQueryParams'
 import { useRemoveMultipleQueryParam } from '@/hooks/queryParams/useRemoveMultipleQueryParam'
-import { EFilterKeys, filters as filtersMock, GeneralFilterType } from '@/mocks/filters'
+import {
+  EFilterKeys,
+  GeneralFilterType,
+  leatherColorFilters,
+  productAssignmentsFilters,
+  productCategoriesFilters,
+} from '@/mocks/filters'
 import { useBasicProductsFilterStore } from '@/store/useBasicProductsFilterStore'
 
 type PropsType = {
@@ -10,25 +17,38 @@ type PropsType = {
 }
 const ActiveFilters: FC<PropsType> = ({ className = '' }) => {
   const clearAll = useClearAllQueryParams()
+  const removeQueryParam = useRemoveMultipleQueryParam()
 
-  const filters = useBasicProductsFilterStore(state => state.filters)
+  const filtersInStore = useBasicProductsFilterStore(state => state.filters)
   const [activeFilters, setActiveFilters] = useState<GeneralFilterType[]>([])
 
-  const removeQueryParam = useRemoveMultipleQueryParam()
+  const articles = useGetAllLeatherArticles().map(({ title, _id }) => ({
+    _id,
+    title,
+    value: title,
+    filterKey: EFilterKeys.LEATHERS,
+  }))
+
+  const filters: Record<EFilterKeys, GeneralFilterType[]> = {
+    [EFilterKeys.ASSIGNMENTS]: productAssignmentsFilters,
+    [EFilterKeys.CATEGORIES]: productCategoriesFilters,
+    [EFilterKeys.LEATHERS]: articles,
+    [EFilterKeys.LEATHER_COLORS]: leatherColorFilters,
+  }
 
   useEffect(() => {
     let newFilters: GeneralFilterType[] = []
 
-    Object.entries(filters).forEach(([filterKey, filterValue]) => {
+    Object.entries(filtersInStore).forEach(([filterKey, filterValue]) => {
       const temp = filterValue
         .split(',')
-        .map(filter => filtersMock[filterKey as EFilterKeys].find(el => el.value === filter))
+        .map(filter => filters[filterKey as EFilterKeys].find(el => el.value === filter))
         .filter(filter => !!filter)
 
       newFilters = [...newFilters, ...temp] as GeneralFilterType[]
     })
     setActiveFilters(newFilters)
-  }, [filters])
+  }, [filtersInStore])
 
   return (
     <div className={`flex flex-wrap gap-2 ${className} ${activeFilters.length ? '' : 'hidden'}`}>
@@ -36,8 +56,8 @@ const ActiveFilters: FC<PropsType> = ({ className = '' }) => {
         <button
           type="button"
           className="h-fit rounded-full border border-anthracite-gray px-2 dark:border-light-gray"
-          key={activeFilter.id}
-          onClick={() => removeQueryParam(activeFilter.filterKey, activeFilter.value)}
+          key={activeFilter._id}
+          onClick={() => removeQueryParam(activeFilter.filterKey!, activeFilter.value)}
         >
           {activeFilter.title}
         </button>

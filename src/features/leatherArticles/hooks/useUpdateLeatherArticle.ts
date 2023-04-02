@@ -32,8 +32,8 @@ export const useUpdateLeatherArticle = (
     return mutateAsync({ _id, params })
   }
 
-  const updateLeatherArticleName = async (name: string): Promise<void> => {
-    await updateLeatherArticle({ name })
+  const updateLeatherArticleName = async (title: string): Promise<void> => {
+    await updateLeatherArticle({ title })
   }
   const updateLeatherArticleDescription = async (description: string): Promise<void> => {
     await updateLeatherArticle({ description })

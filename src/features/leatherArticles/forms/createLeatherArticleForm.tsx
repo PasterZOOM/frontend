@@ -14,13 +14,17 @@ import { LeatherArticleCreateConfirmModalBody } from '@/features/leatherArticles
 import { useGetAllLeatherFactories } from '@/features/leatherFactories/hooks/useGetAllLeatherFactories'
 
 export const CreateLeatherArticleForm: FC = () => {
-  const factories = useGetAllLeatherFactories()
+  const factories = useGetAllLeatherFactories().map(({ title, _id }) => ({
+    _id,
+    title,
+    value: title,
+  }))
   const createArticle = useCreateLeatherArticle()
 
   const initialValues: CreateLeatherArticleFormType = {
     [ECreateLeatherArticleParams.FACTORY_ID]: '',
     [ECreateLeatherArticleParams.DESCRIPTION]: '',
-    [ECreateLeatherArticleParams.NAME]: '',
+    [ECreateLeatherArticleParams.TITLE]: '',
   }
 
   const onSubmit = async (
@@ -38,7 +42,7 @@ export const CreateLeatherArticleForm: FC = () => {
       <Formik initialValues={initialValues} onSubmit={onSubmit}>
         {({ values, submitForm }) => (
           <Form className="space-y-3">
-            <FieldWrapper name={ECreateLeatherArticleParams.NAME} title="Название артикула:">
+            <FieldWrapper name={ECreateLeatherArticleParams.TITLE} title="Название артикула:">
               {name => <FormikInput name={name} />}
             </FieldWrapper>
 

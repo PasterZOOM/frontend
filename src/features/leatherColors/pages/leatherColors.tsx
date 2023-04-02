@@ -20,7 +20,7 @@ export const LeatherColors: FC<PropsType> = ({ className }) => {
       className={className}
     >
       {colors.map(color => (
-        <TableItem key={color._id} name={color.title}>
+        <TableItem key={color._id} title={color.title}>
           {({ closeModal, isOpen }) => (
             <LeatherColorModal closeModal={closeModal} isOpen={isOpen} id={color._id} />
           )}

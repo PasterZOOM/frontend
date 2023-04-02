@@ -9,12 +9,26 @@ import { CatalogFilters } from '@/components/pages/catalog/filters/catalogFilter
 import Products from '@/components/pages/catalog/products'
 import { TWELVE_HOURS } from '@/constants/date/time'
 import { ECost, TCost } from '@/enums/cost'
+import { BasicProductsService } from '@/features/basicProducts/api/basicProductsService'
+import { BasicProductType } from '@/features/basicProducts/api/types'
+import { useGetAllBasicProducts } from '@/features/basicProducts/hooks/useGetAllBasicProducts'
+import { LeatherArticlesService } from '@/features/leatherArticles/api/leatherArticlesService'
+import { LeatherArticleType } from '@/features/leatherArticles/api/types'
+import { useGetAllLeatherArticles } from '@/features/leatherArticles/hooks/useGetAllLeatherArticles'
 import { initialCurrencyState, useCurrencyStore } from '@/store/useCurrencyStore'
 import { CostType } from '@/types/costType'
 
-type PropsType = { rates: CostType }
+type PropsType = {
+  rates: CostType
+  articles: LeatherArticleType[]
+  basicProducts: BasicProductType[]
+}
 
-const Catalog: FC<PropsType> = ({ rates }) => {
+const Catalog: FC<PropsType> = ({ rates, articles, basicProducts }) => {
+  //! ? TODO: из за этого моргают карточки
+  useGetAllLeatherArticles({ initialData: articles })
+  useGetAllBasicProducts({ initialData: basicProducts })
+
   const setActualRates = useCurrencyStore(store => store.setActualRates)
   const [isOpenFilters, setIsOpenFilters] = useState(false)
 
@@ -40,6 +54,8 @@ const Catalog: FC<PropsType> = ({ rates }) => {
 
 export const getStaticProps: GetStaticProps = async () => {
   const currencyService = new CurrencyService()
+  const leatherArticlesService = new LeatherArticlesService()
+  const basicProductsService = new BasicProductsService()
 
   const rates: CostType = initialCurrencyState
 
@@ -53,6 +69,9 @@ export const getStaticProps: GetStaticProps = async () => {
       })
   )
 
-  return { props: { rates }, revalidate: TWELVE_HOURS }
+  const articles = await leatherArticlesService.getAll()
+  const basicProducts = await basicProductsService.getAll()
+
+  return { props: { rates, articles, basicProducts }, revalidate: TWELVE_HOURS }
 }
 export default Catalog

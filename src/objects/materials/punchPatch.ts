@@ -1,10 +1,10 @@
 import { v1 } from 'uuid'
 
-import { SelectItemType } from '@/components/forms/formikSelect'
 import { EPunchPitch } from '@/enums/materials'
+import { EFilterKeys, FilterType } from '@/mocks/filters'
 
-export const punchPatchForSelect: SelectItemType<EPunchPitch>[] = [
-  { _id: v1(), value: EPunchPitch.LARGE, name: EPunchPitch.LARGE },
-  { _id: v1(), value: EPunchPitch.LITTLE, name: EPunchPitch.LITTLE },
-  { _id: v1(), value: EPunchPitch.MEDIUM, name: EPunchPitch.MEDIUM },
+export const punchPatchForSelect: FilterType<EPunchPitch, EFilterKeys>[] = [
+  { _id: v1(), value: EPunchPitch.LARGE, title: EPunchPitch.LARGE },
+  { _id: v1(), value: EPunchPitch.LITTLE, title: EPunchPitch.LITTLE },
+  { _id: v1(), value: EPunchPitch.MEDIUM, title: EPunchPitch.MEDIUM },
 ]

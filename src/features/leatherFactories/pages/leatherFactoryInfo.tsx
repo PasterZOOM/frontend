@@ -30,7 +30,7 @@ export const LeatherFactoryInfo: FC<PropsType> = ({ className, factory, onDelete
 
           <PropertyWithUnderline title="Название фабрики:">
             <EditableSpanInput onChange={updateLeatherFactoryName}>
-              {factory.name}
+              {factory.title}
             </EditableSpanInput>
           </PropertyWithUnderline>
 
@@ -47,7 +47,7 @@ export const LeatherFactoryInfo: FC<PropsType> = ({ className, factory, onDelete
         <PropertyPreviewWrapper title="Артикулы:" wrapperClassName="mt-1" childrenClassName="ml-5">
           {factory.articles.map(article => (
             <div key={article._id} className="w-fit">
-              {article.name}
+              {article.title}
             </div>
           ))}
         </PropertyPreviewWrapper>

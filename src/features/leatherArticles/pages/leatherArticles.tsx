@@ -20,7 +20,7 @@ export const LeatherArticles: FC<PropsType> = ({ className }) => {
       className={className}
     >
       {articles.map(article => (
-        <TableItem key={article._id} name={article.name}>
+        <TableItem key={article._id} title={article.title}>
           {({ closeModal, isOpen }) => (
             <LeatherArticleModal closeModal={closeModal} isOpen={isOpen} id={article._id} />
           )}
