@@ -6,6 +6,7 @@ import {
   CreateBasicProductParamsType,
   UpdateBasicProductParamsType,
 } from '@/features/basicProducts/api/types'
+import { EFilterKeys } from '@/mocks/filters'
 
 export class BasicProductsService {
   BASE_URL = `${process.env.NEXT_PUBLIC_BASE_URL}/basic-products`
@@ -16,11 +17,21 @@ export class BasicProductsService {
     return res.data
   }
 
-  getAll: () => Promise<BasicProductType[]> = async () => {
-    const res = await axios.get<BasicProductType[]>(`${this.BASE_URL}`)
+  getAll: (filters?: Record<EFilterKeys, string>) => Promise<BasicProductType[]> =
+    async filters => {
+      const assignments = filters?.assignments.length ? filters.assignments.split(',') : undefined
+      const categories = filters?.categories.length ? filters.categories.split(',') : undefined
+      const leatherColors = filters?.leatherColors.length
+        ? filters.leatherColors.split(',')
+        : undefined
+      const leathers = filters?.leathers.length ? filters.leathers.split(',') : undefined
 
-    return res.data
-  }
+      const res = await axios.get<BasicProductType[]>(`${this.BASE_URL}`, {
+        params: { assignments, categories, leatherColors, leathers },
+      })
+
+      return res.data
+    }
 
   getOne: (id: string) => Promise<BasicProductType> = async id => {
     const res = await axios.get<BasicProductType>(`${this.BASE_URL}/${id}`)

@@ -4,40 +4,38 @@ import Link from 'next/link'
 
 import { Button } from '@/components/common/ui/buttons/button'
 import { LeatherColorButton } from '@/components/common/ui/buttons/leatherColorButton'
-import { ProductCardView } from '@/components/pages/catalog/productCard/productCardView'
-import { ProductCardViewMobile } from '@/components/pages/catalog/productCard/productCardViewMobile'
-import { DESKTOP } from '@/constants/sizes/screenSizes'
+import { NoPhoto } from '@/components/common/ui/noPhoto'
+import { ProductCardPhoto } from '@/components/pages/catalog/productCard/productCardPhoto'
 import { ECost } from '@/enums/cost'
+import { BasicProductType } from '@/features/basicProducts/api/types'
+import { useGetAllLeatherColors } from '@/features/leatherColors/hooks/useGetAllLeatherColors'
 import { useGetPriceInCurrency } from '@/hooks/useGetPriceInCurrency'
 import { useGetPriceInCurrentCurrency } from '@/hooks/useGetPriceInCurrentCurrency'
-import { useWindowSize } from '@/hooks/useWindowSize'
 import { useUserSettings } from '@/store/useUserSettings'
-import { ProductType } from '@/types/productType'
-import { getProductColors } from '@/utils/getProductColors'
 
 type PropsType = {
-  product: ProductType
+  product: BasicProductType
   defPrice?: ECost
 }
 
 export const ProductCard: FC<PropsType> = ({ defPrice = ECost.USD, product }) => {
-  const { width } = useWindowSize()
-  const [activeColor, setActiveColor] = useState(Object.keys(product.photos)[0])
+  const [activeColor, setActiveColor] = useState(Object.keys(product.photos)[0] || '')
 
   const currentCurrency = useUserSettings(state => state.currentCurrency)
 
   const priceInCurrentCurrency = useGetPriceInCurrentCurrency(product.cost, product.costCurrency)
   const priceInDefaultCurrency = useGetPriceInCurrency(product.cost, product.costCurrency, defPrice)
 
-  const productColors = getProductColors(Object.keys(product.photos), product.leather)
+  const productColors = useGetAllLeatherColors(Object.keys(product.photos), !!activeColor)
 
   return (
     <div>
-      {width > DESKTOP ? (
-        <ProductCardView photos={product.photos[activeColor]} />
+      {product.photos[activeColor] ? (
+        <ProductCardPhoto photos={product.photos[activeColor]} />
       ) : (
-        <ProductCardViewMobile photos={product.photos[activeColor]} />
+        <NoPhoto />
       )}
+
       <div className="mt-10">
         <Link href={`/products/${product.category}`}>
           <div className="mt-4 mb-3 text-custom-xl font-bold">{product.title}</div>
@@ -49,7 +47,7 @@ export const ProductCard: FC<PropsType> = ({ defPrice = ECost.USD, product }) =>
               key={color._id}
               photo={color.photo}
               isActive={color._id === activeColor}
-              onClick={() => setActiveColor(color.code)}
+              onClick={() => setActiveColor(color._id)}
             />
           ))}
         </div>

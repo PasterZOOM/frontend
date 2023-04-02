@@ -5,20 +5,20 @@ import { useQuery } from 'react-query'
 import { ProductCard } from './productCard/productCard'
 
 import ActiveFilters from '@/components/pages/catalog/filters/activeFilters'
-import { useServiceStore } from '@/store/servises'
-import { useFilterStore } from '@/store/useFilterStore'
+import { queryKey } from '@/enums/queryKey'
+import { useSrmServiceStore } from '@/store/crmServises'
+import { useBasicProductsFilterStore } from '@/store/useBasicProductsFilterStore'
 
 type PropsType = {
   className?: string
 }
 const Products: FC<PropsType> = ({ className = '' }) => {
-  // TODO: забирать basicProducts с бэка, productsService удалить
-  const productsService = useServiceStore(state => state.productsService)
+  const basicProductsService = useSrmServiceStore(state => state.basicProductsService)
 
-  const filters = useFilterStore(state => state.filters)
+  const filters = useBasicProductsFilterStore(state => state.filters)
 
-  const { data: products } = useQuery(['getAllFactories', filters], () =>
-    productsService.getProducts(filters)
+  const { data: products } = useQuery([queryKey.GET_ALL_BASIC_PRODUCTS, filters], () =>
+    basicProductsService.getAll(filters)
   )
 
   return (

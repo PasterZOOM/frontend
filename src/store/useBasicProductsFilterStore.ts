@@ -19,7 +19,7 @@ type StoreType = FilterStateType & {
   setFilter: (filterKey: EFilterKeys, value: string) => void
 }
 
-export const useFilterStore = create<StoreType>((set, get) => ({
+export const useBasicProductsFilterStore = create<StoreType>((set, get) => ({
   ...initialState,
   setFilter: (filterKey, value) => {
     const { filters } = get()

@@ -19,11 +19,15 @@ export class LeatherColorsService {
     return res.data
   }
 
-  getAll: () => Promise<Pick<LeatherColorType, '_id' | 'title'>[]> = async () => {
-    const res = await axios.get<Pick<LeatherColorType, '_id' | 'title'>[]>(`${this.BASE_URL}`)
+  getAll: (filters?: string[]) => Promise<Pick<LeatherColorType, '_id' | 'title' | 'photo'>[]> =
+    async filters => {
+      const res = await axios.get<Pick<LeatherColorType, '_id' | 'title' | 'photo'>[]>(
+        `${this.BASE_URL}`,
+        { params: { _id: filters } }
+      )
 
-    return res.data
-  }
+      return res.data
+    }
 
   getOne: (id: string) => Promise<LeatherColorType> = async id => {
     const res = await axios.get<LeatherColorType>(`${this.BASE_URL}/${id}`)

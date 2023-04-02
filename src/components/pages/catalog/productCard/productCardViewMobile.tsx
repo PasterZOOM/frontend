@@ -26,5 +26,3 @@ export const ProductCardViewMobile: FC<PropsType> = ({ photos }) => {
     </Swiper>
   )
 }
-
-export default ProductCardViewMobile

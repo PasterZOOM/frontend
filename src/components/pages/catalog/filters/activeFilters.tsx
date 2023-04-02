@@ -4,14 +4,14 @@ import { useRouter } from 'next/router'
 
 import { useRemoveMultipleQueryParam } from '@/hooks/useRemoveMultipleQueryParam'
 import { EFilterKeys, filters as filtersMock, GeneralFilterType } from '@/mocks/filters'
-import { useFilterStore } from '@/store/useFilterStore'
+import { useBasicProductsFilterStore } from '@/store/useBasicProductsFilterStore'
 
 type PropsType = {
   className?: string
 }
 const ActiveFilters: FC<PropsType> = ({ className = '' }) => {
   const { replace, pathname } = useRouter()
-  const filters = useFilterStore(state => state.filters)
+  const filters = useBasicProductsFilterStore(state => state.filters)
   const [activeFilters, setActiveFilters] = useState<GeneralFilterType[]>([])
 
   const clearAll = (): void => {
