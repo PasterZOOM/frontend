@@ -72,7 +72,7 @@ export const Select: FC<PropsType<{ id: string; title: string } & any>> = ({
         {items.map(item => {
           return (
             <div
-              key={item.id}
+              key={item._id}
               role="button"
               aria-label={item.title}
               tabIndex={0}

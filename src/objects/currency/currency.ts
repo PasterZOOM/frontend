@@ -4,14 +4,70 @@ import { ECost } from '@/enums/cost'
 import { CurrencySign } from '@/enums/currencySign'
 import { EFilterKeys, FilterType } from '@/mocks/filters'
 
-export const currencyForSelect: FilterType<ECost, EFilterKeys>[] = [
-  { _id: v1(), value: ECost.USD, title: `${CurrencySign.USD} Доллар США` },
-  { _id: v1(), value: ECost.EUR, title: `${CurrencySign.EUR} Евро` },
-  { _id: v1(), value: ECost.BYN, title: `${CurrencySign.BYN} Белорусский рубль` },
-  { _id: v1(), value: ECost.RUB, title: `${CurrencySign.RUB} Российский рубль` },
-  { _id: v1(), value: ECost.UAH, title: `${CurrencySign.UAH} Гривна` },
-  { _id: v1(), value: ECost.GBP, title: `${CurrencySign.GBP} Фунт стерлингов` },
-  { _id: v1(), value: ECost.PLN, title: `${CurrencySign.PLN} Злотый` },
-  { _id: v1(), value: ECost.CNY, title: `${CurrencySign.CNY} Китайский юань` },
-  { _id: v1(), value: ECost.JPY, title: `${CurrencySign.JPY} Японская иена` },
-]
+export type CurrencyType = {
+  _id: string
+  sign: CurrencySign
+  value: ECost
+  title: string
+}
+export const currencies: Record<ECost, CurrencyType> = {
+  [ECost.USD]: {
+    _id: v1(),
+    value: ECost.USD,
+    sign: CurrencySign.USD,
+    title: 'Доллар США',
+  },
+  [ECost.EUR]: {
+    _id: v1(),
+    value: ECost.EUR,
+    sign: CurrencySign.EUR,
+    title: 'Евро',
+  },
+  [ECost.BYN]: {
+    _id: v1(),
+    value: ECost.BYN,
+    sign: CurrencySign.BYN,
+    title: 'Белорусский рубль',
+  },
+
+  [ECost.RUB]: {
+    _id: v1(),
+    value: ECost.RUB,
+    sign: CurrencySign.RUB,
+    title: 'Российский рубль',
+  },
+  [ECost.GBP]: {
+    _id: v1(),
+    value: ECost.GBP,
+    sign: CurrencySign.GBP,
+    title: 'Фунт стерлингов',
+  },
+  [ECost.UAH]: {
+    _id: v1(),
+    value: ECost.UAH,
+    sign: CurrencySign.UAH,
+    title: 'Гривна',
+  },
+  [ECost.PLN]: {
+    _id: v1(),
+    value: ECost.PLN,
+    sign: CurrencySign.PLN,
+    title: 'Злотый',
+  },
+  [ECost.JPY]: {
+    _id: v1(),
+    value: ECost.JPY,
+    sign: CurrencySign.JPY,
+    title: 'Японская иена',
+  },
+  [ECost.CNY]: {
+    _id: v1(),
+    value: ECost.CNY,
+    sign: CurrencySign.CNY,
+    title: 'Китайский юань',
+  },
+}
+
+export const currencyForSelect: FilterType<ECost, EFilterKeys>[] = Object.values(currencies).map(
+  ({ _id, value, sign, title }) => ({ _id, value, title: `${sign} ${title}` })
+)
