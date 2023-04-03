@@ -7,13 +7,13 @@ import { H5 } from '@/components/common/ui/headers/h5'
 import { FieldWrapper } from '@/components/forms/fieldWrapper'
 import { FormikInput } from '@/components/forms/formikInput'
 import { FormikSelect } from '@/components/forms/formikSelect'
-import { CreateLeatherFactoryParamsType } from '@/features/leatherFactories/api/types'
 import { ECreateLeatherFactoryParams } from '@/features/leatherFactories/enums/paramsKeys'
+import { CreateLeatherFactoryFormType } from '@/features/leatherFactories/forms/type'
 import { useCreateLeatherFactory } from '@/features/leatherFactories/hooks/useCreateLeatherFactory'
 import { LeatherFactoryCreatConfirmModalBody } from '@/features/leatherFactories/modals/confirm/leatherFactoryCreatConfirmModalBody'
 import { countriesForSelect } from '@/objects/countries/countriesForSelect'
-// TODO: сделать отдельный тип для формы CreateLeatherFactoryFormType
-const initialValues: CreateLeatherFactoryParamsType = {
+
+const initialValues: CreateLeatherFactoryFormType = {
   country: countriesForSelect[0]?.value,
   description: '',
   title: '',
@@ -23,8 +23,8 @@ export const CreateLeatherFactoryForm: FC = () => {
   const createFactory = useCreateLeatherFactory()
 
   const onSubmit = async (
-    values: CreateLeatherFactoryParamsType,
-    { resetForm }: FormikHelpers<CreateLeatherFactoryParamsType>
+    values: CreateLeatherFactoryFormType,
+    { resetForm }: FormikHelpers<CreateLeatherFactoryFormType>
   ): Promise<void> => {
     await createFactory(values)
 

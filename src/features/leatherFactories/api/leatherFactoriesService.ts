@@ -12,7 +12,7 @@ export class LeatherFactoriesService {
 
   create: (params: CreateLeatherFactoryParamsType) => Promise<LeatherFactoryType> =
     async params => {
-      const res = await axios.post<LeatherFactoryType>(`${this.BASE_URL}`, { ...params })
+      const res = await axios.post<LeatherFactoryType>(`${this.BASE_URL}`, params)
 
       return res.data
     }

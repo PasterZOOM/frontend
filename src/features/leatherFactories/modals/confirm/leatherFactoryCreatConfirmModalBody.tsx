@@ -1,12 +1,12 @@
 import { FC } from 'react'
 
 import { ECountry } from '@/enums/countries'
-import { CreateLeatherFactoryParamsType } from '@/features/leatherFactories/api/types'
 import { ECreateLeatherFactoryParams } from '@/features/leatherFactories/enums/paramsKeys'
+import { CreateLeatherFactoryFormType } from '@/features/leatherFactories/forms/type'
 import { countriesName } from '@/objects/countries/countriesName'
 
 type PropsType = {
-  values: CreateLeatherFactoryParamsType // TODO: заменить на CreateLeatherFactoryFormType
+  values: CreateLeatherFactoryFormType
 }
 
 export const LeatherFactoryCreatConfirmModalBody: FC<PropsType> = ({ values }) => {
