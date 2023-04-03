@@ -1,8 +1,8 @@
 import { v1 } from 'uuid'
 
+import { SelectItemType } from '@/components/forms/formikSelect'
 import { ECost } from '@/enums/cost'
 import { CurrencySign } from '@/enums/currencySign'
-import { EFilterKeys, FilterType } from '@/mocks/filters'
 
 export type CurrencyType = {
   _id: string
@@ -68,6 +68,6 @@ export const currencies: Record<ECost, CurrencyType> = {
   },
 }
 
-export const currencyForSelect: FilterType<ECost, EFilterKeys>[] = Object.values(currencies).map(
+export const currencyForSelect: SelectItemType[] = Object.values(currencies).map(
   ({ _id, value, sign, title }) => ({ _id, value, title: `${sign} ${title}` })
 )

@@ -69,7 +69,7 @@ export const getStaticProps: GetStaticProps = async () => {
   )
 
   const articles = await leatherArticlesService.getAll()
-  const basicProducts = await basicProductsService.getAll()
+  const basicProducts = await basicProductsService.getAll() // TODO: попробовать вынести в getServerSiteProps
 
   return { props: { rates, articles, basicProducts }, revalidate: TWELVE_HOURS }
 }

@@ -6,7 +6,7 @@ import { CreateButton } from '@/components/common/ui/buttons/createButton'
 import { H5 } from '@/components/common/ui/headers/h5'
 import { FieldWrapper } from '@/components/forms/fieldWrapper'
 import { FormikInput } from '@/components/forms/formikInput'
-import { FormikSelect } from '@/components/forms/formikSelect'
+import { FormikSelect, SelectItemType } from '@/components/forms/formikSelect'
 import { ECost } from '@/enums/cost'
 import { EPunchPitch } from '@/enums/materials'
 import { EProductCategory } from '@/enums/product'
@@ -14,13 +14,18 @@ import { ECreateBasicProductParams } from '@/features/basicProducts/enums/params
 import { CreateBasicProductFormType } from '@/features/basicProducts/forms/type'
 import { useCreateBasicProduct } from '@/features/basicProducts/hooks/useCreateBasicProduct'
 import { BasicProductCreatConfirmModalBody } from '@/features/basicProducts/modals/confirm/basicProductCreatConfirmModalBody'
-import { useGetAllLeatherArticlesForSelect } from '@/features/leatherArticles/hooks/useGetAllLeatherArticlesForSelect'
-import { productAssignmentsFilters, productCategoriesFilters } from '@/mocks/filters'
+import { useGetAllLeatherArticles } from '@/features/leatherArticles/hooks/useGetAllLeatherArticles'
 import { currencyForSelect } from '@/objects/currency/currency'
 import { punchPatchForSelect } from '@/objects/materials/punchPatch'
+import { productAssignments } from '@/objects/products/productAssignments'
+import { productCategories } from '@/objects/products/productCategories'
 
 const CreateBasicProductForm: FC = () => {
-  const articles = useGetAllLeatherArticlesForSelect()
+  const articles: SelectItemType[] = useGetAllLeatherArticles().map(({ _id, title }) => ({
+    _id,
+    title,
+    value: _id,
+  }))
 
   const createBasicProduct = useCreateBasicProduct()
 
@@ -56,7 +61,7 @@ const CreateBasicProductForm: FC = () => {
             </FieldWrapper>
 
             <FieldWrapper name={ECreateBasicProductParams.LEATHER_ARTICLE} title="Артикул:">
-              {name => <FormikSelect name={name} items={articles} valueField="_id" />}
+              {name => <FormikSelect name={name} items={articles} />}
             </FieldWrapper>
 
             <FieldWrapper name={ECreateBasicProductParams.COST} title="Стоимость:">
@@ -64,28 +69,21 @@ const CreateBasicProductForm: FC = () => {
             </FieldWrapper>
 
             <FieldWrapper name={ECreateBasicProductParams.COST_CURRENCY} title="Валюта:">
-              {name => <FormikSelect name={name} items={currencyForSelect} valueField="value" />}
+              {name => <FormikSelect name={name} items={currencyForSelect} />}
             </FieldWrapper>
 
             <FieldWrapper name={ECreateBasicProductParams.CATEGORY} title="Категория:">
-              {name => (
-                <FormikSelect name={name} items={productCategoriesFilters} valueField="value" />
-              )}
+              {name => <FormikSelect name={name} items={Object.values(productCategories)} />}
             </FieldWrapper>
 
             <FieldWrapper name={ECreateBasicProductParams.ASSIGNMENTS} title="Назначения:">
               {name => (
-                <FormikSelect
-                  name={name}
-                  items={productAssignmentsFilters}
-                  isMulti
-                  valueField="value"
-                />
+                <FormikSelect name={name} items={Object.values(productAssignments)} multiple />
               )}
             </FieldWrapper>
 
             <FieldWrapper name={ECreateBasicProductParams.PUNCH_PITCH} title="Шаг пробойника:">
-              {name => <FormikSelect name={name} items={punchPatchForSelect} valueField="value" />}
+              {name => <FormikSelect name={name} items={punchPatchForSelect} />}
             </FieldWrapper>
 
             <FieldWrapper name={ECreateBasicProductParams.SIZE} title="Размер:">

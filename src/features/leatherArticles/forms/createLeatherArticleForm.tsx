@@ -6,15 +6,19 @@ import { CreateButton } from '@/components/common/ui/buttons/createButton'
 import { H5 } from '@/components/common/ui/headers/h5'
 import { FieldWrapper } from '@/components/forms/fieldWrapper'
 import { FormikInput } from '@/components/forms/formikInput'
-import { FormikSelect } from '@/components/forms/formikSelect'
+import { FormikSelect, SelectItemType } from '@/components/forms/formikSelect'
 import { ECreateLeatherArticleParams } from '@/features/leatherArticles/enums/paramsKeys'
 import { CreateLeatherArticleFormType } from '@/features/leatherArticles/forms/type'
 import { useCreateLeatherArticle } from '@/features/leatherArticles/hooks/useCreateLeatherArticle'
 import { LeatherArticleCreateConfirmModalBody } from '@/features/leatherArticles/modals/confirm/leatherArticleCreateConfirmModalBody'
-import { useGetAllLeatherFactoriesForSelect } from '@/features/leatherFactories/hooks/useGetAllLeatherFactoriesForSelect'
+import { useGetAllLeatherFactories } from '@/features/leatherFactories/hooks/useGetAllLeatherFactories'
 
 export const CreateLeatherArticleForm: FC = () => {
-  const factories = useGetAllLeatherFactoriesForSelect()
+  const factories: SelectItemType[] = useGetAllLeatherFactories().map(({ _id, title }) => ({
+    _id,
+    title,
+    value: _id,
+  }))
   const createArticle = useCreateLeatherArticle()
 
   const initialValues: CreateLeatherArticleFormType = {
@@ -43,7 +47,7 @@ export const CreateLeatherArticleForm: FC = () => {
             </FieldWrapper>
 
             <FieldWrapper name={ECreateLeatherArticleParams.FACTORY_ID} title="Фабрика:">
-              {name => <FormikSelect name={name} items={factories} valueField="_id" />}
+              {name => <FormikSelect name={name} items={factories} />}
             </FieldWrapper>
 
             <FieldWrapper name={ECreateLeatherArticleParams.DESCRIPTION} title="Описание:">

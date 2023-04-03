@@ -6,17 +6,21 @@ import { CreateButton } from '@/components/common/ui/buttons/createButton'
 import { H5 } from '@/components/common/ui/headers/h5'
 import { FieldWrapper } from '@/components/forms/fieldWrapper'
 import { FormikInput } from '@/components/forms/formikInput'
-import { FormikSelect } from '@/components/forms/formikSelect'
+import { FormikSelect, SelectItemType } from '@/components/forms/formikSelect'
 import { ELeatherColor } from '@/enums/materials'
-import { useGetAllLeatherArticlesForSelect } from '@/features/leatherArticles/hooks/useGetAllLeatherArticlesForSelect'
+import { useGetAllLeatherArticles } from '@/features/leatherArticles/hooks/useGetAllLeatherArticles'
 import { ECreateLeatherColorParams } from '@/features/leatherColors/enums/paramsKeys'
 import { CreateLeatherColorFormType } from '@/features/leatherColors/forms/type'
 import { useCreateLeatherColor } from '@/features/leatherColors/hooks/useCreateLeatherColor'
 import { LeatherColorCreatConfirmModalBody } from '@/features/leatherColors/modals/confirm/leatherColorCreatConfirmModalBody'
-import { colorsForSelect } from '@/objects/colors/colorsForSelect'
+import { leatherColorValues } from '@/objects/colors/leatherColorValues'
 
 export const CreateLeatherColorForm: FC = () => {
-  const articles = useGetAllLeatherArticlesForSelect()
+  const articles: SelectItemType[] = useGetAllLeatherArticles().map(({ _id, title }) => ({
+    _id,
+    title,
+    value: _id,
+  }))
 
   const createColor = useCreateLeatherColor()
 
@@ -45,11 +49,11 @@ export const CreateLeatherColorForm: FC = () => {
         {({ values, submitForm }) => (
           <Form className="space-y-3">
             <FieldWrapper name={ECreateLeatherColorParams.ARTICLE_ID} title="Артикул:">
-              {name => <FormikSelect name={name} items={articles} valueField="_id" />}
+              {name => <FormikSelect name={name} items={articles} />}
             </FieldWrapper>
 
             <FieldWrapper name={ECreateLeatherColorParams.VALUE} title="Значение цвета:">
-              {name => <FormikSelect name={name} items={colorsForSelect} valueField="value" />}
+              {name => <FormikSelect name={name} items={Object.values(leatherColorValues)} />}
             </FieldWrapper>
 
             <FieldWrapper name={ECreateLeatherColorParams.TITLE} title="Название цвета:">

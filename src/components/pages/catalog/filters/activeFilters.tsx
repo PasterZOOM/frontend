@@ -1,22 +1,26 @@
 import { FC, useEffect, useState } from 'react'
 
-import { useGetAllLeatherArticlesForSelect } from '@/features/leatherArticles/hooks/useGetAllLeatherArticlesForSelect'
+import { ELeatherColor } from '@/enums/materials'
+import { EProductAssignment, EProductCategory } from '@/enums/product'
+import { useGetAllLeatherArticles } from '@/features/leatherArticles/hooks/useGetAllLeatherArticles'
 import { useClearAllQueryParams } from '@/hooks/queryParams/useClearAllQueryParams'
 import { useRemoveMultipleQueryParam } from '@/hooks/queryParams/useRemoveMultipleQueryParam'
-import {
-  EFilterKeys,
-  GeneralFilterType,
-  leatherColorFilters,
-  productAssignmentsFilters,
-  productCategoriesFilters,
-} from '@/mocks/filters'
+import { EFilterKeys, GeneralFilterType } from '@/mocks/filters'
+import { leatherColorValues } from '@/objects/colors/leatherColorValues'
+import { productAssignments } from '@/objects/products/productAssignments'
+import { productCategories } from '@/objects/products/productCategories'
 import { useBasicProductsFilterStore } from '@/store/useBasicProductsFilterStore'
+import { ObjectForSelectType } from '@/types/objectForSelectType'
 
 type PropsType = {
   className?: string
 }
 const ActiveFilters: FC<PropsType> = ({ className = '' }) => {
-  const articles = useGetAllLeatherArticlesForSelect()
+  const articles = {} as ObjectForSelectType<string>
+
+  useGetAllLeatherArticles().forEach(({ _id, title }) => {
+    articles[title] = { _id, title, value: title }
+  })
 
   const clearAll = useClearAllQueryParams()
   const removeQueryParam = useRemoveMultipleQueryParam()
@@ -24,11 +28,14 @@ const ActiveFilters: FC<PropsType> = ({ className = '' }) => {
   const filtersInStore = useBasicProductsFilterStore(state => state.filters)
   const [activeFilters, setActiveFilters] = useState<GeneralFilterType[]>([])
 
-  const filters: Record<EFilterKeys, GeneralFilterType[]> = {
-    [EFilterKeys.ASSIGNMENTS]: productAssignmentsFilters,
-    [EFilterKeys.CATEGORIES]: productCategoriesFilters,
+  const filters: Record<
+    EFilterKeys,
+    ObjectForSelectType<EProductAssignment | EProductCategory | ELeatherColor | string>
+  > = {
+    [EFilterKeys.ASSIGNMENTS]: productAssignments,
+    [EFilterKeys.CATEGORIES]: productCategories,
     [EFilterKeys.LEATHERS]: articles,
-    [EFilterKeys.LEATHER_COLORS]: leatherColorFilters,
+    [EFilterKeys.LEATHER_COLORS]: leatherColorValues,
   }
 
   useEffect(() => {
@@ -37,7 +44,7 @@ const ActiveFilters: FC<PropsType> = ({ className = '' }) => {
     Object.entries(filtersInStore).forEach(([filterKey, filterValue]) => {
       const temp = filterValue
         .split(',')
-        .map(filter => filters[filterKey as EFilterKeys].find(el => el.value === filter))
+        .map(filter => filters[filterKey as EFilterKeys][filter])
         .filter(filter => !!filter)
 
       newFilters = [...newFilters, ...temp] as GeneralFilterType[]

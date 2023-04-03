@@ -3,14 +3,14 @@ import { Dispatch, FC, SetStateAction } from 'react'
 import FilterContainer from '@/components/common/containers/filterContainer'
 import AccordionWrapper from '@/components/common/ui/accordion/accordionWrapper'
 import { ColorFilterCheckbox } from '@/components/common/ui/checkbox/colorFilterCheckbox'
-import { MultipleFilter } from '@/components/pages/catalog/filters/multipleFilter'
-import { useGetAllLeatherArticlesForSelect } from '@/features/leatherArticles/hooks/useGetAllLeatherArticlesForSelect'
 import {
-  EFilterKeys,
   leatherColorFilters,
   productAssignmentsFilters,
   productCategoriesFilters,
-} from '@/mocks/filters'
+} from '@/components/pages/catalog/filters/filters'
+import { MultipleFilter } from '@/components/pages/catalog/filters/multipleFilter'
+import { useGetAllLeatherArticles } from '@/features/leatherArticles/hooks/useGetAllLeatherArticles'
+import { EFilterKeys } from '@/mocks/filters'
 
 type PropsType = {
   isOpenFilters: boolean
@@ -23,7 +23,12 @@ export const CatalogFilters: FC<PropsType> = ({
   setIsOpenFilters,
   className = '',
 }) => {
-  const leathers = useGetAllLeatherArticlesForSelect()
+  const leathers = useGetAllLeatherArticles().map(({ title, _id }) => ({
+    _id,
+    title,
+    value: title,
+    filterKey: EFilterKeys.LEATHERS,
+  }))
 
   return (
     <div className={`${className}`}>
