@@ -26,7 +26,9 @@ export const useChangeMultipleQueryParams = (
           pathname,
           query: {
             ...query,
-            [filterKey]: query[filterKey] ? `${query[filterKey]},${filterValue}` : filterValue,
+            [filterKey]: query[filterKey]
+              ? `${query[filterKey]},${filterValue}`.split(',').sort().join(',') // сортировка нужна чтобы не было лишних запросов из-за того, что параметры поменялись местами
+              : filterValue,
           },
         },
         undefined,

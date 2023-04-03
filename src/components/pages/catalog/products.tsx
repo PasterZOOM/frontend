@@ -1,26 +1,16 @@
 import { FC } from 'react'
 
-import { useQuery } from 'react-query'
-
 import { ProductCard } from './productCard/productCard'
 
 import ActiveFilters from '@/components/pages/catalog/filters/activeFilters'
-import { queryKey } from '@/enums/queryKey'
-import { useSrmServiceStore } from '@/store/crmServises'
-import { useBasicProductsFilterStore } from '@/store/useBasicProductsFilterStore'
+import { useGetAllBasicProducts } from '@/features/basicProducts/hooks/useGetAllBasicProducts'
 
 type PropsType = {
   className?: string
 }
 
 const Products: FC<PropsType> = ({ className = '' }) => {
-  const basicProductsService = useSrmServiceStore(state => state.basicProductsService)
-
-  const filters = useBasicProductsFilterStore(state => state.filters)
-
-  const { data: products } = useQuery([queryKey.GET_ALL_BASIC_PRODUCTS, filters], () =>
-    basicProductsService.getAll(filters)
-  )
+  const products = useGetAllBasicProducts({ keepPreviousData: true })
 
   return (
     <div

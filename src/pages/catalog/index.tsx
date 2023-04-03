@@ -25,7 +25,6 @@ type PropsType = {
 }
 
 const Catalog: FC<PropsType> = ({ rates, articles, basicProducts }) => {
-  //! ? TODO: из за этого моргают карточки
   useGetAllLeatherArticles({ initialData: articles })
   useGetAllBasicProducts({ initialData: basicProducts })
 
