@@ -14,18 +14,14 @@ import { ECreateBasicProductParams } from '@/features/basicProducts/enums/params
 import { CreateBasicProductFormType } from '@/features/basicProducts/forms/type'
 import { useCreateBasicProduct } from '@/features/basicProducts/hooks/useCreateBasicProduct'
 import { BasicProductCreatConfirmModalBody } from '@/features/basicProducts/modals/confirm/basicProductCreatConfirmModalBody'
-import { useGetAllLeatherArticles } from '@/features/leatherArticles/hooks/useGetAllLeatherArticles'
-import { EFilterKeys, productAssignmentsFilters, productCategoriesFilters } from '@/mocks/filters'
+import { useGetArticlesForSelect } from '@/features/leatherArticles/hooks/useGetArticlesForSelect'
+import { productAssignmentsFilters, productCategoriesFilters } from '@/mocks/filters'
 import { currencyForSelect } from '@/objects/currency/currency'
 import { punchPatchForSelect } from '@/objects/materials/punchPatch'
 
 const CreateBasicProductForm: FC = () => {
-  const articles = useGetAllLeatherArticles().map(({ title, _id }) => ({
-    _id,
-    title,
-    value: title,
-    filterKey: EFilterKeys.LEATHERS,
-  }))
+  const articles = useGetArticlesForSelect()
+
   const createBasicProduct = useCreateBasicProduct()
 
   const initialValues: CreateBasicProductFormType = {

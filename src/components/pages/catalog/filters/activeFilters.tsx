@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from 'react'
 
-import { useGetAllLeatherArticles } from '@/features/leatherArticles/hooks/useGetAllLeatherArticles'
+import { useGetArticlesForSelect } from '@/features/leatherArticles/hooks/useGetArticlesForSelect'
 import { useClearAllQueryParams } from '@/hooks/queryParams/useClearAllQueryParams'
 import { useRemoveMultipleQueryParam } from '@/hooks/queryParams/useRemoveMultipleQueryParam'
 import {
@@ -16,18 +16,13 @@ type PropsType = {
   className?: string
 }
 const ActiveFilters: FC<PropsType> = ({ className = '' }) => {
+  const articles = useGetArticlesForSelect()
+
   const clearAll = useClearAllQueryParams()
   const removeQueryParam = useRemoveMultipleQueryParam()
 
   const filtersInStore = useBasicProductsFilterStore(state => state.filters)
   const [activeFilters, setActiveFilters] = useState<GeneralFilterType[]>([])
-
-  const articles = useGetAllLeatherArticles().map(({ title, _id }) => ({
-    _id,
-    title,
-    value: title,
-    filterKey: EFilterKeys.LEATHERS,
-  }))
 
   const filters: Record<EFilterKeys, GeneralFilterType[]> = {
     [EFilterKeys.ASSIGNMENTS]: productAssignmentsFilters,

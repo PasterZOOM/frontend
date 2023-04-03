@@ -8,21 +8,15 @@ import { FieldWrapper } from '@/components/forms/fieldWrapper'
 import { FormikInput } from '@/components/forms/formikInput'
 import { FormikSelect } from '@/components/forms/formikSelect'
 import { ELeatherColor } from '@/enums/materials'
-import { useGetAllLeatherArticles } from '@/features/leatherArticles/hooks/useGetAllLeatherArticles'
+import { useGetArticlesForSelect } from '@/features/leatherArticles/hooks/useGetArticlesForSelect'
 import { ECreateLeatherColorParams } from '@/features/leatherColors/enums/paramsKeys'
 import { CreateLeatherColorFormType } from '@/features/leatherColors/forms/type'
 import { useCreateLeatherColor } from '@/features/leatherColors/hooks/useCreateLeatherColor'
 import { LeatherColorCreatConfirmModalBody } from '@/features/leatherColors/modals/confirm/leatherColorCreatConfirmModalBody'
-import { EFilterKeys } from '@/mocks/filters'
 import { colorsForSelect } from '@/objects/colors/colorsForSelect'
 
 export const CreateLeatherColorForm: FC = () => {
-  const articles = useGetAllLeatherArticles().map(({ title, _id }) => ({
-    _id,
-    title,
-    value: title,
-    filterKey: EFilterKeys.LEATHERS,
-  }))
+  const articles = useGetArticlesForSelect()
 
   const createColor = useCreateLeatherColor()
 
