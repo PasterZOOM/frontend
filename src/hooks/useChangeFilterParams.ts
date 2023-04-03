@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 import { EFilterKeys } from '@/mocks/filters'
 import { useBasicProductsFilterStore } from '@/store/useBasicProductsFilterStore'
 
-export const useChangeFilterParams = (filterKey: EFilterKeys): void => {
+export const useChangeFilterParams: UseChangeFilterParamsType = filterKey => {
   const { query } = useRouter()
   const setFilter = useBasicProductsFilterStore(state => state.setFilter)
   const filter = useBasicProductsFilterStore(state => state.filters[filterKey])
@@ -21,3 +21,5 @@ export const useChangeFilterParams = (filterKey: EFilterKeys): void => {
     }
   }, [query[filterKey]])
 }
+
+type UseChangeFilterParamsType = (filterKey: EFilterKeys) => void

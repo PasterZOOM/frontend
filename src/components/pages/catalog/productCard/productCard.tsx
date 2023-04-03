@@ -26,7 +26,9 @@ export const ProductCard: FC<PropsType> = ({ defPrice = ECost.USD, product }) =>
   const priceInCurrentCurrency = useGetPriceInCurrentCurrency(product.cost, product.costCurrency)
   const priceInDefaultCurrency = useGetPriceInCurrency(product.cost, product.costCurrency, defPrice)
 
-  const productColors = useGetAllLeatherColors(Object.keys(product.photos), !!activeColor)
+  const productColors = useGetAllLeatherColors(Object.keys(product.photos), {
+    enabled: !!activeColor,
+  })
 
   return (
     <div>

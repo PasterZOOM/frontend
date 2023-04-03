@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from 'react'
 
-import { useGetArticlesForSelect } from '@/features/leatherArticles/hooks/useGetArticlesForSelect'
+import { useGetAllLeatherArticlesForSelect } from '@/features/leatherArticles/hooks/useGetAllLeatherArticlesForSelect'
 import { useClearAllQueryParams } from '@/hooks/queryParams/useClearAllQueryParams'
 import { useRemoveMultipleQueryParam } from '@/hooks/queryParams/useRemoveMultipleQueryParam'
 import {
@@ -16,7 +16,7 @@ type PropsType = {
   className?: string
 }
 const ActiveFilters: FC<PropsType> = ({ className = '' }) => {
-  const articles = useGetArticlesForSelect()
+  const articles = useGetAllLeatherArticlesForSelect()
 
   const clearAll = useClearAllQueryParams()
   const removeQueryParam = useRemoveMultipleQueryParam()

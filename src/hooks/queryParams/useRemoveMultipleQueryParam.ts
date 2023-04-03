@@ -2,10 +2,7 @@ import { useRouter } from 'next/router'
 
 import { EFilterKeys } from '@/mocks/filters'
 
-export const useRemoveMultipleQueryParam = (): ((
-  filterKey: EFilterKeys,
-  filterValue: string
-) => Promise<void>) => {
+export const useRemoveMultipleQueryParam: UseRemoveMultipleQueryParamType = () => {
   const { pathname, query, replace } = useRouter()
 
   return async (filterKey, filterValue) => {
@@ -27,3 +24,8 @@ export const useRemoveMultipleQueryParam = (): ((
     )
   }
 }
+
+type UseRemoveMultipleQueryParamType = () => (
+  filterKey: EFilterKeys,
+  filterValue: string
+) => Promise<void>

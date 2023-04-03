@@ -9,7 +9,7 @@ type PropsType = {
 }
 
 export const BasicProductCreatConfirmModalBody: FC<PropsType> = ({ values }) => {
-  const articles = useGetAllLeatherArticles()
+  const articles = useGetAllLeatherArticles({ enabled: false })
 
   return (
     <div className="space-y-2">

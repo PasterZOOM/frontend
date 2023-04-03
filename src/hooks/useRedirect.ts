@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 import { UserStatus } from '@/enums/userStatus'
 import { useUserSettings } from '@/store/useUserSettings'
 
-export const useRedirect = (): void => {
+export const useRedirect: UseRedirectType = () => {
   const router = useRouter()
   const userStatus = useUserSettings(state => state.userStatus)
 
@@ -17,3 +17,5 @@ export const useRedirect = (): void => {
     })()
   }, [])
 }
+
+type UseRedirectType = () => void

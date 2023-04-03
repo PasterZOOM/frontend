@@ -14,13 +14,13 @@ import { ECreateBasicProductParams } from '@/features/basicProducts/enums/params
 import { CreateBasicProductFormType } from '@/features/basicProducts/forms/type'
 import { useCreateBasicProduct } from '@/features/basicProducts/hooks/useCreateBasicProduct'
 import { BasicProductCreatConfirmModalBody } from '@/features/basicProducts/modals/confirm/basicProductCreatConfirmModalBody'
-import { useGetArticlesForSelect } from '@/features/leatherArticles/hooks/useGetArticlesForSelect'
+import { useGetAllLeatherArticlesForSelect } from '@/features/leatherArticles/hooks/useGetAllLeatherArticlesForSelect'
 import { productAssignmentsFilters, productCategoriesFilters } from '@/mocks/filters'
 import { currencyForSelect } from '@/objects/currency/currency'
 import { punchPatchForSelect } from '@/objects/materials/punchPatch'
 
 const CreateBasicProductForm: FC = () => {
-  const articles = useGetArticlesForSelect()
+  const articles = useGetAllLeatherArticlesForSelect()
 
   const createBasicProduct = useCreateBasicProduct()
 

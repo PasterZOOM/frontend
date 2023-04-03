@@ -18,7 +18,7 @@ export const LeatherColorInfo: FC<PropsType> = ({ className, color, onDeleteConf
   const {
     updateLeatherColorDescription,
     updateLeatherColorPhoto,
-    updateLeatherColorName,
+    updateLeatherColorTitle,
     updateLeatherColorCode,
   } = useUpdateLeatherColor(color._id)
 
@@ -31,7 +31,7 @@ export const LeatherColorInfo: FC<PropsType> = ({ className, color, onDeleteConf
           </PropertyWithUnderline>
 
           <PropertyWithUnderline title="Название цвета:">
-            <EditableSpanInput onChange={updateLeatherColorName}>{color.title}</EditableSpanInput>
+            <EditableSpanInput onChange={updateLeatherColorTitle}>{color.title}</EditableSpanInput>
           </PropertyWithUnderline>
 
           <PropertyWithUnderline title="Код цвета:">
@@ -40,7 +40,7 @@ export const LeatherColorInfo: FC<PropsType> = ({ className, color, onDeleteConf
 
           <PropertyWithUnderline title="Значение цвета:">{color.value}</PropertyWithUnderline>
 
-          <PropertyWithUnderline title="Артикул:">{color.article.name}</PropertyWithUnderline>
+          <PropertyWithUnderline title="Артикул:">{color.article.title}</PropertyWithUnderline>
 
           <PropertyWithUnderline title="Фото:">
             <EditableSpanInput onChange={updateLeatherColorPhoto}>{color.photo}</EditableSpanInput>

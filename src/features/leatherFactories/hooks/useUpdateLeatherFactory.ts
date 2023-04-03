@@ -7,15 +7,7 @@ import {
 } from '@/features/leatherFactories/api/types'
 import { useSrmServiceStore } from '@/store/crmServises'
 
-export const useUpdateLeatherFactory = (
-  _id: string
-): {
-  updateLeatherFactory: (
-    params: Partial<UpdateLeatherFactoryParamsType>
-  ) => Promise<LeatherFactoryType>
-  updateLeatherFactoryName: (title: string) => Promise<void>
-  updateLeatherFactoryDescription: (description: string) => Promise<void>
-} => {
+export const useUpdateLeatherFactory: UseUpdateLeatherFactoryType = _id => {
   const leatherFactoriesService = useSrmServiceStore(state => state.leatherFactoriesService)
 
   const queryClient = useQueryClient()
@@ -33,16 +25,28 @@ export const useUpdateLeatherFactory = (
     return mutateAsync({ _id, params })
   }
 
-  const updateLeatherFactoryName = async (title: string): Promise<void> => {
+  const updateLeatherFactoryTitle: UpdateLeatherFactoryTitleFnType = async title => {
     await updateLeatherFactory({ title })
   }
-  const updateLeatherFactoryDescription = async (description: string): Promise<void> => {
-    await updateLeatherFactory({ description })
-  }
+  const updateLeatherFactoryDescription: UpdateLeatherFactoryDescriptionFnType =
+    async description => {
+      await updateLeatherFactory({ description })
+    }
 
   return {
     updateLeatherFactory,
-    updateLeatherFactoryName,
+    updateLeatherFactoryTitle,
     updateLeatherFactoryDescription,
   }
 }
+
+type UseUpdateLeatherFactoryType = (_id: string) => {
+  updateLeatherFactory: updateLeatherFactoryFnType
+  updateLeatherFactoryTitle: UpdateLeatherFactoryTitleFnType
+  updateLeatherFactoryDescription: UpdateLeatherFactoryDescriptionFnType
+}
+type updateLeatherFactoryFnType = (
+  params: Partial<UpdateLeatherFactoryParamsType>
+) => Promise<LeatherFactoryType>
+type UpdateLeatherFactoryTitleFnType = (title: string) => Promise<void>
+type UpdateLeatherFactoryDescriptionFnType = (description: string) => Promise<void>

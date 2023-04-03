@@ -2,23 +2,10 @@ import { useQuery, UseQueryOptions } from 'react-query'
 
 import { queryKey } from '@/enums/queryKey'
 import { BasicProductType } from '@/features/basicProducts/api/types'
-import { EFilterKeys } from '@/mocks/filters'
 import { useSrmServiceStore } from '@/store/crmServises'
 import { useBasicProductsFilterStore } from '@/store/useBasicProductsFilterStore'
 
-export const useGetAllBasicProducts = (
-  options?:
-    | Omit<
-        UseQueryOptions<
-          unknown,
-          unknown,
-          BasicProductType[],
-          queryKey.GET_ALL_BASIC_PRODUCTS | (queryKey | Record<EFilterKeys, string>)[]
-        >,
-        'queryKey' | 'queryFn'
-      >
-    | undefined
-): BasicProductType[] => {
+export const useGetAllBasicProducts: UseGetAllBasicProductsType = options => {
   const filters = useBasicProductsFilterStore(state => state.filters)
 
   const basicProductsService = useSrmServiceStore(state => state.basicProductsService)
@@ -31,3 +18,7 @@ export const useGetAllBasicProducts = (
 
   return data || []
 }
+
+type UseGetAllBasicProductsType = (
+  options?: Omit<UseQueryOptions<BasicProductType[]>, 'queryKey' | 'queryFn'>
+) => BasicProductType[]

@@ -3,7 +3,10 @@ import { CurrencySign } from '@/enums/currencySign'
 import { useCurrencyStore } from '@/store/useCurrencyStore'
 import { useUserSettings } from '@/store/useUserSettings'
 
-export const useGetPriceInCurrentCurrency = (price: number, priceCurrency: TCost): string => {
+export const useGetPriceInCurrentCurrency: UseGetPriceInCurrentCurrencyType = (
+  price,
+  priceCurrency
+) => {
   const currentCurrency = useUserSettings(state => state.currentCurrency)
   const currentPrise = useCurrencyStore(
     state => (price * state[currentCurrency]) / state[priceCurrency]
@@ -11,3 +14,5 @@ export const useGetPriceInCurrentCurrency = (price: number, priceCurrency: TCost
 
   return `${CurrencySign[currentCurrency]}${currentPrise.toFixed()}`
 }
+
+type UseGetPriceInCurrentCurrencyType = (price: number, priceCurrency: TCost) => string

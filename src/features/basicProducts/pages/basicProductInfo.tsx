@@ -17,7 +17,7 @@ type PropsType = {
 export const BasicProductInfo: FC<PropsType> = ({ className, basicProduct, onDeleteConfirm }) => {
   const {
     updateBasicProductDescription,
-    updateBasicProductName,
+    updateBasicProductTitle,
     updateBasicProductSize,
     updateBasicProductCost,
   } = useUpdateBasicProduct(basicProduct._id)
@@ -31,12 +31,12 @@ export const BasicProductInfo: FC<PropsType> = ({ className, basicProduct, onDel
           </PropertyWithUnderline>
 
           <PropertyWithUnderline title="Название изделия:">
-            <EditableSpanInput onChange={updateBasicProductName}>
+            <EditableSpanInput onChange={updateBasicProductTitle}>
               {basicProduct.title}
             </EditableSpanInput>
           </PropertyWithUnderline>
 
-          <PropertyWithUnderline title="Кожа:">{basicProduct.leather.name}</PropertyWithUnderline>
+          <PropertyWithUnderline title="Кожа:">{basicProduct.leather.title}</PropertyWithUnderline>
 
           <PropertyWithUnderline title="Стоимость:">
             <EditableSpanInput onChange={updateBasicProductCost} inputProps={{ type: 'number' }}>

@@ -4,15 +4,7 @@ import { queryKey } from '@/enums/queryKey'
 import { LeatherColorType, UpdateLeatherColorParamsType } from '@/features/leatherColors/api/types'
 import { useSrmServiceStore } from '@/store/crmServises'
 
-export const useUpdateLeatherColor = (
-  _id: string
-): {
-  updateLeatherColor: (params: Partial<UpdateLeatherColorParamsType>) => Promise<LeatherColorType>
-  updateLeatherColorPhoto: (photo: string) => Promise<void>
-  updateLeatherColorName: (title: string) => Promise<void>
-  updateLeatherColorCode: (code: string) => Promise<void>
-  updateLeatherColorDescription: (description: string) => Promise<void>
-} => {
+export const useUpdateLeatherColor: UseUpdateLeatherColorType = _id => {
   const leatherColorsService = useSrmServiceStore(state => state.leatherColorsService)
 
   const queryClient = useQueryClient()
@@ -24,30 +16,43 @@ export const useUpdateLeatherColor = (
     },
   })
 
-  const updateLeatherColor = async (
-    params: Partial<UpdateLeatherColorParamsType>
-  ): Promise<LeatherColorType> => {
+  const updateLeatherColor: UpdateLeatherColorFnType = async params => {
     return mutateAsync({ _id, params })
   }
 
-  const updateLeatherColorName = async (title: string): Promise<void> => {
+  const updateLeatherColorTitle: UpdateLeatherColorNameFnType = async title => {
     await updateLeatherColor({ title })
   }
-  const updateLeatherColorDescription = async (description: string): Promise<void> => {
+  const updateLeatherColorDescription: UpdateLeatherColorDescriptionFnType = async description => {
     await updateLeatherColor({ description })
   }
-  const updateLeatherColorCode = async (code: string): Promise<void> => {
+  const updateLeatherColorCode: UpdateLeatherColorCodeFnType = async code => {
     await updateLeatherColor({ code })
   }
-  const updateLeatherColorPhoto = async (photo: string): Promise<void> => {
+  const updateLeatherColorPhoto: UpdateLeatherColorPhotoFnType = async photo => {
     await updateLeatherColor({ photo })
   }
 
   return {
     updateLeatherColor,
-    updateLeatherColorName,
+    updateLeatherColorTitle,
     updateLeatherColorDescription,
     updateLeatherColorCode,
     updateLeatherColorPhoto,
   }
 }
+
+type UseUpdateLeatherColorType = (_id: string) => {
+  updateLeatherColor: UpdateLeatherColorFnType
+  updateLeatherColorPhoto: (photo: string) => Promise<void>
+  updateLeatherColorTitle: (title: string) => Promise<void>
+  updateLeatherColorCode: (code: string) => Promise<void>
+  updateLeatherColorDescription: (description: string) => Promise<void>
+}
+type UpdateLeatherColorFnType = (
+  params: Partial<UpdateLeatherColorParamsType>
+) => Promise<LeatherColorType>
+type UpdateLeatherColorPhotoFnType = (photo: string) => Promise<void>
+type UpdateLeatherColorNameFnType = (title: string) => Promise<void>
+type UpdateLeatherColorCodeFnType = (code: string) => Promise<void>
+type UpdateLeatherColorDescriptionFnType = (description: string) => Promise<void>

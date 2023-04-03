@@ -15,7 +15,7 @@ type PropsType = {
 }
 
 export const LeatherArticleInfo: FC<PropsType> = ({ className, article, onDeleteConfirm }) => {
-  const { updateLeatherArticleName, updateLeatherArticleDescription } = useUpdateLeatherArticle(
+  const { updateLeatherArticleTitle, updateLeatherArticleDescription } = useUpdateLeatherArticle(
     article._id
   )
 
@@ -28,7 +28,7 @@ export const LeatherArticleInfo: FC<PropsType> = ({ className, article, onDelete
           </PropertyWithUnderline>
 
           <PropertyWithUnderline title="Название артикула:">
-            <EditableSpanInput onChange={updateLeatherArticleName}>
+            <EditableSpanInput onChange={updateLeatherArticleTitle}>
               {article.title}
             </EditableSpanInput>
           </PropertyWithUnderline>

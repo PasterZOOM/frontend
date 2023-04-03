@@ -4,12 +4,7 @@ import { queryKey } from '@/enums/queryKey'
 import { LeatherArticleType } from '@/features/leatherArticles/api/types'
 import { useSrmServiceStore } from '@/store/crmServises'
 
-export const useRemoveLeatherArticle = (): UseMutateAsyncFunction<
-  LeatherArticleType,
-  unknown,
-  string,
-  unknown
-> => {
+export const useRemoveLeatherArticle: UseRemoveLeatherArticleType = () => {
   const leatherArticlesService = useSrmServiceStore(state => state.leatherArticlesService)
 
   const queryClient = useQueryClient()
@@ -23,3 +18,5 @@ export const useRemoveLeatherArticle = (): UseMutateAsyncFunction<
 
   return mutateAsync
 }
+
+type UseRemoveLeatherArticleType = () => UseMutateAsyncFunction<LeatherArticleType, unknown, string>

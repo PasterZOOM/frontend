@@ -8,7 +8,7 @@ import { FieldWrapper } from '@/components/forms/fieldWrapper'
 import { FormikInput } from '@/components/forms/formikInput'
 import { FormikSelect } from '@/components/forms/formikSelect'
 import { ELeatherColor } from '@/enums/materials'
-import { useGetArticlesForSelect } from '@/features/leatherArticles/hooks/useGetArticlesForSelect'
+import { useGetAllLeatherArticlesForSelect } from '@/features/leatherArticles/hooks/useGetAllLeatherArticlesForSelect'
 import { ECreateLeatherColorParams } from '@/features/leatherColors/enums/paramsKeys'
 import { CreateLeatherColorFormType } from '@/features/leatherColors/forms/type'
 import { useCreateLeatherColor } from '@/features/leatherColors/hooks/useCreateLeatherColor'
@@ -16,7 +16,7 @@ import { LeatherColorCreatConfirmModalBody } from '@/features/leatherColors/moda
 import { colorsForSelect } from '@/objects/colors/colorsForSelect'
 
 export const CreateLeatherColorForm: FC = () => {
-  const articles = useGetArticlesForSelect()
+  const articles = useGetAllLeatherArticlesForSelect()
 
   const createColor = useCreateLeatherColor()
 

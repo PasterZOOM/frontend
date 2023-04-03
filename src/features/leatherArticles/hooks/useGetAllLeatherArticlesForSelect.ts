@@ -1,7 +1,7 @@
 import { useGetAllLeatherArticles } from '@/features/leatherArticles/hooks/useGetAllLeatherArticles'
 import { EFilterKeys, FilterType } from '@/mocks/filters'
 
-export const useGetArticlesForSelect = (): FilterType<string, EFilterKeys.LEATHERS>[] => {
+export const useGetAllLeatherArticlesForSelect: UseGetArticlesForSelectType = () => {
   return useGetAllLeatherArticles().map(({ title, _id }) => ({
     _id,
     title,
@@ -9,3 +9,5 @@ export const useGetArticlesForSelect = (): FilterType<string, EFilterKeys.LEATHE
     filterKey: EFilterKeys.LEATHERS,
   }))
 }
+
+type UseGetArticlesForSelectType = () => FilterType<string, EFilterKeys.LEATHERS>[]

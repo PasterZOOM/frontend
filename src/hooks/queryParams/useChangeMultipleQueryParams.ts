@@ -6,13 +6,10 @@ import { useRemoveMultipleQueryParam } from '@/hooks/queryParams/useRemoveMultip
 import { useChangeFilterParams } from '@/hooks/useChangeFilterParams'
 import { EFilterKeys } from '@/mocks/filters'
 
-export const useChangeMultipleQueryParams = (
-  filterKey: EFilterKeys,
-  filterValue: string
-): {
-  setQueryParams: (e: ChangeEvent<HTMLInputElement>) => Promise<void>
-  queryParams: boolean
-} => {
+export const useChangeMultipleQueryParams: UseChangeMultipleQueryParamsType = (
+  filterKey,
+  filterValue
+) => {
   const { pathname, query, replace } = useRouter()
 
   const removeQueryParam = useRemoveMultipleQueryParam()
@@ -40,4 +37,12 @@ export const useChangeMultipleQueryParams = (
   }
 
   return { setQueryParams, queryParams: !!query[filterKey]?.includes(filterValue) }
+}
+
+type UseChangeMultipleQueryParamsType = (
+  filterKey: EFilterKeys,
+  filterValue: string
+) => {
+  setQueryParams: (e: ChangeEvent<HTMLInputElement>) => Promise<void>
+  queryParams: boolean
 }

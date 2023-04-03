@@ -9,7 +9,7 @@ export type BasicProductType = {
   category: EProductCategory
   cost: number
   costCurrency: ECost
-  leather: { _id: string; name: string }
+  leather: { _id: string; title: string }
   description: string
   photos: PhotosType
   punchPitch: EPunchPitch

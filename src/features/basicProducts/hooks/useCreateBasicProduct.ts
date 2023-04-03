@@ -5,12 +5,7 @@ import { BasicProductType, CreateBasicProductParamsType } from '@/features/basic
 import { useGetAllBasicProducts } from '@/features/basicProducts/hooks/useGetAllBasicProducts'
 import { useSrmServiceStore } from '@/store/crmServises'
 
-export const useCreateBasicProduct = (): UseMutateAsyncFunction<
-  BasicProductType,
-  unknown,
-  CreateBasicProductParamsType,
-  unknown
-> => {
+export const useCreateBasicProduct = (): UseCreateBasicProductType => {
   const basicProductsService = useSrmServiceStore(state => state.basicProductsService)
 
   const queryClient = useQueryClient()
@@ -24,3 +19,9 @@ export const useCreateBasicProduct = (): UseMutateAsyncFunction<
 
   return mutateAsync
 }
+
+type UseCreateBasicProductType = UseMutateAsyncFunction<
+  BasicProductType,
+  unknown,
+  CreateBasicProductParamsType
+>

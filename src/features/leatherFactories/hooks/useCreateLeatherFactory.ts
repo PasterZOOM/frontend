@@ -8,12 +8,7 @@ import {
 import { useGetAllLeatherFactories } from '@/features/leatherFactories/hooks/useGetAllLeatherFactories'
 import { useSrmServiceStore } from '@/store/crmServises'
 
-export const useCreateLeatherFactory = (): UseMutateAsyncFunction<
-  LeatherFactoryType,
-  unknown,
-  CreateLeatherFactoryParamsType,
-  unknown
-> => {
+export const useCreateLeatherFactory: UseCreateLeatherFactoryType = () => {
   const leatherFactoriesService = useSrmServiceStore(state => state.leatherFactoriesService)
 
   const queryClient = useQueryClient()
@@ -27,3 +22,9 @@ export const useCreateLeatherFactory = (): UseMutateAsyncFunction<
 
   return mutateAsync
 }
+
+type UseCreateLeatherFactoryType = () => UseMutateAsyncFunction<
+  LeatherFactoryType,
+  unknown,
+  CreateLeatherFactoryParamsType
+>

@@ -13,7 +13,7 @@ type PropsType = {
 
 export const LeatherArticleModal: FC<PropsType> = ({ isOpen, closeModal, id }) => {
   const removeArticle = useRemoveLeatherArticle()
-  const article = useGetLeatherArticle(id, isOpen)
+  const article = useGetLeatherArticle(id, { enabled: isOpen })
 
   const onDeleteConfirm = async (): Promise<void> => {
     await removeArticle(id)

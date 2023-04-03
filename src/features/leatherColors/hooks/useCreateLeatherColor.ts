@@ -6,12 +6,7 @@ import { CreateLeatherColorParamsType, LeatherColorType } from '@/features/leath
 import { useGetAllLeatherColors } from '@/features/leatherColors/hooks/useGetAllLeatherColors'
 import { useSrmServiceStore } from '@/store/crmServises'
 
-export const useCreateLeatherColor = (): UseMutateAsyncFunction<
-  LeatherColorType,
-  unknown,
-  CreateType<CreateLeatherColorParamsType>,
-  unknown
-> => {
+export const useCreateLeatherColor: UseCreateLeatherColorType = () => {
   const leatherColorsService = useSrmServiceStore(state => state.leatherColorsService)
 
   const queryClient = useQueryClient()
@@ -25,3 +20,9 @@ export const useCreateLeatherColor = (): UseMutateAsyncFunction<
 
   return mutateAsync
 }
+
+type UseCreateLeatherColorType = () => UseMutateAsyncFunction<
+  LeatherColorType,
+  unknown,
+  CreateType<CreateLeatherColorParamsType>
+>

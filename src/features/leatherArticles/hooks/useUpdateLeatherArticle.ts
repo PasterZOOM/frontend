@@ -7,15 +7,7 @@ import {
 } from '@/features/leatherArticles/api/types'
 import { useSrmServiceStore } from '@/store/crmServises'
 
-export const useUpdateLeatherArticle = (
-  _id: string
-): {
-  updateLeatherArticle: (
-    params: Partial<UpdateLeatherArticleParamsType>
-  ) => Promise<LeatherArticleType>
-  updateLeatherArticleName: (title: string) => Promise<void>
-  updateLeatherArticleDescription: (description: string) => Promise<void>
-} => {
+export const useUpdateLeatherArticle: UseUpdateLeatherArticleType = _id => {
   const leatherArticlesService = useSrmServiceStore(state => state.leatherArticlesService)
 
   const queryClient = useQueryClient()
@@ -26,22 +18,33 @@ export const useUpdateLeatherArticle = (
       await queryClient.invalidateQueries([queryKey.GET_ALL_ARTICLES])
     },
   })
-  const updateLeatherArticle = async (
-    params: Partial<UpdateLeatherArticleParamsType>
-  ): Promise<LeatherArticleType> => {
+
+  const updateLeatherArticle: UpdateLeatherArticleFnType = async params => {
     return mutateAsync({ _id, params })
   }
 
-  const updateLeatherArticleName = async (title: string): Promise<void> => {
+  const updateLeatherArticleTitle: UpdateLeatherArticleTitleFnType = async title => {
     await updateLeatherArticle({ title })
   }
-  const updateLeatherArticleDescription = async (description: string): Promise<void> => {
-    await updateLeatherArticle({ description })
-  }
+  const updateLeatherArticleDescription: UpdateLeatherArticleDescriptionFnType =
+    async description => {
+      await updateLeatherArticle({ description })
+    }
 
   return {
     updateLeatherArticle,
-    updateLeatherArticleName,
+    updateLeatherArticleTitle,
     updateLeatherArticleDescription,
   }
 }
+
+type UseUpdateLeatherArticleType = (_id: string) => {
+  updateLeatherArticle: UpdateLeatherArticleFnType
+  updateLeatherArticleTitle: UpdateLeatherArticleTitleFnType
+  updateLeatherArticleDescription: UpdateLeatherArticleDescriptionFnType
+}
+type UpdateLeatherArticleFnType = (
+  params: Partial<UpdateLeatherArticleParamsType>
+) => Promise<LeatherArticleType>
+type UpdateLeatherArticleTitleFnType = (title: string) => Promise<void>
+type UpdateLeatherArticleDescriptionFnType = (description: string) => Promise<void>

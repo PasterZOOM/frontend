@@ -12,7 +12,7 @@ type PropsType = {
 }
 
 export const BasicProductModal: FC<PropsType> = ({ isOpen, closeModal, id }) => {
-  const basicProduct = useGetBasicProduct(id, isOpen)
+  const basicProduct = useGetBasicProduct(id, { enabled: isOpen })
   const removeProduct = useRemoveBasicProduct()
 
   const onDeleteConfirm = async (): Promise<void> => {

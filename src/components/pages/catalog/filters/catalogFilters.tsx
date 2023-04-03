@@ -4,7 +4,7 @@ import FilterContainer from '@/components/common/containers/filterContainer'
 import AccordionWrapper from '@/components/common/ui/accordion/accordionWrapper'
 import { ColorFilterCheckbox } from '@/components/common/ui/checkbox/colorFilterCheckbox'
 import { MultipleFilter } from '@/components/pages/catalog/filters/multipleFilter'
-import { useGetArticlesForSelect } from '@/features/leatherArticles/hooks/useGetArticlesForSelect'
+import { useGetAllLeatherArticlesForSelect } from '@/features/leatherArticles/hooks/useGetAllLeatherArticlesForSelect'
 import {
   EFilterKeys,
   leatherColorFilters,
@@ -23,7 +23,7 @@ export const CatalogFilters: FC<PropsType> = ({
   setIsOpenFilters,
   className = '',
 }) => {
-  const leathers = useGetArticlesForSelect()
+  const leathers = useGetAllLeatherArticlesForSelect()
 
   return (
     <div className={`${className}`}>

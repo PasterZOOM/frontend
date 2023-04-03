@@ -4,12 +4,7 @@ import { queryKey } from '@/enums/queryKey'
 import { BasicProductType } from '@/features/basicProducts/api/types'
 import { useSrmServiceStore } from '@/store/crmServises'
 
-export const useRemoveBasicProduct = (): UseMutateAsyncFunction<
-  BasicProductType,
-  unknown,
-  string,
-  unknown
-> => {
+export const useRemoveBasicProduct: UseRemoveBasicProductType = () => {
   const basicProductsService = useSrmServiceStore(state => state.basicProductsService)
 
   const queryClient = useQueryClient()
@@ -22,3 +17,6 @@ export const useRemoveBasicProduct = (): UseMutateAsyncFunction<
 
   return mutateAsync
 }
+
+type UseRemoveBasicProductType = () => RemoveBasicProductFnType
+type RemoveBasicProductFnType = UseMutateAsyncFunction<BasicProductType, unknown, string>

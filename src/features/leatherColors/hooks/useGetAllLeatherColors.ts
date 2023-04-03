@@ -1,24 +1,25 @@
-import { useQuery } from 'react-query'
+import { useQuery, UseQueryOptions } from 'react-query'
 
 import { queryKey } from '@/enums/queryKey'
 import { LeatherColorType } from '@/features/leatherColors/api/types'
 import { useSrmServiceStore } from '@/store/crmServises'
 
-export const useGetAllLeatherColors: useGetAllLeatherColorsType = (filter, enabled = true) => {
+export const useGetAllLeatherColors: UseGetAllLeatherColorsType = (filter, options) => {
   const leatherColorsService = useSrmServiceStore(state => state.leatherColorsService)
 
   const { data } = useQuery(
     filter ? [queryKey.GET_ALL_COLORS, filter] : queryKey.GET_ALL_COLORS,
     () => leatherColorsService.getAll(filter),
-    {
-      enabled,
-    }
+    options
   )
 
   return data || []
 }
 
-type useGetAllLeatherColorsType = (
+type UseGetAllLeatherColorsType = (
   filter?: string[],
-  enabled?: boolean
+  options?: Omit<
+    UseQueryOptions<Pick<LeatherColorType, '_id' | 'title' | 'photo'>[]>,
+    'queryKey' | 'queryFn'
+  >
 ) => Pick<LeatherColorType, '_id' | 'title' | 'photo'>[]

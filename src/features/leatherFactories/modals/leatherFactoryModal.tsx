@@ -12,7 +12,7 @@ type PropsType = {
 }
 
 export const LeatherFactoryModal: FC<PropsType> = ({ isOpen, closeModal, id }) => {
-  const factory = useGetLeatherFactory(id, isOpen)
+  const factory = useGetLeatherFactory(id, { enabled: isOpen })
   const removeFactory = useRemoveLeatherFactory()
 
   const onDeleteConfirm = async (): Promise<void> => {

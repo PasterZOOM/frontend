@@ -13,7 +13,7 @@ type PropsType = {
 
 export const LeatherColorModal: FC<PropsType> = ({ isOpen, closeModal, id }) => {
   const removeColor = useRemoveLeatherColor()
-  const color = useGetLeatherColor(id, isOpen)
+  const color = useGetLeatherColor(id, { enabled: isOpen })
 
   const onDeleteConfirm = async (): Promise<void> => {
     await removeColor(id)

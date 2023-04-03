@@ -1,18 +1,10 @@
-import { useMutation, useQueryClient } from 'react-query'
+import { UseMutateAsyncFunction, useMutation, useQueryClient } from 'react-query'
 
 import { queryKey } from '@/enums/queryKey'
 import { BasicProductType, UpdateBasicProductParamsType } from '@/features/basicProducts/api/types'
 import { useSrmServiceStore } from '@/store/crmServises'
 
-export const useUpdateBasicProduct = (
-  _id: string
-): {
-  updateBasicProduct: (params: Partial<UpdateBasicProductParamsType>) => Promise<BasicProductType>
-  updateBasicProductName: (title: string) => Promise<void>
-  updateBasicProductDescription: (description: string) => Promise<void>
-  updateBasicProductSize: (size: string) => Promise<void>
-  updateBasicProductCost: (cost: string) => Promise<void>
-} => {
+export const useUpdateBasicProduct: UseUpdateBasicProductType = _id => {
   const basicProductsService = useSrmServiceStore(state => state.basicProductsService)
 
   const queryClient = useQueryClient()
@@ -23,30 +15,45 @@ export const useUpdateBasicProduct = (
       await queryClient.invalidateQueries([queryKey.GET_ALL_BASIC_PRODUCTS])
     },
   })
-  const updateBasicProduct = async (
-    params: Partial<UpdateBasicProductParamsType>
-  ): Promise<BasicProductType> => {
+  const updateBasicProduct: UpdateBasicProductFnType = async params => {
     return mutateAsync({ _id, params })
   }
 
-  const updateBasicProductName = async (title: string): Promise<void> => {
+  const updateBasicProductTitle: UpdateBasicProductTitleFnType = async title => {
     await updateBasicProduct({ title })
   }
-  const updateBasicProductDescription = async (description: string): Promise<void> => {
+  const updateBasicProductDescription: updateBasicProductDescriptionFnType = async description => {
     await updateBasicProduct({ description })
   }
-  const updateBasicProductSize = async (size: string): Promise<void> => {
+  const updateBasicProductSize: updateBasicProductSizeFnType = async size => {
     await updateBasicProduct({ size })
   }
-  const updateBasicProductCost = async (cost: string): Promise<void> => {
+  const updateBasicProductCost: updateBasicProductCostFnType = async cost => {
     await updateBasicProduct({ cost: +cost })
   }
 
   return {
     updateBasicProduct,
-    updateBasicProductName,
+    updateBasicProductTitle,
     updateBasicProductDescription,
     updateBasicProductSize,
     updateBasicProductCost,
   }
 }
+
+type UseUpdateBasicProductType = (_id: string) => {
+  updateBasicProduct: UpdateBasicProductFnType
+  updateBasicProductTitle: UpdateBasicProductTitleFnType
+  updateBasicProductDescription: updateBasicProductDescriptionFnType
+  updateBasicProductSize: updateBasicProductSizeFnType
+  updateBasicProductCost: updateBasicProductCostFnType
+}
+type UpdateBasicProductFnType = UseMutateAsyncFunction<
+  BasicProductType,
+  unknown,
+  Partial<UpdateBasicProductParamsType>
+>
+type UpdateBasicProductTitleFnType = (title: string) => Promise<void>
+type updateBasicProductDescriptionFnType = (description: string) => Promise<void>
+type updateBasicProductSizeFnType = (size: string) => Promise<void>
+type updateBasicProductCostFnType = (cost: string) => Promise<void>

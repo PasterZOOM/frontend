@@ -11,14 +11,10 @@ import { ECreateLeatherArticleParams } from '@/features/leatherArticles/enums/pa
 import { CreateLeatherArticleFormType } from '@/features/leatherArticles/forms/type'
 import { useCreateLeatherArticle } from '@/features/leatherArticles/hooks/useCreateLeatherArticle'
 import { LeatherArticleCreateConfirmModalBody } from '@/features/leatherArticles/modals/confirm/leatherArticleCreateConfirmModalBody'
-import { useGetAllLeatherFactories } from '@/features/leatherFactories/hooks/useGetAllLeatherFactories'
+import { useGetAllLeatherFactoriesForSelect } from '@/features/leatherFactories/hooks/useGetAllLeatherFactoriesForSelect'
 
 export const CreateLeatherArticleForm: FC = () => {
-  const factories = useGetAllLeatherFactories().map(({ title, _id }) => ({
-    _id,
-    title,
-    value: title,
-  }))
+  const factories = useGetAllLeatherFactoriesForSelect()
   const createArticle = useCreateLeatherArticle()
 
   const initialValues: CreateLeatherArticleFormType = {

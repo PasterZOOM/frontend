@@ -4,7 +4,7 @@ import { ETheme } from '@/enums/theme'
 import { ThemeType } from '@/objects/theme/themes'
 import { useUserSettings } from '@/store/useUserSettings'
 
-export const useSwitchTheme = (activeTheme: ThemeType): void => {
+export const useSwitchTheme: UseSwitchThemeType = activeTheme => {
   const theme = useUserSettings(state => state.theme)
   const setTheme = useUserSettings(state => state.setTheme)
 
@@ -23,3 +23,5 @@ export const useSwitchTheme = (activeTheme: ThemeType): void => {
     }
   }, [theme])
 }
+
+type UseSwitchThemeType = (activeTheme: ThemeType) => void

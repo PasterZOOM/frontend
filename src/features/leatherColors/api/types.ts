@@ -2,7 +2,7 @@ import { ELeatherColor } from '@/enums/materials'
 
 export type LeatherColorType = {
   _id: string
-  article: { _id: string; name: string }
+  article: { _id: string; title: string }
   code: string
   photo: string
   title: string
