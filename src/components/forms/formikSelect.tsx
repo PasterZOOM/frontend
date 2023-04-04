@@ -24,6 +24,6 @@ export type SelectItemType<T = string> = { _id: string; title: string; value: T 
 type PropsType = {
   name: string
   className?: string
-  items: SelectItemType[]
+  items: SelectItemType<string | string[]>[]
   multiple?: boolean
 }

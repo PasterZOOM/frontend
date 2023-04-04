@@ -30,22 +30,22 @@ const CreateBasicProductForm: FC = () => {
   const createBasicProduct = useCreateBasicProduct()
 
   const initialValues: CreateBasicProductFormType = {
-    [ECreateBasicProductParams.LEATHER_ARTICLE]: '',
-    [ECreateBasicProductParams.DESCRIPTION]: '',
-    [ECreateBasicProductParams.TITLE]: '',
-    [ECreateBasicProductParams.COST]: '',
+    [ECreateBasicProductParams.ASSIGNMENTS]: [],
     [ECreateBasicProductParams.CATEGORY]: EProductCategory.CARD_HOLDER,
+    [ECreateBasicProductParams.COST]: 0,
     [ECreateBasicProductParams.COST_CURRENCY]: ECost.USD,
+    [ECreateBasicProductParams.DESCRIPTION]: '',
+    [ECreateBasicProductParams.LEATHER_ARTICLE]: '',
     [ECreateBasicProductParams.PUNCH_PITCH]: EPunchPitch.LITTLE,
     [ECreateBasicProductParams.SIZE]: '',
-    [ECreateBasicProductParams.ASSIGNMENTS]: '',
+    [ECreateBasicProductParams.TITLE]: '',
   }
 
   const onSubmit = async (
-    { leather, cost, ...params }: CreateBasicProductFormType,
+    { leather, ...params }: CreateBasicProductFormType,
     { resetForm }: FormikHelpers<CreateBasicProductFormType>
   ): Promise<void> => {
-    await createBasicProduct({ leather: leather || articles[0]?._id, cost: +cost, ...params })
+    await createBasicProduct({ leather: leather || articles[0]?._id, ...params })
 
     resetForm()
   }

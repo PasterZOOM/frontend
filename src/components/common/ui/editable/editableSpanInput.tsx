@@ -1,4 +1,4 @@
-import { ChangeEvent, KeyboardEvent, FC, useState } from 'react'
+import { ChangeEvent, FC, KeyboardEvent, useEffect, useState } from 'react'
 
 import { DefaultInputPropsType } from '@/components/common/ui/inputs/defaultInputType'
 
@@ -45,15 +45,23 @@ export const EditableSpanInput: FC<PropsType> = ({
     setValue(e.currentTarget.value)
   }
 
+  useEffect(() => {
+    if (editeMode) {
+      const input = document.getElementById('editableInput')
+
+      input?.focus()
+    }
+  }, [editeMode])
+
   return editeMode ? (
     <input
+      id="editableInput"
       className="w-full"
       type={type}
       value={value}
       onChange={onChangeValueHandler}
       onBlur={disableEditMode}
       onKeyDown={onKeyDownHandler}
-      autoFocus
     />
   ) : (
     <div className={className || ''} onDoubleClick={enableEditMode} aria-hidden="true">
