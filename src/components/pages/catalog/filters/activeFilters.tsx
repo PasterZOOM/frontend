@@ -41,14 +41,17 @@ const ActiveFilters: FC<PropsType> = ({ className = '' }) => {
   useEffect(() => {
     let newFilters: GeneralFilterType[] = []
 
-    Object.entries(filtersInStore).forEach(([filterKey, filterValue]) => {
-      const temp = filterValue
-        .split(',')
-        .map(filter => filters[filterKey as EFilterKeys][filter])
-        .filter(filter => !!filter)
+    const filtersArray = Object.entries(filtersInStore) as [EFilterKeys, string][]
 
-      newFilters = [...newFilters, ...temp] as GeneralFilterType[]
+    filtersArray.forEach(([filterKey, filterValue]) => {
+      const temp: GeneralFilterType[] = filterValue
+        .split(',')
+        .map(filter => ({ ...filters[filterKey][filter], filterKey }))
+        .filter(filter => !!filter.value)
+
+      newFilters = [...newFilters, ...temp]
     })
+
     setActiveFilters(newFilters)
   }, [filtersInStore])
 
@@ -59,7 +62,7 @@ const ActiveFilters: FC<PropsType> = ({ className = '' }) => {
           type="button"
           className="h-fit rounded-full border border-anthracite-gray px-2 dark:border-light-gray"
           key={activeFilter._id}
-          onClick={() => removeQueryParam(activeFilter.filterKey!, activeFilter.value)}
+          onClick={() => removeQueryParam(activeFilter.filterKey, activeFilter.value)}
         >
           {activeFilter.title}
         </button>

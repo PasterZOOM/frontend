@@ -52,6 +52,7 @@ const Catalog: FC<PropsType> = ({ rates, articles, basicProducts }) => {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
+  // TODO: добавить в запрос за изелиями фильтра
   const currencyService = new CurrencyService()
   const leatherArticlesService = new LeatherArticlesService()
   const basicProductsService = new BasicProductsService()

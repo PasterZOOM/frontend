@@ -5,7 +5,7 @@ export type FilterType<T, K extends EFilterKeys> = {
   _id: string
   value: T
   title: string
-  filterKey?: K
+  filterKey: K
 }
 
 export type GeneralFilterType = FilterType<
