@@ -5,7 +5,6 @@ import { EFilterKeys } from '@/mocks/filters'
 type FilterStateType = {
   filters: Record<EFilterKeys, string>
 }
-
 const initialState: FilterStateType = {
   filters: {
     assignments: '',

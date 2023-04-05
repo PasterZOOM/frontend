@@ -1,12 +1,16 @@
+import { useRouter } from 'next/router'
 import { useQuery, UseQueryOptions } from 'react-query'
 
 import { queryKey } from '@/enums/queryKey'
 import { BasicProductType } from '@/features/basicProducts/api/types'
 import { useSrmServiceStore } from '@/store/crmServises'
-import { useBasicProductsFilterStore } from '@/store/useBasicProductsFilterStore'
+import { getQueryFilters } from '@/utils/filters/getQueryFilters'
 
 export const useGetAllBasicProducts: UseGetAllBasicProductsType = options => {
-  const filters = useBasicProductsFilterStore(state => state.filters)
+  // const filters = useBasicProductsFilterStore(state => state.filters)
+  const { query } = useRouter()
+
+  const filters = getQueryFilters(query)
 
   const basicProductsService = useSrmServiceStore(state => state.basicProductsService)
 

@@ -7,6 +7,7 @@ import { useBasicProductsFilterStore } from '@/store/useBasicProductsFilterStore
 
 export const useChangeFilterParams: UseChangeFilterParamsType = filterKey => {
   const { query } = useRouter()
+
   const setFilter = useBasicProductsFilterStore(state => state.setFilter)
   const filter = useBasicProductsFilterStore(state => state.filters[filterKey])
 

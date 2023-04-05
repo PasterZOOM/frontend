@@ -1,13 +1,12 @@
 import { FC, useEffect, useState } from 'react'
 
-import { GetStaticProps } from 'next'
+import { GetServerSideProps } from 'next'
 
 import { CurrencyService } from '@/api/currency/currencyApi'
 import { MainContainer } from '@/components/common/containers/mainContainer'
 import FilterButtons from '@/components/common/ui/buttons/filterButtons'
 import { CatalogFilters } from '@/components/pages/catalog/filters/catalogFilters'
 import Products from '@/components/pages/catalog/products'
-import { TWELVE_HOURS } from '@/constants/date/time'
 import { ECost, TCost } from '@/enums/cost'
 import { BasicProductsService } from '@/features/basicProducts/api/basicProductsService'
 import { BasicProductType } from '@/features/basicProducts/api/types'
@@ -17,6 +16,7 @@ import { LeatherArticleType } from '@/features/leatherArticles/api/types'
 import { useGetAllLeatherArticles } from '@/features/leatherArticles/hooks/useGetAllLeatherArticles'
 import { initialCurrencyState, useCurrencyStore } from '@/store/useCurrencyStore'
 import { CostType } from '@/types/costType'
+import { getQueryFilters } from '@/utils/filters/getQueryFilters'
 
 type PropsType = {
   rates: CostType
@@ -27,7 +27,6 @@ type PropsType = {
 const Catalog: FC<PropsType> = ({ rates, articles, basicProducts }) => {
   useGetAllLeatherArticles({ initialData: articles })
   useGetAllBasicProducts({ initialData: basicProducts })
-
   const setActualRates = useCurrencyStore(store => store.setActualRates)
   const [isOpenFilters, setIsOpenFilters] = useState(false)
 
@@ -51,11 +50,10 @@ const Catalog: FC<PropsType> = ({ rates, articles, basicProducts }) => {
   )
 }
 
-export const getStaticProps: GetStaticProps = async () => {
-  // TODO: добавить в запрос за изелиями фильтра
+/* export const getStaticProps: GetStaticProps = async () => {
+  const basicProductsService = new BasicProductsService()
   const currencyService = new CurrencyService()
   const leatherArticlesService = new LeatherArticlesService()
-  const basicProductsService = new BasicProductsService()
 
   const rates: CostType = initialCurrencyState
 
@@ -70,8 +68,32 @@ export const getStaticProps: GetStaticProps = async () => {
   )
 
   const articles = await leatherArticlesService.getAll()
-  const basicProducts = await basicProductsService.getAll() // TODO: попробовать вынести в getServerSiteProps
+  const basicProducts = await basicProductsService.getAll(filters)
 
-  return { props: { rates, articles, basicProducts }, revalidate: TWELVE_HOURS }
+  return { props: { basicProducts, rates, articles }, revalidate: TWELVE_HOURS }
+} */
+
+export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+  const basicProductsService = new BasicProductsService()
+  const currencyService = new CurrencyService()
+  const leatherArticlesService = new LeatherArticlesService()
+
+  const rates: CostType = initialCurrencyState
+  const filters = getQueryFilters(query)
+
+  await Promise.all(
+    Object.keys(ECost)
+      .filter(costKey => costKey !== ECost.BYN)
+      .map(async costKey => {
+        const rate = await currencyService.getRate(costKey as TCost)
+
+        rates[costKey as ECost] = +(rate.Cur_Scale / rate.Cur_OfficialRate)
+      })
+  )
+
+  const basicProducts = await basicProductsService.getAll(filters)
+  const articles = await leatherArticlesService.getAll()
+
+  return { props: { basicProducts, rates, articles } }
 }
 export default Catalog
