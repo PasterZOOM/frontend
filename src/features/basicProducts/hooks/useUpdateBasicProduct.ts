@@ -19,41 +19,13 @@ export const useUpdateBasicProduct: UseUpdateBasicProductType = _id => {
     return mutateAsync({ _id, params })
   }
 
-  const updateBasicProductTitle: UpdateBasicProductTitleFnType = async title => {
-    await updateBasicProduct({ title })
-  }
-  const updateBasicProductDescription: updateBasicProductDescriptionFnType = async description => {
-    await updateBasicProduct({ description })
-  }
-  const updateBasicProductSize: updateBasicProductSizeFnType = async size => {
-    await updateBasicProduct({ size })
-  }
-  const updateBasicProductCost: updateBasicProductCostFnType = async cost => {
-    await updateBasicProduct({ cost: +cost })
-  }
-
-  return {
-    updateBasicProduct,
-    updateBasicProductTitle,
-    updateBasicProductDescription,
-    updateBasicProductSize,
-    updateBasicProductCost,
-  }
+  return updateBasicProduct
 }
 
-type UseUpdateBasicProductType = (_id: string) => {
-  updateBasicProduct: UpdateBasicProductFnType
-  updateBasicProductTitle: UpdateBasicProductTitleFnType
-  updateBasicProductDescription: updateBasicProductDescriptionFnType
-  updateBasicProductSize: updateBasicProductSizeFnType
-  updateBasicProductCost: updateBasicProductCostFnType
-}
+type UseUpdateBasicProductType = (_id: string) => UpdateBasicProductFnType
+
 type UpdateBasicProductFnType = UseMutateAsyncFunction<
   BasicProductType,
   unknown,
   Partial<UpdateBasicProductParamsType>
 >
-type UpdateBasicProductTitleFnType = (title: string) => Promise<void>
-type updateBasicProductDescriptionFnType = (description: string) => Promise<void>
-type updateBasicProductSizeFnType = (size: string) => Promise<void>
-type updateBasicProductCostFnType = (cost: string) => Promise<void>

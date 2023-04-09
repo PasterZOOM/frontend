@@ -1,62 +1,36 @@
-import { ChangeEvent, FC, KeyboardEvent, useEffect, useState } from 'react'
+import { FC } from 'react'
 
+import { EditButton } from '@/components/common/ui/editable/editButton'
 import { DefaultInputPropsType } from '@/components/common/ui/inputs/defaultInputType'
+import { useEditableSpan } from '@/hooks/useEditableSpan'
 
-type PropsType = {
+type PropsType<T = string> = {
   className?: string
-  children: string
-  onChange: (value: string) => void
+  children: T
+  onChange: (value: T) => void
   inputProps?: DefaultInputPropsType
 }
+const elementId = 'editableInput'
 
-export const EditableSpanInput: FC<PropsType> = ({
+export const EditableSpanInput: FC<PropsType> = <T extends string | string[]>({
   className,
   children,
   onChange,
   inputProps: { type } = {},
-}) => {
-  const [editeMode, setEditeMode] = useState(false)
-  const [value, setValue] = useState(children)
-
-  const enableEditMode = (): void => setEditeMode(true)
-
-  const disableEditMode = (): void => setEditeMode(false)
-
-  const sendValue = (): void => {
-    onChange(value)
-    disableEditMode()
-  }
-  const cancelChange = (): void => {
-    setValue(children)
-    disableEditMode()
-  }
-
-  const onKeyDownHandler = (e: KeyboardEvent<HTMLInputElement>): void => {
-    if (e.key === 'Enter') {
-      sendValue()
-    }
-    if (e.key === 'Escape') {
-      cancelChange()
-      e.stopPropagation()
-    }
-  }
-
-  const onChangeValueHandler = (e: ChangeEvent<HTMLInputElement>): void => {
-    setValue(e.currentTarget.value)
-  }
-
-  useEffect(() => {
-    if (editeMode) {
-      const input = document.getElementById('editableInput')
-
-      input?.focus()
-    }
-  }, [editeMode])
+}: PropsType<T>) => {
+  const {
+    value,
+    editeMode,
+    enableEditMode,
+    disableEditMode,
+    onChangeValueHandler,
+    onKeyDownHandler,
+  } = useEditableSpan(children, elementId, onChange)
 
   return editeMode ? (
     <input
-      id="editableInput"
-      className="w-full"
+      id={elementId}
+      className="w-full px-1"
       type={type}
       value={value}
       onChange={onChangeValueHandler}
@@ -64,8 +38,8 @@ export const EditableSpanInput: FC<PropsType> = ({
       onKeyDown={onKeyDownHandler}
     />
   ) : (
-    <div className={className || ''} onDoubleClick={enableEditMode} aria-hidden="true">
-      {children || 'нет данных'} <span className="text-blue-500">(ред.)</span>
-    </div>
+    <EditButton enableEditMode={enableEditMode} className={className}>
+      {Array.isArray(children) ? children.map(el => el) : children}
+    </EditButton>
   )
 }

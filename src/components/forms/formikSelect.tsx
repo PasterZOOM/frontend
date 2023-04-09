@@ -2,6 +2,13 @@ import { FC } from 'react'
 
 import { Field } from 'formik'
 
+type PropsType = {
+  name: string
+  className?: string
+  items: SelectItemType<string | string[]>[]
+  multiple?: boolean
+}
+
 export const FormikSelect: FC<PropsType> = ({ name, className, items, multiple }) => {
   return (
     <Field
@@ -21,9 +28,3 @@ export const FormikSelect: FC<PropsType> = ({ name, className, items, multiple }
 }
 
 export type SelectItemType<T = string> = { _id: string; title: string; value: T }
-type PropsType = {
-  name: string
-  className?: string
-  items: SelectItemType<string | string[]>[]
-  multiple?: boolean
-}

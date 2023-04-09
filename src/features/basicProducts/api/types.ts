@@ -18,6 +18,7 @@ export type BasicProductType = {
 }
 
 export type CreateBasicProductParamsType = {
+  assignments: EProductAssignment[]
   category: EProductCategory
   cost: number
   costCurrency: ECost

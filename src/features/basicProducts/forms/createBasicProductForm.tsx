@@ -83,7 +83,7 @@ const CreateBasicProductForm: FC = () => {
             </FieldWrapper>
 
             <FieldWrapper name={ECreateBasicProductParams.PUNCH_PITCH} title="Шаг пробойника:">
-              {name => <FormikSelect name={name} items={punchPatchForSelect} />}
+              {name => <FormikSelect name={name} items={Object.values(punchPatchForSelect)} />}
             </FieldWrapper>
 
             <FieldWrapper name={ECreateBasicProductParams.SIZE} title="Размер:">

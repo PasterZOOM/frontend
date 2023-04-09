@@ -1,5 +1,7 @@
 import { FC, useEffect, useRef, useState } from 'react'
 
+import { SelectItemType } from '@/components/forms/formikSelect'
+
 type ClassesType = {
   activeItemClassName?: string
   dropClassName?: string
@@ -15,7 +17,7 @@ type PropsType<T> = {
   elementToLabel: FC<T>
 }
 
-export const Select: FC<PropsType<{ id: string; title: string } & any>> = ({
+export const Select = <T,>({
   items = [],
   activeItem,
   setActiveItem,
@@ -26,7 +28,7 @@ export const Select: FC<PropsType<{ id: string; title: string } & any>> = ({
   },
   className = '',
   elementToLabel,
-}) => {
+}: PropsType<SelectItemType<T>>): JSX.Element => {
   const dropdownRef = useRef<HTMLDivElement | null>(null)
 
   const [isOpen, setIsOpen] = useState(false)
