@@ -69,13 +69,11 @@ export const ModalOverlay: FC<PropsType> = ({
     <>
       {ReactDOM.createPortal(
         <div
-          role="button"
-          onKeyDown={() => {}}
-          tabIndex={0}
+          aria-hidden="true"
           id="modal"
           ref={containerRef}
           onClick={e => handleClick(e)}
-          className="fixed inset-0 z-50 flex h-screen items-center justify-center overflow-y-auto bg-black bg-opacity-50"
+          className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-black bg-opacity-50"
         >
           {children}
         </div>,

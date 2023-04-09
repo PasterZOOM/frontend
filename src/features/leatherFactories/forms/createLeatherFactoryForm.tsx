@@ -11,10 +11,10 @@ import { ECreateLeatherFactoryParams } from '@/features/leatherFactories/enums/p
 import { CreateLeatherFactoryFormType } from '@/features/leatherFactories/forms/type'
 import { useCreateLeatherFactory } from '@/features/leatherFactories/hooks/useCreateLeatherFactory'
 import { LeatherFactoryCreatConfirmModalBody } from '@/features/leatherFactories/modals/confirm/leatherFactoryCreatConfirmModalBody'
-import { countryValues } from '@/objects/countries/countryValues'
+import { countriesArray } from '@/objects/countries/countryValues'
 
 const initialValues: CreateLeatherFactoryFormType = {
-  country: countryValues[0].value,
+  country: countriesArray[0].value,
   description: '',
   title: '',
 }
@@ -45,7 +45,7 @@ export const CreateLeatherFactoryForm: FC = () => {
               name={ECreateLeatherFactoryParams.COUNTRY}
               title="Страна в которой расположена фабрика:"
             >
-              {name => <FormikSelect name={name} items={countryValues} />}
+              {name => <FormikSelect name={name} items={countriesArray} />}
             </FieldWrapper>
 
             <FieldWrapper name={ECreateLeatherFactoryParams.DESCRIPTION} title="Описание:">

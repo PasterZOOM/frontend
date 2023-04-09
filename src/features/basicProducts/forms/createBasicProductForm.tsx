@@ -15,10 +15,10 @@ import { CreateBasicProductFormType } from '@/features/basicProducts/forms/type'
 import { useCreateBasicProduct } from '@/features/basicProducts/hooks/useCreateBasicProduct'
 import { BasicProductCreatConfirmModalBody } from '@/features/basicProducts/modals/confirm/basicProductCreatConfirmModalBody'
 import { useGetAllLeatherArticles } from '@/features/leatherArticles/hooks/useGetAllLeatherArticles'
-import { currencyForSelect } from '@/objects/currency/currency'
-import { punchPatchForSelect } from '@/objects/materials/punchPatch'
-import { productAssignments } from '@/objects/products/productAssignments'
-import { productCategories } from '@/objects/products/productCategories'
+import { currencyArray } from '@/objects/currency/currency'
+import { punchPatchesArray } from '@/objects/materials/punchPatch'
+import { productAssignmentsArray } from '@/objects/products/productAssignments'
+import { productCategoriesArray } from '@/objects/products/productCategories'
 
 const CreateBasicProductForm: FC = () => {
   const articles: SelectItemType[] = useGetAllLeatherArticles().map(({ _id, title }) => ({
@@ -69,21 +69,19 @@ const CreateBasicProductForm: FC = () => {
             </FieldWrapper>
 
             <FieldWrapper name={ECreateBasicProductParams.COST_CURRENCY} title="Валюта:">
-              {name => <FormikSelect name={name} items={currencyForSelect} />}
+              {name => <FormikSelect name={name} items={currencyArray} />}
             </FieldWrapper>
 
             <FieldWrapper name={ECreateBasicProductParams.CATEGORY} title="Категория:">
-              {name => <FormikSelect name={name} items={Object.values(productCategories)} />}
+              {name => <FormikSelect name={name} items={productCategoriesArray} />}
             </FieldWrapper>
 
             <FieldWrapper name={ECreateBasicProductParams.ASSIGNMENTS} title="Назначения:">
-              {name => (
-                <FormikSelect name={name} items={Object.values(productAssignments)} multiple />
-              )}
+              {name => <FormikSelect name={name} items={productAssignmentsArray} multiple />}
             </FieldWrapper>
 
             <FieldWrapper name={ECreateBasicProductParams.PUNCH_PITCH} title="Шаг пробойника:">
-              {name => <FormikSelect name={name} items={Object.values(punchPatchForSelect)} />}
+              {name => <FormikSelect name={name} items={punchPatchesArray} />}
             </FieldWrapper>
 
             <FieldWrapper name={ECreateBasicProductParams.SIZE} title="Размер:">

@@ -1,4 +1,4 @@
-import { useMutation, useQueryClient } from 'react-query'
+import { UseMutateAsyncFunction, useMutation, useQueryClient } from 'react-query'
 
 import { queryKey } from '@/enums/queryKey'
 import {
@@ -19,32 +19,9 @@ export const useUpdateLeatherArticle: UseUpdateLeatherArticleType = _id => {
     },
   })
 
-  const updateLeatherArticle: UpdateLeatherArticleFnType = async params => {
-    return mutateAsync({ _id, params })
-  }
-
-  const updateLeatherArticleTitle: UpdateLeatherArticleTitleFnType = async title => {
-    await updateLeatherArticle({ title })
-  }
-  const updateLeatherArticleDescription: UpdateLeatherArticleDescriptionFnType =
-    async description => {
-      await updateLeatherArticle({ description })
-    }
-
-  return {
-    updateLeatherArticle,
-    updateLeatherArticleTitle,
-    updateLeatherArticleDescription,
-  }
+  return params => mutateAsync({ _id, params })
 }
 
-type UseUpdateLeatherArticleType = (_id: string) => {
-  updateLeatherArticle: UpdateLeatherArticleFnType
-  updateLeatherArticleTitle: UpdateLeatherArticleTitleFnType
-  updateLeatherArticleDescription: UpdateLeatherArticleDescriptionFnType
-}
-type UpdateLeatherArticleFnType = (
-  params: Partial<UpdateLeatherArticleParamsType>
-) => Promise<LeatherArticleType>
-type UpdateLeatherArticleTitleFnType = (title: string) => Promise<void>
-type UpdateLeatherArticleDescriptionFnType = (description: string) => Promise<void>
+type UseUpdateLeatherArticleType = (
+  _id: string
+) => UseMutateAsyncFunction<LeatherArticleType, unknown, Partial<UpdateLeatherArticleParamsType>>

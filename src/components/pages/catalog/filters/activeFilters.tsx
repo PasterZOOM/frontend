@@ -6,7 +6,7 @@ import { useGetAllLeatherArticles } from '@/features/leatherArticles/hooks/useGe
 import { useClearAllQueryParams } from '@/hooks/queryParams/useClearAllQueryParams'
 import { useRemoveMultipleQueryParam } from '@/hooks/queryParams/useRemoveMultipleQueryParam'
 import { EFilterKeys, GeneralFilterType } from '@/mocks/filters'
-import { leatherColorValues } from '@/objects/colors/leatherColorValues'
+import { leatherColorsValues } from '@/objects/colors/leatherColorsValues'
 import { productAssignments } from '@/objects/products/productAssignments'
 import { productCategories } from '@/objects/products/productCategories'
 import { useBasicProductsFilterStore } from '@/store/useBasicProductsFilterStore'
@@ -35,7 +35,7 @@ const ActiveFilters: FC<PropsType> = ({ className = '' }) => {
     [EFilterKeys.ASSIGNMENTS]: productAssignments,
     [EFilterKeys.CATEGORIES]: productCategories,
     [EFilterKeys.LEATHERS]: articles,
-    [EFilterKeys.LEATHER_COLORS]: leatherColorValues,
+    [EFilterKeys.LEATHER_COLORS]: leatherColorsValues,
   }
 
   useEffect(() => {

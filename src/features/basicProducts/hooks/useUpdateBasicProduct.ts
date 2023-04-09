@@ -15,17 +15,10 @@ export const useUpdateBasicProduct: UseUpdateBasicProductType = _id => {
       await queryClient.invalidateQueries([queryKey.GET_ALL_BASIC_PRODUCTS])
     },
   })
-  const updateBasicProduct: UpdateBasicProductFnType = async params => {
-    return mutateAsync({ _id, params })
-  }
 
-  return updateBasicProduct
+  return params => mutateAsync({ _id, params })
 }
 
-type UseUpdateBasicProductType = (_id: string) => UpdateBasicProductFnType
-
-type UpdateBasicProductFnType = UseMutateAsyncFunction<
-  BasicProductType,
-  unknown,
-  Partial<UpdateBasicProductParamsType>
->
+type UseUpdateBasicProductType = (
+  _id: string
+) => UseMutateAsyncFunction<BasicProductType, unknown, Partial<UpdateBasicProductParamsType>>

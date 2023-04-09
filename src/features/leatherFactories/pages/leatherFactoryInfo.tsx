@@ -2,12 +2,16 @@ import { FC } from 'react'
 
 import { RemoveButton } from '@/components/common/ui/buttons/removeButton'
 import { EditableSpanInput } from '@/components/common/ui/editable/editableSpanInput'
+import { EditableSpanSelect } from '@/components/common/ui/editable/editableSpanSelect'
 import { PropertyWithUnderline } from '@/components/common/ui/properties/propertyWithUnderline'
+import { TableItem } from '@/components/common/ui/tabel/tableItem'
 import { PropertyPreviewWrapper } from '@/components/common/wrappers/propertyPreviewWrapper'
+// eslint-disable-next-line import/no-cycle
+import { LeatherArticleModal } from '@/features/leatherArticles/modals/leatherArticleModal'
 import { LeatherFactoryType } from '@/features/leatherFactories/api/types'
 import { useUpdateLeatherFactory } from '@/features/leatherFactories/hooks/useUpdateLeatherFactory'
 import { LeatherFactoryRemoveConfirmModalBody } from '@/features/leatherFactories/modals/confirm/leatherFactoryRemoveConfirmModalBody'
-import { countriesName } from '@/objects/countries/countriesName'
+import { countriesArray, countryValues } from '@/objects/countries/countryValues'
 
 type PropsType = {
   className?: string
@@ -16,9 +20,7 @@ type PropsType = {
 }
 
 export const LeatherFactoryInfo: FC<PropsType> = ({ className, factory, onDeleteConfirm }) => {
-  const { updateLeatherFactoryTitle, updateLeatherFactoryDescription } = useUpdateLeatherFactory(
-    factory._id
-  )
+  const updateLeatherFactory = useUpdateLeatherFactory(factory._id)
 
   return (
     <div className={`${className ?? ''} flex w-full flex-col justify-between`}>
@@ -29,26 +31,38 @@ export const LeatherFactoryInfo: FC<PropsType> = ({ className, factory, onDelete
           </PropertyWithUnderline>
 
           <PropertyWithUnderline title="Название фабрики:">
-            <EditableSpanInput onChange={updateLeatherFactoryTitle}>
+            <EditableSpanInput onChange={title => updateLeatherFactory({ title })}>
               {factory.title}
             </EditableSpanInput>
           </PropertyWithUnderline>
 
           <PropertyWithUnderline title="Страна:">
-            {countriesName[factory.country]}
+            <EditableSpanSelect
+              title={countryValues[factory.country].title}
+              initialValue={factory.country}
+              onChange={country => updateLeatherFactory({ country })}
+            >
+              {countriesArray.map(country => (
+                <option key={country._id} value={country.value}>
+                  {country.title}
+                </option>
+              ))}
+            </EditableSpanSelect>
           </PropertyWithUnderline>
 
           <PropertyPreviewWrapper title="Описание:" childrenClassName="ml-5">
-            <EditableSpanInput onChange={updateLeatherFactoryDescription}>
+            <EditableSpanInput onChange={description => updateLeatherFactory({ description })}>
               {factory.description}
             </EditableSpanInput>
           </PropertyPreviewWrapper>
         </div>
         <PropertyPreviewWrapper title="Артикулы:" wrapperClassName="mt-1" childrenClassName="ml-5">
           {factory.articles.map(article => (
-            <div key={article._id} className="w-fit">
-              {article.title}
-            </div>
+            <TableItem key={article._id} title={article.title}>
+              {({ closeModal, isOpen }) => (
+                <LeatherArticleModal closeModal={closeModal} isOpen={isOpen} id={article._id} />
+              )}
+            </TableItem>
           ))}
         </PropertyPreviewWrapper>
       </div>

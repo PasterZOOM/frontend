@@ -3,7 +3,7 @@ import { FC, useEffect, useState } from 'react'
 import { Select } from '@/components/common/ui/selects/select'
 import { SelectItemType } from '@/components/forms/formikSelect'
 import { ECost } from '@/enums/cost'
-import { currencies, currencyForSelect } from '@/objects/currency/currency'
+import { currencies, currencyArray } from '@/objects/currency/currency'
 import { useUserSettings } from '@/store/useUserSettings'
 
 const CurrencyElement: FC<SelectItemType<ECost>> = ({ title }) => <span>{title}</span>
@@ -24,7 +24,7 @@ export const CurrentCurrencySelect: FC = () => {
     <Select
       activeItem={activeCurrency}
       setActiveItem={setActiveCurrency}
-      items={currencyForSelect}
+      items={currencyArray}
       elementToLabel={CurrencyElement}
     />
   )

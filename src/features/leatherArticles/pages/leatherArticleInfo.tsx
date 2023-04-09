@@ -3,10 +3,14 @@ import { FC } from 'react'
 import { RemoveButton } from '@/components/common/ui/buttons/removeButton'
 import { EditableSpanInput } from '@/components/common/ui/editable/editableSpanInput'
 import { PropertyWithUnderline } from '@/components/common/ui/properties/propertyWithUnderline'
+import { TableItem } from '@/components/common/ui/tabel/tableItem'
 import { PropertyPreviewWrapper } from '@/components/common/wrappers/propertyPreviewWrapper'
 import { LeatherArticleType } from '@/features/leatherArticles/api/types'
 import { useUpdateLeatherArticle } from '@/features/leatherArticles/hooks/useUpdateLeatherArticle'
 import { LeatherArticleRemoveConfirmModalBody } from '@/features/leatherArticles/modals/confirm/leatherArticleRemoveConfirmModalBody'
+// eslint-disable-next-line import/no-cycle
+import { LeatherColorModal } from '@/features/leatherColors/modals/leatherColorModal'
+import { LeatherFactoryModal } from '@/features/leatherFactories/modals/leatherFactoryModal'
 
 type PropsType = {
   className?: string
@@ -15,9 +19,7 @@ type PropsType = {
 }
 
 export const LeatherArticleInfo: FC<PropsType> = ({ className, article, onDeleteConfirm }) => {
-  const { updateLeatherArticleTitle, updateLeatherArticleDescription } = useUpdateLeatherArticle(
-    article._id
-  )
+  const updateLeatherArticle = useUpdateLeatherArticle(article._id)
 
   return (
     <div className={`${className ?? ''} flex w-full flex-col justify-between`}>
@@ -28,17 +30,25 @@ export const LeatherArticleInfo: FC<PropsType> = ({ className, article, onDelete
           </PropertyWithUnderline>
 
           <PropertyWithUnderline title="Название артикула:">
-            <EditableSpanInput onChange={updateLeatherArticleTitle}>
+            <EditableSpanInput onChange={title => updateLeatherArticle({ title })}>
               {article.title}
             </EditableSpanInput>
           </PropertyWithUnderline>
 
           <PropertyWithUnderline title="Фабрика производитель:">
-            {article.factory.title}
+            <TableItem title={article.factory.title}>
+              {({ closeModal, isOpen }) => (
+                <LeatherFactoryModal
+                  closeModal={closeModal}
+                  isOpen={isOpen}
+                  id={article.factory._id}
+                />
+              )}
+            </TableItem>
           </PropertyWithUnderline>
 
           <PropertyPreviewWrapper title="Описание:" childrenClassName="ml-5">
-            <EditableSpanInput onChange={updateLeatherArticleDescription}>
+            <EditableSpanInput onChange={description => updateLeatherArticle({ description })}>
               {article.description}
             </EditableSpanInput>
           </PropertyPreviewWrapper>
@@ -46,9 +56,11 @@ export const LeatherArticleInfo: FC<PropsType> = ({ className, article, onDelete
 
         <PropertyPreviewWrapper title="Цвета:" wrapperClassName="mt-1" childrenClassName="ml-5">
           {article.colors.map(color => (
-            <div key={color._id} className="w-fit">
-              {color.title}
-            </div>
+            <TableItem key={color._id} title={color.title}>
+              {({ closeModal, isOpen }) => (
+                <LeatherColorModal closeModal={closeModal} isOpen={isOpen} id={color._id} />
+              )}
+            </TableItem>
           ))}
         </PropertyPreviewWrapper>
       </div>

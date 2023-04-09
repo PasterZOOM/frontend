@@ -1,4 +1,4 @@
-import { useMutation, useQueryClient } from 'react-query'
+import { UseMutateAsyncFunction, useMutation, useQueryClient } from 'react-query'
 
 import { queryKey } from '@/enums/queryKey'
 import {
@@ -19,34 +19,9 @@ export const useUpdateLeatherFactory: UseUpdateLeatherFactoryType = _id => {
     },
   })
 
-  const updateLeatherFactory = async (
-    params: Partial<UpdateLeatherFactoryParamsType>
-  ): Promise<LeatherFactoryType> => {
-    return mutateAsync({ _id, params })
-  }
-
-  const updateLeatherFactoryTitle: UpdateLeatherFactoryTitleFnType = async title => {
-    await updateLeatherFactory({ title })
-  }
-  const updateLeatherFactoryDescription: UpdateLeatherFactoryDescriptionFnType =
-    async description => {
-      await updateLeatherFactory({ description })
-    }
-
-  return {
-    updateLeatherFactory,
-    updateLeatherFactoryTitle,
-    updateLeatherFactoryDescription,
-  }
+  return params => mutateAsync({ _id, params })
 }
 
-type UseUpdateLeatherFactoryType = (_id: string) => {
-  updateLeatherFactory: updateLeatherFactoryFnType
-  updateLeatherFactoryTitle: UpdateLeatherFactoryTitleFnType
-  updateLeatherFactoryDescription: UpdateLeatherFactoryDescriptionFnType
-}
-type updateLeatherFactoryFnType = (
-  params: Partial<UpdateLeatherFactoryParamsType>
-) => Promise<LeatherFactoryType>
-type UpdateLeatherFactoryTitleFnType = (title: string) => Promise<void>
-type UpdateLeatherFactoryDescriptionFnType = (description: string) => Promise<void>
+type UseUpdateLeatherFactoryType = (
+  _id: string
+) => UseMutateAsyncFunction<LeatherFactoryType, unknown, Partial<UpdateLeatherFactoryParamsType>>

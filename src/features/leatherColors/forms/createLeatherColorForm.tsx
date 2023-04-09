@@ -13,7 +13,7 @@ import { ECreateLeatherColorParams } from '@/features/leatherColors/enums/params
 import { CreateLeatherColorFormType } from '@/features/leatherColors/forms/type'
 import { useCreateLeatherColor } from '@/features/leatherColors/hooks/useCreateLeatherColor'
 import { LeatherColorCreatConfirmModalBody } from '@/features/leatherColors/modals/confirm/leatherColorCreatConfirmModalBody'
-import { leatherColorValues } from '@/objects/colors/leatherColorValues'
+import { leatherColorsArray } from '@/objects/colors/leatherColorsValues'
 
 export const CreateLeatherColorForm: FC = () => {
   const articles: SelectItemType[] = useGetAllLeatherArticles().map(({ _id, title }) => ({
@@ -53,7 +53,7 @@ export const CreateLeatherColorForm: FC = () => {
             </FieldWrapper>
 
             <FieldWrapper name={ECreateLeatherColorParams.VALUE} title="Значение цвета:">
-              {name => <FormikSelect name={name} items={Object.values(leatherColorValues)} />}
+              {name => <FormikSelect name={name} items={leatherColorsArray} />}
             </FieldWrapper>
 
             <FieldWrapper name={ECreateLeatherColorParams.TITLE} title="Название цвета:">

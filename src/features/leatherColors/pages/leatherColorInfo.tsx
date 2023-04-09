@@ -2,11 +2,16 @@ import { FC } from 'react'
 
 import { RemoveButton } from '@/components/common/ui/buttons/removeButton'
 import { EditableSpanInput } from '@/components/common/ui/editable/editableSpanInput'
+import { EditableSpanSelect } from '@/components/common/ui/editable/editableSpanSelect'
 import { PropertyWithUnderline } from '@/components/common/ui/properties/propertyWithUnderline'
+import { TableItem } from '@/components/common/ui/tabel/tableItem'
 import { PropertyPreviewWrapper } from '@/components/common/wrappers/propertyPreviewWrapper'
+// eslint-disable-next-line import/no-cycle
+import { LeatherArticleModal } from '@/features/leatherArticles/modals/leatherArticleModal'
 import { LeatherColorType } from '@/features/leatherColors/api/types'
 import { useUpdateLeatherColor } from '@/features/leatherColors/hooks/useUpdateLeatherColor'
 import { LeatherColorRemoveConfirmModalBody } from '@/features/leatherColors/modals/confirm/leatherColorRemoveConfirmModalBody'
+import { leatherColorsArray, leatherColorsValues } from '@/objects/colors/leatherColorsValues'
 
 type PropsType = {
   className?: string
@@ -15,12 +20,7 @@ type PropsType = {
 }
 
 export const LeatherColorInfo: FC<PropsType> = ({ className, color, onDeleteConfirm }) => {
-  const {
-    updateLeatherColorDescription,
-    updateLeatherColorPhoto,
-    updateLeatherColorTitle,
-    updateLeatherColorCode,
-  } = useUpdateLeatherColor(color._id)
+  const updateLeatherColor = useUpdateLeatherColor(color._id)
 
   return (
     <div className={`${className ?? ''} flex w-full flex-col justify-between`}>
@@ -31,23 +31,51 @@ export const LeatherColorInfo: FC<PropsType> = ({ className, color, onDeleteConf
           </PropertyWithUnderline>
 
           <PropertyWithUnderline title="Название цвета:">
-            <EditableSpanInput onChange={updateLeatherColorTitle}>{color.title}</EditableSpanInput>
+            <EditableSpanInput onChange={title => updateLeatherColor({ title })}>
+              {color.title}
+            </EditableSpanInput>
           </PropertyWithUnderline>
 
           <PropertyWithUnderline title="Код цвета:">
-            <EditableSpanInput onChange={updateLeatherColorCode}>{color.code}</EditableSpanInput>
+            <EditableSpanInput onChange={code => updateLeatherColor({ code })}>
+              {color.code}
+            </EditableSpanInput>
           </PropertyWithUnderline>
 
-          <PropertyWithUnderline title="Значение цвета:">{color.value}</PropertyWithUnderline>
+          <PropertyWithUnderline title="Значение цвета:">
+            <EditableSpanSelect
+              title={leatherColorsValues[color.value].title}
+              initialValue={color.value}
+              onChange={value => updateLeatherColor({ value })}
+            >
+              {leatherColorsArray.map(leatherColor => (
+                <option key={leatherColor._id} value={leatherColor.value}>
+                  {leatherColor.title}
+                </option>
+              ))}
+            </EditableSpanSelect>
+          </PropertyWithUnderline>
 
-          <PropertyWithUnderline title="Артикул:">{color.article.title}</PropertyWithUnderline>
+          <PropertyWithUnderline title="Артикул:">
+            <TableItem title={color.article.title}>
+              {({ closeModal, isOpen }) => (
+                <LeatherArticleModal
+                  closeModal={closeModal}
+                  isOpen={isOpen}
+                  id={color.article._id}
+                />
+              )}
+            </TableItem>
+          </PropertyWithUnderline>
 
           <PropertyWithUnderline title="Фото:">
-            <EditableSpanInput onChange={updateLeatherColorPhoto}>{color.photo}</EditableSpanInput>
+            <EditableSpanInput onChange={photo => updateLeatherColor({ photo })}>
+              {color.photo}
+            </EditableSpanInput>
           </PropertyWithUnderline>
 
           <PropertyPreviewWrapper title="Описание:" childrenClassName="ml-5">
-            <EditableSpanInput onChange={updateLeatherColorDescription}>
+            <EditableSpanInput onChange={description => updateLeatherColor({ description })}>
               {color.description}
             </EditableSpanInput>
           </PropertyPreviewWrapper>

@@ -45,3 +45,4 @@ export const productCategories: ObjectForSelectType<EProductCategory> = {
     title: 'Часовой ремешок',
   },
 }
+export const productCategoriesArray = Object.values(productCategories).map(category => category)

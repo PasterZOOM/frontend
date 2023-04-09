@@ -1,22 +1,22 @@
 import { SelectItemType } from '@/components/forms/formikSelect'
 import { EFilterKeys, FilterType } from '@/mocks/filters'
-import { leatherColorValues } from '@/objects/colors/leatherColorValues'
-import { productAssignments } from '@/objects/products/productAssignments'
-import { productCategories } from '@/objects/products/productCategories'
+import { leatherColorsArray } from '@/objects/colors/leatherColorsValues'
+import { productAssignmentsArray } from '@/objects/products/productAssignments'
+import { productCategoriesArray } from '@/objects/products/productCategories'
 
 const selectItemsToFiltersTransformer: SelectItemsToFiltersTransformerFnType = (items, filterKey) =>
   items.map(item => ({ ...item, filterKey }))
 
 export const productCategoriesFilters = selectItemsToFiltersTransformer(
-  Object.values(productCategories),
+  productCategoriesArray,
   EFilterKeys.CATEGORIES
 )
 export const productAssignmentsFilters = selectItemsToFiltersTransformer(
-  Object.values(productAssignments),
+  productAssignmentsArray,
   EFilterKeys.ASSIGNMENTS
 )
 export const leatherColorFilters = selectItemsToFiltersTransformer(
-  Object.values(leatherColorValues),
+  leatherColorsArray,
   EFilterKeys.LEATHER_COLORS
 )
 

@@ -10,10 +10,10 @@ import { BasicProductType } from '@/features/basicProducts/api/types'
 import { useUpdateBasicProduct } from '@/features/basicProducts/hooks/useUpdateBasicProduct'
 import { BasicProductRemoveConfirmModalBody } from '@/features/basicProducts/modals/confirm/basicProductRemoveConfirmModalBody'
 import { useGetAllLeatherArticles } from '@/features/leatherArticles/hooks/useGetAllLeatherArticles'
-import { currencies, currencyForSelect } from '@/objects/currency/currency'
-import { punchPatchForSelect } from '@/objects/materials/punchPatch'
-import { productAssignments } from '@/objects/products/productAssignments'
-import { productCategories } from '@/objects/products/productCategories'
+import { currencies, currencyArray } from '@/objects/currency/currency'
+import { punchPatches, punchPatchesArray } from '@/objects/materials/punchPatch'
+import { productAssignmentsArray } from '@/objects/products/productAssignments'
+import { productCategories, productCategoriesArray } from '@/objects/products/productCategories'
 
 type PropsType = {
   className?: string
@@ -73,7 +73,7 @@ export const BasicProductInfo: FC<PropsType> = ({ className, basicProduct, onDel
               initialValue={basicProduct.costCurrency}
               onChange={costCurrency => updateBasicProduct({ costCurrency })}
             >
-              {currencyForSelect.map(currency => (
+              {currencyArray.map(currency => (
                 <option key={currency._id} value={currency.value}>
                   {currency.title}
                 </option>
@@ -87,7 +87,7 @@ export const BasicProductInfo: FC<PropsType> = ({ className, basicProduct, onDel
               initialValue={basicProduct.category}
               onChange={category => updateBasicProduct({ category })}
             >
-              {Object.values(productCategories).map(category => (
+              {productCategoriesArray.map(category => (
                 <option key={category._id} value={category.value}>
                   {category.title}
                 </option>
@@ -103,11 +103,11 @@ export const BasicProductInfo: FC<PropsType> = ({ className, basicProduct, onDel
 
           <PropertyWithUnderline title="Шаг пробойника:">
             <EditableSpanSelect
-              title={punchPatchForSelect[basicProduct.punchPitch].title}
+              title={punchPatches[basicProduct.punchPitch].title}
               initialValue={basicProduct.punchPitch}
               onChange={punchPitch => updateBasicProduct({ punchPitch })}
             >
-              {Object.values(punchPatchForSelect).map(punchPitch => (
+              {punchPatchesArray.map(punchPitch => (
                 <option key={punchPitch._id} value={punchPitch.value}>
                   {punchPitch.title}
                 </option>
@@ -130,7 +130,7 @@ export const BasicProductInfo: FC<PropsType> = ({ className, basicProduct, onDel
               onChange={assignments => updateBasicProduct({ assignments })}
               selectProps={{ multiple: true }}
             >
-              {Object.values(productAssignments).map(assignment => (
+              {productAssignmentsArray.map(assignment => (
                 <option key={assignment._id} value={assignment.value}>
                   {assignment.title}
                 </option>

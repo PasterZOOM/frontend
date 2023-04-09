@@ -40,3 +40,6 @@ export const productAssignments: ObjectForSelectType<EProductAssignment> = {
     title: 'Для Air Pods',
   },
 }
+export const productAssignmentsArray = Object.values(productAssignments).map(
+  assignment => assignment
+)

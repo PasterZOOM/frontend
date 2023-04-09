@@ -3,13 +3,9 @@ import { v1 } from 'uuid'
 import { SelectItemType } from '@/components/forms/formikSelect'
 import { ECost } from '@/enums/cost'
 import { CurrencySign } from '@/enums/currencySign'
+import { ObjectForSelectType } from '@/types/objectForSelectType'
 
-export type CurrencyType = {
-  _id: string
-  value: ECost
-  title: string
-}
-export const currencies: Record<ECost, CurrencyType> = {
+export const currencies: ObjectForSelectType<ECost> = {
   [ECost.USD]: {
     _id: v1(),
     value: ECost.USD,
@@ -58,6 +54,6 @@ export const currencies: Record<ECost, CurrencyType> = {
   },
 }
 
-export const currencyForSelect: SelectItemType<ECost>[] = Object.values(currencies).map(
+export const currencyArray: SelectItemType<ECost>[] = Object.values(currencies).map(
   currency => currency
 )
