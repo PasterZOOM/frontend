@@ -16,11 +16,11 @@ export const themes: Record<ETheme, ThemeType> = {
   [ETheme.LIGHT]: {
     _id: v1(),
     value: ETheme.LIGHT,
-    title: 'Светлая',
+    title: '☀️ Светлая',
   },
   [ETheme.DARK]: {
     _id: v1(),
     value: ETheme.DARK,
-    title: 'Темная',
+    title: '🌒 Темная',
   },
 }

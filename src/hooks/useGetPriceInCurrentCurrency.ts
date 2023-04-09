@@ -11,8 +11,13 @@ export const useGetPriceInCurrentCurrency: UseGetPriceInCurrentCurrencyType = (
   const currentPrise = useCurrencyStore(
     state => (price * state[currentCurrency]) / state[priceCurrency]
   )
+  const rate = useCurrencyStore(state => state[priceCurrency])
 
-  return `${CurrencySign[currentCurrency]}${currentPrise.toFixed()}`
+  if (rate !== 1) {
+    return `${CurrencySign[currentCurrency]}${currentPrise.toFixed()}`
+  }
+
+  return undefined
 }
 
-type UseGetPriceInCurrentCurrencyType = (price: number, priceCurrency: TCost) => string
+type UseGetPriceInCurrentCurrencyType = (price: number, priceCurrency: TCost) => string | undefined

@@ -1,4 +1,4 @@
-import { ChangeEvent } from 'react'
+import { ChangeEventHandler } from 'react'
 
 import { useRouter } from 'next/router'
 
@@ -16,7 +16,7 @@ export const useChangeMultipleQueryParams: UseChangeMultipleQueryParamsType = (
 
   useChangeFilterParams(filterKey)
 
-  const setQueryParams = async (e: ChangeEvent<HTMLInputElement>): Promise<void> => {
+  const setQueryParams: ChangeEventHandler<HTMLInputElement> = async e => {
     if (e.currentTarget.checked) {
       replace(
         {
@@ -43,6 +43,6 @@ type UseChangeMultipleQueryParamsType = (
   filterKey: EFilterKeys,
   filterValue: string
 ) => {
-  setQueryParams: (e: ChangeEvent<HTMLInputElement>) => Promise<void>
+  setQueryParams: ChangeEventHandler<HTMLInputElement>
   queryParams: boolean
 }

@@ -55,9 +55,12 @@ export const ProductCard: FC<PropsType> = ({ defPrice = ECost.USD, product }) =>
         </div>
         <div className="mt-3">
           <div className="flex gap-2 pb-3 text-custom-lg font-light">
-            <div>{priceInCurrentCurrency}</div>
-            {defPrice !== currentCurrency && (
+            {priceInCurrentCurrency && <div>{priceInCurrentCurrency}</div>}
+            {(defPrice !== currentCurrency || !priceInCurrentCurrency) && (
               <div className="opacity-60">{priceInDefaultCurrency}</div>
+            )}
+            {!priceInCurrentCurrency && (
+              <div className="text-sm text-red-500">Не удалось загрузить курсы валют</div>
             )}
           </div>
           <Button>Подробнее</Button>

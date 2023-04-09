@@ -35,7 +35,7 @@ module.exports = {
         'line-top-dark': '0px -2px 2px rgba(255, 255, 255, 0.2)',
       },
       gridTemplateColumns: {
-        'catalog-products': 'repeat(auto-fill, minmax(18rem, 1fr))',
+        'catalog-products': 'repeat(auto-fill, minmax(18.5rem, 1fr))',
       },
       animation: {
         opening: 'open var(--duration, 500ms) forwards',

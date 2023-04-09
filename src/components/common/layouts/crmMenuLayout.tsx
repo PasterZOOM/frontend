@@ -25,7 +25,7 @@ export const CrmMenuLayout: FC<PropsType> = ({ children }) => {
           </Link>
         </div>
       </div>
-      <div className="w-full p-2">{children}</div>
+      <div className="w-full max-w-screen-2xl p-2">{children}</div>
     </div>
   )
 }
