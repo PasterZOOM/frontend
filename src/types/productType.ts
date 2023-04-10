@@ -13,7 +13,7 @@ export type LeatherColorType<T extends EButteroCode | EWaxCode> = {
 }
 
 export type ProductPhotoType = {
-  id: string
+  _id: string
   url: string
 }
 

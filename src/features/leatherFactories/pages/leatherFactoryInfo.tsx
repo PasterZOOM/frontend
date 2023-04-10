@@ -56,6 +56,7 @@ export const LeatherFactoryInfo: FC<PropsType> = ({ className, factory, onDelete
             </EditableSpanInput>
           </PropertyPreviewWrapper>
         </div>
+
         <PropertyPreviewWrapper title="Артикулы:" wrapperClassName="mt-1" childrenClassName="ml-5">
           {factory.articles.map(article => (
             <TableItem key={article._id} title={article.title}>

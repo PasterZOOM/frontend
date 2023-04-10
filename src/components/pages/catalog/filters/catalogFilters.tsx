@@ -4,13 +4,13 @@ import FilterContainer from '@/components/common/containers/filterContainer'
 import AccordionWrapper from '@/components/common/ui/accordion/accordionWrapper'
 import { ColorFilterCheckbox } from '@/components/common/ui/checkbox/colorFilterCheckbox'
 import {
+  EFilterKeys,
   leatherColorFilters,
   productAssignmentsFilters,
   productCategoriesFilters,
 } from '@/components/pages/catalog/filters/filters'
 import { MultipleFilter } from '@/components/pages/catalog/filters/multipleFilter'
 import { useGetAllLeatherArticles } from '@/features/leatherArticles/hooks/useGetAllLeatherArticles'
-import { EFilterKeys } from '@/mocks/filters'
 
 type PropsType = {
   isOpenFilters: boolean

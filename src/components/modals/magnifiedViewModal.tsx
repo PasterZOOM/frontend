@@ -14,7 +14,7 @@ type PropsType = {
 }
 
 export const MagnifiedViewModal: FC<PropsType> = ({ closeModal, isOpen, photos, activePhoto }) => {
-  const initSlide = photos.findIndex(photo => photo.id === activePhoto.id)
+  const initSlide = photos.findIndex(photo => photo._id === activePhoto._id)
 
   return (
     <ModalOverlay isOpen={isOpen} onClose={closeModal}>
@@ -32,7 +32,7 @@ export const MagnifiedViewModal: FC<PropsType> = ({ closeModal, isOpen, photos, 
           className="mySwiper h-full w-full"
         >
           {photos.map(photo => (
-            <SwiperSlide key={photo.id} className="w-fit">
+            <SwiperSlide key={photo._id} className="w-fit">
               <div className={`${photo.url} h-full w-full`} />
             </SwiperSlide>
           ))}

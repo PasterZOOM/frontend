@@ -20,6 +20,7 @@ export const ProductCardView: FC<PropsType> = ({ photos }) => {
   }
 
   const leaveMouseHandler = (): void => {
+    // ? TODO UI: нужно ли показывать первое поле, когда мыш покидает зону с фото
     setActivePhoto(photos[0])
     setIsHover(false)
   }
@@ -38,15 +39,15 @@ export const ProductCardView: FC<PropsType> = ({ photos }) => {
     >
       {photos.map(photo => (
         <div
-          key={photo.id}
+          key={photo._id}
           onMouseMove={() => mouseMoveHandler(photo)}
           onMouseLeave={leaveMouseHandler}
           className="relative flex w-full cursor-zoom-in justify-center"
         >
           <div
             className={`absolute bottom-1 h-1 w-11/12 rounded-full bg-white dark:bg-anthracite-gray ${
-              isHover ? '' : 'hidden'
-            } ${activePhoto.id !== photo.id ? 'opacity-50' : ''}`}
+              isHover && photos.length > 1 ? '' : 'hidden'
+            } ${activePhoto._id !== photo._id ? 'opacity-50' : ''}`}
           />
         </div>
       ))}

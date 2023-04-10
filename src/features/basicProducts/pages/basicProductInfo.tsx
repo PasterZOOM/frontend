@@ -9,6 +9,7 @@ import { SelectItemType } from '@/components/forms/formikSelect'
 import { BasicProductType } from '@/features/basicProducts/api/types'
 import { useUpdateBasicProduct } from '@/features/basicProducts/hooks/useUpdateBasicProduct'
 import { BasicProductRemoveConfirmModalBody } from '@/features/basicProducts/modals/confirm/basicProductRemoveConfirmModalBody'
+import { BasicProductInfoPhotoBlock } from '@/features/basicProducts/pages/basicProductInfoPhotoBlock'
 import { useGetAllLeatherArticles } from '@/features/leatherArticles/hooks/useGetAllLeatherArticles'
 import { currencies, currencyArray } from '@/objects/currency/currency'
 import { punchPatches, punchPatchesArray } from '@/objects/materials/punchPatch'
@@ -137,11 +138,14 @@ export const BasicProductInfo: FC<PropsType> = ({ className, basicProduct, onDel
               ))}
             </EditableSpanSelect>
           </PropertyPreviewWrapper>
+
           <PropertyPreviewWrapper title="Описание:" childrenClassName="ml-5">
             <EditableSpanInput onChange={description => updateBasicProduct({ description })}>
               {basicProduct.description}
             </EditableSpanInput>
           </PropertyPreviewWrapper>
+
+          <BasicProductInfoPhotoBlock basicProduct={basicProduct} />
         </div>
       </div>
       <RemoveButton

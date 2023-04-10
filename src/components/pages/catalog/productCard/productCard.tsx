@@ -12,6 +12,7 @@ import { useGetAllLeatherColors } from '@/features/leatherColors/hooks/useGetAll
 import { useGetPriceInCurrency } from '@/hooks/useGetPriceInCurrency'
 import { useGetPriceInCurrentCurrency } from '@/hooks/useGetPriceInCurrentCurrency'
 import { useUserSettings } from '@/store/useUserSettings'
+import { cutText } from '@/utils/text/cutText'
 
 type PropsType = {
   product: BasicProductType
@@ -41,7 +42,7 @@ export const ProductCard: FC<PropsType> = ({ defPrice = ECost.USD, product }) =>
       <div className="mt-10">
         <Link href={`/products/${product.category}`}>
           <div className="mt-4 mb-3 text-custom-xl font-bold">{product.title}</div>
-          <div className="my-3 font-light">{product.description}</div>
+          <div className="my-3 font-light">{cutText(product.description)}</div>
         </Link>
         <div className={`flex flex-wrap gap-3 ${productColors.length === 1 ? 'hidden' : ''}`}>
           {productColors.map(color => (
@@ -53,7 +54,7 @@ export const ProductCard: FC<PropsType> = ({ defPrice = ECost.USD, product }) =>
             />
           ))}
         </div>
-        <div className="mt-3">
+        <div className="mt-3 cursor-default">
           <div className="flex gap-2 pb-3 text-custom-lg font-light">
             {priceInCurrentCurrency && <div>{priceInCurrentCurrency}</div>}
             {(defPrice !== currentCurrency || !priceInCurrentCurrency) && (

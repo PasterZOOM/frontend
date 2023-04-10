@@ -1,11 +1,11 @@
 import { FC, useEffect, useState } from 'react'
 
+import { EFilterKeys, GeneralFilterType } from '@/components/pages/catalog/filters/filters'
 import { ELeatherColor } from '@/enums/materials'
 import { EProductAssignment, EProductCategory } from '@/enums/product'
 import { useGetAllLeatherArticles } from '@/features/leatherArticles/hooks/useGetAllLeatherArticles'
 import { useClearAllQueryParams } from '@/hooks/queryParams/useClearAllQueryParams'
 import { useRemoveMultipleQueryParam } from '@/hooks/queryParams/useRemoveMultipleQueryParam'
-import { EFilterKeys, GeneralFilterType } from '@/mocks/filters'
 import { leatherColorsValues } from '@/objects/colors/leatherColorsValues'
 import { productAssignments } from '@/objects/products/productAssignments'
 import { productCategories } from '@/objects/products/productCategories'

@@ -1,12 +1,12 @@
 import axios from 'axios'
 
 import { UpdateParamsType } from '@/api/paramsTypes'
+import { EFilterKeys } from '@/components/pages/catalog/filters/filters'
 import {
   BasicProductType,
   CreateBasicProductParamsType,
   UpdateBasicProductParamsType,
 } from '@/features/basicProducts/api/types'
-import { EFilterKeys } from '@/mocks/filters'
 
 export class BasicProductsService {
   BASE_URL = `${process.env.NEXT_PUBLIC_BASE_URL}/basic-products`
@@ -48,6 +48,23 @@ export class BasicProductsService {
 
   remove: (id: string) => Promise<BasicProductType> = async id => {
     const res = await axios.delete<BasicProductType>(`${this.BASE_URL}/${id}`)
+
+    return res.data
+  }
+
+  addPhoto: (params: UpdateParamsType<{ [key: string]: string[] }>) => Promise<BasicProductType> =
+    async ({ _id, params }) => {
+      const res = await axios.put<BasicProductType>(`${this.BASE_URL}/${_id}/photo`, params)
+
+      return res.data
+    }
+
+  removePhoto: (params: {
+    params: { productId: string; photoId: string }
+  }) => Promise<BasicProductType> = async ({ params: { productId, photoId } }) => {
+    const res = await axios.delete<BasicProductType>(
+      `${this.BASE_URL}/${productId}/photo/${photoId}`
+    )
 
     return res.data
   }

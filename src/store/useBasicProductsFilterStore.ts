@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 
-import { EFilterKeys } from '@/mocks/filters'
+import { EFilterKeys } from '@/components/pages/catalog/filters/filters'
 
 type FilterStateType = {
   filters: Record<EFilterKeys, string>

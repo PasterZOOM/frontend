@@ -40,6 +40,7 @@ module.exports = {
       animation: {
         opening: 'open var(--duration, 500ms) forwards',
         closing: 'closing var(--duration, 500ms) forwards',
+        'hover-button': 'hover-button var(--duration, 700ms) ease-in-out',
       },
       keyframes: {
         open: {
@@ -49,6 +50,16 @@ module.exports = {
         closing: {
           '0%': { height: 'var(--h)' },
           '100%': { height: 0 },
+        },
+        'hover-button': {
+          '0%': { top: '0', bottom: '0', left: '0', right: '0' },
+          '50%': { top: '-0.17rem', bottom: '-0.17rem', left: '-0.17rem', right: '-0.17rem' },
+          '100%': {
+            height: '-0.125rem',
+            bottom: '-0.125rem',
+            left: '-0.125rem',
+            right: '-0.125rem',
+          },
         },
       },
     },

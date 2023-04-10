@@ -28,4 +28,4 @@ export type CreateBasicProductParamsType = {
   size: string
   title: string
 }
-export type UpdateBasicProductParamsType = Partial<CreateBasicProductParamsType> // TODO: добавить фото и назначения
+export type UpdateBasicProductParamsType = Partial<CreateBasicProductParamsType>

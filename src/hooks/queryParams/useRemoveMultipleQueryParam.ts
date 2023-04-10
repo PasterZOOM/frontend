@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 
-import { EFilterKeys } from '@/mocks/filters'
+import { EFilterKeys } from '@/components/pages/catalog/filters/filters'
 
 export const useRemoveMultipleQueryParam: UseRemoveMultipleQueryParamType = () => {
   const { pathname, query, replace } = useRouter()

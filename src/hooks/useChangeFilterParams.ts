@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 
 import { useRouter } from 'next/router'
 
-import { EFilterKeys } from '@/mocks/filters'
+import { EFilterKeys } from '@/components/pages/catalog/filters/filters'
 import { useBasicProductsFilterStore } from '@/store/useBasicProductsFilterStore'
 
 export const useChangeFilterParams: UseChangeFilterParamsType = filterKey => {

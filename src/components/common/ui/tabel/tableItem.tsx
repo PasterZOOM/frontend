@@ -4,7 +4,7 @@ import { useModal } from '@/hooks/useModal'
 
 type PropsType = {
   title: string
-  children: ({ closeModal, isOpen }: { isOpen: boolean; closeModal: () => void }) => ReactNode // прокидывается модальное окно
+  children: ({ closeModal, isOpen }: { isOpen: boolean; closeModal: () => void }) => ReactNode // прокидывается callBack с модальным окном
 }
 
 export const TableItem: FC<PropsType> = ({ title, children }) => {

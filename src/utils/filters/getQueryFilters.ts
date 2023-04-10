@@ -1,6 +1,6 @@
 import { ParsedUrlQuery } from 'querystring'
 
-import { EFilterKeys } from '@/mocks/filters'
+import { EFilterKeys } from '@/components/pages/catalog/filters/filters'
 
 export const getQueryFilters: GetFiltersFnType = query => {
   const filters: Record<EFilterKeys, string> = {

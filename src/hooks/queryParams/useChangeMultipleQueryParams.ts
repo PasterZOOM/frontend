@@ -2,9 +2,9 @@ import { ChangeEventHandler } from 'react'
 
 import { useRouter } from 'next/router'
 
+import { EFilterKeys } from '@/components/pages/catalog/filters/filters'
 import { useRemoveMultipleQueryParam } from '@/hooks/queryParams/useRemoveMultipleQueryParam'
 import { useChangeFilterParams } from '@/hooks/useChangeFilterParams'
-import { EFilterKeys } from '@/mocks/filters'
 
 export const useChangeMultipleQueryParams: UseChangeMultipleQueryParamsType = (
   filterKey,

@@ -1,8 +1,8 @@
 import { FC, useMemo, useRef } from 'react'
 
+import { EFilterKeys, FilterType } from '@/components/pages/catalog/filters/filters'
 import { ELeatherColor } from '@/enums/materials'
 import { useChangeMultipleQueryParams } from '@/hooks/queryParams/useChangeMultipleQueryParams'
-import { EFilterKeys, FilterType } from '@/mocks/filters'
 
 type PropsType = {
   color: FilterType<ELeatherColor, EFilterKeys>
