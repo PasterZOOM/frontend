@@ -11,7 +11,7 @@ import { BasicProductType } from '@/features/basicProducts/api/types'
 import { useGetAllLeatherColors } from '@/features/leatherColors/hooks/useGetAllLeatherColors'
 import { useGetPriceInCurrency } from '@/hooks/useGetPriceInCurrency'
 import { useGetPriceInCurrentCurrency } from '@/hooks/useGetPriceInCurrentCurrency'
-import { useUserSettings } from '@/store/useUserSettings'
+import { selectCurrentCurrency, useUserSettings } from '@/store/useUserSettings'
 import { cutText } from '@/utils/text/cutText'
 
 type PropsType = {
@@ -22,7 +22,7 @@ type PropsType = {
 export const ProductCard: FC<PropsType> = ({ defPrice = ECost.USD, product }) => {
   const [activeColor, setActiveColor] = useState(Object.keys(product.photos)[0] || '')
 
-  const currentCurrency = useUserSettings(state => state.currentCurrency)
+  const currentCurrency = useUserSettings(selectCurrentCurrency)
 
   const priceInCurrentCurrency = useGetPriceInCurrentCurrency(product.cost, product.costCurrency)
   const priceInDefaultCurrency = useGetPriceInCurrency(product.cost, product.costCurrency, defPrice)
@@ -40,7 +40,7 @@ export const ProductCard: FC<PropsType> = ({ defPrice = ECost.USD, product }) =>
       )}
 
       <div className="mt-10">
-        <Link href={`/products/${product.category}`}>
+        <Link href={`/products/${product.category}/${product._id}`}>
           <div className="mt-4 mb-3 text-custom-xl font-bold">{product.title}</div>
           <div className="my-3 font-light">{cutText(product.description)}</div>
         </Link>

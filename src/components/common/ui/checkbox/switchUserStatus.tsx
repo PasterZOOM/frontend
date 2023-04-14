@@ -1,11 +1,11 @@
 import { FC, useEffect, useState } from 'react'
 
 import { UserStatus } from '@/enums/userStatus'
-import { useUserSettings } from '@/store/useUserSettings'
+import { selectSetUserStatus, selectUserStatus, useUserSettings } from '@/store/useUserSettings'
 
 export const SwitchUserStatus: FC = () => {
-  const userStatus = useUserSettings(state => state.userStatus)
-  const setUserStatus = useUserSettings(state => state.setUserStatus)
+  const userStatus = useUserSettings(selectUserStatus)
+  const setUserStatus = useUserSettings(selectSetUserStatus)
 
   const [checked, setChecked] = useState(userStatus === UserStatus.ADMIN)
 

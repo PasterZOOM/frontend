@@ -2,9 +2,6 @@ import { create } from 'zustand'
 
 import { EFilterKeys } from '@/components/pages/catalog/filters/filters'
 
-type FilterStateType = {
-  filters: Record<EFilterKeys, string>
-}
 const initialState: FilterStateType = {
   filters: {
     assignments: '',
@@ -12,10 +9,6 @@ const initialState: FilterStateType = {
     leatherColors: '',
     categories: '',
   },
-}
-
-type StoreType = FilterStateType & {
-  setFilter: (filterKey: EFilterKeys, value: string) => void
 }
 
 export const useBasicProductsFilterStore = create<StoreType>((set, get) => ({
@@ -26,3 +19,16 @@ export const useBasicProductsFilterStore = create<StoreType>((set, get) => ({
     set({ filters: { ...filters, [filterKey]: value } })
   },
 }))
+
+export const selectSetFilter: SelectSetFilterType = store => store.setFilter
+export const selectFilter: FilterSelectorType = filterKey => store => store.filters[filterKey]
+
+type FilterStateType = {
+  filters: Record<EFilterKeys, string>
+}
+type SetFilterType = (filterKey: EFilterKeys, value: string) => void
+type StoreType = FilterStateType & {
+  setFilter: SetFilterType
+}
+type SelectSetFilterType = (store: StoreType) => SetFilterType
+type FilterSelectorType = (filterKey: EFilterKeys) => (store: StoreType) => string

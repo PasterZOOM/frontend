@@ -116,6 +116,16 @@ export const BasicProductInfo: FC<PropsType> = ({ className, basicProduct, onDel
             </EditableSpanSelect>
           </PropertyWithUnderline>
 
+          <PropertyWithUnderline title="Опубликовано:">
+            <input
+              type="checkbox"
+              checked={basicProduct.isPublished}
+              onChange={({ currentTarget }) =>
+                updateBasicProduct({ isPublished: currentTarget.checked })
+              }
+            />
+          </PropertyWithUnderline>
+
           <PropertyPreviewWrapper
             title="Назначения:"
             wrapperClassName="mt-1"

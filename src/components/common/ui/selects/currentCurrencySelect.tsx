@@ -4,13 +4,17 @@ import { Select } from '@/components/common/ui/selects/select'
 import { SelectItemType } from '@/components/forms/formikSelect'
 import { ECost } from '@/enums/cost'
 import { currencies, currencyArray } from '@/objects/currency/currency'
-import { useUserSettings } from '@/store/useUserSettings'
+import {
+  selectCurrentCurrency,
+  selectSetCurrentCurrency,
+  useUserSettings,
+} from '@/store/useUserSettings'
 
 const CurrencyElement: FC<SelectItemType<ECost>> = ({ title }) => <span>{title}</span>
 
 export const CurrentCurrencySelect: FC = () => {
-  const currentCurrency = useUserSettings(state => state.currentCurrency)
-  const setCurrentCurrency = useUserSettings(state => state.setCurrentCurrency)
+  const currentCurrency = useUserSettings(selectCurrentCurrency)
+  const setCurrentCurrency = useUserSettings(selectSetCurrentCurrency)
 
   const [activeCurrency, setActiveCurrency] = useState<SelectItemType<ECost>>(
     currencies[currentCurrency]

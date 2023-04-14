@@ -3,14 +3,14 @@ import { FC, ReactNode, useEffect } from 'react'
 import { DESKTOP } from '@/constants/sizes/screenSizes'
 import { useWindowSize } from '@/hooks/useWindowSize'
 
-interface FilterContainerProps {
+type PropsType = {
   children: ReactNode
   className?: string
   open: boolean
   setOpen: (value: boolean) => void
 }
 
-const FilterContainer: FC<FilterContainerProps> = ({ children, className = '', open, setOpen }) => {
+const FilterContainer: FC<PropsType> = ({ children, className = '', open, setOpen }) => {
   const { width } = useWindowSize()
 
   useEffect(() => {

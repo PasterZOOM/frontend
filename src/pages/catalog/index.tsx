@@ -14,7 +14,11 @@ import { useGetAllBasicProducts } from '@/features/basicProducts/hooks/useGetAll
 import { LeatherArticlesService } from '@/features/leatherArticles/api/leatherArticlesService'
 import { LeatherArticleType } from '@/features/leatherArticles/api/types'
 import { useGetAllLeatherArticles } from '@/features/leatherArticles/hooks/useGetAllLeatherArticles'
-import { initialCurrencyState, useCurrencyStore } from '@/store/useCurrencyStore'
+import {
+  initialCurrencyState,
+  selectSetActualRates,
+  useCurrencyStore,
+} from '@/store/useCurrencyStore'
 import { CostType } from '@/types/costType'
 import { getQueryFilters } from '@/utils/filters/getQueryFilters'
 
@@ -27,7 +31,7 @@ type PropsType = {
 const Catalog: FC<PropsType> = ({ rates, articles, basicProducts }) => {
   useGetAllLeatherArticles({ initialData: articles })
   useGetAllBasicProducts({ initialData: basicProducts })
-  const setActualRates = useCurrencyStore(store => store.setActualRates)
+  const setActualRates = useCurrencyStore(selectSetActualRates)
   const [isOpenFilters, setIsOpenFilters] = useState(false)
 
   useEffect(() => {

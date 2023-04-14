@@ -3,13 +3,17 @@ import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 
 import { EFilterKeys } from '@/components/pages/catalog/filters/filters'
-import { useBasicProductsFilterStore } from '@/store/useBasicProductsFilterStore'
+import {
+  selectFilter,
+  selectSetFilter,
+  useBasicProductsFilterStore,
+} from '@/store/useBasicProductsFilterStore'
 
 export const useChangeFilterParams: UseChangeFilterParamsType = filterKey => {
   const { query } = useRouter()
 
-  const setFilter = useBasicProductsFilterStore(state => state.setFilter)
-  const filter = useBasicProductsFilterStore(state => state.filters[filterKey])
+  const setFilter = useBasicProductsFilterStore(selectSetFilter)
+  const filter = useBasicProductsFilterStore(selectFilter(filterKey))
 
   useEffect(() => {
     if (filter !== query[filterKey]) {

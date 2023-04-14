@@ -15,6 +15,7 @@ export type BasicProductType = {
   punchPitch: EPunchPitch
   size: string
   title: string
+  isPublished: boolean
 }
 
 export type CreateBasicProductParamsType = {
@@ -28,4 +29,6 @@ export type CreateBasicProductParamsType = {
   size: string
   title: string
 }
-export type UpdateBasicProductParamsType = Partial<CreateBasicProductParamsType>
+export type UpdateBasicProductParamsType = Partial<
+  CreateBasicProductParamsType & { isPublished: boolean }
+>

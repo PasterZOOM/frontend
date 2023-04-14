@@ -5,13 +5,13 @@ import { LeatherArticlesService } from '@/features/leatherArticles/api/leatherAr
 import { LeatherColorsService } from '@/features/leatherColors/api/leatherColorsService'
 import { LeatherFactoriesService } from '@/features/leatherFactories/api/leatherFactoriesService'
 
-type Store = {
+type StoreType = {
   leatherFactoriesService: LeatherFactoriesService
   leatherArticlesService: LeatherArticlesService
   leatherColorsService: LeatherColorsService
   basicProductsService: BasicProductsService
 }
-export const useSrmServiceStore = create<Store>(() => {
+export const useSrmServiceStore = create<StoreType>(() => {
   const leatherFactoriesService = new LeatherFactoriesService()
   const leatherArticlesService = new LeatherArticlesService()
   const leatherColorsService = new LeatherColorsService()

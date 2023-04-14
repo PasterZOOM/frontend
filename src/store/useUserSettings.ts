@@ -1,26 +1,14 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 
-import { ECost, TCost } from '@/enums/cost'
+import { ECost } from '@/enums/cost'
 import { ETheme } from '@/enums/theme'
 import { UserStatus } from '@/enums/userStatus'
-
-type UserSettingsStateType = {
-  userStatus: UserStatus
-  currentCurrency: TCost
-  theme: ETheme
-}
 
 const initialState: UserSettingsStateType = {
   userStatus: UserStatus.NONE,
   currentCurrency: ECost.BYN,
   theme: ETheme.AUTO,
-}
-
-type StoreType = UserSettingsStateType & {
-  setCurrentCurrency: (currentCurrency: TCost) => void
-  setTheme: (theme: ETheme) => void
-  setUserStatus: (userStatus: UserStatus) => void
 }
 
 export const useUserSettings = create(
@@ -34,3 +22,31 @@ export const useUserSettings = create(
     { name: 'userSettings' }
   )
 )
+
+export const selectUserStatus: UserStatusSelectorType = store => store.userStatus
+export const selectCurrentCurrency: CurrentCurrencySelectorType = store => store.currentCurrency
+export const selectTheme: ThemeSelectorType = store => store.theme
+export const selectSetUserStatus: SetUserStatusSelectorType = store => store.setUserStatus
+export const selectSetCurrentCurrency: SetCurrentCurrencySelectorType = store =>
+  store.setCurrentCurrency
+export const selectSetTheme: SetThemeSelectorType = store => store.setTheme
+
+type UserSettingsStateType = {
+  userStatus: UserStatus
+  currentCurrency: ECost
+  theme: ETheme
+}
+type SetCurrentCurrencyType = (currentCurrency: ECost) => void
+type SetThemeType = (theme: ETheme) => void
+type SetUserStatusType = (userStatus: UserStatus) => void
+type StoreType = UserSettingsStateType & {
+  setCurrentCurrency: SetCurrentCurrencyType
+  setTheme: SetThemeType
+  setUserStatus: SetUserStatusType
+}
+type UserStatusSelectorType = (store: StoreType) => UserStatus
+type CurrentCurrencySelectorType = (store: StoreType) => ECost
+type ThemeSelectorType = (store: StoreType) => ETheme
+type SetUserStatusSelectorType = (store: StoreType) => SetUserStatusType
+type SetCurrentCurrencySelectorType = (store: StoreType) => SetCurrentCurrencyType
+type SetThemeSelectorType = (store: StoreType) => SetThemeType

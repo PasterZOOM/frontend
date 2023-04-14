@@ -2,11 +2,11 @@ import { useEffect } from 'react'
 
 import { ETheme } from '@/enums/theme'
 import { ThemeType } from '@/objects/theme/themes'
-import { useUserSettings } from '@/store/useUserSettings'
+import { selectSetTheme, selectTheme, useUserSettings } from '@/store/useUserSettings'
 
 export const useSwitchTheme: UseSwitchThemeType = activeTheme => {
-  const theme = useUserSettings(state => state.theme)
-  const setTheme = useUserSettings(state => state.setTheme)
+  const theme = useUserSettings(selectTheme)
+  const setTheme = useUserSettings(selectSetTheme)
 
   useEffect(() => {
     setTheme(activeTheme.value)
