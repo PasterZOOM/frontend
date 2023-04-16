@@ -9,7 +9,7 @@ import { LeatherFactoryModal } from '@/features/leatherFactories/modals/leatherF
 type PropsType = {
   className?: string
 }
-const LeatherFactories: FC<PropsType> = ({ className }) => {
+export const LeatherFactories: FC<PropsType> = ({ className }) => {
   const factories = useGetAllLeatherFactories()
 
   return (
@@ -28,5 +28,3 @@ const LeatherFactories: FC<PropsType> = ({ className }) => {
     </CreateFormAndListWrapper>
   )
 }
-
-export default LeatherFactories

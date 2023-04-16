@@ -1,6 +1,6 @@
-import { FC } from 'react'
+import { NextPage } from 'next'
 
-const CardHolderPage: FC = () => {
+const CardHolderPage: NextPage = () => {
   return <>card holder</>
 }
 

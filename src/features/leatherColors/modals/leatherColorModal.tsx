@@ -3,6 +3,7 @@ import { FC } from 'react'
 import { ModalLayout } from '@/components/modals/modalLayout'
 import { useGetLeatherColor } from '@/features/leatherColors/hooks/useGetLeatherColor'
 import { useRemoveLeatherColor } from '@/features/leatherColors/hooks/useRemoveLeatherColor'
+// eslint-disable-next-line import/no-cycle
 import { LeatherColorInfo } from '@/features/leatherColors/pages/leatherColorInfo'
 
 type PropsType = {

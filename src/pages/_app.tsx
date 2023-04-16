@@ -2,25 +2,33 @@ import '../styles/globals.css'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
-import { FC } from 'react'
+import { ReactElement, ReactNode, useState } from 'react'
 
+import { NextPage } from 'next'
 import type { AppProps } from 'next/app'
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query'
 
-import Header from '@/components/common/header/header'
+export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
+  getLayout?: (page: ReactElement) => ReactNode
+}
 
-const queryClient = new QueryClient({
-  defaultOptions: { queries: { refetchOnWindowFocus: false } },
-})
+type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout
+}
 
-const App: FC<AppProps> = ({ Component, pageProps }) => {
-  return (
+const App = ({ Component, pageProps }: AppPropsWithLayout): ReactNode => {
+  const [queryClient] = useState(
+    () =>
+      new QueryClient({
+        defaultOptions: { queries: { refetchOnWindowFocus: false } },
+      })
+  )
+  const getLayout = Component.getLayout ?? (page => page)
+
+  return getLayout(
     <QueryClientProvider client={queryClient}>
       <Hydrate state={pageProps.dehydratedState}>
-        <div id="modals" />
-        <div id="confirmModal" />
-        <Header />
-        <Component {...pageProps} />{' '}
+        <Component {...pageProps} />
       </Hydrate>
     </QueryClientProvider>
   )

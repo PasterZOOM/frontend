@@ -1,9 +1,10 @@
-import { FC, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
-import { GetServerSideProps } from 'next'
+import { GetServerSideProps, NextPage } from 'next'
 
 import { CurrencyService } from '@/api/currency/currencyApi'
 import { MainContainer } from '@/components/common/containers/mainContainer'
+import Header from '@/components/common/header/header'
 import FilterButtons from '@/components/common/ui/buttons/filterButtons'
 import { CatalogFilters } from '@/components/pages/catalog/filters/catalogFilters'
 import Products from '@/components/pages/catalog/products'
@@ -28,7 +29,7 @@ type PropsType = {
   basicProducts: BasicProductType[]
 }
 
-const Catalog: FC<PropsType> = ({ rates, articles, basicProducts }) => {
+const Catalog: NextPage<PropsType> = ({ rates, articles, basicProducts }: PropsType) => {
   useGetAllLeatherArticles({ initialData: articles })
   useGetAllBasicProducts({ initialData: basicProducts })
   const setActualRates = useCurrencyStore(selectSetActualRates)
@@ -40,6 +41,7 @@ const Catalog: FC<PropsType> = ({ rates, articles, basicProducts }) => {
 
   return (
     <>
+      <Header />
       <MainContainer className="min-h-[calc(100vh-9.625rem)] grid-cols-12 gap-6 py-5 md:min-h-[calc(100vh-10.625rem)] xl:grid xl:min-h-fit">
         <CatalogFilters
           isOpenFilters={isOpenFilters}
@@ -53,29 +55,6 @@ const Catalog: FC<PropsType> = ({ rates, articles, basicProducts }) => {
     </>
   )
 }
-
-/* export const getStaticProps: GetStaticProps = async () => {
-  const basicProductsService = new BasicProductsService()
-  const currencyService = new CurrencyService()
-  const leatherArticlesService = new LeatherArticlesService()
-
-  const rates: CostType = initialCurrencyState
-
-  await Promise.all(
-    Object.keys(ECost)
-      .filter(costKey => costKey !== ECost.BYN)
-      .map(async costKey => {
-        const rate = await currencyService.getRate(costKey as TCost)
-
-        rates[costKey as ECost] = +(rate.Cur_Scale / rate.Cur_OfficialRate)
-      })
-  )
-
-  const articles = await leatherArticlesService.getAll()
-  const basicProducts = await basicProductsService.getAll(filters)
-
-  return { props: { basicProducts, rates, articles }, revalidate: TWELVE_HOURS }
-} */
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const basicProductsService = new BasicProductsService()
