@@ -22,7 +22,7 @@ export const ConfirmModalLayout: FC<PropsType> = ({
   confirmButton,
 }) => {
   return (
-    <ModalOverlay isOpen={isOpen} onClose={closeModal} modalContainer="#confirmModal">
+    <ModalOverlay isOpen={isOpen} onClose={closeModal}>
       <div className="flex max-w-[18rem] flex-col justify-between gap-4 bg-white p-4 dark:bg-anthracite-gray md:max-w-[95%]">
         <div className="flex justify-between gap-2">
           <div className="text-xl">{title}</div>

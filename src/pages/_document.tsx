@@ -8,7 +8,6 @@ const Document: FC = () => {
       <Head />
       <body className="text-anthracite-gray dark:bg-anthracite-gray dark:text-white">
         <div id="modals" />
-        <div id="confirmModal" />
         <Main />
         <NextScript />
       </body>
