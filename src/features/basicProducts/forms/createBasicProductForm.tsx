@@ -27,7 +27,7 @@ const CreateBasicProductForm: FC = () => {
     value: _id,
   }))
 
-  const createBasicProduct = useCreateBasicProduct()
+  const { mutate: createBasicProduct } = useCreateBasicProduct()
 
   const initialValues: CreateBasicProductFormType = {
     [ECreateBasicProductParams.ASSIGNMENTS]: [],
@@ -45,9 +45,12 @@ const CreateBasicProductForm: FC = () => {
     { leather, ...params }: CreateBasicProductFormType,
     { resetForm }: FormikHelpers<CreateBasicProductFormType>
   ): Promise<void> => {
-    await createBasicProduct({ leather: leather || articles[0]?._id, ...params })
-
-    resetForm()
+    try {
+      await createBasicProduct({ leather: leather || articles[0]?._id, ...params })
+      resetForm()
+    } catch (e) {
+      /* empty */
+    }
   }
 
   return (

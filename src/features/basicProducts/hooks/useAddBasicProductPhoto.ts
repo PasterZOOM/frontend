@@ -1,22 +1,26 @@
-import { UseMutateAsyncFunction, useMutation, useQueryClient } from 'react-query'
+import { useMutation, useQueryClient } from 'react-query'
+import { UseMutationOptions, UseMutationResult } from 'react-query/types/react/types'
 
+import { UpdateParamsType } from '@/api/paramsTypes'
 import { queryKey } from '@/enums/queryKey'
 import { BasicProductType } from '@/features/basicProducts/api/types'
 import { useSrmServiceStore } from '@/store/crmServises'
 
-export const useAddBasicProductPhoto: UseAddBasicProductPhotoType = _id => {
+export const useAddBasicProductPhoto: UseAddBasicProductPhotoType = options => {
   const basicProductsService = useSrmServiceStore(state => state.basicProductsService)
   const queryClient = useQueryClient()
 
-  const { mutateAsync } = useMutation(basicProductsService.addPhoto, {
+  return useMutation(basicProductsService.addPhoto, {
     onSuccess: async data => {
       await queryClient.setQueryData([queryKey.GET_BASIC_PRODUCT, data._id], data)
     },
+    ...options,
   })
-
-  return params => mutateAsync({ _id, params })
 }
 
 type UseAddBasicProductPhotoType = (
-  _id: string
-) => UseMutateAsyncFunction<BasicProductType, unknown, { [key: string]: string[] }>
+  options?: Omit<
+    UseMutationOptions<BasicProductType, unknown, UpdateParamsType<{ [key: string]: string[] }>>,
+    'mutationFn'
+  >
+) => UseMutationResult<BasicProductType, unknown, UpdateParamsType<{ [key: string]: string[] }>>

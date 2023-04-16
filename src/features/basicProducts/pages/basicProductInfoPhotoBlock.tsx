@@ -7,20 +7,20 @@ import { useRemoveBasicProductPhoto } from '@/features/basicProducts/hooks/useRe
 import { useGetLeatherArticle } from '@/features/leatherArticles/hooks/useGetLeatherArticle'
 
 type PropsType = {
-  basicProduct: BasicProductType
+  product: BasicProductType
 }
 
-export const BasicProductInfoPhotoBlock: FC<PropsType> = ({ basicProduct }) => {
-  const addBasicProductPhoto = useAddBasicProductPhoto(basicProduct._id)
-  const removeBasicProductPhoto = useRemoveBasicProductPhoto(basicProduct._id)
+export const BasicProductInfoPhotoBlock: FC<PropsType> = ({ product }) => {
+  const { mutate: addBasicProductPhoto } = useAddBasicProductPhoto()
+  const { mutateAsync: removeBasicProductPhoto } = useRemoveBasicProductPhoto()
 
-  const leatherArticle = useGetLeatherArticle(basicProduct.leather._id)
+  const leatherArticle = useGetLeatherArticle(product.leather._id)
   const [selectValue, setSelectValue] = useState(leatherArticle?.colors[0]._id || '')
   const [inputValue, setInputValue] = useState('')
 
-  const onEnter: KeyboardEventHandler<HTMLInputElement> = async e => {
+  const onEnter: KeyboardEventHandler<HTMLInputElement> = e => {
     if (e.key === 'Enter') {
-      await addBasicProductPhoto({ [selectValue]: [inputValue] })
+      addBasicProductPhoto({ _id: product._id, params: { [selectValue]: [inputValue] } })
     }
   }
 
@@ -39,20 +39,23 @@ export const BasicProductInfoPhotoBlock: FC<PropsType> = ({ basicProduct }) => {
         value={inputValue}
         onChange={e => setInputValue(e.currentTarget.value)}
       />
-      {Object.keys(basicProduct.photos).map(key => (
+      {Object.keys(product.photos).map(key => (
         <div key={key}>
-          {basicProduct.photos[key].map(photo => (
-            <div key={photo._id}>
-              <span className="mr-2">{photo.url}</span>
-              <span
-                className="cursor-pointer border p-1"
-                onClick={() => removeBasicProductPhoto(photo._id)}
-                aria-hidden="true"
-              >
-                X
-              </span>
-            </div>
-          ))}
+          {product.photos[key] &&
+            product.photos[key].map(photo => (
+              <div key={photo._id}>
+                <span className="mr-2">{photo.url}</span>
+                <span
+                  className="cursor-pointer border p-1"
+                  onClick={() =>
+                    removeBasicProductPhoto({ productId: product._id, photoId: photo._id })
+                  }
+                  aria-hidden="true"
+                >
+                  X
+                </span>
+              </div>
+            ))}
         </div>
       ))}
     </PropertyPreviewWrapper>

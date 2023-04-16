@@ -1,4 +1,4 @@
-import { ChangeEvent, KeyboardEvent, useEffect, useState } from 'react'
+import { ChangeEventHandler, KeyboardEventHandler, useEffect, useState } from 'react'
 
 export const useEditableSpan = <T>(
   initialValue: T,
@@ -9,15 +9,17 @@ export const useEditableSpan = <T>(
   editeMode: boolean
   enableEditMode: () => void
   disableEditMode: () => void
-  onChangeValueHandler: (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void
-  onKeyDownHandler: (e: KeyboardEvent<HTMLInputElement | HTMLSelectElement>) => void
+  onChangeValueHandler: ChangeEventHandler<HTMLInputElement | HTMLSelectElement>
+  onKeyDownHandler: KeyboardEventHandler<HTMLInputElement | HTMLSelectElement>
 } => {
   const [editeMode, setEditeMode] = useState(false)
   const [value, setValue] = useState(initialValue)
 
   const enableEditMode = (): void => setEditeMode(true)
 
-  const disableEditMode = (): void => setEditeMode(false)
+  const disableEditMode = (): void => {
+    setEditeMode(false)
+  }
 
   const sendValue = (): void => {
     onChange(value)
@@ -28,7 +30,7 @@ export const useEditableSpan = <T>(
     disableEditMode()
   }
 
-  const onKeyDownHandler = (e: KeyboardEvent<HTMLInputElement | HTMLSelectElement>): void => {
+  const onKeyDownHandler: KeyboardEventHandler<HTMLInputElement | HTMLSelectElement> = e => {
     if (e.key === 'Enter') {
       sendValue()
     }
@@ -38,7 +40,7 @@ export const useEditableSpan = <T>(
     }
   }
 
-  const onChangeValueHandler = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>): void => {
+  const onChangeValueHandler: ChangeEventHandler<HTMLInputElement | HTMLSelectElement> = e => {
     if (Array.isArray(initialValue)) {
       setValue(
         Array.from(document.querySelectorAll(`#${elementId} option:checked`)).map(

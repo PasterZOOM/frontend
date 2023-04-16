@@ -12,25 +12,31 @@ type PropsType = {
 }
 
 export const BasicProductModal: FC<PropsType> = ({ isOpen, closeModal, id }) => {
-  const basicProduct = useGetBasicProduct(id, { enabled: isOpen })
-  const removeProduct = useRemoveBasicProduct()
+  const { data: product } = useGetBasicProduct(id, { enabled: isOpen })
+  const { mutateAsync: removeProduct } = useRemoveBasicProduct()
 
   const onDeleteConfirm = async (): Promise<void> => {
-    await removeProduct(id)
-    closeModal()
+    try {
+      await removeProduct(id)
+      closeModal()
+    } catch (e) {
+      /* empty */
+    }
+  }
+
+  if (!product) {
+    return null
   }
 
   return (
     <ModalLayout
       isOpen={isOpen}
       closeModal={closeModal}
-      title={`Информация о фабрике ${basicProduct && basicProduct.title}`}
+      title={`Информация о фабрике ${product.title}`}
     >
-      {basicProduct && (
-        <div className="flex gap-4 p-4">
-          <BasicProductInfo basicProduct={basicProduct} onDeleteConfirm={onDeleteConfirm} />
-        </div>
-      )}
+      <div className="flex gap-4 p-4">
+        <BasicProductInfo product={product} onDeleteConfirm={onDeleteConfirm} />
+      </div>
     </ModalLayout>
   )
 }

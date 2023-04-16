@@ -59,13 +59,12 @@ export class BasicProductsService {
       return res.data
     }
 
-  removePhoto: (params: {
-    params: { productId: string; photoId: string }
-  }) => Promise<BasicProductType> = async ({ params: { productId, photoId } }) => {
-    const res = await axios.delete<BasicProductType>(
-      `${this.BASE_URL}/${productId}/photo/${photoId}`
-    )
+  removePhoto: (params: { productId: string; photoId: string }) => Promise<BasicProductType> =
+    async ({ productId, photoId }) => {
+      const res = await axios.delete<BasicProductType>(
+        `${this.BASE_URL}/${productId}/photo/${photoId}`
+      )
 
-    return res.data
-  }
+      return res.data
+    }
 }

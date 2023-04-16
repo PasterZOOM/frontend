@@ -18,38 +18,40 @@ import { productCategories, productCategoriesArray } from '@/objects/products/pr
 
 type PropsType = {
   className?: string
-  basicProduct: BasicProductType
+  product: BasicProductType
   onDeleteConfirm: () => void
 }
 
-export const BasicProductInfo: FC<PropsType> = ({ className, basicProduct, onDeleteConfirm }) => {
+export const BasicProductInfo: FC<PropsType> = ({ className, product, onDeleteConfirm }) => {
   const articles: SelectItemType[] = useGetAllLeatherArticles().map(({ _id, title }) => ({
     _id,
     title,
     value: _id,
   }))
 
-  const updateBasicProduct = useUpdateBasicProduct(basicProduct._id)
+  const { mutate: updateBasicProduct } = useUpdateBasicProduct()
 
   return (
     <div className={`${className ?? ''} flex w-full flex-col justify-between`}>
       <div>
         <div className="space-y-1">
           <PropertyWithUnderline title="Идентификационный номер:">
-            {basicProduct._id}
+            {product._id}
           </PropertyWithUnderline>
 
           <PropertyWithUnderline title="Название изделия:">
-            <EditableSpanInput onChange={title => updateBasicProduct({ title })}>
-              {basicProduct.title}
+            <EditableSpanInput
+              onChange={title => updateBasicProduct({ _id: product._id, params: { title } })}
+            >
+              {product.title}
             </EditableSpanInput>
           </PropertyWithUnderline>
 
           <PropertyWithUnderline title="Кожа:">
             <EditableSpanSelect
-              title={basicProduct.leather.title}
-              initialValue={basicProduct.leather._id}
-              onChange={leather => updateBasicProduct({ leather })}
+              title={product.leather.title}
+              initialValue={product.leather._id}
+              onChange={leather => updateBasicProduct({ _id: product._id, params: { leather } })}
             >
               {articles.map(article => (
                 <option key={article._id} value={article.value}>
@@ -61,18 +63,20 @@ export const BasicProductInfo: FC<PropsType> = ({ className, basicProduct, onDel
 
           <PropertyWithUnderline title="Стоимость:">
             <EditableSpanInput
-              onChange={cost => updateBasicProduct({ cost: +cost })}
+              onChange={cost => updateBasicProduct({ _id: product._id, params: { cost: +cost } })}
               inputProps={{ type: 'number' }}
             >
-              {basicProduct.cost.toString()}
+              {product.cost.toString()}
             </EditableSpanInput>
           </PropertyWithUnderline>
 
           <PropertyWithUnderline title="Валюта:">
             <EditableSpanSelect
-              title={currencies[basicProduct.costCurrency].title}
-              initialValue={basicProduct.costCurrency}
-              onChange={costCurrency => updateBasicProduct({ costCurrency })}
+              title={currencies[product.costCurrency].title}
+              initialValue={product.costCurrency}
+              onChange={costCurrency =>
+                updateBasicProduct({ _id: product._id, params: { costCurrency } })
+              }
             >
               {currencyArray.map(currency => (
                 <option key={currency._id} value={currency.value}>
@@ -84,9 +88,9 @@ export const BasicProductInfo: FC<PropsType> = ({ className, basicProduct, onDel
 
           <PropertyWithUnderline title="Категория:">
             <EditableSpanSelect
-              title={productCategories[basicProduct.category].title}
-              initialValue={basicProduct.category}
-              onChange={category => updateBasicProduct({ category })}
+              title={productCategories[product.category].title}
+              initialValue={product.category}
+              onChange={category => updateBasicProduct({ _id: product._id, params: { category } })}
             >
               {productCategoriesArray.map(category => (
                 <option key={category._id} value={category.value}>
@@ -97,16 +101,20 @@ export const BasicProductInfo: FC<PropsType> = ({ className, basicProduct, onDel
           </PropertyWithUnderline>
 
           <PropertyWithUnderline title="Размер:">
-            <EditableSpanInput onChange={size => updateBasicProduct({ size })}>
-              {basicProduct.size}
+            <EditableSpanInput
+              onChange={size => updateBasicProduct({ _id: product._id, params: { size } })}
+            >
+              {product.size}
             </EditableSpanInput>
           </PropertyWithUnderline>
 
           <PropertyWithUnderline title="Шаг пробойника:">
             <EditableSpanSelect
-              title={punchPatches[basicProduct.punchPitch].title}
-              initialValue={basicProduct.punchPitch}
-              onChange={punchPitch => updateBasicProduct({ punchPitch })}
+              title={punchPatches[product.punchPitch].title}
+              initialValue={product.punchPitch}
+              onChange={punchPitch =>
+                updateBasicProduct({ _id: product._id, params: { punchPitch } })
+              }
             >
               {punchPatchesArray.map(punchPitch => (
                 <option key={punchPitch._id} value={punchPitch.value}>
@@ -119,9 +127,12 @@ export const BasicProductInfo: FC<PropsType> = ({ className, basicProduct, onDel
           <PropertyWithUnderline title="Опубликовано:">
             <input
               type="checkbox"
-              checked={basicProduct.isPublished}
+              checked={product.isPublished}
               onChange={({ currentTarget }) =>
-                updateBasicProduct({ isPublished: currentTarget.checked })
+                updateBasicProduct({
+                  _id: product._id,
+                  params: { isPublished: currentTarget.checked },
+                })
               }
             />
           </PropertyWithUnderline>
@@ -132,13 +143,15 @@ export const BasicProductInfo: FC<PropsType> = ({ className, basicProduct, onDel
             childrenClassName="ml-5"
           >
             <EditableSpanSelect
-              title={basicProduct.assignments.map(assignment => (
+              title={product.assignments.map(assignment => (
                 <div key={assignment} className="w-fit">
                   {assignment}
                 </div>
               ))}
-              initialValue={basicProduct.assignments}
-              onChange={assignments => updateBasicProduct({ assignments })}
+              initialValue={product.assignments}
+              onChange={assignments =>
+                updateBasicProduct({ _id: product._id, params: { assignments } })
+              }
               selectProps={{ multiple: true }}
             >
               {productAssignmentsArray.map(assignment => (
@@ -150,18 +163,22 @@ export const BasicProductInfo: FC<PropsType> = ({ className, basicProduct, onDel
           </PropertyPreviewWrapper>
 
           <PropertyPreviewWrapper title="Описание:" childrenClassName="ml-5">
-            <EditableSpanInput onChange={description => updateBasicProduct({ description })}>
-              {basicProduct.description}
+            <EditableSpanInput
+              onChange={description =>
+                updateBasicProduct({ _id: product._id, params: { description } })
+              }
+            >
+              {product.description}
             </EditableSpanInput>
           </PropertyPreviewWrapper>
 
-          <BasicProductInfoPhotoBlock basicProduct={basicProduct} />
+          <BasicProductInfoPhotoBlock product={product} />
         </div>
       </div>
       <RemoveButton
         onConfirm={onDeleteConfirm}
         className="mt-3"
-        modalChildren={<BasicProductRemoveConfirmModalBody basicProduct={basicProduct} />}
+        modalChildren={<BasicProductRemoveConfirmModalBody basicProduct={product} />}
       />
     </div>
   )

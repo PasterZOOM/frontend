@@ -1,27 +1,38 @@
-import { UseMutateAsyncFunction, useMutation, useQueryClient } from 'react-query'
+import { useRouter } from 'next/router'
+import { useMutation, useQueryClient } from 'react-query'
+import { UseMutationOptions, UseMutationResult } from 'react-query/types/react/types'
 
 import { queryKey } from '@/enums/queryKey'
 import { BasicProductType, CreateBasicProductParamsType } from '@/features/basicProducts/api/types'
-import { useGetAllBasicProducts } from '@/features/basicProducts/hooks/useGetAllBasicProducts'
 import { useSrmServiceStore } from '@/store/crmServises'
+import { getQueryFilters } from '@/utils/filters/getQueryFilters'
 
-export const useCreateBasicProduct = (): UseCreateBasicProductType => {
+export const useCreateBasicProduct: UseCreateBasicProductType = options => {
+  const { query } = useRouter()
+  const filters = getQueryFilters(query)
+
   const basicProductsService = useSrmServiceStore(state => state.basicProductsService)
 
   const queryClient = useQueryClient()
-  const basicProducts = useGetAllBasicProducts()
+  const products = queryClient.getQueryData<BasicProductType[]>([
+    queryKey.GET_ALL_BASIC_PRODUCTS,
+    filters,
+  ])
 
-  const { mutateAsync } = useMutation(basicProductsService.create, {
+  return useMutation(basicProductsService.create, {
     onSuccess: data => {
-      queryClient.setQueryData(queryKey.GET_ALL_BASIC_PRODUCTS, [...basicProducts, data])
+      queryClient.setQueryData(
+        [queryKey.GET_ALL_BASIC_PRODUCTS, filters],
+        [...(products ?? []), data]
+      )
     },
+    ...options,
   })
-
-  return mutateAsync
 }
 
-type UseCreateBasicProductType = UseMutateAsyncFunction<
-  BasicProductType,
-  unknown,
-  CreateBasicProductParamsType
->
+type UseCreateBasicProductType = (
+  options?: Omit<
+    UseMutationOptions<BasicProductType, unknown, CreateBasicProductParamsType>,
+    'mutationFn'
+  >
+) => UseMutationResult<BasicProductType, unknown, CreateBasicProductParamsType>

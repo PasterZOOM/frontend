@@ -1,22 +1,23 @@
-import { UseMutateAsyncFunction, useMutation, useQueryClient } from 'react-query'
+import { useMutation, useQueryClient } from 'react-query'
+import { UseMutationOptions, UseMutationResult } from 'react-query/types/react/types'
 
 import { queryKey } from '@/enums/queryKey'
 import { BasicProductType } from '@/features/basicProducts/api/types'
 import { useSrmServiceStore } from '@/store/crmServises'
 
-export const useRemoveBasicProduct: UseRemoveBasicProductType = () => {
+export const useRemoveBasicProduct: UseRemoveBasicProductType = options => {
   const basicProductsService = useSrmServiceStore(state => state.basicProductsService)
 
   const queryClient = useQueryClient()
 
-  const { mutateAsync } = useMutation(basicProductsService.remove, {
+  return useMutation(basicProductsService.remove, {
     onSuccess: async () => {
       await queryClient.invalidateQueries([queryKey.GET_ALL_BASIC_PRODUCTS])
     },
+    ...options,
   })
-
-  return mutateAsync
 }
 
-type UseRemoveBasicProductType = () => RemoveBasicProductFnType
-type RemoveBasicProductFnType = UseMutateAsyncFunction<BasicProductType, unknown, string>
+type UseRemoveBasicProductType = (
+  options?: Omit<UseMutationOptions<BasicProductType, unknown, string>, 'mutationFn'>
+) => UseMutationResult<BasicProductType, unknown, string>
