@@ -1,12 +1,14 @@
-import { useEffect } from 'react'
+import { Dispatch, useEffect, useState } from 'react'
 
 import { ETheme } from '@/enums/theme'
-import { ThemeType } from '@/objects/theme/themes'
+import { themes, ThemeType } from '@/objects/theme/themes'
 import { selectSetTheme, selectTheme, useUserSettings } from '@/store/useUserSettings'
 
-export const useSwitchTheme: UseSwitchThemeType = activeTheme => {
+export const useSwitchTheme: UseSwitchThemeType = () => {
   const theme = useUserSettings(selectTheme)
   const setTheme = useUserSettings(selectSetTheme)
+
+  const [activeTheme, setActiveTheme] = useState<ThemeType>(themes[theme])
 
   useEffect(() => {
     setTheme(activeTheme.value)
@@ -22,6 +24,8 @@ export const useSwitchTheme: UseSwitchThemeType = activeTheme => {
       document.documentElement.classList.remove('dark')
     }
   }, [theme])
+
+  return { activeTheme, setActiveTheme }
 }
 
-type UseSwitchThemeType = (activeTheme: ThemeType) => void
+type UseSwitchThemeType = () => { activeTheme: ThemeType; setActiveTheme: Dispatch<ThemeType> }
