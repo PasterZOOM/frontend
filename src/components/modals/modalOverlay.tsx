@@ -1,6 +1,7 @@
 import {
   FC,
   KeyboardEvent,
+  KeyboardEventHandler,
   MouseEvent,
   ReactNode,
   useCallback,
@@ -10,6 +11,8 @@ import {
 } from 'react'
 
 import ReactDOM from 'react-dom'
+
+import { getNumberOfPenultimateElement } from '@/utils/arrays/getNumberOfPenultimateElement'
 
 type PropsType = {
   isOpen: boolean
@@ -27,19 +30,19 @@ export const ModalOverlay: FC<PropsType> = ({
 
   const [container, setContainer] = useState<Element | null>(null)
 
-  const onEscape = useCallback((e: globalThis.KeyboardEvent) => {
+  const onEscape: KeyboardEventHandler<HTMLDivElement> = e => {
     if (e.key === 'Escape' && onClose) {
       onClose()
       e.stopPropagation()
     }
-  }, [])
+  }
 
   const handleClick = useCallback(
     (e: KeyboardEvent<HTMLDivElement> | MouseEvent<HTMLElement>) => {
       e.stopPropagation()
 
-      if (e.target === containerRef.current) {
-        onClose?.call(null)
+      if (e.target === containerRef.current && onClose) {
+        onClose.call(null)
       }
     },
     [onClose]
@@ -50,18 +53,33 @@ export const ModalOverlay: FC<PropsType> = ({
   }, [])
 
   useEffect(() => {
-    if (isOpen) {
+    const length = container?.childNodes.length || 0
+    const next = document.querySelector('#__next')
+
+    if (containerRef.current) {
+      containerRef.current.focus()
+      next?.setAttribute('inert', 'true')
+    }
+
+    if (length !== 0) {
       document.body.style.overflow = 'hidden'
-      document.addEventListener('keydown', onEscape)
     } else {
       document.body.style.overflow = 'auto'
-      document.removeEventListener('keydown', onEscape)
+    }
+
+    if (length > 1) {
+      container?.children[getNumberOfPenultimateElement(length)]?.setAttribute('inert', 'true')
     }
 
     return () => {
-      document.removeEventListener('keydown', onEscape)
+      if (length === 1) {
+        document.body.style.overflow = 'auto'
+        next?.removeAttribute('inert')
+      }
+      ;(container?.lastElementChild as HTMLElement)?.removeAttribute('inert')
+      ;(container?.lastElementChild as HTMLElement)?.focus()
     }
-  }, [isOpen])
+  }, [isOpen, container])
 
   if (!container || !children || !isOpen) return null
 
@@ -69,10 +87,11 @@ export const ModalOverlay: FC<PropsType> = ({
     <>
       {ReactDOM.createPortal(
         <div
+          onKeyDown={onEscape}
           aria-hidden="true"
-          id="modal"
+          tabIndex={-1}
           ref={containerRef}
-          onClick={e => handleClick(e)}
+          onClick={handleClick}
           className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-black bg-opacity-50"
         >
           {children}

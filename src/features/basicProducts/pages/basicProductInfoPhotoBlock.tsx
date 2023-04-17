@@ -45,15 +45,16 @@ export const BasicProductInfoPhotoBlock: FC<PropsType> = ({ product }) => {
             product.photos[key].map(photo => (
               <div key={photo._id}>
                 <span className="mr-2">{photo.url}</span>
-                <span
-                  className="cursor-pointer border p-1"
+                <button
+                  type="button"
+                  className="cursor-pointer border px-1"
                   onClick={() =>
                     removeBasicProductPhoto({ productId: product._id, photoId: photo._id })
                   }
                   aria-hidden="true"
                 >
                   X
-                </span>
+                </button>
               </div>
             ))}
         </div>
