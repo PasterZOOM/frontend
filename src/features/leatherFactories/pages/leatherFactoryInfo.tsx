@@ -20,7 +20,7 @@ type PropsType = {
 }
 
 export const LeatherFactoryInfo: FC<PropsType> = ({ className, factory, onDeleteConfirm }) => {
-  const updateLeatherFactory = useUpdateLeatherFactory(factory._id)
+  const { mutate: updateLeatherFactory } = useUpdateLeatherFactory()
 
   return (
     <div className={`${className ?? ''} flex w-full flex-col justify-between`}>
@@ -31,7 +31,9 @@ export const LeatherFactoryInfo: FC<PropsType> = ({ className, factory, onDelete
           </PropertyWithUnderline>
 
           <PropertyWithUnderline title="Название фабрики:">
-            <EditableSpanInput onChange={title => updateLeatherFactory({ title })}>
+            <EditableSpanInput
+              onChange={title => updateLeatherFactory({ _id: factory._id, params: { title } })}
+            >
               {factory.title}
             </EditableSpanInput>
           </PropertyWithUnderline>
@@ -40,7 +42,7 @@ export const LeatherFactoryInfo: FC<PropsType> = ({ className, factory, onDelete
             <EditableSpanSelect
               title={countryValues[factory.country].title}
               initialValue={factory.country}
-              onChange={country => updateLeatherFactory({ country })}
+              onChange={country => updateLeatherFactory({ _id: factory._id, params: { country } })}
             >
               {countriesArray.map(country => (
                 <option key={country._id} value={country.value}>
@@ -51,7 +53,11 @@ export const LeatherFactoryInfo: FC<PropsType> = ({ className, factory, onDelete
           </PropertyWithUnderline>
 
           <PropertyPreviewWrapper title="Описание:" childrenClassName="ml-5">
-            <EditableSpanInput onChange={description => updateLeatherFactory({ description })}>
+            <EditableSpanInput
+              onChange={description =>
+                updateLeatherFactory({ _id: factory._id, params: { description } })
+              }
+            >
               {factory.description}
             </EditableSpanInput>
           </PropertyPreviewWrapper>

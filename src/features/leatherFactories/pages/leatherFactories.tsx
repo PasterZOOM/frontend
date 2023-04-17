@@ -10,7 +10,7 @@ type PropsType = {
   className?: string
 }
 export const LeatherFactories: FC<PropsType> = ({ className }) => {
-  const factories = useGetAllLeatherFactories()
+  const { data: factories } = useGetAllLeatherFactories()
 
   return (
     <CreateFormAndListWrapper
@@ -18,13 +18,14 @@ export const LeatherFactories: FC<PropsType> = ({ className }) => {
       form={<CreateLeatherFactoryForm />}
       className={className}
     >
-      {factories.map(factory => (
-        <TableItem key={factory._id} title={factory.title}>
-          {({ closeModal, isOpen }) => (
-            <LeatherFactoryModal closeModal={closeModal} isOpen={isOpen} id={factory._id} />
-          )}
-        </TableItem>
-      ))}
+      {factories &&
+        factories.map(factory => (
+          <TableItem key={factory._id} title={factory.title}>
+            {({ closeModal, isOpen }) => (
+              <LeatherFactoryModal closeModal={closeModal} isOpen={isOpen} id={factory._id} />
+            )}
+          </TableItem>
+        ))}
     </CreateFormAndListWrapper>
   )
 }

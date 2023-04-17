@@ -14,12 +14,14 @@ import { LeatherArticleCreateConfirmModalBody } from '@/features/leatherArticles
 import { useGetAllLeatherFactories } from '@/features/leatherFactories/hooks/useGetAllLeatherFactories'
 
 export const CreateLeatherArticleForm: FC = () => {
-  const factories: SelectItemType[] = useGetAllLeatherFactories().map(({ _id, title }) => ({
+  const { data } = useGetAllLeatherFactories()
+  const { mutateAsync: createArticle } = useCreateLeatherArticle()
+
+  const factories: SelectItemType[] = (data ?? []).map(({ _id, title }) => ({
     _id,
     title,
     value: _id,
   }))
-  const { mutateAsync: createArticle } = useCreateLeatherArticle()
 
   const initialValues: CreateLeatherArticleFormType = {
     [ECreateLeatherArticleParams.FACTORY_ID]: '',

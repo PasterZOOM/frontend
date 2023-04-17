@@ -20,15 +20,19 @@ const initialValues: CreateLeatherFactoryFormType = {
 }
 
 export const CreateLeatherFactoryForm: FC = () => {
-  const createFactory = useCreateLeatherFactory()
+  const { mutateAsync: createFactory } = useCreateLeatherFactory()
 
   const onSubmit = async (
     values: CreateLeatherFactoryFormType,
     { resetForm }: FormikHelpers<CreateLeatherFactoryFormType>
   ): Promise<void> => {
-    await createFactory(values)
+    try {
+      await createFactory(values)
 
-    resetForm()
+      resetForm()
+    } catch (e) {
+      /* empty */
+    }
   }
 
   return (

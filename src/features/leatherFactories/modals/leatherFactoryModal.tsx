@@ -13,19 +13,23 @@ type PropsType = {
 }
 
 export const LeatherFactoryModal: FC<PropsType> = ({ isOpen, closeModal, id }) => {
-  const factory = useGetLeatherFactory(id, { enabled: isOpen })
-  const removeFactory = useRemoveLeatherFactory()
+  const { data: factory } = useGetLeatherFactory(id, { enabled: isOpen })
+  const { mutateAsync: removeFactory } = useRemoveLeatherFactory()
 
   const onDeleteConfirm = async (): Promise<void> => {
-    await removeFactory(id)
-    closeModal()
+    try {
+      await removeFactory(id)
+      closeModal()
+    } catch (e) {
+      /* empty */
+    }
   }
 
   return (
     <ModalLayout
       isOpen={isOpen}
       closeModal={closeModal}
-      title={`Информация о фабрике ${factory && factory.title}`}
+      title={`Информация о фабрике ${factory?.title}`}
     >
       {factory && (
         <div className="flex gap-4 p-4">

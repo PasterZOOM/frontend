@@ -1,4 +1,5 @@
 import { useQuery, UseQueryOptions } from 'react-query'
+import { UseQueryResult } from 'react-query/types/react/types'
 
 import { queryKey } from '@/enums/queryKey'
 import { LeatherFactoryType } from '@/features/leatherFactories/api/types'
@@ -7,16 +8,14 @@ import { selectLeatherFactoriesService, useSrmServiceStore } from '@/store/crmSe
 export const useGetLeatherFactory: UseGetLeatherFactoryType = (factoryId, options) => {
   const leatherFactoriesService = useSrmServiceStore(selectLeatherFactoriesService)
 
-  const { data } = useQuery(
+  return useQuery(
     [queryKey.GET_FACTORY, factoryId],
     () => leatherFactoriesService.getOne(factoryId),
     options
   )
-
-  return data
 }
 
 type UseGetLeatherFactoryType = (
   factoryId: string,
   options?: Omit<UseQueryOptions<LeatherFactoryType>, 'queryKey' | 'queryFn'>
-) => LeatherFactoryType | undefined
+) => UseQueryResult<LeatherFactoryType>

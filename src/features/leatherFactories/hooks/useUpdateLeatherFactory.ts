@@ -1,5 +1,7 @@
-import { UseMutateAsyncFunction, useMutation, useQueryClient } from 'react-query'
+import { useMutation, useQueryClient } from 'react-query'
+import { UseMutationOptions, UseMutationResult } from 'react-query/types/react/types'
 
+import { UpdateParamsType } from '@/api/paramsTypes'
 import { queryKey } from '@/enums/queryKey'
 import {
   LeatherFactoryType,
@@ -7,21 +9,31 @@ import {
 } from '@/features/leatherFactories/api/types'
 import { selectLeatherFactoriesService, useSrmServiceStore } from '@/store/crmServises'
 
-export const useUpdateLeatherFactory: UseUpdateLeatherFactoryType = _id => {
+export const useUpdateLeatherFactory: UseUpdateLeatherFactoryType = options => {
   const leatherFactoriesService = useSrmServiceStore(selectLeatherFactoriesService)
 
   const queryClient = useQueryClient()
 
-  const { mutateAsync } = useMutation(leatherFactoriesService.update, {
+  return useMutation(leatherFactoriesService.update, {
     onSuccess: async data => {
       await queryClient.setQueryData([queryKey.GET_FACTORY, data._id], data)
       await queryClient.invalidateQueries([queryKey.GET_ALL_FACTORIES])
     },
+    ...options,
   })
-
-  return params => mutateAsync({ _id, params })
 }
 
 type UseUpdateLeatherFactoryType = (
-  _id: string
-) => UseMutateAsyncFunction<LeatherFactoryType, unknown, Partial<UpdateLeatherFactoryParamsType>>
+  options?: Omit<
+    UseMutationOptions<
+      LeatherFactoryType,
+      unknown,
+      UpdateParamsType<UpdateLeatherFactoryParamsType>
+    >,
+    'mutationFn'
+  >
+) => UseMutationResult<
+  LeatherFactoryType,
+  unknown,
+  UpdateParamsType<UpdateLeatherFactoryParamsType>
+>
