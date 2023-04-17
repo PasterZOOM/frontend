@@ -4,10 +4,10 @@ import { CreateType } from '@/api/paramsTypes'
 import { queryKey } from '@/enums/queryKey'
 import { CreateLeatherColorParamsType, LeatherColorType } from '@/features/leatherColors/api/types'
 import { useGetAllLeatherColors } from '@/features/leatherColors/hooks/useGetAllLeatherColors'
-import { useSrmServiceStore } from '@/store/crmServises'
+import { selectLeatherColorsService, useSrmServiceStore } from '@/store/crmServises'
 
 export const useCreateLeatherColor: UseCreateLeatherColorType = () => {
-  const leatherColorsService = useSrmServiceStore(state => state.leatherColorsService)
+  const leatherColorsService = useSrmServiceStore(selectLeatherColorsService)
 
   const queryClient = useQueryClient()
   const colors = useGetAllLeatherColors()

@@ -3,10 +3,10 @@ import { UseMutationOptions, UseMutationResult } from 'react-query/types/react/t
 
 import { queryKey } from '@/enums/queryKey'
 import { BasicProductType } from '@/features/basicProducts/api/types'
-import { useSrmServiceStore } from '@/store/crmServises'
+import { selectBasicProductsService, useSrmServiceStore } from '@/store/crmServises'
 
 export const useRemoveBasicProduct: UseRemoveBasicProductType = options => {
-  const basicProductsService = useSrmServiceStore(state => state.basicProductsService)
+  const basicProductsService = useSrmServiceStore(selectBasicProductsService)
 
   const queryClient = useQueryClient()
 

@@ -8,10 +8,10 @@ import {
   LeatherArticleType,
   UpdateLeatherArticleParamsType,
 } from '@/features/leatherArticles/api/types'
-import { useSrmServiceStore } from '@/store/crmServises'
+import { selectLeatherArticlesService, useSrmServiceStore } from '@/store/crmServises'
 
 export const useCreateLeatherArticle: UseCreateLeatherArticleType = options => {
-  const leatherArticlesService = useSrmServiceStore(state => state.leatherArticlesService)
+  const leatherArticlesService = useSrmServiceStore(selectLeatherArticlesService)
 
   const queryClient = useQueryClient()
   const articles = queryClient.getQueryData<Pick<LeatherArticleType, '_id' | 'title'>[]>(

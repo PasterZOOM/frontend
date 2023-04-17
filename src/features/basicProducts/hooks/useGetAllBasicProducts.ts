@@ -4,7 +4,7 @@ import { UseQueryResult } from 'react-query/types/react/types'
 
 import { queryKey } from '@/enums/queryKey'
 import { BasicProductType } from '@/features/basicProducts/api/types'
-import { useSrmServiceStore } from '@/store/crmServises'
+import { selectBasicProductsService, useSrmServiceStore } from '@/store/crmServises'
 import { getQueryFilters } from '@/utils/filters/getQueryFilters'
 
 export const useGetAllBasicProducts: UseGetAllBasicProductsType = options => {
@@ -12,7 +12,7 @@ export const useGetAllBasicProducts: UseGetAllBasicProductsType = options => {
 
   const filters = getQueryFilters(query)
 
-  const basicProductsService = useSrmServiceStore(state => state.basicProductsService)
+  const basicProductsService = useSrmServiceStore(selectBasicProductsService)
 
   return useQuery(
     [queryKey.GET_ALL_BASIC_PRODUCTS, filters],

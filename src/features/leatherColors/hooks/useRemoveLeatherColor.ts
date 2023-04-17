@@ -2,10 +2,10 @@ import { UseMutateAsyncFunction, useMutation, useQueryClient } from 'react-query
 
 import { queryKey } from '@/enums/queryKey'
 import { LeatherColorType } from '@/features/leatherColors/api/types'
-import { useSrmServiceStore } from '@/store/crmServises'
+import { selectLeatherColorsService, useSrmServiceStore } from '@/store/crmServises'
 
 export const useRemoveLeatherColor: UseRemoveLeatherColorType = () => {
-  const leatherColorsService = useSrmServiceStore(state => state.leatherColorsService)
+  const leatherColorsService = useSrmServiceStore(selectLeatherColorsService)
 
   const queryClient = useQueryClient()
 

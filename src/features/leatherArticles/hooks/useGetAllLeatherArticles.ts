@@ -3,10 +3,10 @@ import { UseQueryResult } from 'react-query/types/react/types'
 
 import { queryKey } from '@/enums/queryKey'
 import { LeatherArticleType } from '@/features/leatherArticles/api/types'
-import { useSrmServiceStore } from '@/store/crmServises'
+import { selectLeatherArticlesService, useSrmServiceStore } from '@/store/crmServises'
 
 export const useGetAllLeatherArticles: UseGetAllLeatherArticlesType = options => {
-  const leatherArticlesService = useSrmServiceStore(state => state.leatherArticlesService)
+  const leatherArticlesService = useSrmServiceStore(selectLeatherArticlesService)
 
   return useQuery(queryKey.GET_ALL_ARTICLES, leatherArticlesService.getAll, options)
 }

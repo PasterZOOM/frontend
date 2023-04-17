@@ -24,3 +24,17 @@ export const useSrmServiceStore = create<StoreType>(() => {
     basicProductsService,
   }
 })
+
+export const selectLeatherFactoriesService: LeatherFactoriesServiceSelectorType = state =>
+  state.leatherFactoriesService
+export const selectLeatherArticlesService: LeatherArticlesServiceSelectorType = state =>
+  state.leatherArticlesService
+export const selectLeatherColorsService: LeatherColorsServiceSelectorType = state =>
+  state.leatherColorsService
+export const selectBasicProductsService: BasicProductsServiceSelectorType = state =>
+  state.basicProductsService
+
+export type LeatherFactoriesServiceSelectorType = (state: StoreType) => LeatherFactoriesService
+export type LeatherArticlesServiceSelectorType = (state: StoreType) => LeatherArticlesService
+export type LeatherColorsServiceSelectorType = (state: StoreType) => LeatherColorsService
+export type BasicProductsServiceSelectorType = (state: StoreType) => BasicProductsService

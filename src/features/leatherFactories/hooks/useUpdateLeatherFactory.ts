@@ -5,10 +5,10 @@ import {
   LeatherFactoryType,
   UpdateLeatherFactoryParamsType,
 } from '@/features/leatherFactories/api/types'
-import { useSrmServiceStore } from '@/store/crmServises'
+import { selectLeatherFactoriesService, useSrmServiceStore } from '@/store/crmServises'
 
 export const useUpdateLeatherFactory: UseUpdateLeatherFactoryType = _id => {
-  const leatherFactoriesService = useSrmServiceStore(state => state.leatherFactoriesService)
+  const leatherFactoriesService = useSrmServiceStore(selectLeatherFactoriesService)
 
   const queryClient = useQueryClient()
 

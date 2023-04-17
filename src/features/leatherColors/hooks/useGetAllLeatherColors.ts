@@ -2,10 +2,10 @@ import { useQuery, UseQueryOptions } from 'react-query'
 
 import { queryKey } from '@/enums/queryKey'
 import { LeatherColorType } from '@/features/leatherColors/api/types'
-import { useSrmServiceStore } from '@/store/crmServises'
+import { selectLeatherColorsService, useSrmServiceStore } from '@/store/crmServises'
 
 export const useGetAllLeatherColors: UseGetAllLeatherColorsType = (filter, options) => {
-  const leatherColorsService = useSrmServiceStore(state => state.leatherColorsService)
+  const leatherColorsService = useSrmServiceStore(selectLeatherColorsService)
 
   const { data } = useQuery(
     filter ? [queryKey.GET_ALL_COLORS, filter] : queryKey.GET_ALL_COLORS,

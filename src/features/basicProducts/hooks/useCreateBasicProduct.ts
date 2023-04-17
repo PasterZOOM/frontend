@@ -4,14 +4,14 @@ import { UseMutationOptions, UseMutationResult } from 'react-query/types/react/t
 
 import { queryKey } from '@/enums/queryKey'
 import { BasicProductType, CreateBasicProductParamsType } from '@/features/basicProducts/api/types'
-import { useSrmServiceStore } from '@/store/crmServises'
+import { selectBasicProductsService, useSrmServiceStore } from '@/store/crmServises'
 import { getQueryFilters } from '@/utils/filters/getQueryFilters'
 
 export const useCreateBasicProduct: UseCreateBasicProductType = options => {
   const { query } = useRouter()
   const filters = getQueryFilters(query)
 
-  const basicProductsService = useSrmServiceStore(state => state.basicProductsService)
+  const basicProductsService = useSrmServiceStore(selectBasicProductsService)
 
   const queryClient = useQueryClient()
   const products = queryClient.getQueryData<BasicProductType[]>([
