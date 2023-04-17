@@ -1,32 +1,38 @@
-import { UseMutateAsyncFunction, useMutation, useQueryClient } from 'react-query'
+import { useMutation, useQueryClient } from 'react-query'
+import { UseMutationOptions, UseMutationResult } from 'react-query/types/react/types'
 
-import { CreateType } from '@/api/paramsTypes'
+import { CreateType, UpdateParamsType } from '@/api/paramsTypes'
 import { queryKey } from '@/enums/queryKey'
 import {
   CreateLeatherArticleParamsType,
   LeatherArticleType,
+  UpdateLeatherArticleParamsType,
 } from '@/features/leatherArticles/api/types'
-import { useGetAllLeatherArticles } from '@/features/leatherArticles/hooks/useGetAllLeatherArticles'
 import { useSrmServiceStore } from '@/store/crmServises'
 
-export const useCreateLeatherArticle: UseCreateLeatherArticleType = () => {
+export const useCreateLeatherArticle: UseCreateLeatherArticleType = options => {
   const leatherArticlesService = useSrmServiceStore(state => state.leatherArticlesService)
 
   const queryClient = useQueryClient()
-  const articles = useGetAllLeatherArticles()
+  const articles = queryClient.getQueryData<Pick<LeatherArticleType, '_id' | 'title'>[]>(
+    queryKey.GET_ALL_ARTICLES
+  )
 
-  const { mutateAsync } = useMutation(leatherArticlesService.create, {
+  return useMutation(leatherArticlesService.create, {
     onSuccess: ({ _id, title }) => {
-      queryClient.setQueryData(queryKey.GET_ALL_ARTICLES, [...articles, { _id, title }])
+      queryClient.setQueryData(queryKey.GET_ALL_ARTICLES, [...(articles ?? []), { _id, title }])
     },
+    ...options,
   })
-
-  return mutateAsync
 }
 
-type UseCreateLeatherArticleType = () => CreateLeatherArticleFnType
-type CreateLeatherArticleFnType = UseMutateAsyncFunction<
-  LeatherArticleType,
-  unknown,
-  CreateType<CreateLeatherArticleParamsType>
->
+type UseCreateLeatherArticleType = (
+  options?: Omit<
+    UseMutationOptions<
+      LeatherArticleType,
+      unknown,
+      UpdateParamsType<UpdateLeatherArticleParamsType>
+    >,
+    'mutationFn'
+  >
+) => UseMutationResult<LeatherArticleType, unknown, CreateType<CreateLeatherArticleParamsType>>

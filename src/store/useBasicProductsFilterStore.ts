@@ -20,7 +20,8 @@ export const useBasicProductsFilterStore = create<StoreType>((set, get) => ({
   },
 }))
 
-export const selectSetFilter: SelectSetFilterType = store => store.setFilter
+export const selectSetFilter: SetFilterSelectorType = store => store.setFilter
+export const selectFilters: SetFiltersSelectorType = store => store.filters
 export const selectFilter: FilterSelectorType = filterKey => store => store.filters[filterKey]
 
 type FilterStateType = {
@@ -30,5 +31,6 @@ type SetFilterType = (filterKey: EFilterKeys, value: string) => void
 type StoreType = FilterStateType & {
   setFilter: SetFilterType
 }
-type SelectSetFilterType = (store: StoreType) => SetFilterType
+type SetFilterSelectorType = (store: StoreType) => SetFilterType
+type SetFiltersSelectorType = (store: StoreType) => Record<EFilterKeys, string>
 type FilterSelectorType = (filterKey: EFilterKeys) => (store: StoreType) => string

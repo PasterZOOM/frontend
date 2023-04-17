@@ -16,7 +16,8 @@ import { LeatherColorCreatConfirmModalBody } from '@/features/leatherColors/moda
 import { leatherColorsArray } from '@/objects/colors/leatherColorsValues'
 
 export const CreateLeatherColorForm: FC = () => {
-  const articles: SelectItemType[] = useGetAllLeatherArticles().map(({ _id, title }) => ({
+  const { data } = useGetAllLeatherArticles()
+  const articles: SelectItemType[] = (data ?? []).map(({ _id, title }) => ({
     _id,
     title,
     value: _id,

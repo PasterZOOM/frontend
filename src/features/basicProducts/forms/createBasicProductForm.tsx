@@ -21,13 +21,14 @@ import { productAssignmentsArray } from '@/objects/products/productAssignments'
 import { productCategoriesArray } from '@/objects/products/productCategories'
 
 const CreateBasicProductForm: FC = () => {
-  const articles: SelectItemType[] = useGetAllLeatherArticles().map(({ _id, title }) => ({
+  const { data } = useGetAllLeatherArticles()
+  const { mutate: createBasicProduct } = useCreateBasicProduct()
+
+  const articles: SelectItemType[] = (data ?? []).map(({ _id, title }) => ({
     _id,
     title,
     value: _id,
   }))
-
-  const { mutate: createBasicProduct } = useCreateBasicProduct()
 
   const initialValues: CreateBasicProductFormType = {
     [ECreateBasicProductParams.ASSIGNMENTS]: [],

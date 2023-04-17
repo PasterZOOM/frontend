@@ -23,13 +23,14 @@ type PropsType = {
 }
 
 export const BasicProductInfo: FC<PropsType> = ({ className, product, onDeleteConfirm }) => {
-  const articles: SelectItemType[] = useGetAllLeatherArticles().map(({ _id, title }) => ({
+  const { data } = useGetAllLeatherArticles()
+  const { mutate: updateBasicProduct } = useUpdateBasicProduct()
+
+  const articles: SelectItemType[] = (data ?? []).map(({ _id, title }) => ({
     _id,
     title,
     value: _id,
   }))
-
-  const { mutate: updateBasicProduct } = useUpdateBasicProduct()
 
   return (
     <div className={`${className ?? ''} flex w-full flex-col justify-between`}>

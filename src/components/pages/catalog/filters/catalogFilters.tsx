@@ -23,7 +23,11 @@ export const CatalogFilters: FC<PropsType> = ({
   setIsOpenFilters,
   className = '',
 }) => {
-  const leathers = useGetAllLeatherArticles().map(({ title, _id }) => ({
+  const { data } = useGetAllLeatherArticles()
+
+  if (!data) return null
+
+  const leathers = data.map(({ title, _id }) => ({
     _id,
     title,
     value: title,

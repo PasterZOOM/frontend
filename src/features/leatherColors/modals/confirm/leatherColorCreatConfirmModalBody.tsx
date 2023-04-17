@@ -9,7 +9,9 @@ type PropsType = {
 }
 
 export const LeatherColorCreatConfirmModalBody: FC<PropsType> = ({ values }) => {
-  const articles = useGetAllLeatherArticles({ enabled: false })
+  const { data: articles } = useGetAllLeatherArticles({ enabled: false })
+
+  if (!articles) return null
 
   return (
     <div className="space-y-2">

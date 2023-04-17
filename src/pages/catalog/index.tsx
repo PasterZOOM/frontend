@@ -30,7 +30,7 @@ type PropsType = {
 }
 
 const Catalog: NextPage<PropsType> = ({ rates, articles, basicProducts }: PropsType) => {
-  useGetAllLeatherArticles({ initialData: articles })
+  useGetAllLeatherArticles({ initialData: articles }) // TODO: это можно сделать на сервере
   useGetAllBasicProducts({ initialData: basicProducts })
   const setActualRates = useCurrencyStore(selectSetActualRates)
   const [isOpenFilters, setIsOpenFilters] = useState(false)

@@ -19,7 +19,7 @@ export const CreateLeatherArticleForm: FC = () => {
     title,
     value: _id,
   }))
-  const createArticle = useCreateLeatherArticle()
+  const { mutateAsync: createArticle } = useCreateLeatherArticle()
 
   const initialValues: CreateLeatherArticleFormType = {
     [ECreateLeatherArticleParams.FACTORY_ID]: '',
@@ -31,9 +31,13 @@ export const CreateLeatherArticleForm: FC = () => {
     { factoryId, ...params }: CreateLeatherArticleFormType,
     { resetForm }: FormikHelpers<CreateLeatherArticleFormType>
   ): Promise<void> => {
-    await createArticle({ _id: factoryId || factories[0]?._id, params })
+    try {
+      await createArticle({ _id: factoryId || factories[0]?._id, params })
 
-    resetForm()
+      resetForm()
+    } catch (e) {
+      /* empty */
+    }
   }
 
   return (

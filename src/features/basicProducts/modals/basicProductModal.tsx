@@ -24,19 +24,17 @@ export const BasicProductModal: FC<PropsType> = ({ isOpen, closeModal, id }) => 
     }
   }
 
-  if (!product) {
-    return null
-  }
-
   return (
     <ModalLayout
       isOpen={isOpen}
       closeModal={closeModal}
-      title={`Информация о фабрике ${product.title}`}
+      title={`Информация о фабрике ${product?.title}`}
     >
-      <div className="flex gap-4 p-4">
-        <BasicProductInfo product={product} onDeleteConfirm={onDeleteConfirm} />
-      </div>
+      {product && (
+        <div className="flex gap-4 p-4">
+          <BasicProductInfo product={product} onDeleteConfirm={onDeleteConfirm} />
+        </div>
+      )}
     </ModalLayout>
   )
 }

@@ -9,24 +9,21 @@ import { useRemoveMultipleQueryParam } from '@/hooks/queryParams/useRemoveMultip
 import { leatherColorsValues } from '@/objects/colors/leatherColorsValues'
 import { productAssignments } from '@/objects/products/productAssignments'
 import { productCategories } from '@/objects/products/productCategories'
-import { useBasicProductsFilterStore } from '@/store/useBasicProductsFilterStore'
+import { selectFilters, useBasicProductsFilterStore } from '@/store/useBasicProductsFilterStore'
 import { ObjectForSelectType } from '@/types/objectForSelectType'
 
 type PropsType = {
   className?: string
 }
 const ActiveFilters: FC<PropsType> = ({ className = '' }) => {
-  const articles = {} as ObjectForSelectType<string>
+  const [articles, setArticles] = useState<ObjectForSelectType<string>>({})
+  const [activeFilters, setActiveFilters] = useState<GeneralFilterType[]>([])
 
-  useGetAllLeatherArticles().forEach(({ _id, title }) => {
-    articles[title] = { _id, title, value: title }
-  })
-
+  const { data: leatherArticles } = useGetAllLeatherArticles()
   const clearAll = useClearAllQueryParams()
   const removeQueryParam = useRemoveMultipleQueryParam()
 
-  const filtersInStore = useBasicProductsFilterStore(state => state.filters)
-  const [activeFilters, setActiveFilters] = useState<GeneralFilterType[]>([])
+  const filtersInStore = useBasicProductsFilterStore(selectFilters)
 
   const filters: Record<
     EFilterKeys,
@@ -37,6 +34,17 @@ const ActiveFilters: FC<PropsType> = ({ className = '' }) => {
     [EFilterKeys.LEATHERS]: articles,
     [EFilterKeys.LEATHER_COLORS]: leatherColorsValues,
   }
+
+  useEffect(() => {
+    if (leatherArticles) {
+      const temp = {} as ObjectForSelectType<string>
+
+      leatherArticles.forEach(({ _id, title }) => {
+        temp[title] = { _id, title, value: title }
+      })
+      setArticles(temp)
+    }
+  }, [leatherArticles])
 
   useEffect(() => {
     let newFilters: GeneralFilterType[] = []

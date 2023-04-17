@@ -19,7 +19,7 @@ type PropsType = {
 }
 
 export const LeatherArticleInfo: FC<PropsType> = ({ className, article, onDeleteConfirm }) => {
-  const updateLeatherArticle = useUpdateLeatherArticle(article._id)
+  const { mutate: updateLeatherArticle } = useUpdateLeatherArticle()
 
   return (
     <div className={`${className ?? ''} flex w-full flex-col justify-between`}>
@@ -30,7 +30,9 @@ export const LeatherArticleInfo: FC<PropsType> = ({ className, article, onDelete
           </PropertyWithUnderline>
 
           <PropertyWithUnderline title="Название артикула:">
-            <EditableSpanInput onChange={title => updateLeatherArticle({ title })}>
+            <EditableSpanInput
+              onChange={title => updateLeatherArticle({ _id: article._id, params: { title } })}
+            >
               {article.title}
             </EditableSpanInput>
           </PropertyWithUnderline>
@@ -48,7 +50,11 @@ export const LeatherArticleInfo: FC<PropsType> = ({ className, article, onDelete
           </PropertyWithUnderline>
 
           <PropertyPreviewWrapper title="Описание:" childrenClassName="ml-5">
-            <EditableSpanInput onChange={description => updateLeatherArticle({ description })}>
+            <EditableSpanInput
+              onChange={description =>
+                updateLeatherArticle({ _id: article._id, params: { description } })
+              }
+            >
               {article.description}
             </EditableSpanInput>
           </PropertyPreviewWrapper>

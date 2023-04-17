@@ -13,19 +13,23 @@ type PropsType = {
 }
 
 export const LeatherArticleModal: FC<PropsType> = ({ isOpen, closeModal, id }) => {
-  const removeArticle = useRemoveLeatherArticle()
-  const article = useGetLeatherArticle(id, { enabled: isOpen })
+  const { mutateAsync: removeArticle } = useRemoveLeatherArticle()
+  const { data: article } = useGetLeatherArticle(id, { enabled: isOpen })
 
   const onDeleteConfirm = async (): Promise<void> => {
-    await removeArticle(id)
-    closeModal()
+    try {
+      await removeArticle(id)
+      closeModal()
+    } catch (e) {
+      /* empty */
+    }
   }
 
   return (
     <ModalLayout
       isOpen={isOpen}
       closeModal={closeModal}
-      title={`Информация об артикле ${article && article.title}`}
+      title={`Информация об артикле ${article?.title}`}
     >
       {article && (
         <div className="flex gap-4 p-4">

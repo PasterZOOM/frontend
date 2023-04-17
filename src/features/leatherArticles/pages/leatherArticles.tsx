@@ -11,7 +11,9 @@ type PropsType = {
 }
 
 export const LeatherArticles: FC<PropsType> = ({ className }) => {
-  const articles = useGetAllLeatherArticles()
+  const { data: articles } = useGetAllLeatherArticles()
+
+  if (!articles) return null
 
   return (
     <CreateFormAndListWrapper

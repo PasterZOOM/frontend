@@ -14,7 +14,7 @@ export const BasicProductInfoPhotoBlock: FC<PropsType> = ({ product }) => {
   const { mutate: addBasicProductPhoto } = useAddBasicProductPhoto()
   const { mutateAsync: removeBasicProductPhoto } = useRemoveBasicProductPhoto()
 
-  const leatherArticle = useGetLeatherArticle(product.leather._id)
+  const { data: leatherArticle } = useGetLeatherArticle(product.leather._id)
   const [selectValue, setSelectValue] = useState(leatherArticle?.colors[0]._id || '')
   const [inputValue, setInputValue] = useState('')
 
