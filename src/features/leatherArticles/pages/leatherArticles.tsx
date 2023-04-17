@@ -13,21 +13,20 @@ type PropsType = {
 export const LeatherArticles: FC<PropsType> = ({ className }) => {
   const { data: articles } = useGetAllLeatherArticles()
 
-  if (!articles) return null
-
   return (
     <CreateFormAndListWrapper
       title="Список артикулов:"
       form={<CreateLeatherArticleForm />}
       className={className}
     >
-      {articles.map(article => (
-        <TableItem key={article._id} title={article.title}>
-          {({ closeModal, isOpen }) => (
-            <LeatherArticleModal closeModal={closeModal} isOpen={isOpen} id={article._id} />
-          )}
-        </TableItem>
-      ))}
+      {articles &&
+        articles.map(article => (
+          <TableItem key={article._id} title={article.title}>
+            {({ closeModal, isOpen }) => (
+              <LeatherArticleModal closeModal={closeModal} isOpen={isOpen} id={article._id} />
+            )}
+          </TableItem>
+        ))}
     </CreateFormAndListWrapper>
   )
 }

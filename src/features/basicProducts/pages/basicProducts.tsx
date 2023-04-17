@@ -13,23 +13,20 @@ type PropsType = {
 export const BasicProducts: FC<PropsType> = ({ className }) => {
   const { data: products } = useGetAllBasicProducts()
 
-  if (!products) {
-    return null
-  }
-
   return (
     <CreateFormAndListWrapper
       title="Список базовых изделий:"
       form={<CreateBasicProductForm />}
       className={className}
     >
-      {products.map(product => (
-        <TableItem key={product._id} title={product.title}>
-          {({ closeModal, isOpen }) => (
-            <BasicProductModal closeModal={closeModal} isOpen={isOpen} id={product._id} />
-          )}
-        </TableItem>
-      ))}
+      {products &&
+        products.map(product => (
+          <TableItem key={product._id} title={product.title}>
+            {({ closeModal, isOpen }) => (
+              <BasicProductModal closeModal={closeModal} isOpen={isOpen} id={product._id} />
+            )}
+          </TableItem>
+        ))}
     </CreateFormAndListWrapper>
   )
 }

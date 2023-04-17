@@ -11,7 +11,7 @@ type PropsType = {
 }
 
 export const LeatherColors: FC<PropsType> = ({ className }) => {
-  const colors = useGetAllLeatherColors()
+  const { data: colors } = useGetAllLeatherColors()
 
   return (
     <CreateFormAndListWrapper
@@ -19,13 +19,14 @@ export const LeatherColors: FC<PropsType> = ({ className }) => {
       form={<CreateLeatherColorForm />}
       className={className}
     >
-      {colors.map(color => (
-        <TableItem key={color._id} title={color.title}>
-          {({ closeModal, isOpen }) => (
-            <LeatherColorModal closeModal={closeModal} isOpen={isOpen} id={color._id} />
-          )}
-        </TableItem>
-      ))}
+      {colors &&
+        colors.map(color => (
+          <TableItem key={color._id} title={color.title}>
+            {({ closeModal, isOpen }) => (
+              <LeatherColorModal closeModal={closeModal} isOpen={isOpen} id={color._id} />
+            )}
+          </TableItem>
+        ))}
     </CreateFormAndListWrapper>
   )
 }

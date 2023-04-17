@@ -20,7 +20,7 @@ type PropsType = {
 }
 
 export const LeatherColorInfo: FC<PropsType> = ({ className, color, onDeleteConfirm }) => {
-  const updateLeatherColor = useUpdateLeatherColor(color._id)
+  const { mutate: updateLeatherColor } = useUpdateLeatherColor()
 
   return (
     <div className={`${className ?? ''} flex w-full flex-col justify-between`}>
@@ -31,13 +31,17 @@ export const LeatherColorInfo: FC<PropsType> = ({ className, color, onDeleteConf
           </PropertyWithUnderline>
 
           <PropertyWithUnderline title="Название цвета:">
-            <EditableSpanInput onChange={title => updateLeatherColor({ title })}>
+            <EditableSpanInput
+              onChange={title => updateLeatherColor({ _id: color._id, params: { title } })}
+            >
               {color.title}
             </EditableSpanInput>
           </PropertyWithUnderline>
 
           <PropertyWithUnderline title="Код цвета:">
-            <EditableSpanInput onChange={code => updateLeatherColor({ code })}>
+            <EditableSpanInput
+              onChange={code => updateLeatherColor({ _id: color._id, params: { code } })}
+            >
               {color.code}
             </EditableSpanInput>
           </PropertyWithUnderline>
@@ -46,7 +50,7 @@ export const LeatherColorInfo: FC<PropsType> = ({ className, color, onDeleteConf
             <EditableSpanSelect
               title={leatherColorsValues[color.value].title}
               initialValue={color.value}
-              onChange={value => updateLeatherColor({ value })}
+              onChange={value => updateLeatherColor({ _id: color._id, params: { value } })}
             >
               {leatherColorsArray.map(leatherColor => (
                 <option key={leatherColor._id} value={leatherColor.value}>
@@ -69,13 +73,19 @@ export const LeatherColorInfo: FC<PropsType> = ({ className, color, onDeleteConf
           </PropertyWithUnderline>
 
           <PropertyWithUnderline title="Фото:">
-            <EditableSpanInput onChange={photo => updateLeatherColor({ photo })}>
+            <EditableSpanInput
+              onChange={photo => updateLeatherColor({ _id: color._id, params: { photo } })}
+            >
               {color.photo}
             </EditableSpanInput>
           </PropertyWithUnderline>
 
           <PropertyPreviewWrapper title="Описание:" childrenClassName="ml-5">
-            <EditableSpanInput onChange={description => updateLeatherColor({ description })}>
+            <EditableSpanInput
+              onChange={description =>
+                updateLeatherColor({ _id: color._id, params: { description } })
+              }
+            >
               {color.description}
             </EditableSpanInput>
           </PropertyPreviewWrapper>

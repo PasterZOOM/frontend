@@ -23,7 +23,7 @@ export const CreateLeatherColorForm: FC = () => {
     value: _id,
   }))
 
-  const createColor = useCreateLeatherColor()
+  const { mutateAsync: createColor } = useCreateLeatherColor()
 
   const initialValues: CreateLeatherColorFormType = {
     [ECreateLeatherColorParams.ARTICLE_ID]: '',
@@ -38,9 +38,13 @@ export const CreateLeatherColorForm: FC = () => {
     { articleId, ...params }: CreateLeatherColorFormType,
     { resetForm }: FormikHelpers<CreateLeatherColorFormType>
   ): Promise<void> => {
-    await createColor({ _id: articleId || articles[0]?._id, params })
+    try {
+      await createColor({ _id: articleId || articles[0]?._id, params })
 
-    resetForm()
+      resetForm()
+    } catch (e) {
+      /* empty */
+    }
   }
 
   return (

@@ -27,7 +27,7 @@ export const ProductCard: FC<PropsType> = ({ defPrice = ECost.USD, product }) =>
   const priceInCurrentCurrency = useGetPriceInCurrentCurrency(product.cost, product.costCurrency)
   const priceInDefaultCurrency = useGetPriceInCurrency(product.cost, product.costCurrency, defPrice)
 
-  const productColors = useGetAllLeatherColors(Object.keys(product.photos), {
+  const { data: productColors } = useGetAllLeatherColors(Object.keys(product.photos), {
     enabled: !!activeColor,
   })
 
@@ -44,16 +44,18 @@ export const ProductCard: FC<PropsType> = ({ defPrice = ECost.USD, product }) =>
           <div className="mt-4 mb-3 text-custom-xl font-bold">{product.title}</div>
           <div className="my-3 font-light">{cutText(product.description)}</div>
         </Link>
-        <div className={`flex flex-wrap gap-3 ${productColors.length === 1 ? 'hidden' : ''}`}>
-          {productColors.map(color => (
-            <LeatherColorButton
-              key={color._id}
-              photo={color.photo}
-              isActive={color._id === activeColor}
-              onClick={() => setActiveColor(color._id)}
-            />
-          ))}
-        </div>
+        {productColors && (
+          <div className={`flex flex-wrap gap-3 ${productColors.length === 1 ? 'hidden' : ''}`}>
+            {productColors.map(color => (
+              <LeatherColorButton
+                key={color._id}
+                photo={color.photo}
+                isActive={color._id === activeColor}
+                onClick={() => setActiveColor(color._id)}
+              />
+            ))}
+          </div>
+        )}
         <div className="mt-3 cursor-default">
           <div className="flex gap-2 pb-3 text-custom-lg font-light">
             {priceInCurrentCurrency && <div>{priceInCurrentCurrency}</div>}

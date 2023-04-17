@@ -22,7 +22,7 @@ export const EditButton: FC<PropsType> = ({ className, enableEditMode, children 
     >
       {children || 'нет данных'}
       <span
-        className="text-blue-500 focus:font-bold focus:text-blue-700 focus:outline-0"
+        className="text-blue-500 hover:font-bold hover:text-blue-700 focus:font-bold focus:text-blue-700 focus:outline-0"
         onClick={enableEditMode}
         aria-hidden="true"
         role="button"
