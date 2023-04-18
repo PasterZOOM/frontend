@@ -1,17 +1,10 @@
 import { ChangeEventHandler, KeyboardEventHandler, useEffect, useState } from 'react'
 
-export const useEditableSpan = <T>(
+export const useEditableSpan: UseEditableSpanType = <T>(
   initialValue: T,
   elementId: string,
   onChange: (value: T) => void
-): {
-  value: T
-  editeMode: boolean
-  enableEditMode: () => void
-  disableEditMode: () => void
-  onChangeValueHandler: ChangeEventHandler<HTMLInputElement | HTMLSelectElement>
-  onKeyDownHandler: KeyboardEventHandler<HTMLInputElement | HTMLSelectElement>
-} => {
+) => {
   const [editeMode, setEditeMode] = useState(false)
   const [value, setValue] = useState(initialValue)
 
@@ -30,7 +23,7 @@ export const useEditableSpan = <T>(
     disableEditMode()
   }
 
-  const onKeyDownHandler: KeyboardEventHandler<HTMLInputElement | HTMLSelectElement> = e => {
+  const onKeyDownHandler: KeyboardEventHandler = e => {
     if (e.key === 'Enter') {
       sendValue()
     }
@@ -68,4 +61,16 @@ export const useEditableSpan = <T>(
     onChangeValueHandler,
     onKeyDownHandler,
   }
+}
+type UseEditableSpanType = <T>(
+  initialValue: T,
+  elementId: string,
+  onChange: (value: T) => void
+) => {
+  value: T
+  editeMode: boolean
+  enableEditMode: () => void
+  disableEditMode: () => void
+  onChangeValueHandler: ChangeEventHandler<HTMLInputElement | HTMLSelectElement>
+  onKeyDownHandler: KeyboardEventHandler<HTMLInputElement | HTMLSelectElement>
 }

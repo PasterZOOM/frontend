@@ -1,8 +1,8 @@
 import { ReactNode } from 'react'
 
 import { EditButton } from '@/components/common/ui/editable/editButton'
+import { useEditableSpan } from '@/components/common/ui/editable/useEditableSpan'
 import { DefaultSelectPropsType } from '@/components/common/ui/selects/defaultSelectType'
-import { useEditableSpan } from '@/hooks/useEditableSpan'
 
 type PropsType<T> = {
   title: ReactNode

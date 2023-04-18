@@ -72,7 +72,7 @@ export const CatalogFilters: FC<PropsType> = ({
               <ColorFilterCheckbox
                 key={color._id}
                 color={color}
-                filterKey={EFilterKeys.LEATHER_COLORS}
+                filterKey={EFilterKeys.LEATHER_COLORS} // TODO: при выборе цвета присылать только изделия только с этим цветом, остальных цветов в карточке быть не должно
               />
             ))}
           </div>
