@@ -1,30 +1,28 @@
 import { useMutation, useQueryClient } from 'react-query'
-import { UseMutationOptions, UseMutationResult } from 'react-query/types/react/types'
 
 import { UpdateParamsType } from 'api/paramsTypes'
-import { queryKey } from 'enums/queryKey'
+import { QUERY_KEY } from 'enums/QUERY_KEY'
 import { BasicProductType, UpdateBasicProductParamsType } from 'features/basicProducts/api/types'
 import { selectBasicProductsService, useSrmServiceStore } from 'store/crmServises'
+import { UseMutationHook } from 'types/hooks/useMutationHook'
 
-export const useUpdateBasicProduct: UseUpdateBasicProductType = options => {
+export const useUpdateBasicProduct: UseMutationHook<
+  BasicProductType,
+  unknown,
+  UpdateParamsType<UpdateBasicProductParamsType>
+> = options => {
   const basicProductsService = useSrmServiceStore(selectBasicProductsService)
 
   const queryClient = useQueryClient()
 
   return useMutation({
     mutationFn: basicProductsService.update,
-    onSuccess: async data => {
-      await queryClient.setQueryData([queryKey.GET_BASIC_PRODUCT, data._id], data)
-      await queryClient.invalidateQueries([queryKey.GET_ALL_BASIC_PRODUCTS])
+    onSuccess: async (data, variables) => {
+      await queryClient.setQueryData([QUERY_KEY.GET_BASIC_PRODUCT, data._id], data)
+      if (variables.params.title) {
+        await queryClient.invalidateQueries([QUERY_KEY.GET_ALL_BASIC_PRODUCTS])
+      }
     },
     ...options,
   })
 }
-
-type UseUpdateBasicProductType<
-  TData = BasicProductType,
-  TError = unknown,
-  TVariables = UpdateParamsType<UpdateBasicProductParamsType>
-> = (
-  options?: Omit<UseMutationOptions<TData, TError, TVariables>, 'mutationFn'>
-) => UseMutationResult<TData, TError, TVariables>

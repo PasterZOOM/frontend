@@ -1,39 +1,31 @@
 import { useMutation, useQueryClient } from 'react-query'
-import { UseMutationOptions, UseMutationResult } from 'react-query/types/react/types'
 
 import { UpdateParamsType } from 'api/paramsTypes'
-import { queryKey } from 'enums/queryKey'
+import { QUERY_KEY } from 'enums/QUERY_KEY'
 import {
   LeatherFactoryType,
   UpdateLeatherFactoryParamsType,
 } from 'features/leatherFactories/api/types'
 import { selectLeatherFactoriesService, useSrmServiceStore } from 'store/crmServises'
+import { UseMutationHook } from 'types/hooks/useMutationHook'
 
-export const useUpdateLeatherFactory: UseUpdateLeatherFactoryType = options => {
+export const useUpdateLeatherFactory: UseMutationHook<
+  LeatherFactoryType,
+  unknown,
+  UpdateParamsType<UpdateLeatherFactoryParamsType>
+> = options => {
   const leatherFactoriesService = useSrmServiceStore(selectLeatherFactoriesService)
 
   const queryClient = useQueryClient()
 
-  return useMutation(leatherFactoriesService.update, {
-    onSuccess: async data => {
-      await queryClient.setQueryData([queryKey.GET_FACTORY, data._id], data)
-      await queryClient.invalidateQueries([queryKey.GET_ALL_FACTORIES])
+  return useMutation({
+    mutationFn: leatherFactoriesService.update,
+    onSuccess: async (data, variables) => {
+      await queryClient.setQueryData([QUERY_KEY.GET_FACTORY, data._id], data)
+      if (variables.params.title) {
+        await queryClient.invalidateQueries([QUERY_KEY.GET_ALL_FACTORIES])
+      }
     },
     ...options,
   })
 }
-
-type UseUpdateLeatherFactoryType = (
-  options?: Omit<
-    UseMutationOptions<
-      LeatherFactoryType,
-      unknown,
-      UpdateParamsType<UpdateLeatherFactoryParamsType>
-    >,
-    'mutationFn'
-  >
-) => UseMutationResult<
-  LeatherFactoryType,
-  unknown,
-  UpdateParamsType<UpdateLeatherFactoryParamsType>
->

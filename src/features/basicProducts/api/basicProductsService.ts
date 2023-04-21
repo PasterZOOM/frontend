@@ -6,6 +6,7 @@ import {
   BasicProductType,
   CreateBasicProductParamsType,
   UpdateBasicProductParamsType,
+  RemoveBasicProductPhotoParamsType,
 } from 'features/basicProducts/api/types'
 
 export class BasicProductsService {
@@ -59,12 +60,14 @@ export class BasicProductsService {
       return res.data
     }
 
-  removePhoto: (params: { productId: string; photoId: string }) => Promise<BasicProductType> =
-    async ({ productId, photoId }) => {
-      const res = await axios.delete<BasicProductType>(
-        `${this.BASE_URL}/${productId}/photo/${photoId}`
-      )
+  removePhoto: (params: RemoveBasicProductPhotoParamsType) => Promise<BasicProductType> = async ({
+    productId,
+    photoId,
+  }) => {
+    const res = await axios.delete<BasicProductType>(
+      `${this.BASE_URL}/${productId}/photo/${photoId}`
+    )
 
-      return res.data
-    }
+    return res.data
+  }
 }

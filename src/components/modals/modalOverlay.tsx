@@ -76,7 +76,7 @@ export const ModalOverlay: FC<PropsType> = ({
         document.body.style.overflow = 'auto'
         nextScript?.removeAttribute('inert')
       }
-      ;(container?.lastElementChild as HTMLElement)?.removeAttribute('inert')
+      container?.lastElementChild?.removeAttribute('inert')
       ;(container?.lastElementChild as HTMLElement)?.focus()
     }
   }, [isOpen, container])

@@ -1,19 +1,20 @@
-import { useQuery, UseQueryOptions } from 'react-query'
-import { UseQueryResult } from 'react-query/types/react/types'
+import { useQuery } from 'react-query'
 
-import { queryKey } from 'enums/queryKey'
+import { QUERY_KEY } from 'enums/QUERY_KEY'
 import { LeatherFactoryType } from 'features/leatherFactories/api/types'
 import { selectLeatherFactoriesService, useSrmServiceStore } from 'store/crmServises'
+import { UseQueryAllHook } from 'types/hooks/useQueryHooks'
 
-export const useGetAllLeatherFactories: UseGetAllLeatherFactoriesType = options => {
+export const useGetAllLeatherFactories: UseQueryAllHook<
+  Pick<LeatherFactoryType, '_id' | 'title'>[],
+  unknown,
+  [QUERY_KEY.GET_ALL_FACTORIES]
+> = options => {
   const leatherFactoriesService = useSrmServiceStore(selectLeatherFactoriesService)
 
-  return useQuery(queryKey.GET_ALL_FACTORIES, leatherFactoriesService.getAll, options)
+  return useQuery({
+    queryKey: [QUERY_KEY.GET_ALL_FACTORIES],
+    queryFn: leatherFactoriesService.getAll,
+    ...options,
+  })
 }
-
-type UseGetAllLeatherFactoriesType = (
-  options?: Omit<
-    UseQueryOptions<Pick<LeatherFactoryType, '_id' | 'title'>[]>,
-    'queryKey' | 'queryFn'
-  >
-) => UseQueryResult<Pick<LeatherFactoryType, '_id' | 'title'>[]>

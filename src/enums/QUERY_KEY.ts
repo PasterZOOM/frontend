@@ -1,4 +1,4 @@
-export enum queryKey {
+export enum QUERY_KEY {
   GET_ALL_FACTORIES = 'getAllFactories',
   GET_FACTORY = 'getFactory',
   GET_ALL_ARTICLES = 'getAllArticles',

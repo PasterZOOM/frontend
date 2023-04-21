@@ -1,39 +1,31 @@
 import { useMutation, useQueryClient } from 'react-query'
-import { UseMutationOptions, UseMutationResult } from 'react-query/types/react/types'
 
 import { UpdateParamsType } from 'api/paramsTypes'
-import { queryKey } from 'enums/queryKey'
+import { QUERY_KEY } from 'enums/QUERY_KEY'
 import {
   LeatherArticleType,
   UpdateLeatherArticleParamsType,
 } from 'features/leatherArticles/api/types'
 import { selectLeatherArticlesService, useSrmServiceStore } from 'store/crmServises'
+import { UseMutationHook } from 'types/hooks/useMutationHook'
 
-export const useUpdateLeatherArticle: UseUpdateLeatherArticleType = options => {
+export const useUpdateLeatherArticle: UseMutationHook<
+  LeatherArticleType,
+  unknown,
+  UpdateParamsType<UpdateLeatherArticleParamsType>
+> = options => {
   const leatherArticlesService = useSrmServiceStore(selectLeatherArticlesService)
 
   const queryClient = useQueryClient()
 
-  return useMutation(leatherArticlesService.update, {
-    onSuccess: async data => {
-      await queryClient.setQueryData([queryKey.GET_ARTICLE, data._id], data)
-      await queryClient.invalidateQueries([queryKey.GET_ALL_ARTICLES])
+  return useMutation({
+    mutationFn: leatherArticlesService.update,
+    onSuccess: async (data, variables) => {
+      await queryClient.setQueryData([QUERY_KEY.GET_ARTICLE, data._id], data)
+      if (variables.params.title) {
+        await queryClient.invalidateQueries([QUERY_KEY.GET_ALL_ARTICLES])
+      }
     },
     ...options,
   })
 }
-
-type UseUpdateLeatherArticleType = (
-  options?: Omit<
-    UseMutationOptions<
-      LeatherArticleType,
-      unknown,
-      UpdateParamsType<UpdateLeatherArticleParamsType>
-    >,
-    'mutationFn'
-  >
-) => UseMutationResult<
-  LeatherArticleType,
-  unknown,
-  UpdateParamsType<UpdateLeatherArticleParamsType>
->

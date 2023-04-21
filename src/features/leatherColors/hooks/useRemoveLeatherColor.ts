@@ -1,23 +1,24 @@
 import { useMutation, useQueryClient } from 'react-query'
-import { UseMutationOptions, UseMutationResult } from 'react-query/types/react/types'
 
-import { queryKey } from 'enums/queryKey'
+import { QUERY_KEY } from 'enums/QUERY_KEY'
 import { LeatherColorType } from 'features/leatherColors/api/types'
 import { selectLeatherColorsService, useSrmServiceStore } from 'store/crmServises'
+import { UseMutationHook } from 'types/hooks/useMutationHook'
 
-export const useRemoveLeatherColor: UseRemoveLeatherColorType = options => {
+export const useRemoveLeatherColor: UseMutationHook<
+  LeatherColorType,
+  unknown,
+  string
+> = options => {
   const leatherColorsService = useSrmServiceStore(selectLeatherColorsService)
 
   const queryClient = useQueryClient()
 
-  return useMutation(leatherColorsService.remove, {
+  return useMutation({
+    mutationFn: leatherColorsService.remove,
     onSuccess: async () => {
-      await queryClient.invalidateQueries([queryKey.GET_ALL_COLORS])
+      await queryClient.invalidateQueries([QUERY_KEY.GET_ALL_COLORS])
     },
     ...options,
   })
 }
-
-type UseRemoveLeatherColorType = (
-  options?: Omit<UseMutationOptions<LeatherColorType, unknown, string>, 'mutationFn'>
-) => UseMutationResult<LeatherColorType, unknown, string>

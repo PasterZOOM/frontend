@@ -1,30 +1,28 @@
 import { useMutation, useQueryClient } from 'react-query'
-import { UseMutationOptions, UseMutationResult } from 'react-query/types/react/types'
 
 import { CreateType } from 'api/paramsTypes'
-import { queryKey } from 'enums/queryKey'
+import { QUERY_KEY } from 'enums/QUERY_KEY'
 import { CreateLeatherColorParamsType, LeatherColorType } from 'features/leatherColors/api/types'
 import { selectLeatherColorsService, useSrmServiceStore } from 'store/crmServises'
+import { UseMutationHook } from 'types/hooks/useMutationHook'
 
-export const useCreateLeatherColor: UseCreateLeatherColorType = options => {
+export const useCreateLeatherColor: UseMutationHook<
+  LeatherColorType,
+  unknown,
+  CreateType<CreateLeatherColorParamsType>
+> = options => {
   const leatherColorsService = useSrmServiceStore(selectLeatherColorsService)
 
   const queryClient = useQueryClient()
   const colors = queryClient.getQueryData<Pick<LeatherColorType, '_id' | 'title' | 'photo'>[]>(
-    queryKey.GET_ALL_COLORS
+    QUERY_KEY.GET_ALL_COLORS
   )
 
-  return useMutation(leatherColorsService.create, {
+  return useMutation({
+    mutationFn: leatherColorsService.create,
     onSuccess: ({ _id, title }) => {
-      queryClient.setQueryData(queryKey.GET_ALL_COLORS, [...(colors ?? []), { _id, title }])
+      queryClient.setQueryData(QUERY_KEY.GET_ALL_COLORS, [...(colors ?? []), { _id, title }])
     },
     ...options,
   })
 }
-
-type UseCreateLeatherColorType = (
-  options?: Omit<
-    UseMutationOptions<LeatherColorType, unknown, CreateType<CreateLeatherColorParamsType>>,
-    'mutationFn'
-  >
-) => UseMutationResult<LeatherColorType, unknown, CreateType<CreateLeatherColorParamsType>>

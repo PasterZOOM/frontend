@@ -1,20 +1,20 @@
-import { useQuery, UseQueryOptions } from 'react-query'
-import { UseQueryResult } from 'react-query/types/react/types'
+import { useQuery } from 'react-query'
 
-import { queryKey } from 'enums/queryKey'
+import { QUERY_KEY } from 'enums/QUERY_KEY'
 import { LeatherArticleType } from 'features/leatherArticles/api/types'
 import { selectLeatherArticlesService, useSrmServiceStore } from 'store/crmServises'
+import { UseQueryOneHook } from 'types/hooks/useQueryHooks'
 
-export const useGetLeatherArticle: UseGetLeatherArticleType = (articleId, options) => {
+export const useGetLeatherArticle: UseQueryOneHook<
+  LeatherArticleType,
+  unknown,
+  [QUERY_KEY.GET_ARTICLE, string]
+> = (id, options) => {
   const leatherArticlesService = useSrmServiceStore(selectLeatherArticlesService)
 
-  return useQuery(
-    [queryKey.GET_ARTICLE, articleId],
-    () => leatherArticlesService.getOne(articleId),
-    options
-  )
+  return useQuery({
+    queryKey: [QUERY_KEY.GET_ARTICLE, id],
+    queryFn: () => leatherArticlesService.getOne(id),
+    ...options,
+  })
 }
-type UseGetLeatherArticleType = (
-  articleId: string,
-  options?: Omit<UseQueryOptions<LeatherArticleType>, 'queryKey' | 'queryFn'>
-) => UseQueryResult<LeatherArticleType>

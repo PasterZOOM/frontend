@@ -1,21 +1,20 @@
-import { useQuery, UseQueryOptions } from 'react-query'
-import { UseQueryResult } from 'react-query/types/react/types'
+import { useQuery } from 'react-query'
 
-import { queryKey } from 'enums/queryKey'
+import { QUERY_KEY } from 'enums/QUERY_KEY'
 import { LeatherColorType } from 'features/leatherColors/api/types'
 import { selectLeatherColorsService, useSrmServiceStore } from 'store/crmServises'
+import { UseQueryOneHook } from 'types/hooks/useQueryHooks'
 
-export const useGetLeatherColor: UseGetLeatherColorType = (colorId, options) => {
+export const useGetLeatherColor: UseQueryOneHook<
+  LeatherColorType,
+  unknown,
+  [QUERY_KEY.GET_COLOR, string]
+> = (id, options) => {
   const leatherColorsService = useSrmServiceStore(selectLeatherColorsService)
 
-  return useQuery(
-    [queryKey.GET_COLOR, colorId],
-    () => leatherColorsService.getOne(colorId),
-    options
-  )
+  return useQuery({
+    queryKey: [QUERY_KEY.GET_COLOR, id],
+    queryFn: () => leatherColorsService.getOne(id),
+    ...options,
+  })
 }
-
-type UseGetLeatherColorType = (
-  colorId: string,
-  options?: Omit<UseQueryOptions<LeatherColorType>, 'queryKey' | 'queryFn'>
-) => UseQueryResult<LeatherColorType>

@@ -72,6 +72,7 @@ export const LeatherFactoryInfo: FC<PropsType> = ({ className, factory, onDelete
           ))}
         </PropertyPreviewWrapper>
       </div>
+
       <RemoveButton
         onConfirm={onDeleteConfirm}
         className="mt-3"

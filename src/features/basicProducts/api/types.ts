@@ -29,6 +29,9 @@ export type CreateBasicProductParamsType = {
   size: string
   title: string
 }
+
 export type UpdateBasicProductParamsType = Partial<
   CreateBasicProductParamsType & { isPublished: boolean }
 >
+
+export type RemoveBasicProductPhotoParamsType = { productId: string; photoId: string }
