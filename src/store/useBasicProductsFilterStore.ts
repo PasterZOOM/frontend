@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 
-import { EFilterKeys } from '@/components/pages/catalog/filters/filters'
+import { EFilterKeys } from 'components/pages/catalog/filters/filters'
 
 const initialState: FilterStateType = {
   filters: {

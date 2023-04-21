@@ -1,26 +1,27 @@
 import { useRouter } from 'next/router'
-import { useQuery, UseQueryOptions } from 'react-query'
-import { UseQueryResult } from 'react-query/types/react/types'
+import { useQuery } from 'react-query'
 
-import { queryKey } from '@/enums/queryKey'
-import { BasicProductType } from '@/features/basicProducts/api/types'
-import { selectBasicProductsService, useSrmServiceStore } from '@/store/crmServises'
-import { getQueryFilters } from '@/utils/filters/getQueryFilters'
+import { EFilterKeys } from 'components/pages/catalog/filters/filters'
+import { queryKey } from 'enums/queryKey'
+import { BasicProductType } from 'features/basicProducts/api/types'
+import { selectBasicProductsService, useSrmServiceStore } from 'store/crmServises'
+import { UseQueryAllHook } from 'types/hooks/useQueryHooks'
+import { getQueryFilters } from 'utils/filters/getQueryFilters'
 
-export const useGetAllBasicProducts: UseGetAllBasicProductsType = options => {
+export const useGetAllBasicProducts: UseQueryAllHook<
+  BasicProductType[],
+  unknown,
+  (queryKey | Record<EFilterKeys, string>)[]
+> = options => {
   const { query } = useRouter()
 
   const filters = getQueryFilters(query)
 
   const basicProductsService = useSrmServiceStore(selectBasicProductsService)
 
-  return useQuery(
-    [queryKey.GET_ALL_BASIC_PRODUCTS, filters],
-    () => basicProductsService.getAll(filters),
-    options
-  )
+  return useQuery({
+    queryKey: [queryKey.GET_ALL_BASIC_PRODUCTS, filters],
+    queryFn: () => basicProductsService.getAll(filters),
+    ...options,
+  })
 }
-
-type UseGetAllBasicProductsType = (
-  options?: Omit<UseQueryOptions<BasicProductType[]>, 'queryKey' | 'queryFn'>
-) => UseQueryResult<BasicProductType[]>

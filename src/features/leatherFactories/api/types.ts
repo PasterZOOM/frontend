@@ -1,4 +1,4 @@
-import { ECountry } from '@/enums/countries'
+import { ECountry } from 'enums/countries'
 
 export type LeatherFactoryType = {
   _id: string

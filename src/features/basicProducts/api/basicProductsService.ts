@@ -1,12 +1,12 @@
 import axios from 'axios'
 
-import { UpdateParamsType } from '@/api/paramsTypes'
-import { EFilterKeys } from '@/components/pages/catalog/filters/filters'
+import { UpdateParamsType } from 'api/paramsTypes'
+import { EFilterKeys } from 'components/pages/catalog/filters/filters'
 import {
   BasicProductType,
   CreateBasicProductParamsType,
   UpdateBasicProductParamsType,
-} from '@/features/basicProducts/api/types'
+} from 'features/basicProducts/api/types'
 
 export class BasicProductsService {
   BASE_URL = `${process.env.NEXT_PUBLIC_BASE_URL}/basic-products`

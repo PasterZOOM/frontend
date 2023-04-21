@@ -1,10 +1,10 @@
 import { FC, KeyboardEventHandler, useState } from 'react'
 
-import { PropertyPreviewWrapper } from '@/components/common/wrappers/propertyPreviewWrapper'
-import { BasicProductType } from '@/features/basicProducts/api/types'
-import { useAddBasicProductPhoto } from '@/features/basicProducts/hooks/useAddBasicProductPhoto'
-import { useRemoveBasicProductPhoto } from '@/features/basicProducts/hooks/useRemoveBasicProductPhoto'
-import { useGetLeatherArticle } from '@/features/leatherArticles/hooks/useGetLeatherArticle'
+import { PropertyPreviewWrapper } from 'components/common/wrappers/propertyPreviewWrapper'
+import { BasicProductType } from 'features/basicProducts/api/types'
+import { useAddBasicProductPhoto } from 'features/basicProducts/hooks/useAddBasicProductPhoto'
+import { useRemoveBasicProductPhoto } from 'features/basicProducts/hooks/useRemoveBasicProductPhoto'
+import { useGetLeatherArticle } from 'features/leatherArticles/hooks/useGetLeatherArticle'
 
 type PropsType = {
   product: BasicProductType

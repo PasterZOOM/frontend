@@ -1,9 +1,9 @@
 import { v1 } from 'uuid'
 
-import { SelectItemType } from '@/components/forms/formikSelect'
-import { ECost } from '@/enums/cost'
-import { CurrencySign } from '@/enums/currencySign'
-import { ObjectForSelectType } from '@/types/objectForSelectType'
+import { SelectItemType } from 'components/forms/formikSelect'
+import { ECost } from 'enums/cost'
+import { CurrencySign } from 'enums/currencySign'
+import { ObjectForSelectType } from 'types/objectForSelectType'
 
 export const currencies: ObjectForSelectType<ECost> = {
   [ECost.USD]: {

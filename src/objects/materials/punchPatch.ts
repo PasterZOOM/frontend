@@ -1,7 +1,7 @@
 import { v1 } from 'uuid'
 
-import { EPunchPitch } from '@/enums/materials'
-import { ObjectForSelectType } from '@/types/objectForSelectType'
+import { EPunchPitch } from 'enums/materials'
+import { ObjectForSelectType } from 'types/objectForSelectType'
 
 export const punchPatches: ObjectForSelectType<EPunchPitch> = {
   [EPunchPitch.LARGE]: { _id: v1(), value: EPunchPitch.LARGE, title: EPunchPitch.LARGE },

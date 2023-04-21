@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from 'react'
 
-import { UserStatus } from '@/enums/userStatus'
-import { selectSetUserStatus, selectUserStatus, useUserSettings } from '@/store/useUserSettings'
+import { UserStatus } from 'enums/userStatus'
+import { selectSetUserStatus, selectUserStatus, useUserSettings } from 'store/useUserSettings'
 
 export const SwitchUserStatus: FC = () => {
   const userStatus = useUserSettings(selectUserStatus)

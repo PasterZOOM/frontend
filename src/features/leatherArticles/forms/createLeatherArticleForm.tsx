@@ -2,16 +2,16 @@ import { FC } from 'react'
 
 import { Form, Formik, FormikHelpers } from 'formik'
 
-import { CreateButton } from '@/components/common/ui/buttons/createButton'
-import { H5 } from '@/components/common/ui/headers/h5'
-import { FieldWrapper } from '@/components/forms/fieldWrapper'
-import { FormikInput } from '@/components/forms/formikInput'
-import { FormikSelect, SelectItemType } from '@/components/forms/formikSelect'
-import { ECreateLeatherArticleParams } from '@/features/leatherArticles/enums/paramsKeys'
-import { CreateLeatherArticleFormType } from '@/features/leatherArticles/forms/type'
-import { useCreateLeatherArticle } from '@/features/leatherArticles/hooks/useCreateLeatherArticle'
-import { LeatherArticleCreateConfirmModalBody } from '@/features/leatherArticles/modals/confirm/leatherArticleCreateConfirmModalBody'
-import { useGetAllLeatherFactories } from '@/features/leatherFactories/hooks/useGetAllLeatherFactories'
+import { CreateButton } from 'components/common/ui/buttons/createButton'
+import { H5 } from 'components/common/ui/headers/h5'
+import { FieldWrapper } from 'components/forms/fieldWrapper'
+import { FormikInput } from 'components/forms/formikInput'
+import { FormikSelect, SelectItemType } from 'components/forms/formikSelect'
+import { ECreateLeatherArticleParams } from 'features/leatherArticles/enums/paramsKeys'
+import { CreateLeatherArticleFormType } from 'features/leatherArticles/forms/type'
+import { useCreateLeatherArticle } from 'features/leatherArticles/hooks/useCreateLeatherArticle'
+import { LeatherArticleCreateConfirmModalBody } from 'features/leatherArticles/modals/confirm/leatherArticleCreateConfirmModalBody'
+import { useGetAllLeatherFactories } from 'features/leatherFactories/hooks/useGetAllLeatherFactories'
 
 export const CreateLeatherArticleForm: FC = () => {
   const { data } = useGetAllLeatherFactories()

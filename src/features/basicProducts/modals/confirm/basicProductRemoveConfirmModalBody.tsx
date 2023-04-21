@@ -1,6 +1,6 @@
 import { FC } from 'react'
 
-import { BasicProductType } from '@/features/basicProducts/api/types'
+import { BasicProductType } from 'features/basicProducts/api/types'
 
 type PropsType = {
   basicProduct: BasicProductType

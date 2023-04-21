@@ -1,8 +1,8 @@
 import { FC, ReactNode } from 'react'
 
-import { Button } from '@/components/common/ui/buttons/button'
-import { ConfirmModalLayout } from '@/components/modals/confirmModalLayout'
-import { useModal } from '@/hooks/useModal'
+import { Button } from 'components/common/ui/buttons/button'
+import { ConfirmModalLayout } from 'components/modals/confirmModalLayout'
+import { useModal } from 'hooks/useModal'
 
 type PropsType = {
   modalChildren: ReactNode

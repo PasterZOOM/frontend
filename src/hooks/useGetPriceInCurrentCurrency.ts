@@ -1,7 +1,7 @@
-import { TCost } from '@/enums/cost'
-import { CurrencySign } from '@/enums/currencySign'
-import { selectRate, useCurrencyStore } from '@/store/useCurrencyStore'
-import { useUserSettings } from '@/store/useUserSettings'
+import { TCost } from 'enums/cost'
+import { CurrencySign } from 'enums/currencySign'
+import { selectRate, useCurrencyStore } from 'store/useCurrencyStore'
+import { useUserSettings } from 'store/useUserSettings'
 
 export const useGetPriceInCurrentCurrency: UseGetPriceInCurrentCurrencyType = (
   price,

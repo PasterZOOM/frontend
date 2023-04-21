@@ -1,4 +1,4 @@
-import { TCost } from '@/enums/cost'
+import { TCost } from 'enums/cost'
 
 export type GetRateResponseType = {
   Cur_ID: number

@@ -1,6 +1,6 @@
 import { v1 } from 'uuid'
 
-import { ETheme } from '@/enums/theme'
+import { ETheme } from 'enums/theme'
 
 export type ThemeType = {
   _id: string

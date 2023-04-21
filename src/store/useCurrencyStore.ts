@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 
-import { TCost } from '@/enums/cost'
-import { CostType } from '@/types/costType'
+import { TCost } from 'enums/cost'
+import { CostType } from 'types/costType'
 
 export const initialCurrencyState: CostType = {
   BYN: 1,

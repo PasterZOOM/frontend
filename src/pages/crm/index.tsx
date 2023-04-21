@@ -1,7 +1,7 @@
-import { H1 } from '@/components/common/ui/headers/h1'
-import { useRedirect } from '@/hooks/useRedirect'
-import { CrmLayout } from '@/layouts/crmLayout'
-import { NextPageWithLayout } from '@/pages/_app'
+import { H1 } from 'components/common/ui/headers/h1'
+import { useRedirect } from 'hooks/useRedirect'
+import { CrmLayout } from 'layouts/crmLayout'
+import { NextPageWithLayout } from 'pages/_app'
 
 const Crm: NextPageWithLayout = () => {
   useRedirect()

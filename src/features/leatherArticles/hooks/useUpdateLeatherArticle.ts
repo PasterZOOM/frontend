@@ -1,13 +1,13 @@
 import { useMutation, useQueryClient } from 'react-query'
 import { UseMutationOptions, UseMutationResult } from 'react-query/types/react/types'
 
-import { UpdateParamsType } from '@/api/paramsTypes'
-import { queryKey } from '@/enums/queryKey'
+import { UpdateParamsType } from 'api/paramsTypes'
+import { queryKey } from 'enums/queryKey'
 import {
   LeatherArticleType,
   UpdateLeatherArticleParamsType,
-} from '@/features/leatherArticles/api/types'
-import { selectLeatherArticlesService, useSrmServiceStore } from '@/store/crmServises'
+} from 'features/leatherArticles/api/types'
+import { selectLeatherArticlesService, useSrmServiceStore } from 'store/crmServises'
 
 export const useUpdateLeatherArticle: UseUpdateLeatherArticleType = options => {
   const leatherArticlesService = useSrmServiceStore(selectLeatherArticlesService)

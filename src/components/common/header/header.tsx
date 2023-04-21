@@ -3,9 +3,9 @@ import { FC, useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
-import { SwitchUserStatus } from '@/components/common/ui/checkbox/switchUserStatus'
-import { CurrentCurrencySelect } from '@/components/common/ui/selects/currentCurrencySelect'
-import SwitchTheme from '@/components/common/ui/selects/switchTheme'
+import { SwitchUserStatus } from 'components/common/ui/checkbox/switchUserStatus'
+import { CurrentCurrencySelect } from 'components/common/ui/selects/currentCurrencySelect'
+import SwitchTheme from 'components/common/ui/selects/switchTheme'
 
 const Header: FC = () => {
   const router = useRouter()

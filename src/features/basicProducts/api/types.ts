@@ -1,7 +1,7 @@
-import { ECost } from '@/enums/cost'
-import { EPunchPitch } from '@/enums/materials'
-import { EProductAssignment, EProductCategory } from '@/enums/product'
-import { PhotosType } from '@/types/productType'
+import { ECost } from 'enums/cost'
+import { EPunchPitch } from 'enums/materials'
+import { EProductAssignment, EProductCategory } from 'enums/product'
+import { PhotosType } from 'types/productType'
 
 export type BasicProductType = {
   _id: string

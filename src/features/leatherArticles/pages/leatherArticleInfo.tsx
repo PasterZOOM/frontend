@@ -1,16 +1,16 @@
 import { FC } from 'react'
 
-import { RemoveButton } from '@/components/common/ui/buttons/removeButton'
-import { EditableSpanInput } from '@/components/common/ui/editable/editableSpanInput'
-import { PropertyWithUnderline } from '@/components/common/ui/properties/propertyWithUnderline'
-import { TableItem } from '@/components/common/ui/tabel/tableItem'
-import { PropertyPreviewWrapper } from '@/components/common/wrappers/propertyPreviewWrapper'
-import { LeatherArticleType } from '@/features/leatherArticles/api/types'
-import { useUpdateLeatherArticle } from '@/features/leatherArticles/hooks/useUpdateLeatherArticle'
-import { LeatherArticleRemoveConfirmModalBody } from '@/features/leatherArticles/modals/confirm/leatherArticleRemoveConfirmModalBody'
+import { RemoveButton } from 'components/common/ui/buttons/removeButton'
+import { EditableSpanInput } from 'components/common/ui/editable/editableSpanInput'
+import { PropertyWithUnderline } from 'components/common/ui/properties/propertyWithUnderline'
+import { TableItem } from 'components/common/ui/tabel/tableItem'
+import { PropertyPreviewWrapper } from 'components/common/wrappers/propertyPreviewWrapper'
+import { LeatherArticleType } from 'features/leatherArticles/api/types'
+import { useUpdateLeatherArticle } from 'features/leatherArticles/hooks/useUpdateLeatherArticle'
+import { LeatherArticleRemoveConfirmModalBody } from 'features/leatherArticles/modals/confirm/leatherArticleRemoveConfirmModalBody'
 // eslint-disable-next-line import/no-cycle
-import { LeatherColorModal } from '@/features/leatherColors/modals/leatherColorModal'
-import { LeatherFactoryModal } from '@/features/leatherFactories/modals/leatherFactoryModal'
+import { LeatherColorModal } from 'features/leatherColors/modals/leatherColorModal'
+import { LeatherFactoryModal } from 'features/leatherFactories/modals/leatherFactoryModal'
 
 type PropsType = {
   className?: string

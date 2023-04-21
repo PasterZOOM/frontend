@@ -1,6 +1,6 @@
 import { FC } from 'react'
 
-import { LeatherArticleType } from '@/features/leatherArticles/api/types'
+import { LeatherArticleType } from 'features/leatherArticles/api/types'
 
 type PropsType = {
   article: LeatherArticleType

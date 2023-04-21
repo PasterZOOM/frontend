@@ -1,9 +1,9 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 
-import { ECost } from '@/enums/cost'
-import { ETheme } from '@/enums/theme'
-import { UserStatus } from '@/enums/userStatus'
+import { ECost } from 'enums/cost'
+import { ETheme } from 'enums/theme'
+import { UserStatus } from 'enums/userStatus'
 
 const initialState: UserSettingsStateType = {
   userStatus: UserStatus.NONE,

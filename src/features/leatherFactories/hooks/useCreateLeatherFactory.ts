@@ -1,12 +1,12 @@
 import { useMutation, useQueryClient } from 'react-query'
 import { UseMutationOptions, UseMutationResult } from 'react-query/types/react/types'
 
-import { queryKey } from '@/enums/queryKey'
+import { queryKey } from 'enums/queryKey'
 import {
   CreateLeatherFactoryParamsType,
   LeatherFactoryType,
-} from '@/features/leatherFactories/api/types'
-import { selectLeatherFactoriesService, useSrmServiceStore } from '@/store/crmServises'
+} from 'features/leatherFactories/api/types'
+import { selectLeatherFactoriesService, useSrmServiceStore } from 'store/crmServises'
 
 export const useCreateLeatherFactory: UseCreateLeatherFactoryType = () => {
   const leatherFactoriesService = useSrmServiceStore(selectLeatherFactoriesService)

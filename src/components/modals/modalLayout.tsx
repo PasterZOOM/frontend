@@ -1,6 +1,6 @@
 import { FC, ReactNode } from 'react'
 
-import { ModalOverlay } from '@/components/modals/modalOverlay'
+import { ModalOverlay } from 'components/modals/modalOverlay'
 
 type PropsType = {
   title: string

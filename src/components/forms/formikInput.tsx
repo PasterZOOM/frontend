@@ -2,7 +2,7 @@ import { FC } from 'react'
 
 import { Field } from 'formik'
 
-import { DefaultInputPropsType } from '@/components/common/ui/inputs/defaultInputType'
+import { DefaultInputPropsType } from 'components/common/ui/inputs/defaultInputType'
 
 type PropsType = DefaultInputPropsType & {
   name: string

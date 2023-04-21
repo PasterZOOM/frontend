@@ -1,11 +1,11 @@
 import axios from 'axios'
 
-import { CreateType, UpdateParamsType } from '@/api/paramsTypes'
+import { CreateType, UpdateParamsType } from 'api/paramsTypes'
 import {
   CreateLeatherArticleParamsType,
   LeatherArticleType,
   UpdateLeatherArticleParamsType,
-} from '@/features/leatherArticles/api/types'
+} from 'features/leatherArticles/api/types'
 
 export class LeatherArticlesService {
   BASE_URL = `${process.env.NEXT_PUBLIC_BASE_URL}/leather-articles`

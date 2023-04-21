@@ -1,8 +1,8 @@
 import { FC } from 'react'
 
-import { EditButton } from '@/components/common/ui/editable/editButton'
-import { useEditableSpan } from '@/components/common/ui/editable/useEditableSpan'
-import { DefaultInputPropsType } from '@/components/common/ui/inputs/defaultInputType'
+import { EditButton } from 'components/common/ui/editable/editButton'
+import { useEditableSpan } from 'components/common/ui/editable/useEditableSpan'
+import { DefaultInputPropsType } from 'components/common/ui/inputs/defaultInputType'
 
 type PropsType<T = string> = {
   className?: string

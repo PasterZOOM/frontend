@@ -1,7 +1,7 @@
 import { v1 } from 'uuid'
 
-import { EProductCategory } from '@/enums/product'
-import { ObjectForSelectType } from '@/types/objectForSelectType'
+import { EProductCategory } from 'enums/product'
+import { ObjectForSelectType } from 'types/objectForSelectType'
 
 export const productCategories: ObjectForSelectType<EProductCategory> = {
   [EProductCategory.CARD_HOLDER]: {

@@ -2,8 +2,8 @@ import { FC } from 'react'
 
 import { ProductCard } from './productCard/productCard'
 
-import ActiveFilters from '@/components/pages/catalog/filters/activeFilters'
-import { useGetAllBasicProducts } from '@/features/basicProducts/hooks/useGetAllBasicProducts'
+import ActiveFilters from 'components/pages/catalog/filters/activeFilters'
+import { useGetAllBasicProducts } from 'features/basicProducts/hooks/useGetAllBasicProducts'
 
 type PropsType = {
   className?: string

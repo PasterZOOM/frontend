@@ -12,7 +12,7 @@ import {
 
 import ReactDOM from 'react-dom'
 
-import { getNumberOfPenultimateElement } from '@/utils/arrays/getNumberOfPenultimateElement'
+import { getNumberOfPenultimateElement } from 'utils/arrays/getNumberOfPenultimateElement'
 
 type PropsType = {
   isOpen: boolean
@@ -54,11 +54,11 @@ export const ModalOverlay: FC<PropsType> = ({
 
   useEffect(() => {
     const length = container?.childNodes.length || 0
-    const next = document.querySelector('#__next')
+    const nextScript = document.querySelector('#__next')
 
     if (containerRef.current) {
       containerRef.current.focus()
-      next?.setAttribute('inert', 'true')
+      nextScript?.setAttribute('inert', '')
     }
 
     if (length !== 0) {
@@ -74,7 +74,7 @@ export const ModalOverlay: FC<PropsType> = ({
     return () => {
       if (length === 1) {
         document.body.style.overflow = 'auto'
-        next?.removeAttribute('inert')
+        nextScript?.removeAttribute('inert')
       }
       ;(container?.lastElementChild as HTMLElement)?.removeAttribute('inert')
       ;(container?.lastElementChild as HTMLElement)?.focus()
@@ -88,7 +88,7 @@ export const ModalOverlay: FC<PropsType> = ({
       {ReactDOM.createPortal(
         <div
           onKeyDown={onEscape}
-          aria-hidden="true"
+          aria-hidden
           tabIndex={-1}
           ref={containerRef}
           onClick={handleClick}

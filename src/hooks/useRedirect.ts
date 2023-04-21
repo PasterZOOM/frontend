@@ -2,8 +2,8 @@ import { useEffect } from 'react'
 
 import { useRouter } from 'next/router'
 
-import { UserStatus } from '@/enums/userStatus'
-import { selectUserStatus, useUserSettings } from '@/store/useUserSettings'
+import { UserStatus } from 'enums/userStatus'
+import { selectUserStatus, useUserSettings } from 'store/useUserSettings'
 
 export const useRedirect: UseRedirectType = () => {
   const router = useRouter()

@@ -1,8 +1,8 @@
 import { Dispatch, useEffect, useState } from 'react'
 
-import { ETheme } from '@/enums/theme'
-import { themes, ThemeType } from '@/objects/theme/themes'
-import { selectSetTheme, selectTheme, useUserSettings } from '@/store/useUserSettings'
+import { ETheme } from 'enums/theme'
+import { themes, ThemeType } from 'objects/theme/themes'
+import { selectSetTheme, selectTheme, useUserSettings } from 'store/useUserSettings'
 
 export const useSwitchTheme: UseSwitchThemeType = () => {
   const theme = useUserSettings(selectTheme)

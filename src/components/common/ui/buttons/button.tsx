@@ -1,6 +1,6 @@
 import { FC } from 'react'
 
-import { DefaultButtonPropsType } from '@/components/common/ui/buttons/defaultButtonType'
+import { DefaultButtonPropsType } from 'components/common/ui/buttons/defaultButtonType'
 
 export enum ButtonVariant {
   PRIMARY = 'primary',

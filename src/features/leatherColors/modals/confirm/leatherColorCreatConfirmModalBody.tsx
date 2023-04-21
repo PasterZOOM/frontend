@@ -1,8 +1,8 @@
 import { FC } from 'react'
 
-import { useGetAllLeatherArticles } from '@/features/leatherArticles/hooks/useGetAllLeatherArticles'
-import { ECreateLeatherColorParams } from '@/features/leatherColors/enums/paramsKeys'
-import { CreateLeatherColorFormType } from '@/features/leatherColors/forms/type'
+import { useGetAllLeatherArticles } from 'features/leatherArticles/hooks/useGetAllLeatherArticles'
+import { ECreateLeatherColorParams } from 'features/leatherColors/enums/paramsKeys'
+import { CreateLeatherColorFormType } from 'features/leatherColors/forms/type'
 
 type PropsType = {
   values: CreateLeatherColorFormType

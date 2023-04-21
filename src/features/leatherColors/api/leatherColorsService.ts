@@ -1,11 +1,11 @@
 import axios from 'axios'
 
-import { CreateType, UpdateParamsType } from '@/api/paramsTypes'
+import { CreateType, UpdateParamsType } from 'api/paramsTypes'
 import {
   CreateLeatherColorParamsType,
   LeatherColorType,
   UpdateLeatherColorParamsType,
-} from '@/features/leatherColors/api/types'
+} from 'features/leatherColors/api/types'
 
 export class LeatherColorsService {
   BASE_URL = `${process.env.NEXT_PUBLIC_BASE_URL}/leather-colors`

@@ -2,7 +2,7 @@ import { ReactElement, ReactNode } from 'react'
 
 import Link from 'next/link'
 
-import Header from '@/components/common/header/header'
+import Header from 'components/common/header/header'
 
 export const CrmLayout = (page: ReactElement): ReactNode => {
   return (

@@ -2,16 +2,16 @@ import { FC } from 'react'
 
 import { Form, Formik, FormikHelpers } from 'formik'
 
-import { CreateButton } from '@/components/common/ui/buttons/createButton'
-import { H5 } from '@/components/common/ui/headers/h5'
-import { FieldWrapper } from '@/components/forms/fieldWrapper'
-import { FormikInput } from '@/components/forms/formikInput'
-import { FormikSelect } from '@/components/forms/formikSelect'
-import { ECreateLeatherFactoryParams } from '@/features/leatherFactories/enums/paramsKeys'
-import { CreateLeatherFactoryFormType } from '@/features/leatherFactories/forms/type'
-import { useCreateLeatherFactory } from '@/features/leatherFactories/hooks/useCreateLeatherFactory'
-import { LeatherFactoryCreatConfirmModalBody } from '@/features/leatherFactories/modals/confirm/leatherFactoryCreatConfirmModalBody'
-import { countriesArray } from '@/objects/countries/countryValues'
+import { CreateButton } from 'components/common/ui/buttons/createButton'
+import { H5 } from 'components/common/ui/headers/h5'
+import { FieldWrapper } from 'components/forms/fieldWrapper'
+import { FormikInput } from 'components/forms/formikInput'
+import { FormikSelect } from 'components/forms/formikSelect'
+import { ECreateLeatherFactoryParams } from 'features/leatherFactories/enums/paramsKeys'
+import { CreateLeatherFactoryFormType } from 'features/leatherFactories/forms/type'
+import { useCreateLeatherFactory } from 'features/leatherFactories/hooks/useCreateLeatherFactory'
+import { LeatherFactoryCreatConfirmModalBody } from 'features/leatherFactories/modals/confirm/leatherFactoryCreatConfirmModalBody'
+import { countriesArray } from 'objects/countries/countryValues'
 
 const initialValues: CreateLeatherFactoryFormType = {
   country: countriesArray[0].value,

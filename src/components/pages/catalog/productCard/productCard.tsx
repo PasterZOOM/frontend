@@ -2,17 +2,17 @@ import { FC, useState } from 'react'
 
 import Link from 'next/link'
 
-import { Button } from '@/components/common/ui/buttons/button'
-import { LeatherColorButton } from '@/components/common/ui/buttons/leatherColorButton'
-import { NoPhoto } from '@/components/common/ui/noPhoto'
-import { ProductCardPhoto } from '@/components/pages/catalog/productCard/productCardPhoto'
-import { ECost } from '@/enums/cost'
-import { BasicProductType } from '@/features/basicProducts/api/types'
-import { useGetAllLeatherColors } from '@/features/leatherColors/hooks/useGetAllLeatherColors'
-import { useGetPriceInCurrency } from '@/hooks/useGetPriceInCurrency'
-import { useGetPriceInCurrentCurrency } from '@/hooks/useGetPriceInCurrentCurrency'
-import { selectCurrentCurrency, useUserSettings } from '@/store/useUserSettings'
-import { cutText } from '@/utils/text/cutText'
+import { Button } from 'components/common/ui/buttons/button'
+import { LeatherColorButton } from 'components/common/ui/buttons/leatherColorButton'
+import { NoPhoto } from 'components/common/ui/noPhoto'
+import { ProductCardPhoto } from 'components/pages/catalog/productCard/productCardPhoto'
+import { ECost } from 'enums/cost'
+import { BasicProductType } from 'features/basicProducts/api/types'
+import { useGetAllLeatherColors } from 'features/leatherColors/hooks/useGetAllLeatherColors'
+import { useGetPriceInCurrency } from 'hooks/useGetPriceInCurrency'
+import { useGetPriceInCurrentCurrency } from 'hooks/useGetPriceInCurrentCurrency'
+import { selectCurrentCurrency, useUserSettings } from 'store/useUserSettings'
+import { cutText } from 'utils/text/cutText'
 
 type PropsType = {
   product: BasicProductType

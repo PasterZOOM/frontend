@@ -1,6 +1,6 @@
 import { FC } from 'react'
 
-import { LeatherColorType } from '@/features/leatherColors/api/types'
+import { LeatherColorType } from 'features/leatherColors/api/types'
 
 type PropsType = {
   color: LeatherColorType

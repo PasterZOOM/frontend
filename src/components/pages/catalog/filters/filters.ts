@@ -1,9 +1,9 @@
-import { SelectItemType } from '@/components/forms/formikSelect'
-import { ELeather, ELeatherColor } from '@/enums/materials'
-import { EProductAssignment, EProductCategory } from '@/enums/product'
-import { leatherColorsArray } from '@/objects/colors/leatherColorsValues'
-import { productAssignmentsArray } from '@/objects/products/productAssignments'
-import { productCategoriesArray } from '@/objects/products/productCategories'
+import { SelectItemType } from 'components/forms/formikSelect'
+import { ELeather, ELeatherColor } from 'enums/materials'
+import { EProductAssignment, EProductCategory } from 'enums/product'
+import { leatherColorsArray } from 'objects/colors/leatherColorsValues'
+import { productAssignmentsArray } from 'objects/products/productAssignments'
+import { productCategoriesArray } from 'objects/products/productCategories'
 
 const selectItemsToFiltersTransformer: SelectItemsToFiltersTransformerFnType = (items, filterKey) =>
   items.map(item => ({ ...item, filterKey }))

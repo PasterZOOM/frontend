@@ -1,17 +1,17 @@
 import { FC } from 'react'
 
-import { RemoveButton } from '@/components/common/ui/buttons/removeButton'
-import { EditableSpanInput } from '@/components/common/ui/editable/editableSpanInput'
-import { EditableSpanSelect } from '@/components/common/ui/editable/editableSpanSelect'
-import { PropertyWithUnderline } from '@/components/common/ui/properties/propertyWithUnderline'
-import { TableItem } from '@/components/common/ui/tabel/tableItem'
-import { PropertyPreviewWrapper } from '@/components/common/wrappers/propertyPreviewWrapper'
+import { RemoveButton } from 'components/common/ui/buttons/removeButton'
+import { EditableSpanInput } from 'components/common/ui/editable/editableSpanInput'
+import { EditableSpanSelect } from 'components/common/ui/editable/editableSpanSelect'
+import { PropertyWithUnderline } from 'components/common/ui/properties/propertyWithUnderline'
+import { TableItem } from 'components/common/ui/tabel/tableItem'
+import { PropertyPreviewWrapper } from 'components/common/wrappers/propertyPreviewWrapper'
 // eslint-disable-next-line import/no-cycle
-import { LeatherArticleModal } from '@/features/leatherArticles/modals/leatherArticleModal'
-import { LeatherColorType } from '@/features/leatherColors/api/types'
-import { useUpdateLeatherColor } from '@/features/leatherColors/hooks/useUpdateLeatherColor'
-import { LeatherColorRemoveConfirmModalBody } from '@/features/leatherColors/modals/confirm/leatherColorRemoveConfirmModalBody'
-import { leatherColorsArray, leatherColorsValues } from '@/objects/colors/leatherColorsValues'
+import { LeatherArticleModal } from 'features/leatherArticles/modals/leatherArticleModal'
+import { LeatherColorType } from 'features/leatherColors/api/types'
+import { useUpdateLeatherColor } from 'features/leatherColors/hooks/useUpdateLeatherColor'
+import { LeatherColorRemoveConfirmModalBody } from 'features/leatherColors/modals/confirm/leatherColorRemoveConfirmModalBody'
+import { leatherColorsArray, leatherColorsValues } from 'objects/colors/leatherColorsValues'
 
 type PropsType = {
   className?: string

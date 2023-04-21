@@ -1,8 +1,8 @@
 import { FC, useEffect, useState } from 'react'
 
-import { MagnifiedViewModal } from '@/components/modals/magnifiedViewModal'
-import { useModal } from '@/hooks/useModal'
-import { ProductPhotoType } from '@/types/productType'
+import { MagnifiedViewModal } from 'components/modals/magnifiedViewModal'
+import { useModal } from 'hooks/useModal'
+import { ProductPhotoType } from 'types/productType'
 
 type PropsType = {
   photos: ProductPhotoType[]

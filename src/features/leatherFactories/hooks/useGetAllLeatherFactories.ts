@@ -1,9 +1,9 @@
 import { useQuery, UseQueryOptions } from 'react-query'
 import { UseQueryResult } from 'react-query/types/react/types'
 
-import { queryKey } from '@/enums/queryKey'
-import { LeatherFactoryType } from '@/features/leatherFactories/api/types'
-import { selectLeatherFactoriesService, useSrmServiceStore } from '@/store/crmServises'
+import { queryKey } from 'enums/queryKey'
+import { LeatherFactoryType } from 'features/leatherFactories/api/types'
+import { selectLeatherFactoriesService, useSrmServiceStore } from 'store/crmServises'
 
 export const useGetAllLeatherFactories: UseGetAllLeatherFactoriesType = options => {
   const leatherFactoriesService = useSrmServiceStore(selectLeatherFactoriesService)

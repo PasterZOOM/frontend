@@ -1,7 +1,7 @@
 import { FC } from 'react'
 
-import { Button, ButtonVariant } from '@/components/common/ui/buttons/button'
-import { useClearAllQueryParams } from '@/hooks/queryParams/useClearAllQueryParams'
+import { Button, ButtonVariant } from 'components/common/ui/buttons/button'
+import { useClearAllQueryParams } from 'hooks/queryParams/useClearAllQueryParams'
 
 interface FilterButtonsProps {
   open: boolean

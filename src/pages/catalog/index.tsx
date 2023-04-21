@@ -2,26 +2,26 @@ import { useEffect, useState } from 'react'
 
 import { GetServerSideProps, NextPage } from 'next'
 
-import { CurrencyService } from '@/api/currency/currencyApi'
-import { MainContainer } from '@/components/common/containers/mainContainer'
-import Header from '@/components/common/header/header'
-import FilterButtons from '@/components/common/ui/buttons/filterButtons'
-import { CatalogFilters } from '@/components/pages/catalog/filters/catalogFilters'
-import Products from '@/components/pages/catalog/products'
-import { ECost, TCost } from '@/enums/cost'
-import { BasicProductsService } from '@/features/basicProducts/api/basicProductsService'
-import { BasicProductType } from '@/features/basicProducts/api/types'
-import { useGetAllBasicProducts } from '@/features/basicProducts/hooks/useGetAllBasicProducts'
-import { LeatherArticlesService } from '@/features/leatherArticles/api/leatherArticlesService'
-import { LeatherArticleType } from '@/features/leatherArticles/api/types'
-import { useGetAllLeatherArticles } from '@/features/leatherArticles/hooks/useGetAllLeatherArticles'
+import { CurrencyService } from 'api/currency/currencyApi'
+import { MainContainer } from 'components/common/containers/mainContainer'
+import Header from 'components/common/header/header'
+import FilterButtons from 'components/common/ui/buttons/filterButtons'
+import { CatalogFilters } from 'components/pages/catalog/filters/catalogFilters'
+import Products from 'components/pages/catalog/products'
+import { ECost, TCost } from 'enums/cost'
+import { BasicProductsService } from 'features/basicProducts/api/basicProductsService'
+import { BasicProductType } from 'features/basicProducts/api/types'
+import { useGetAllBasicProducts } from 'features/basicProducts/hooks/useGetAllBasicProducts'
+import { LeatherArticlesService } from 'features/leatherArticles/api/leatherArticlesService'
+import { LeatherArticleType } from 'features/leatherArticles/api/types'
+import { useGetAllLeatherArticles } from 'features/leatherArticles/hooks/useGetAllLeatherArticles'
 import {
   initialCurrencyState,
   selectSetActualRates,
   useCurrencyStore,
-} from '@/store/useCurrencyStore'
-import { CostType } from '@/types/costType'
-import { getQueryFilters } from '@/utils/filters/getQueryFilters'
+} from 'store/useCurrencyStore'
+import { CostType } from 'types/costType'
+import { getQueryFilters } from 'utils/filters/getQueryFilters'
 
 type PropsType = {
   rates: CostType

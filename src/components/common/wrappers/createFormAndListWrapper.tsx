@@ -1,6 +1,6 @@
 import { FC, ReactNode } from 'react'
 
-import { H5 } from '@/components/common/ui/headers/h5'
+import { H5 } from 'components/common/ui/headers/h5'
 
 type PropsType = {
   title: string

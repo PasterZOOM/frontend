@@ -1,6 +1,6 @@
 import { GetRateResponseType } from './getRateResponseType'
 
-import { TCost } from '@/enums/cost'
+import { TCost } from 'enums/cost'
 
 export class CurrencyService {
   BASE_URL = 'https://www.nbrb.by/api/exrates/rates'

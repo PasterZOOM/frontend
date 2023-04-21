@@ -1,6 +1,6 @@
-import { TCost } from '@/enums/cost'
-import { EButteroCode, ELeather, EPunchPitch, EWaxCode } from '@/enums/materials'
-import { EProductAssignment, EProductCategory } from '@/enums/product'
+import { TCost } from 'enums/cost'
+import { EButteroCode, ELeather, EPunchPitch, EWaxCode } from 'enums/materials'
+import { EProductAssignment, EProductCategory } from 'enums/product'
 
 export type LeatherColorType<T extends EButteroCode | EWaxCode> = {
   _id: string

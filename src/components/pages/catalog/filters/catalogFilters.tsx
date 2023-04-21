@@ -1,16 +1,16 @@
 import { Dispatch, FC, SetStateAction } from 'react'
 
-import FilterContainer from '@/components/common/containers/filterContainer'
-import AccordionWrapper from '@/components/common/ui/accordion/accordionWrapper'
-import { ColorFilterCheckbox } from '@/components/common/ui/checkbox/colorFilterCheckbox'
+import FilterContainer from 'components/common/containers/filterContainer'
+import AccordionWrapper from 'components/common/ui/accordion/accordionWrapper'
+import { ColorFilterCheckbox } from 'components/common/ui/checkbox/colorFilterCheckbox'
 import {
   EFilterKeys,
   leatherColorFilters,
   productAssignmentsFilters,
   productCategoriesFilters,
-} from '@/components/pages/catalog/filters/filters'
-import { MultipleFilter } from '@/components/pages/catalog/filters/multipleFilter'
-import { useGetAllLeatherArticles } from '@/features/leatherArticles/hooks/useGetAllLeatherArticles'
+} from 'components/pages/catalog/filters/filters'
+import { MultipleFilter } from 'components/pages/catalog/filters/multipleFilter'
+import { useGetAllLeatherArticles } from 'features/leatherArticles/hooks/useGetAllLeatherArticles'
 
 type PropsType = {
   isOpenFilters: boolean

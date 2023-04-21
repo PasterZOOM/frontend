@@ -1,7 +1,7 @@
 import { FC } from 'react'
 
-import { EFilterKeys, GeneralFilterType } from '@/components/pages/catalog/filters/filters'
-import { useChangeMultipleQueryParams } from '@/hooks/queryParams/useChangeMultipleQueryParams'
+import { EFilterKeys, GeneralFilterType } from 'components/pages/catalog/filters/filters'
+import { useChangeMultipleQueryParams } from 'hooks/queryParams/useChangeMultipleQueryParams'
 
 type PropsType = {
   filterKey: EFilterKeys

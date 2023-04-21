@@ -1,6 +1,6 @@
 import { FC, useEffect, useRef, useState } from 'react'
 
-import { SelectItemType } from '@/components/forms/formikSelect'
+import { SelectItemType } from 'components/forms/formikSelect'
 
 type ClassesType = {
   activeItemClassName?: string

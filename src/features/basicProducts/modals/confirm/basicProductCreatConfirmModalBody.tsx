@@ -1,8 +1,8 @@
 import { FC } from 'react'
 
-import { ECreateBasicProductParams } from '@/features/basicProducts/enums/paramsKeys'
-import { CreateBasicProductFormType } from '@/features/basicProducts/forms/type'
-import { useGetAllLeatherArticles } from '@/features/leatherArticles/hooks/useGetAllLeatherArticles'
+import { ECreateBasicProductParams } from 'features/basicProducts/enums/paramsKeys'
+import { CreateBasicProductFormType } from 'features/basicProducts/forms/type'
+import { useGetAllLeatherArticles } from 'features/leatherArticles/hooks/useGetAllLeatherArticles'
 
 type PropsType = {
   values: CreateBasicProductFormType

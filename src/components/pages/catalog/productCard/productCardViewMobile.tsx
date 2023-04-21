@@ -3,7 +3,7 @@ import { FC } from 'react'
 import { Keyboard, Pagination } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
-import { ProductPhotoType } from '@/types/productType'
+import { ProductPhotoType } from 'types/productType'
 
 type PropsType = {
   photos: ProductPhotoType[]
