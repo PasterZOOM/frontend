@@ -1,18 +1,23 @@
 import { Dispatch, useEffect, useState } from 'react'
 
+import { SelectItemType } from 'components/forms/formikSelect'
 import { ETheme } from 'enums/theme'
-import { themes, ThemeType } from 'objects/theme/themes'
+import { themes } from 'objects/theme/themes'
 import { selectSetTheme, selectTheme, useUserSettings } from 'store/useUserSettings'
 
 export const useSwitchTheme: UseSwitchThemeType = () => {
   const theme = useUserSettings(selectTheme)
   const setTheme = useUserSettings(selectSetTheme)
 
-  const [activeTheme, setActiveTheme] = useState<ThemeType>(themes[theme])
+  const [activeTheme, setActiveTheme] = useState<SelectItemType>(themes[ETheme.AUTO])
 
   useEffect(() => {
-    setTheme(activeTheme.value)
+    setTheme(activeTheme.value as ETheme)
   }, [activeTheme])
+
+  useEffect(() => {
+    setActiveTheme(themes[theme])
+  }, [])
 
   useEffect(() => {
     if (
@@ -28,4 +33,7 @@ export const useSwitchTheme: UseSwitchThemeType = () => {
   return { activeTheme, setActiveTheme }
 }
 
-type UseSwitchThemeType = () => { activeTheme: ThemeType; setActiveTheme: Dispatch<ThemeType> }
+type UseSwitchThemeType = () => {
+  activeTheme: SelectItemType
+  setActiveTheme: Dispatch<SelectItemType>
+}

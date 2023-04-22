@@ -1,13 +1,9 @@
 import { v1 } from 'uuid'
 
+import { SelectItemType } from 'components/forms/formikSelect'
 import { ETheme } from 'enums/theme'
 
-export type ThemeType = {
-  _id: string
-  value: ETheme
-  title: string
-}
-export const themes: Record<ETheme, ThemeType> = {
+export const themes: Record<ETheme, SelectItemType> = {
   [ETheme.AUTO]: {
     _id: v1(),
     value: ETheme.AUTO,

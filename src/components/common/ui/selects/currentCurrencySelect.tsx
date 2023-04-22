@@ -16,13 +16,15 @@ export const CurrentCurrencySelect: FC = () => {
   const currentCurrency = useUserSettings(selectCurrentCurrency)
   const setCurrentCurrency = useUserSettings(selectSetCurrentCurrency)
 
-  const [activeCurrency, setActiveCurrency] = useState<SelectItemType<ECost>>(
-    currencies[currentCurrency]
-  )
+  const [activeCurrency, setActiveCurrency] = useState<SelectItemType<ECost>>(currencies[ECost.BYN])
 
   useEffect(() => {
     setCurrentCurrency(activeCurrency.value)
   }, [activeCurrency])
+
+  useEffect(() => {
+    setActiveCurrency(currencies[currentCurrency])
+  }, [])
 
   return (
     <Select

@@ -2,10 +2,12 @@ import { FC } from 'react'
 
 import { Field } from 'formik'
 
+import { ETheme } from 'enums/theme'
+
 type PropsType = {
   name: string
   className?: string
-  items: SelectItemType<string | string[]>[]
+  items: SelectItemType<string | string[] | ETheme>[]
   multiple?: boolean
 }
 
