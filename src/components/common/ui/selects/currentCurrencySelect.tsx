@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from 'react'
 
+import { SelectItemType } from 'components/common/ui/selects/defaultSelectType'
 import { Select } from 'components/common/ui/selects/select'
-import { SelectItemType } from 'components/forms/formikSelect'
 import { ECost } from 'enums/cost'
 import { currencies, currencyArray } from 'objects/currency/currency'
 import {

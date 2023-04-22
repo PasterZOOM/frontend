@@ -21,7 +21,7 @@ export const TableItem: FC<PropsType> = ({ title, children }) => {
       <div
         onClick={openModal}
         className="p-1 text-blue-500 hover:font-bold hover:text-blue-700 focus:font-bold focus:text-blue-700 focus:outline-0"
-        aria-hidden="true"
+        aria-hidden
         tabIndex={0}
         role="button"
         onKeyDown={onKeyEnter}

@@ -1,6 +1,6 @@
 import { Dispatch, useEffect, useState } from 'react'
 
-import { SelectItemType } from 'components/forms/formikSelect'
+import { SelectItemType } from 'components/common/ui/selects/defaultSelectType'
 import { ETheme } from 'enums/theme'
 import { themes } from 'objects/theme/themes'
 import { selectSetTheme, selectTheme, useUserSettings } from 'store/useUserSettings'

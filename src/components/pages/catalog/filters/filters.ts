@@ -1,4 +1,4 @@
-import { SelectItemType } from 'components/forms/formikSelect'
+import { SelectItemType } from 'components/common/ui/selects/defaultSelectType'
 import { ELeather, ELeatherColor } from 'enums/materials'
 import { EProductAssignment, EProductCategory } from 'enums/product'
 import { leatherColorsArray } from 'objects/colors/leatherColorsValues'

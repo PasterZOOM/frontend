@@ -3,7 +3,7 @@ import { FC } from 'react'
 import { ModalLayout } from 'components/modals/modalLayout'
 import { useGetBasicProduct } from 'features/basicProducts/hooks/useGetBasicProduct'
 import { useRemoveBasicProduct } from 'features/basicProducts/hooks/useRemoveBasicProduct'
-import { BasicProductInfo } from 'features/basicProducts/pages/basicProductInfo'
+import { BasicProductInfo } from 'features/basicProducts/ui/basicProductInfo'
 
 type PropsType = {
   isOpen: boolean

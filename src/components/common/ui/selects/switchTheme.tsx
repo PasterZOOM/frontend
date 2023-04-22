@@ -1,7 +1,7 @@
 import { FC } from 'react'
 
+import { SelectItemType } from 'components/common/ui/selects/defaultSelectType'
 import { Select } from 'components/common/ui/selects/select'
-import { SelectItemType } from 'components/forms/formikSelect'
 import { useSwitchTheme } from 'hooks/useSwitchTheme'
 import { themes } from 'objects/theme/themes'
 

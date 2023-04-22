@@ -1,6 +1,6 @@
 import { v1 } from 'uuid'
 
-import { SelectItemType } from 'components/forms/formikSelect'
+import { SelectItemType } from 'components/common/ui/selects/defaultSelectType'
 import { ECountry } from 'enums/countries'
 import { countriesName } from 'objects/countries/countriesName'
 import { ObjectForSelectType } from 'types/objectForSelectType'

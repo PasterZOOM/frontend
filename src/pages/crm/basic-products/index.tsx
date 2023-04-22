@@ -1,5 +1,5 @@
 import { H1 } from 'components/common/ui/headers/h1'
-import { BasicProducts } from 'features/basicProducts/pages/basicProducts'
+import { BasicProducts } from 'features/basicProducts/ui/basicProducts'
 import { useRedirect } from 'hooks/useRedirect'
 import { CrmLayout } from 'layouts/crmLayout'
 import { NextPageWithLayout } from 'pages/_app'

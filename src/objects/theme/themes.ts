@@ -1,6 +1,6 @@
 import { v1 } from 'uuid'
 
-import { SelectItemType } from 'components/forms/formikSelect'
+import { SelectItemType } from 'components/common/ui/selects/defaultSelectType'
 import { ETheme } from 'enums/theme'
 
 export const themes: Record<ETheme, SelectItemType> = {

@@ -2,6 +2,7 @@ import { FC } from 'react'
 
 import { Field } from 'formik'
 
+import { SelectItemType } from 'components/common/ui/selects/defaultSelectType'
 import { ETheme } from 'enums/theme'
 
 type PropsType = {
@@ -28,5 +29,3 @@ export const FormikSelect: FC<PropsType> = ({ name, className, items, multiple }
     </Field>
   )
 }
-
-export type SelectItemType<T = string> = { _id: string; title: string; value: T }
