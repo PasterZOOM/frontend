@@ -1,4 +1,4 @@
-import { FC, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 
 import Link from 'next/link'
 
@@ -8,7 +8,6 @@ import { NoPhoto } from 'components/common/ui/noPhoto'
 import { ProductCardPhoto } from 'components/pages/catalog/productCard/productCardPhoto'
 import { ECost } from 'enums/cost'
 import { BasicProductType } from 'features/basicProducts/api/types'
-import { useGetAllLeatherColors } from 'features/leatherColors/hooks/useGetAllLeatherColors'
 import { useGetPriceInCurrency } from 'hooks/useGetPriceInCurrency'
 import { useGetPriceInCurrentCurrency } from 'hooks/useGetPriceInCurrentCurrency'
 import { selectCurrentCurrency, useUserSettings } from 'store/useUserSettings'
@@ -20,16 +19,16 @@ type PropsType = {
 }
 
 export const ProductCard: FC<PropsType> = ({ defPrice = ECost.USD, product }) => {
-  const [activeColor, setActiveColor] = useState(Object.keys(product.photos)[0] || '')
+  const [activeColor, setActiveColor] = useState(product.productColors[0]?._id ?? '')
 
   const currentCurrency = useUserSettings(selectCurrentCurrency)
 
   const priceInCurrentCurrency = useGetPriceInCurrentCurrency(product.cost, product.costCurrency)
   const priceInDefaultCurrency = useGetPriceInCurrency(product.cost, product.costCurrency, defPrice)
 
-  const { data: productColors } = useGetAllLeatherColors(Object.keys(product.photos), {
-    enabled: !!activeColor,
-  })
+  useEffect(() => {
+    setActiveColor(product.productColors[0]?._id ?? '')
+  }, [product])
 
   return (
     <div>
@@ -44,9 +43,9 @@ export const ProductCard: FC<PropsType> = ({ defPrice = ECost.USD, product }) =>
           <div className="mt-4 mb-3 text-custom-xl font-bold">{product.title}</div>
           <div className="my-3 font-light">{cutText(product.description)}</div>
         </Link>
-        {productColors && (
-          <div className={`flex flex-wrap gap-3 ${productColors.length === 1 ? 'hidden' : ''}`}>
-            {productColors.map(color => (
+        {product.productColors.length > 1 && (
+          <div className="flex flex-wrap gap-3">
+            {product.productColors.map(color => (
               <LeatherColorButton
                 key={color._id}
                 photo={color.photo}
@@ -66,7 +65,9 @@ export const ProductCard: FC<PropsType> = ({ defPrice = ECost.USD, product }) =>
               <div className="text-sm text-red-500">Не удалось загрузить курсы валют</div>
             )}
           </div>
-          <Button>Подробнее</Button>
+          <Link href={`/products/${product.category}/${product._id}`}>
+            <Button>Подробнее</Button>
+          </Link>
         </div>
       </div>
     </div>

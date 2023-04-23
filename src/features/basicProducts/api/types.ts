@@ -16,6 +16,7 @@ export type BasicProductType = {
   size: string
   title: string
   isPublished: boolean
+  productColors: { _id: string; title: string; photo: string }[]
 }
 
 export type CreateBasicProductParamsType = {

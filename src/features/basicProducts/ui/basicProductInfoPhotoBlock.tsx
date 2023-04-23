@@ -42,14 +42,14 @@ export const BasicProductInfoPhotoBlock: FC<PropsType> = ({ product }) => {
           onChange={e => setInputValue(e.currentTarget.value)}
         />
       </div>
-      {Object.keys(product.photos).map(key => (
-        <div key={key}>
-          {product.photos[key] && (
+      {product.productColors.map(({ _id }) => (
+        <div key={_id}>
+          {product.photos[_id] && (
             <div>
               <span className="font-bold">
-                {leatherArticle?.colors.find(color => color._id === key)?.title}
+                {leatherArticle?.colors.find(color => color._id === _id)?.title}
               </span>
-              {product.photos[key].map(photo => (
+              {product.photos[_id].map(photo => (
                 <div key={photo._id} className="ml-5">
                   <span className="mr-2">{photo.url}</span>
                   <button

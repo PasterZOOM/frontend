@@ -30,6 +30,7 @@ const ComponentPreviews: FC = () => {
             size: '',
             title: 'Холдер из кожи Buttero',
             _id: '6442e310d11b11f28bd48c64',
+            productColors: [],
           }}
         />
       </ComponentPreview>

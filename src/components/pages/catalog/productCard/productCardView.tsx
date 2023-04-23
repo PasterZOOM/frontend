@@ -20,10 +20,9 @@ export const ProductCardView: FC<PropsType> = ({ photos }) => {
   }
 
   const leaveMouseHandler = (): void => {
-    // ? TODO UI: нужно ли показывать первое поле, когда мыш покидает зону с фото
     setActivePhoto(photos[0])
     setIsHover(false)
-  }
+  } // ? TODO UI: нужно ли показывать первое поле, когда мыш покидает зону с фото
 
   useEffect(() => {
     setActivePhoto(photos[0])
