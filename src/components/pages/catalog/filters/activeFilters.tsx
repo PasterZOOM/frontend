@@ -1,5 +1,7 @@
 import { FC, useEffect, useState } from 'react'
 
+import { useTranslation } from 'next-i18next'
+
 import { EFilterKeys, GeneralFilterType } from 'components/pages/catalog/filters/filters'
 import { ELeatherColor } from 'enums/materials'
 import { EProductAssignment, EProductCategory } from 'enums/product'
@@ -16,6 +18,7 @@ type PropsType = {
   className?: string
 }
 const ActiveFilters: FC<PropsType> = ({ className = '' }) => {
+  const { t } = useTranslation('common')
   const [articles, setArticles] = useState<ObjectForSelectType<string>>({})
   const [activeFilters, setActiveFilters] = useState<GeneralFilterType[]>([])
 
@@ -81,7 +84,7 @@ const ActiveFilters: FC<PropsType> = ({ className = '' }) => {
           onClick={clearAll}
           className="h-fit rounded-full border border-anthracite-gray px-2 dark:border-light-gray"
         >
-          Очистить все
+          {t('clear-all')}
         </button>
       )}
     </div>

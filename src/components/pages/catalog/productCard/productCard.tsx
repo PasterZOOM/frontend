@@ -1,6 +1,7 @@
 import { FC, useEffect, useState } from 'react'
 
 import Link from 'next/link'
+import { useTranslation } from 'next-i18next'
 
 import { Button } from 'components/common/ui/buttons/button'
 import { LeatherColorButton } from 'components/common/ui/buttons/leatherColorButton'
@@ -19,6 +20,8 @@ type PropsType = {
 }
 
 export const ProductCard: FC<PropsType> = ({ defPrice = ECost.USD, product }) => {
+  const { t } = useTranslation('catalog')
+
   const [activeColor, setActiveColor] = useState(product.productColors[0]?._id ?? '')
 
   const currentCurrency = useUserSettings(selectCurrentCurrency)
@@ -40,7 +43,7 @@ export const ProductCard: FC<PropsType> = ({ defPrice = ECost.USD, product }) =>
 
       <div className="mt-10">
         <Link href={`/products/${product.category}/${product._id}`}>
-          <div className="mt-4 mb-3 text-custom-xl font-bold">{product.title}</div>
+          <div className="mb-3 mt-4 text-custom-xl font-bold">{product.title}</div>
           <div className="my-3 font-light">{cutText(product.description)}</div>
         </Link>
         {product.productColors.length > 1 && (
@@ -66,7 +69,7 @@ export const ProductCard: FC<PropsType> = ({ defPrice = ECost.USD, product }) =>
             )}
           </div>
           <Link href={`/products/${product.category}/${product._id}`}>
-            <Button>Подробнее</Button>
+            <Button>{t('more')}</Button>
           </Link>
         </div>
       </div>

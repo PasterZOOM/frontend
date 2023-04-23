@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 
 import { GetServerSideProps, NextPage } from 'next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import { CurrencyService } from 'api/currency/currencyApi'
 import { MainContainer } from 'components/common/containers/mainContainer'
@@ -56,7 +57,7 @@ const Catalog: NextPage<PropsType> = ({ rates, articles, basicProducts }: PropsT
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+export const getServerSideProps: GetServerSideProps = async ({ query, locale }) => {
   const basicProductsService = new BasicProductsService()
   const currencyService = new CurrencyService()
   const leatherArticlesService = new LeatherArticlesService()
@@ -77,6 +78,13 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const basicProducts = await basicProductsService.getAll(filters)
   const articles = await leatherArticlesService.getAll()
 
-  return { props: { basicProducts, rates, articles } }
+  return {
+    props: {
+      ...(await serverSideTranslations(locale ?? 'en', ['common', 'catalog'])),
+      basicProducts,
+      rates,
+      articles,
+    },
+  }
 }
 export default Catalog

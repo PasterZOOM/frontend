@@ -1,10 +1,10 @@
-import { ReactElement, ReactNode } from 'react'
+import { ReactElement } from 'react'
 
 import Link from 'next/link'
 
 import Header from 'components/common/header/header'
 
-export const CrmLayout = (page: ReactElement): ReactNode => {
+export const CrmLayout = (page: ReactElement): JSX.Element => {
   return (
     <>
       <Header />
