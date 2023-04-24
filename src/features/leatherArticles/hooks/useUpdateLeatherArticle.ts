@@ -2,11 +2,11 @@ import { useMutation, useQueryClient } from 'react-query'
 
 import { UpdateParamsType } from 'api/paramsTypes'
 import { QUERY_KEY } from 'enums/QUERY_KEY'
+import { LeatherArticlesAPI } from 'features/leatherArticles/api/leatherArticlesAPI'
 import {
   LeatherArticleType,
   UpdateLeatherArticleParamsType,
 } from 'features/leatherArticles/api/types'
-import { selectLeatherArticlesService, useSrmServiceStore } from 'store/crmServises'
 import { UseMutationHook } from 'types/hooks/useMutationHook'
 
 export const useUpdateLeatherArticle: UseMutationHook<
@@ -14,12 +14,10 @@ export const useUpdateLeatherArticle: UseMutationHook<
   unknown,
   UpdateParamsType<UpdateLeatherArticleParamsType>
 > = options => {
-  const leatherArticlesService = useSrmServiceStore(selectLeatherArticlesService)
-
   const queryClient = useQueryClient()
 
   return useMutation({
-    mutationFn: leatherArticlesService.update,
+    mutationFn: LeatherArticlesAPI.update,
     onSuccess: async (data, variables) => {
       await queryClient.setQueryData([QUERY_KEY.GET_ARTICLE, data._id], data)
       if (variables.params.title) {

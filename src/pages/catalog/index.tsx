@@ -3,17 +3,17 @@ import { useEffect, useState } from 'react'
 import { GetServerSideProps, NextPage } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
-import { CurrencyService } from 'api/currency/currencyApi'
+import { CurrencyAPI } from 'api/currency/currencyApi'
 import { MainContainer } from 'components/common/containers/mainContainer'
 import Header from 'components/common/header/header'
 import FilterButtons from 'components/common/ui/buttons/filterButtons'
 import { CatalogFilters } from 'components/pages/catalog/filters/catalogFilters'
 import Products from 'components/pages/catalog/products'
 import { ECost, TCost } from 'enums/cost'
-import { BasicProductsService } from 'features/basicProducts/api/basicProductsService'
+import { BasicProductsAPI } from 'features/basicProducts/api/basicProductsAPI'
 import { BasicProductType } from 'features/basicProducts/api/types'
 import { useGetAllBasicProducts } from 'features/basicProducts/hooks/useGetAllBasicProducts'
-import { LeatherArticlesService } from 'features/leatherArticles/api/leatherArticlesService'
+import { LeatherArticlesAPI } from 'features/leatherArticles/api/leatherArticlesAPI'
 import { LeatherArticleType } from 'features/leatherArticles/api/types'
 import { useGetAllLeatherArticles } from 'features/leatherArticles/hooks/useGetAllLeatherArticles'
 import {
@@ -58,10 +58,6 @@ const Catalog: NextPage<PropsType> = ({ rates, articles, basicProducts }: PropsT
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ query, locale }) => {
-  const basicProductsService = new BasicProductsService()
-  const currencyService = new CurrencyService()
-  const leatherArticlesService = new LeatherArticlesService()
-
   const rates: CostType = initialCurrencyState
   const filters = getQueryFilters(query)
 
@@ -69,18 +65,18 @@ export const getServerSideProps: GetServerSideProps = async ({ query, locale }) 
     Object.keys(ECost)
       .filter(costKey => costKey !== ECost.BYN)
       .map(async costKey => {
-        const rate = await currencyService.getRate(costKey as TCost)
+        const rate = await CurrencyAPI.getRate(costKey as TCost)
 
         rates[costKey as ECost] = +(rate.Cur_Scale / rate.Cur_OfficialRate)
       })
   )
 
-  const basicProducts = await basicProductsService.getAll(filters)
-  const articles = await leatherArticlesService.getAll()
+  const basicProducts = await BasicProductsAPI.getAll(filters)
+  const articles = await LeatherArticlesAPI.getAll()
 
   return {
     props: {
-      ...(await serverSideTranslations(locale ?? 'en', ['common', 'catalog'])),
+      ...(await serverSideTranslations(locale ?? 'ru', ['catalog'])),
       basicProducts,
       rates,
       articles,

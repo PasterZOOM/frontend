@@ -11,7 +11,7 @@ export const LanguageSwitch: FC = () => {
   return (
     <div className="flex gap-2">
       <Link
-        href={router}
+        href={router.pathname}
         locale="ru"
         className={`border px-2 ${
           router.locale === LOCALES.RU
@@ -22,7 +22,7 @@ export const LanguageSwitch: FC = () => {
         {LOCALES.RU}
       </Link>
       <Link
-        href={router}
+        href={router.pathname}
         locale="en"
         className={`border px-2 ${
           router.locale === LOCALES.EN

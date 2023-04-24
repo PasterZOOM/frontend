@@ -8,7 +8,7 @@ export enum EProductAssignment {
   FOR_AIRPODS = 'for_airpods',
 }
 export enum EProductCategory {
-  HOLDER_FOR_AUTO_DOCS = 'holder_for_auto_docs',
+  HOLDER_FOR_CAR_DOCS = 'holder_for_car_docs',
   BELT = 'belt',
   BIFOLD_WALLET = 'bifold_wallet',
   CARD_HOLDER = 'card_holder',

@@ -32,10 +32,10 @@ export const productCategories: Record<LOCALES, ObjectForSelectType<EProductCate
       value: EProductCategory.PURSE,
       title: 'Purse',
     },
-    [EProductCategory.HOLDER_FOR_AUTO_DOCS]: {
+    [EProductCategory.HOLDER_FOR_CAR_DOCS]: {
       _id: v1(),
-      value: EProductCategory.HOLDER_FOR_AUTO_DOCS,
-      title: 'Holder for auto documents',
+      value: EProductCategory.HOLDER_FOR_CAR_DOCS,
+      title: 'Car-doc holder',
     },
     [EProductCategory.DOC_HOLDER]: {
       _id: v1(),
@@ -75,9 +75,9 @@ export const productCategories: Record<LOCALES, ObjectForSelectType<EProductCate
       value: EProductCategory.PURSE,
       title: 'Кошелек',
     },
-    [EProductCategory.HOLDER_FOR_AUTO_DOCS]: {
+    [EProductCategory.HOLDER_FOR_CAR_DOCS]: {
       _id: v1(),
-      value: EProductCategory.HOLDER_FOR_AUTO_DOCS,
+      value: EProductCategory.HOLDER_FOR_CAR_DOCS,
       title: 'Авто-док холдер',
     },
     [EProductCategory.DOC_HOLDER]: {

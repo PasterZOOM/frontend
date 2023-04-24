@@ -2,8 +2,8 @@ import { useRouter } from 'next/router'
 import { useMutation, useQueryClient } from 'react-query'
 
 import { QUERY_KEY } from 'enums/QUERY_KEY'
+import { BasicProductsAPI } from 'features/basicProducts/api/basicProductsAPI'
 import { BasicProductType, CreateBasicProductParamsType } from 'features/basicProducts/api/types'
-import { selectBasicProductsService, useSrmServiceStore } from 'store/crmServises'
 import { UseMutationHook } from 'types/hooks/useMutationHook'
 import { getQueryFilters } from 'utils/filters/getQueryFilters'
 
@@ -15,8 +15,6 @@ export const useCreateBasicProduct: UseMutationHook<
   const { query } = useRouter()
   const filters = getQueryFilters(query)
 
-  const basicProductsService = useSrmServiceStore(selectBasicProductsService)
-
   const queryClient = useQueryClient()
   const products = queryClient.getQueryData<BasicProductType[]>([
     QUERY_KEY.GET_ALL_BASIC_PRODUCTS,
@@ -24,7 +22,7 @@ export const useCreateBasicProduct: UseMutationHook<
   ])
 
   return useMutation({
-    mutationFn: basicProductsService.create,
+    mutationFn: BasicProductsAPI.create,
     onSuccess: data => {
       queryClient.setQueryData(
         [QUERY_KEY.GET_ALL_BASIC_PRODUCTS, filters],

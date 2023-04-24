@@ -1,7 +1,8 @@
 {
-  "assignments":"Assignments",
-  "category":"Category",
-  "color":"Color",
-  "leather":"Leather",
+  "assignments": "Assignments",
+  "category": "Category",
+  "clear-all": "Clear all",
+  "color": "Color",
+  "leather": "Leather",
   "more": "More"
 }

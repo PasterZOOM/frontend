@@ -21,7 +21,7 @@ type PropsType = {
 const ActiveFilters: FC<PropsType> = ({ className = '' }) => {
   const locale = useLocale()
 
-  const { t } = useTranslation('common')
+  const { t } = useTranslation('catalog')
   const [articles, setArticles] = useState<ObjectForSelectType<string>>({})
   const [activeFilters, setActiveFilters] = useState<GeneralFilterType[]>([])
 
