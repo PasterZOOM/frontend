@@ -2,22 +2,24 @@ import { Dispatch, useEffect, useState } from 'react'
 
 import { SelectItemType } from 'components/common/ui/selects/defaultSelectType'
 import { ETheme } from 'enums/theme'
+import { useLocale } from 'hooks/useLocale'
 import { themes } from 'objects/theme/themes'
 import { selectSetTheme, selectTheme, useUserSettings } from 'store/useUserSettings'
 
 export const useSwitchTheme: UseSwitchThemeType = () => {
+  const locale = useLocale()
   const theme = useUserSettings(selectTheme)
   const setTheme = useUserSettings(selectSetTheme)
 
-  const [activeTheme, setActiveTheme] = useState<SelectItemType>(themes[ETheme.AUTO])
+  const [activeTheme, setActiveTheme] = useState<SelectItemType>(themes[locale][ETheme.AUTO])
 
   useEffect(() => {
     setTheme(activeTheme.value as ETheme)
   }, [activeTheme])
 
   useEffect(() => {
-    setActiveTheme(themes[theme])
-  }, [])
+    setActiveTheme(themes[locale][theme])
+  }, [locale])
 
   useEffect(() => {
     if (

@@ -11,6 +11,7 @@ import { useUpdateBasicProduct } from 'features/basicProducts/hooks/useUpdateBas
 import { BasicProductRemoveConfirmModalBody } from 'features/basicProducts/modals/confirm/basicProductRemoveConfirmModalBody'
 import { BasicProductInfoPhotoBlock } from 'features/basicProducts/ui/basicProductInfoPhotoBlock'
 import { useGetAllLeatherArticles } from 'features/leatherArticles/hooks/useGetAllLeatherArticles'
+import { useLocale } from 'hooks/useLocale'
 import { currencies, currencyArray } from 'objects/currency/currency'
 import { punchPatches, punchPatchesArray } from 'objects/materials/punchPatch'
 import { productAssignmentsArray } from 'objects/products/productAssignments'
@@ -23,6 +24,7 @@ type PropsType = {
 }
 
 export const BasicProductInfo: FC<PropsType> = ({ className, product, onDeleteConfirm }) => {
+  const locale = useLocale()
   const { data } = useGetAllLeatherArticles()
   const { mutate: updateBasicProduct } = useUpdateBasicProduct()
 
@@ -73,13 +75,13 @@ export const BasicProductInfo: FC<PropsType> = ({ className, product, onDeleteCo
 
           <PropertyWithUnderline title="Валюта:">
             <EditableSpanSelect
-              title={currencies[product.costCurrency].title}
+              title={currencies[locale][product.costCurrency].title}
               initialValue={product.costCurrency}
               onChange={costCurrency =>
                 updateBasicProduct({ _id: product._id, params: { costCurrency } })
               }
             >
-              {currencyArray.map(currency => (
+              {currencyArray(locale).map(currency => (
                 <option key={currency._id} value={currency.value}>
                   {currency.title}
                 </option>
@@ -89,11 +91,11 @@ export const BasicProductInfo: FC<PropsType> = ({ className, product, onDeleteCo
 
           <PropertyWithUnderline title="Категория:">
             <EditableSpanSelect
-              title={productCategories[product.category].title}
+              title={productCategories[locale][product.category].title}
               initialValue={product.category}
               onChange={category => updateBasicProduct({ _id: product._id, params: { category } })}
             >
-              {productCategoriesArray.map(category => (
+              {productCategoriesArray(locale).map(category => (
                 <option key={category._id} value={category.value}>
                   {category.title}
                 </option>
@@ -111,13 +113,13 @@ export const BasicProductInfo: FC<PropsType> = ({ className, product, onDeleteCo
 
           <PropertyWithUnderline title="Шаг пробойника:">
             <EditableSpanSelect
-              title={punchPatches[product.punchPitch].title}
+              title={punchPatches[locale][product.punchPitch].title}
               initialValue={product.punchPitch}
               onChange={punchPitch =>
                 updateBasicProduct({ _id: product._id, params: { punchPitch } })
               }
             >
-              {punchPatchesArray.map(punchPitch => (
+              {punchPatchesArray(locale).map(punchPitch => (
                 <option key={punchPitch._id} value={punchPitch.value}>
                   {punchPitch.title}
                 </option>
@@ -155,7 +157,7 @@ export const BasicProductInfo: FC<PropsType> = ({ className, product, onDeleteCo
               }
               selectProps={{ multiple: true }}
             >
-              {productAssignmentsArray.map(assignment => (
+              {productAssignmentsArray(locale).map(assignment => (
                 <option key={assignment._id} value={assignment.value}>
                   {assignment.title}
                 </option>

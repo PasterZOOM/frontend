@@ -3,6 +3,8 @@ import { FC } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
+import { LOCALES } from 'types/localeType'
+
 export const LanguageSwitch: FC = () => {
   const router = useRouter()
 
@@ -12,23 +14,23 @@ export const LanguageSwitch: FC = () => {
         href={router}
         locale="ru"
         className={`border px-2 ${
-          router.locale === 'ru'
+          router.locale === LOCALES.RU
             ? 'bg-anthracite-gray text-white dark:bg-white dark:text-anthracite-gray'
             : ''
         }`}
       >
-        RU
+        {LOCALES.RU}
       </Link>
       <Link
         href={router}
         locale="en"
         className={`border px-2 ${
-          router.locale === 'en'
+          router.locale === LOCALES.EN
             ? 'bg-anthracite-gray text-white dark:bg-white dark:text-anthracite-gray'
             : ''
         }`}
       >
-        EN
+        {LOCALES.EN}
       </Link>
     </div>
   )

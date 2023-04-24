@@ -1,5 +1,7 @@
 import { Dispatch, FC, SetStateAction } from 'react'
 
+import { useTranslation } from 'next-i18next'
+
 import FilterContainer from 'components/common/containers/filterContainer'
 import AccordionWrapper from 'components/common/ui/accordion/accordionWrapper'
 import { ColorFilterCheckbox } from 'components/common/ui/checkbox/colorFilterCheckbox'
@@ -11,6 +13,7 @@ import {
 } from 'components/pages/catalog/filters/filters'
 import { MultipleFilter } from 'components/pages/catalog/filters/multipleFilter'
 import { useGetAllLeatherArticles } from 'features/leatherArticles/hooks/useGetAllLeatherArticles'
+import { useLocale } from 'hooks/useLocale'
 
 type PropsType = {
   isOpenFilters: boolean
@@ -23,6 +26,9 @@ export const CatalogFilters: FC<PropsType> = ({
   setIsOpenFilters,
   className = '',
 }) => {
+  const locale = useLocale()
+  const { t } = useTranslation('catalog')
+
   const { data } = useGetAllLeatherArticles()
 
   if (!data) return null
@@ -37,9 +43,9 @@ export const CatalogFilters: FC<PropsType> = ({
   return (
     <div className={`${className}`}>
       <FilterContainer open={isOpenFilters} setOpen={setIsOpenFilters} className="xl:top-18">
-        <AccordionWrapper title="Назначение" classes={{ wrapper: 'xl:-mt-5' }}>
+        <AccordionWrapper title={t('assignments')} classes={{ wrapper: 'xl:-mt-5' }}>
           <div className="px-4 pb-4 md:px-6 xl:px-0">
-            {productAssignmentsFilters.map(assignment => (
+            {productAssignmentsFilters(locale).map(assignment => (
               <MultipleFilter
                 key={assignment._id}
                 item={assignment}
@@ -48,9 +54,9 @@ export const CatalogFilters: FC<PropsType> = ({
             ))}
           </div>
         </AccordionWrapper>
-        <AccordionWrapper title="Категории">
+        <AccordionWrapper title={t('category')}>
           <div className="px-4 pb-4 md:px-6 xl:px-0">
-            {productCategoriesFilters.map(category => (
+            {productCategoriesFilters(locale).map(category => (
               <MultipleFilter
                 key={category._id}
                 item={category}
@@ -59,16 +65,16 @@ export const CatalogFilters: FC<PropsType> = ({
             ))}
           </div>
         </AccordionWrapper>
-        <AccordionWrapper title="Кожа">
+        <AccordionWrapper title={t('leather')}>
           <div className="px-4 pb-4 md:px-6 xl:px-0">
             {leathers.map(leather => (
               <MultipleFilter key={leather._id} item={leather} filterKey={EFilterKeys.LEATHERS} />
             ))}
           </div>
         </AccordionWrapper>
-        <AccordionWrapper title="Цвет">
+        <AccordionWrapper title={t('color')}>
           <div className="flex flex-wrap gap-3 px-4 pb-4 md:px-6 xl:px-0">
-            {leatherColorFilters.map(color => (
+            {leatherColorFilters(locale).map(color => (
               <ColorFilterCheckbox
                 key={color._id}
                 color={color}

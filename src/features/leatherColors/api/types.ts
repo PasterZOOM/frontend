@@ -1,4 +1,5 @@
 import { ELeatherColor } from 'enums/materials'
+import { LocaleFieldType } from 'types/localeType'
 
 export type LeatherColorType = {
   _id: string
@@ -9,11 +10,12 @@ export type LeatherColorType = {
   value: ELeatherColor
   description: string
 }
+
 export type CreateLeatherColorParamsType = {
   code: string
   photo: string
-  title: string
+  title: LocaleFieldType
   value: ELeatherColor
-  description: string
+  description: LocaleFieldType
 }
 export type UpdateLeatherColorParamsType = Partial<CreateLeatherColorParamsType>

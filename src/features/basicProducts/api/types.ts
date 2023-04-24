@@ -1,6 +1,7 @@
 import { ECost } from 'enums/cost'
 import { EPunchPitch } from 'enums/materials'
 import { EProductAssignment, EProductCategory } from 'enums/product'
+import { LocaleFieldType } from 'types/localeType'
 import { PhotosType } from 'types/productType'
 
 export type BasicProductType = {
@@ -24,11 +25,11 @@ export type CreateBasicProductParamsType = {
   category: EProductCategory
   cost: number
   costCurrency: ECost
-  description: string
+  description: LocaleFieldType
   leather: string
   punchPitch: EPunchPitch
-  size: string
-  title: string
+  size: LocaleFieldType
+  title: LocaleFieldType
 }
 
 export type UpdateBasicProductParamsType = Partial<

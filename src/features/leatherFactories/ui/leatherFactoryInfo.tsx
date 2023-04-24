@@ -10,6 +10,7 @@ import { LeatherArticleModal } from 'features/leatherArticles/modals/leatherArti
 import { LeatherFactoryType } from 'features/leatherFactories/api/types'
 import { useUpdateLeatherFactory } from 'features/leatherFactories/hooks/useUpdateLeatherFactory'
 import { LeatherFactoryRemoveConfirmModalBody } from 'features/leatherFactories/modals/confirm/leatherFactoryRemoveConfirmModalBody'
+import { useLocale } from 'hooks/useLocale'
 import { countriesArray, countryValues } from 'objects/countries/countryValues'
 
 type PropsType = {
@@ -19,6 +20,7 @@ type PropsType = {
 }
 
 export const LeatherFactoryInfo: FC<PropsType> = ({ className, factory, onDeleteConfirm }) => {
+  const locale = useLocale()
   const { mutate: updateLeatherFactory } = useUpdateLeatherFactory()
 
   return (
@@ -39,11 +41,11 @@ export const LeatherFactoryInfo: FC<PropsType> = ({ className, factory, onDelete
 
           <PropertyWithUnderline title="Страна:">
             <EditableSpanSelect
-              title={countryValues[factory.country].title}
+              title={countryValues[locale][factory.country].title}
               initialValue={factory.country}
               onChange={country => updateLeatherFactory({ _id: factory._id, params: { country } })}
             >
-              {countriesArray.map(country => (
+              {countriesArray(locale).map(country => (
                 <option key={country._id} value={country.value}>
                   {country.title}
                 </option>

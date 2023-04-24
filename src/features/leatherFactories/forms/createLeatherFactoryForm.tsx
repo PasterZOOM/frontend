@@ -11,23 +11,38 @@ import { ECreateLeatherFactoryParams } from 'features/leatherFactories/enums/par
 import { CreateLeatherFactoryFormType } from 'features/leatherFactories/forms/type'
 import { useCreateLeatherFactory } from 'features/leatherFactories/hooks/useCreateLeatherFactory'
 import { LeatherFactoryCreatConfirmModalBody } from 'features/leatherFactories/modals/confirm/leatherFactoryCreatConfirmModalBody'
+import { useLocale } from 'hooks/useLocale'
 import { countriesArray } from 'objects/countries/countryValues'
 
-const initialValues: CreateLeatherFactoryFormType = {
-  country: countriesArray[0].value,
-  description: '',
-  title: '',
-}
-
 export const CreateLeatherFactoryForm: FC = () => {
+  const locale = useLocale()
+
   const { mutateAsync: createFactory } = useCreateLeatherFactory()
 
+  const initialValues: CreateLeatherFactoryFormType = {
+    [ECreateLeatherFactoryParams.COUNTRY]: countriesArray(locale)[0].value,
+    [ECreateLeatherFactoryParams.DESCRIPTION_EN]: '',
+    [ECreateLeatherFactoryParams.DESCRIPTION_RU]: '',
+    [ECreateLeatherFactoryParams.TITLE_EN]: '',
+    [ECreateLeatherFactoryParams.TITLE_RU]: '',
+  }
+
   const onSubmit = async (
-    values: CreateLeatherFactoryFormType,
+    {
+      country,
+      'title-en': titleEn,
+      'title-ru': titleRu,
+      'description-en': descriptionEn,
+      'description-ru': descriptionRu,
+    }: CreateLeatherFactoryFormType,
     { resetForm }: FormikHelpers<CreateLeatherFactoryFormType>
   ): Promise<void> => {
     try {
-      await createFactory(values)
+      await createFactory({
+        country,
+        title: { en: titleEn, ru: titleRu },
+        description: { en: descriptionEn, ru: descriptionRu },
+      })
 
       resetForm()
     } catch (e) {
@@ -41,7 +56,10 @@ export const CreateLeatherFactoryForm: FC = () => {
       <Formik initialValues={initialValues} onSubmit={onSubmit}>
         {({ values, submitForm }) => (
           <Form className="space-y-3">
-            <FieldWrapper name={ECreateLeatherFactoryParams.TITLE} title="Название фабрики:">
+            <FieldWrapper name={ECreateLeatherFactoryParams.TITLE_EN} title="Название фабрики EN:">
+              {name => <FormikInput name={name} />}
+            </FieldWrapper>
+            <FieldWrapper name={ECreateLeatherFactoryParams.TITLE_RU} title="Название фабрики RU:">
               {name => <FormikInput name={name} />}
             </FieldWrapper>
 
@@ -49,10 +67,13 @@ export const CreateLeatherFactoryForm: FC = () => {
               name={ECreateLeatherFactoryParams.COUNTRY}
               title="Страна в которой расположена фабрика:"
             >
-              {name => <FormikSelect name={name} items={countriesArray} />}
+              {name => <FormikSelect name={name} items={countriesArray(locale)} />}
             </FieldWrapper>
 
-            <FieldWrapper name={ECreateLeatherFactoryParams.DESCRIPTION} title="Описание:">
+            <FieldWrapper name={ECreateLeatherFactoryParams.DESCRIPTION_EN} title="Описание EN:">
+              {name => <FormikInput name={name} />}
+            </FieldWrapper>
+            <FieldWrapper name={ECreateLeatherFactoryParams.DESCRIPTION_RU} title="Описание RU:">
               {name => <FormikInput name={name} />}
             </FieldWrapper>
 

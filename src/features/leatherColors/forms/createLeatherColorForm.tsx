@@ -14,9 +14,12 @@ import { ECreateLeatherColorParams } from 'features/leatherColors/enums/paramsKe
 import { CreateLeatherColorFormType } from 'features/leatherColors/forms/type'
 import { useCreateLeatherColor } from 'features/leatherColors/hooks/useCreateLeatherColor'
 import { LeatherColorCreatConfirmModalBody } from 'features/leatherColors/modals/confirm/leatherColorCreatConfirmModalBody'
+import { useLocale } from 'hooks/useLocale'
 import { leatherColorsArray } from 'objects/colors/leatherColorsValues'
 
 export const CreateLeatherColorForm: FC = () => {
+  const locale = useLocale()
+
   const { data } = useGetAllLeatherArticles()
   const articles: SelectItemType[] = (data ?? []).map(({ _id, title }) => ({
     _id,
@@ -28,19 +31,35 @@ export const CreateLeatherColorForm: FC = () => {
 
   const initialValues: CreateLeatherColorFormType = {
     [ECreateLeatherColorParams.ARTICLE_ID]: '',
-    [ECreateLeatherColorParams.DESCRIPTION]: '',
-    [ECreateLeatherColorParams.TITLE]: '',
+    [ECreateLeatherColorParams.DESCRIPTION_EN]: '',
+    [ECreateLeatherColorParams.DESCRIPTION_RU]: '',
+    [ECreateLeatherColorParams.TITLE_EN]: '',
+    [ECreateLeatherColorParams.TITLE_RU]: '',
     [ECreateLeatherColorParams.CODE]: '',
     [ECreateLeatherColorParams.VALUE]: ELeatherColor.BLACK,
     [ECreateLeatherColorParams.PHOTO]: '',
   }
 
   const onSubmit = async (
-    { articleId, ...params }: CreateLeatherColorFormType,
+    {
+      articleId,
+      'title-en': titleEn,
+      'title-ru': titleRu,
+      'description-en': descriptionEn,
+      'description-ru': descriptionRu,
+      ...params
+    }: CreateLeatherColorFormType,
     { resetForm }: FormikHelpers<CreateLeatherColorFormType>
   ): Promise<void> => {
     try {
-      await createColor({ _id: articleId || articles[0]?._id, params })
+      await createColor({
+        _id: articleId || articles[0]?._id,
+        params: {
+          title: { en: titleEn, ru: titleRu },
+          description: { en: descriptionEn, ru: descriptionRu },
+          ...params,
+        },
+      })
 
       resetForm()
     } catch (e) {
@@ -59,10 +78,13 @@ export const CreateLeatherColorForm: FC = () => {
             </FieldWrapper>
 
             <FieldWrapper name={ECreateLeatherColorParams.VALUE} title="Значение цвета:">
-              {name => <FormikSelect name={name} items={leatherColorsArray} />}
+              {name => <FormikSelect name={name} items={leatherColorsArray(locale)} />}
             </FieldWrapper>
 
-            <FieldWrapper name={ECreateLeatherColorParams.TITLE} title="Название цвета:">
+            <FieldWrapper name={ECreateLeatherColorParams.TITLE_EN} title="Название цвета EN:">
+              {name => <FormikInput name={name} />}
+            </FieldWrapper>
+            <FieldWrapper name={ECreateLeatherColorParams.TITLE_RU} title="Название цвета RU:">
               {name => <FormikInput name={name} />}
             </FieldWrapper>
 
@@ -74,7 +96,10 @@ export const CreateLeatherColorForm: FC = () => {
               {name => <FormikInput name={name} />}
             </FieldWrapper>
 
-            <FieldWrapper name={ECreateLeatherColorParams.DESCRIPTION} title="Описание:">
+            <FieldWrapper name={ECreateLeatherColorParams.DESCRIPTION_EN} title="Описание EN:">
+              {name => <FormikInput name={name} />}
+            </FieldWrapper>
+            <FieldWrapper name={ECreateLeatherColorParams.DESCRIPTION_RU} title="Описание RU:">
               {name => <FormikInput name={name} />}
             </FieldWrapper>
 

@@ -26,16 +26,30 @@ export const CreateLeatherArticleForm: FC = () => {
 
   const initialValues: CreateLeatherArticleFormType = {
     [ECreateLeatherArticleParams.FACTORY_ID]: '',
-    [ECreateLeatherArticleParams.DESCRIPTION]: '',
-    [ECreateLeatherArticleParams.TITLE]: '',
+    [ECreateLeatherArticleParams.DESCRIPTION_EN]: '',
+    [ECreateLeatherArticleParams.DESCRIPTION_RU]: '',
+    [ECreateLeatherArticleParams.TITLE_EN]: '',
+    [ECreateLeatherArticleParams.TITLE_RU]: '',
   }
 
   const onSubmit = async (
-    { factoryId, ...params }: CreateLeatherArticleFormType,
+    {
+      factoryId,
+      'title-ru': tittleRu,
+      'title-en': tittleEn,
+      'description-en': descriptionEn,
+      'description-ru': descriptionRu,
+    }: CreateLeatherArticleFormType,
     { resetForm }: FormikHelpers<CreateLeatherArticleFormType>
   ): Promise<void> => {
     try {
-      await createArticle({ _id: factoryId || factories[0]?._id, params })
+      await createArticle({
+        _id: factoryId || factories[0]?._id,
+        params: {
+          title: { en: tittleEn, ru: tittleRu },
+          description: { en: descriptionEn, ru: descriptionRu },
+        },
+      })
 
       resetForm()
     } catch (e) {
@@ -49,18 +63,21 @@ export const CreateLeatherArticleForm: FC = () => {
       <Formik initialValues={initialValues} onSubmit={onSubmit}>
         {({ values, submitForm }) => (
           <Form className="space-y-3">
-            <FieldWrapper name={ECreateLeatherArticleParams.TITLE} title="Название артикула:">
+            <FieldWrapper name={ECreateLeatherArticleParams.TITLE_EN} title="Название артикула EN:">
               {name => <FormikInput name={name} />}
             </FieldWrapper>
-
+            <FieldWrapper name={ECreateLeatherArticleParams.TITLE_RU} title="Название артикула RU:">
+              {name => <FormikInput name={name} />}
+            </FieldWrapper>
             <FieldWrapper name={ECreateLeatherArticleParams.FACTORY_ID} title="Фабрика:">
               {name => <FormikSelect name={name} items={factories} />}
             </FieldWrapper>
-
-            <FieldWrapper name={ECreateLeatherArticleParams.DESCRIPTION} title="Описание:">
+            <FieldWrapper name={ECreateLeatherArticleParams.DESCRIPTION_EN} title="Описание En:">
+              {name => <FormikInput name={name} />}
+            </FieldWrapper>{' '}
+            <FieldWrapper name={ECreateLeatherArticleParams.DESCRIPTION_RU} title="Описание Ru:">
               {name => <FormikInput name={name} />}
             </FieldWrapper>
-
             <CreateButton
               onConfirm={submitForm}
               modalChildren={<LeatherArticleCreateConfirmModalBody values={values} />}

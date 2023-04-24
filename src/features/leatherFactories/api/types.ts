@@ -1,4 +1,5 @@
 import { ECountry } from 'enums/countries'
+import { LocaleFieldType } from 'types/localeType'
 
 export type LeatherFactoryType = {
   _id: string
@@ -9,7 +10,7 @@ export type LeatherFactoryType = {
 }
 export type CreateLeatherFactoryParamsType = {
   country: ECountry
-  description: string
-  title: string
+  description: LocaleFieldType
+  title: LocaleFieldType
 }
 export type UpdateLeatherFactoryParamsType = Partial<CreateLeatherFactoryParamsType>
