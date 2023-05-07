@@ -1,5 +1,7 @@
 import { FC } from 'react'
 
+import { useTranslation } from 'next-i18next'
+
 import { RemoveButton } from 'components/common/ui/buttons/removeButton'
 import { EditableSpanInput } from 'components/common/ui/editable/editableSpanInput'
 import { EditableSpanSelect } from 'components/common/ui/editable/editableSpanSelect'
@@ -11,7 +13,6 @@ import { LeatherArticleModal } from 'features/leatherArticles/modals/leatherArti
 import { LeatherColorType } from 'features/leatherColors/api/types'
 import { useUpdateLeatherColor } from 'features/leatherColors/hooks/useUpdateLeatherColor'
 import { LeatherColorRemoveConfirmModalBody } from 'features/leatherColors/modals/confirm/leatherColorRemoveConfirmModalBody'
-import { useLocale } from 'hooks/useLocale'
 import { leatherColorsArray, leatherColorsValues } from 'objects/colors/leatherColorsValues'
 
 type PropsType = {
@@ -21,7 +22,7 @@ type PropsType = {
 }
 
 export const LeatherColorInfo: FC<PropsType> = ({ className, color, onDeleteConfirm }) => {
-  const locale = useLocale()
+  const { t } = useTranslation('common')
 
   const { mutate: updateLeatherColor } = useUpdateLeatherColor()
 
@@ -37,7 +38,7 @@ export const LeatherColorInfo: FC<PropsType> = ({ className, color, onDeleteConf
             <EditableSpanInput
               onChange={title => updateLeatherColor({ _id: color._id, params: { title } })}
             >
-              {color.title}
+              {t(color.title)}
             </EditableSpanInput>
           </PropertyWithUnderline>
 
@@ -51,13 +52,13 @@ export const LeatherColorInfo: FC<PropsType> = ({ className, color, onDeleteConf
 
           <PropertyWithUnderline title="Значение цвета:">
             <EditableSpanSelect
-              title={leatherColorsValues[locale][color.value].title}
+              title={t(leatherColorsValues[color.value].title)}
               initialValue={color.value}
               onChange={value => updateLeatherColor({ _id: color._id, params: { value } })}
             >
-              {leatherColorsArray(locale).map(leatherColor => (
+              {leatherColorsArray().map(leatherColor => (
                 <option key={leatherColor._id} value={leatherColor.value}>
-                  {leatherColor.title}
+                  {t(leatherColor.title)}
                 </option>
               ))}
             </EditableSpanSelect>

@@ -1,3 +1,6 @@
+import { GetStaticProps } from 'next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+
 import { H1 } from 'components/common/ui/headers/h1'
 import { LeatherArticles } from 'features/leatherArticles/ui/leatherArticles'
 import { LeatherColors } from 'features/leatherColors/ui/leatherColors'
@@ -27,3 +30,11 @@ const Leather: NextPageWithLayout = () => {
 Leather.getLayout = CrmLayout
 
 export default Leather
+
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale ?? 'ru', ['common'])),
+    },
+  }
+}

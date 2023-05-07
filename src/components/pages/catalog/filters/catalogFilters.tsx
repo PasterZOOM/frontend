@@ -1,4 +1,4 @@
-import { Dispatch, FC, SetStateAction } from 'react'
+import { Dispatch, FC, SetStateAction, useEffect } from 'react'
 
 import { useTranslation } from 'next-i18next'
 
@@ -29,7 +29,11 @@ export const CatalogFilters: FC<PropsType> = ({
   const locale = useLocale()
   const { t } = useTranslation('catalog')
 
-  const { data } = useGetAllLeatherArticles()
+  const { data, refetch } = useGetAllLeatherArticles()
+
+  useEffect(() => {
+    refetch().then()
+  }, [locale])
 
   if (!data) return null
 
@@ -45,7 +49,7 @@ export const CatalogFilters: FC<PropsType> = ({
       <FilterContainer open={isOpenFilters} setOpen={setIsOpenFilters} className="xl:top-18">
         <AccordionWrapper title={t('assignments')} classes={{ wrapper: 'xl:-mt-5' }}>
           <div className="px-4 pb-4 md:px-6 xl:px-0">
-            {productAssignmentsFilters(locale).map(assignment => (
+            {productAssignmentsFilters().map(assignment => (
               <MultipleFilter
                 key={assignment._id}
                 item={assignment}
@@ -56,7 +60,7 @@ export const CatalogFilters: FC<PropsType> = ({
         </AccordionWrapper>
         <AccordionWrapper title={t('category')}>
           <div className="px-4 pb-4 md:px-6 xl:px-0">
-            {productCategoriesFilters(locale).map(category => (
+            {productCategoriesFilters().map(category => (
               <MultipleFilter
                 key={category._id}
                 item={category}
@@ -74,11 +78,11 @@ export const CatalogFilters: FC<PropsType> = ({
         </AccordionWrapper>
         <AccordionWrapper title={t('color')}>
           <div className="flex flex-wrap gap-3 px-4 pb-4 md:px-6 xl:px-0">
-            {leatherColorFilters(locale).map(color => (
+            {leatherColorFilters().map(color => (
               <ColorFilterCheckbox
                 key={color._id}
                 color={color}
-                filterKey={EFilterKeys.LEATHER_COLORS} // TODO: при выборе цвета присылать только изделия только с этим цветом, остальных цветов в карточке быть не должно
+                filterKey={EFilterKeys.LEATHER_COLORS}
               />
             ))}
           </div>

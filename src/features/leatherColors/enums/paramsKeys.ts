@@ -1,10 +1,8 @@
 export enum ECreateLeatherColorParams {
   CODE = 'code',
   PHOTO = 'photo',
-  TITLE_EN = 'title-en',
-  TITLE_RU = 'title-ru',
+  TITLE = 'title',
   VALUE = 'value',
-  DESCRIPTION_EN = 'description-en',
-  DESCRIPTION_RU = 'description-ru',
+  DESCRIPTION = 'description',
   ARTICLE_ID = 'articleId',
 }

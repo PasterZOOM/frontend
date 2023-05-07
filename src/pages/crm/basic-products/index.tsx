@@ -1,3 +1,6 @@
+import { GetStaticProps } from 'next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+
 import { H1 } from 'components/common/ui/headers/h1'
 import { BasicProducts } from 'features/basicProducts/ui/basicProducts'
 import { useRedirect } from 'hooks/useRedirect'
@@ -20,3 +23,11 @@ const BasicProductsPage: NextPageWithLayout = () => {
 BasicProductsPage.getLayout = CrmLayout
 
 export default BasicProductsPage
+
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale ?? 'ru', ['catalog', 'common'])),
+    },
+  }
+}

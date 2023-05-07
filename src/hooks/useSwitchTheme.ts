@@ -11,14 +11,14 @@ export const useSwitchTheme: UseSwitchThemeType = () => {
   const theme = useUserSettings(selectTheme)
   const setTheme = useUserSettings(selectSetTheme)
 
-  const [activeTheme, setActiveTheme] = useState<SelectItemType>(themes[locale][ETheme.AUTO])
+  const [activeTheme, setActiveTheme] = useState<SelectItemType>(themes[ETheme.AUTO])
 
   useEffect(() => {
     setTheme(activeTheme.value as ETheme)
   }, [activeTheme])
 
   useEffect(() => {
-    setActiveTheme(themes[locale][theme])
+    setActiveTheme(themes[theme])
   }, [locale])
 
   useEffect(() => {

@@ -8,7 +8,6 @@ import { EProductAssignment, EProductCategory } from 'enums/product'
 import { useGetAllLeatherArticles } from 'features/leatherArticles/hooks/useGetAllLeatherArticles'
 import { useClearAllQueryParams } from 'hooks/queryParams/useClearAllQueryParams'
 import { useRemoveMultipleQueryParam } from 'hooks/queryParams/useRemoveMultipleQueryParam'
-import { useLocale } from 'hooks/useLocale'
 import { leatherColorsValues } from 'objects/colors/leatherColorsValues'
 import { productAssignments } from 'objects/products/productAssignments'
 import { productCategories } from 'objects/products/productCategories'
@@ -19,9 +18,7 @@ type PropsType = {
   className?: string
 }
 const ActiveFilters: FC<PropsType> = ({ className = '' }) => {
-  const locale = useLocale()
-
-  const { t } = useTranslation('catalog')
+  const { t } = useTranslation(['catalog', 'common'])
   const [articles, setArticles] = useState<ObjectForSelectType<string>>({})
   const [activeFilters, setActiveFilters] = useState<GeneralFilterType[]>([])
 
@@ -35,10 +32,10 @@ const ActiveFilters: FC<PropsType> = ({ className = '' }) => {
     EFilterKeys,
     ObjectForSelectType<EProductAssignment | EProductCategory | ELeatherColor | string>
   > = {
-    [EFilterKeys.ASSIGNMENTS]: productAssignments[locale],
-    [EFilterKeys.CATEGORIES]: productCategories[locale],
+    [EFilterKeys.ASSIGNMENTS]: productAssignments,
+    [EFilterKeys.CATEGORIES]: productCategories,
     [EFilterKeys.LEATHERS]: articles,
-    [EFilterKeys.LEATHER_COLORS]: leatherColorsValues[locale],
+    [EFilterKeys.LEATHER_COLORS]: leatherColorsValues,
   }
 
   useEffect(() => {
@@ -78,7 +75,7 @@ const ActiveFilters: FC<PropsType> = ({ className = '' }) => {
           key={activeFilter._id}
           onClick={() => removeQueryParam(activeFilter.filterKey, activeFilter.value)}
         >
-          {activeFilter.title}
+          {t(activeFilter.title, { ns: 'common' })}
         </button>
       ))}
       {activeFilters.length && (

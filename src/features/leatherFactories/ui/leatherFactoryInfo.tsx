@@ -1,5 +1,7 @@
 import { FC } from 'react'
 
+import { useTranslation } from 'next-i18next'
+
 import { RemoveButton } from 'components/common/ui/buttons/removeButton'
 import { EditableSpanInput } from 'components/common/ui/editable/editableSpanInput'
 import { EditableSpanSelect } from 'components/common/ui/editable/editableSpanSelect'
@@ -10,7 +12,6 @@ import { LeatherArticleModal } from 'features/leatherArticles/modals/leatherArti
 import { LeatherFactoryType } from 'features/leatherFactories/api/types'
 import { useUpdateLeatherFactory } from 'features/leatherFactories/hooks/useUpdateLeatherFactory'
 import { LeatherFactoryRemoveConfirmModalBody } from 'features/leatherFactories/modals/confirm/leatherFactoryRemoveConfirmModalBody'
-import { useLocale } from 'hooks/useLocale'
 import { countriesArray, countryValues } from 'objects/countries/countryValues'
 
 type PropsType = {
@@ -20,7 +21,7 @@ type PropsType = {
 }
 
 export const LeatherFactoryInfo: FC<PropsType> = ({ className, factory, onDeleteConfirm }) => {
-  const locale = useLocale()
+  const { t } = useTranslation()
   const { mutate: updateLeatherFactory } = useUpdateLeatherFactory()
 
   return (
@@ -41,13 +42,13 @@ export const LeatherFactoryInfo: FC<PropsType> = ({ className, factory, onDelete
 
           <PropertyWithUnderline title="Страна:">
             <EditableSpanSelect
-              title={countryValues[locale][factory.country].title}
+              title={t(countryValues[factory.country].title)}
               initialValue={factory.country}
               onChange={country => updateLeatherFactory({ _id: factory._id, params: { country } })}
             >
-              {countriesArray(locale).map(country => (
+              {countriesArray().map(country => (
                 <option key={country._id} value={country.value}>
-                  {country.title}
+                  {t(country.title)}
                 </option>
               ))}
             </EditableSpanSelect>

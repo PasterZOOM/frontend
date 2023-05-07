@@ -1,7 +1,8 @@
 import { FC } from 'react'
 
+import { useTranslation } from 'next-i18next'
+
 import { CreateLeatherFactoryFormType } from 'features/leatherFactories/forms/type'
-import { useLocale } from 'hooks/useLocale'
 import { countryValues } from 'objects/countries/countryValues'
 
 type PropsType = {
@@ -9,13 +10,13 @@ type PropsType = {
 }
 
 export const LeatherFactoryCreatConfirmModalBody: FC<PropsType> = ({ values }) => {
-  const locale = useLocale()
+  const { t } = useTranslation()
 
   return (
     <div className="space-y-2">
-      <div>Вы уверены что хотите создать фабрику {values[`title-${locale}`]}?</div>
-      <div>Страна: {countryValues[locale][values.country].title}</div>
-      <div>Описание: {values[`description-${locale}`]}</div>
+      <div>Вы уверены что хотите создать фабрику {values.title}?</div>
+      <div>Страна: {t(countryValues[values.country].title)}</div>
+      <div>Описание: {values.description}</div>
     </div>
   )
 }

@@ -6,15 +6,15 @@ import { useRouter } from 'next/router'
 import { LOCALES } from 'types/localeType'
 
 export const LanguageSwitch: FC = () => {
-  const router = useRouter()
+  const { pathname, query, locale } = useRouter()
 
   return (
     <div className="flex gap-2">
       <Link
-        href={router.pathname}
+        href={{ pathname, query }}
         locale="ru"
         className={`border px-2 ${
-          router.locale === LOCALES.RU
+          locale === LOCALES.RU
             ? 'bg-anthracite-gray text-white dark:bg-white dark:text-anthracite-gray'
             : ''
         }`}
@@ -22,10 +22,10 @@ export const LanguageSwitch: FC = () => {
         {LOCALES.RU}
       </Link>
       <Link
-        href={router.pathname}
+        href={{ pathname, query }}
         locale="en"
         className={`border px-2 ${
-          router.locale === LOCALES.EN
+          locale === LOCALES.EN
             ? 'bg-anthracite-gray text-white dark:bg-white dark:text-anthracite-gray'
             : ''
         }`}

@@ -4,7 +4,6 @@ import { EProductAssignment, EProductCategory } from 'enums/product'
 import { leatherColorsArray } from 'objects/colors/leatherColorsValues'
 import { productAssignmentsArray } from 'objects/products/productAssignments'
 import { productCategoriesArray } from 'objects/products/productCategories'
-import { LOCALES } from 'types/localeType'
 
 const selectItemsToFiltersTransformer: SelectItemsToFiltersTransformerFnType = (items, filterKey) =>
   items.map(item => ({ ...item, filterKey }))
@@ -27,17 +26,13 @@ export enum EFilterKeys {
   LEATHER_COLORS = 'leatherColors',
 }
 
-export const productCategoriesFilters = (
-  locale: LOCALES
-): FilterType<EProductCategory, EFilterKeys>[] =>
-  selectItemsToFiltersTransformer(productCategoriesArray(locale), EFilterKeys.CATEGORIES)
-export const productAssignmentsFilters = (
-  locale: LOCALES
-): FilterType<EProductAssignment, EFilterKeys>[] =>
-  selectItemsToFiltersTransformer(productAssignmentsArray(locale), EFilterKeys.ASSIGNMENTS)
+export const productCategoriesFilters = (): FilterType<EProductCategory, EFilterKeys>[] =>
+  selectItemsToFiltersTransformer(productCategoriesArray(), EFilterKeys.CATEGORIES)
+export const productAssignmentsFilters = (): FilterType<EProductAssignment, EFilterKeys>[] =>
+  selectItemsToFiltersTransformer(productAssignmentsArray(), EFilterKeys.ASSIGNMENTS)
 
-export const leatherColorFilters = (locale: LOCALES): FilterType<ELeatherColor, EFilterKeys>[] =>
-  selectItemsToFiltersTransformer(leatherColorsArray(locale), EFilterKeys.LEATHER_COLORS)
+export const leatherColorFilters = (): FilterType<ELeatherColor, EFilterKeys>[] =>
+  selectItemsToFiltersTransformer(leatherColorsArray(), EFilterKeys.LEATHER_COLORS)
 
 type SelectItemsToFiltersTransformerFnType = <T>(
   items: SelectItemType<T>[],

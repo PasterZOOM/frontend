@@ -1,16 +1,22 @@
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 
 import { ProductCard } from './productCard/productCard'
 
 import ActiveFilters from 'components/pages/catalog/filters/activeFilters'
 import { useGetAllBasicProducts } from 'features/basicProducts/hooks/useGetAllBasicProducts'
+import { useLocale } from 'hooks/useLocale'
 
 type PropsType = {
   className?: string
 }
 
 const Products: FC<PropsType> = ({ className = '' }) => {
-  const { data: products } = useGetAllBasicProducts({ keepPreviousData: true })
+  const locale = useLocale()
+  const { data: products, refetch } = useGetAllBasicProducts({ keepPreviousData: true })
+
+  useEffect(() => {
+    refetch().then()
+  }, [locale])
 
   if (!products) {
     return null

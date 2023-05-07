@@ -5,13 +5,10 @@ import { ECreateBasicProductParams } from 'features/basicProducts/enums/paramsKe
 
 export type CreateBasicProductFormType = {
   [ECreateBasicProductParams.LEATHER_ARTICLE]: string
-  [ECreateBasicProductParams.DESCRIPTION_EN]: string
-  [ECreateBasicProductParams.DESCRIPTION_RU]: string
-  [ECreateBasicProductParams.TITLE_RU]: string
-  [ECreateBasicProductParams.TITLE_EN]: string
+  [ECreateBasicProductParams.DESCRIPTION]: string
+  [ECreateBasicProductParams.TITLE]: string
   [ECreateBasicProductParams.COST]: number
-  [ECreateBasicProductParams.SIZE_EN]: string
-  [ECreateBasicProductParams.SIZE_RU]: string
+  [ECreateBasicProductParams.SIZE]: string
   [ECreateBasicProductParams.CATEGORY]: EProductCategory
   [ECreateBasicProductParams.COST_CURRENCY]: ECost
   [ECreateBasicProductParams.PUNCH_PITCH]: EPunchPitch

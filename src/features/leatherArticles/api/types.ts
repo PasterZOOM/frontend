@@ -1,5 +1,3 @@
-import { LocaleFieldType } from 'types/localeType'
-
 export type LeatherArticleType = {
   _id: string
   colors: { _id: string; title: string }[]
@@ -8,7 +6,7 @@ export type LeatherArticleType = {
   title: string
 }
 export type CreateLeatherArticleParamsType = {
-  title: LocaleFieldType
-  description: LocaleFieldType
+  title: string
+  description: string
 }
 export type UpdateLeatherArticleParamsType = Partial<CreateLeatherArticleParamsType>

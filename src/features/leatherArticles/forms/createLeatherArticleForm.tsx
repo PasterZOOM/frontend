@@ -26,29 +26,18 @@ export const CreateLeatherArticleForm: FC = () => {
 
   const initialValues: CreateLeatherArticleFormType = {
     [ECreateLeatherArticleParams.FACTORY_ID]: '',
-    [ECreateLeatherArticleParams.DESCRIPTION_EN]: '',
-    [ECreateLeatherArticleParams.DESCRIPTION_RU]: '',
-    [ECreateLeatherArticleParams.TITLE_EN]: '',
-    [ECreateLeatherArticleParams.TITLE_RU]: '',
+    [ECreateLeatherArticleParams.DESCRIPTION]: '',
+    [ECreateLeatherArticleParams.TITLE]: '',
   }
 
   const onSubmit = async (
-    {
-      factoryId,
-      'title-ru': tittleRu,
-      'title-en': tittleEn,
-      'description-en': descriptionEn,
-      'description-ru': descriptionRu,
-    }: CreateLeatherArticleFormType,
+    { factoryId, ...params }: CreateLeatherArticleFormType,
     { resetForm }: FormikHelpers<CreateLeatherArticleFormType>
   ): Promise<void> => {
     try {
       await createArticle({
         _id: factoryId || factories[0]?._id,
-        params: {
-          title: { en: tittleEn, ru: tittleRu },
-          description: { en: descriptionEn, ru: descriptionRu },
-        },
+        params,
       })
 
       resetForm()
@@ -63,19 +52,14 @@ export const CreateLeatherArticleForm: FC = () => {
       <Formik initialValues={initialValues} onSubmit={onSubmit}>
         {({ values, submitForm }) => (
           <Form className="space-y-3">
-            <FieldWrapper name={ECreateLeatherArticleParams.TITLE_EN} title="Название артикула EN:">
-              {name => <FormikInput name={name} />}
-            </FieldWrapper>
-            <FieldWrapper name={ECreateLeatherArticleParams.TITLE_RU} title="Название артикула RU:">
+            <FieldWrapper name={ECreateLeatherArticleParams.TITLE} title="Название артикула:">
               {name => <FormikInput name={name} />}
             </FieldWrapper>
             <FieldWrapper name={ECreateLeatherArticleParams.FACTORY_ID} title="Фабрика:">
               {name => <FormikSelect name={name} items={factories} />}
             </FieldWrapper>
-            <FieldWrapper name={ECreateLeatherArticleParams.DESCRIPTION_EN} title="Описание En:">
-              {name => <FormikInput name={name} />}
-            </FieldWrapper>{' '}
-            <FieldWrapper name={ECreateLeatherArticleParams.DESCRIPTION_RU} title="Описание Ru:">
+
+            <FieldWrapper name={ECreateLeatherArticleParams.DESCRIPTION} title="Описание:">
               {name => <FormikInput name={name} />}
             </FieldWrapper>
             <CreateButton

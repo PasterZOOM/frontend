@@ -1,5 +1,7 @@
 import { FC } from 'react'
 
+import { useTranslation } from 'next-i18next'
+
 import { RemoveButton } from 'components/common/ui/buttons/removeButton'
 import { EditableSpanInput } from 'components/common/ui/editable/editableSpanInput'
 import { EditableSpanSelect } from 'components/common/ui/editable/editableSpanSelect'
@@ -11,7 +13,6 @@ import { useUpdateBasicProduct } from 'features/basicProducts/hooks/useUpdateBas
 import { BasicProductRemoveConfirmModalBody } from 'features/basicProducts/modals/confirm/basicProductRemoveConfirmModalBody'
 import { BasicProductInfoPhotoBlock } from 'features/basicProducts/ui/basicProductInfoPhotoBlock'
 import { useGetAllLeatherArticles } from 'features/leatherArticles/hooks/useGetAllLeatherArticles'
-import { useLocale } from 'hooks/useLocale'
 import { currencies, currencyArray } from 'objects/currency/currency'
 import { punchPatches, punchPatchesArray } from 'objects/materials/punchPatch'
 import { productAssignmentsArray } from 'objects/products/productAssignments'
@@ -24,7 +25,7 @@ type PropsType = {
 }
 
 export const BasicProductInfo: FC<PropsType> = ({ className, product, onDeleteConfirm }) => {
-  const locale = useLocale()
+  const { t } = useTranslation()
   const { data } = useGetAllLeatherArticles()
   const { mutate: updateBasicProduct } = useUpdateBasicProduct()
 
@@ -75,15 +76,15 @@ export const BasicProductInfo: FC<PropsType> = ({ className, product, onDeleteCo
 
           <PropertyWithUnderline title="Валюта:">
             <EditableSpanSelect
-              title={currencies[locale][product.costCurrency].title}
+              title={t(currencies[product.costCurrency].title)}
               initialValue={product.costCurrency}
               onChange={costCurrency =>
                 updateBasicProduct({ _id: product._id, params: { costCurrency } })
               }
             >
-              {currencyArray(locale).map(currency => (
+              {currencyArray().map(currency => (
                 <option key={currency._id} value={currency.value}>
-                  {currency.title}
+                  {t(currency.title)}
                 </option>
               ))}
             </EditableSpanSelect>
@@ -91,13 +92,13 @@ export const BasicProductInfo: FC<PropsType> = ({ className, product, onDeleteCo
 
           <PropertyWithUnderline title="Категория:">
             <EditableSpanSelect
-              title={productCategories[locale][product.category].title}
+              title={productCategories[product.category].title}
               initialValue={product.category}
               onChange={category => updateBasicProduct({ _id: product._id, params: { category } })}
             >
-              {productCategoriesArray(locale).map(category => (
+              {productCategoriesArray().map(category => (
                 <option key={category._id} value={category.value}>
-                  {category.title}
+                  {t(category.title)}
                 </option>
               ))}
             </EditableSpanSelect>
@@ -113,13 +114,13 @@ export const BasicProductInfo: FC<PropsType> = ({ className, product, onDeleteCo
 
           <PropertyWithUnderline title="Шаг пробойника:">
             <EditableSpanSelect
-              title={punchPatches[locale][product.punchPitch].title}
+              title={punchPatches[product.punchPitch].title}
               initialValue={product.punchPitch}
               onChange={punchPitch =>
                 updateBasicProduct({ _id: product._id, params: { punchPitch } })
               }
             >
-              {punchPatchesArray(locale).map(punchPitch => (
+              {punchPatchesArray().map(punchPitch => (
                 <option key={punchPitch._id} value={punchPitch.value}>
                   {punchPitch.title}
                 </option>
@@ -157,9 +158,9 @@ export const BasicProductInfo: FC<PropsType> = ({ className, product, onDeleteCo
               }
               selectProps={{ multiple: true }}
             >
-              {productAssignmentsArray(locale).map(assignment => (
+              {productAssignmentsArray().map(assignment => (
                 <option key={assignment._id} value={assignment.value}>
-                  {assignment.title}
+                  {t(assignment.title)}
                 </option>
               ))}
             </EditableSpanSelect>
