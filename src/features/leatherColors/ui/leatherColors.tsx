@@ -5,13 +5,16 @@ import { CreateFormAndListWrapper } from 'components/common/wrappers/createFormA
 import { CreateLeatherColorForm } from 'features/leatherColors/forms/createLeatherColorForm'
 import { useGetAllLeatherColors } from 'features/leatherColors/hooks/useGetAllLeatherColors'
 import { LeatherColorModal } from 'features/leatherColors/modals/leatherColorModal'
+import { useRefetchAfterChangeLocale } from 'hooks/useRefetchAfterChangeLocale'
 
 type PropsType = {
   className?: string
 }
 
 export const LeatherColors: FC<PropsType> = ({ className }) => {
-  const { data: colors } = useGetAllLeatherColors()
+  const { data: colors, refetch } = useGetAllLeatherColors()
+
+  useRefetchAfterChangeLocale(refetch)
 
   return (
     <CreateFormAndListWrapper

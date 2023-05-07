@@ -30,7 +30,7 @@ export const EditableSpanInput: FC<PropsType> = <T extends string | string[]>({
   return editeMode ? (
     <input
       id={elementId}
-      className="w-full px-1"
+      className="w-full px-1 dark:bg-anthracite-gray"
       type={type}
       value={value}
       onChange={onChangeValueHandler}

@@ -35,7 +35,7 @@ export const EditableSpanSelect = <T extends string | string[]>({
   return editeMode ? (
     <select
       id={elementId}
-      className="w-full px-1 py-0.5"
+      className="w-full px-1 py-0.5 dark:bg-anthracite-gray"
       value={value}
       onChange={onChangeValueHandler}
       onBlur={disableEditMode}

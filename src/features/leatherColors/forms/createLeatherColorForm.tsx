@@ -65,7 +65,7 @@ export const CreateLeatherColorForm: FC = () => {
               {name => <FormikSelect name={name} items={leatherColorsArray()} />}
             </FieldWrapper>
 
-            <FieldWrapper name={ECreateLeatherColorParams.TITLE} title="Название цвета RU:">
+            <FieldWrapper name={ECreateLeatherColorParams.TITLE} title="Название цвета:">
               {name => <FormikInput name={name} />}
             </FieldWrapper>
 
@@ -77,7 +77,7 @@ export const CreateLeatherColorForm: FC = () => {
               {name => <FormikInput name={name} />}
             </FieldWrapper>
 
-            <FieldWrapper name={ECreateLeatherColorParams.DESCRIPTION} title="Описание RU:">
+            <FieldWrapper name={ECreateLeatherColorParams.DESCRIPTION} title="Описание:">
               {name => <FormikInput name={name} />}
             </FieldWrapper>
 
