@@ -8,6 +8,7 @@ import { EProductAssignment, EProductCategory } from 'enums/product'
 import { useGetAllLeatherArticles } from 'features/leatherArticles/hooks/useGetAllLeatherArticles'
 import { useClearAllQueryParams } from 'hooks/queryParams/useClearAllQueryParams'
 import { useRemoveMultipleQueryParam } from 'hooks/queryParams/useRemoveMultipleQueryParam'
+import { useRefetchAfterChangeLocale } from 'hooks/useRefetchAfterChangeLocale'
 import { leatherColorsValues } from 'objects/colors/leatherColorsValues'
 import { productAssignments } from 'objects/products/productAssignments'
 import { productCategories } from 'objects/products/productCategories'
@@ -22,7 +23,7 @@ const ActiveFilters: FC<PropsType> = ({ className = '' }) => {
   const [articles, setArticles] = useState<ObjectForSelectType<string>>({})
   const [activeFilters, setActiveFilters] = useState<GeneralFilterType[]>([])
 
-  const { data: leatherArticles } = useGetAllLeatherArticles()
+  const { data: leatherArticles, refetch } = useGetAllLeatherArticles()
   const clearAll = useClearAllQueryParams()
   const removeQueryParam = useRemoveMultipleQueryParam()
 
@@ -38,12 +39,14 @@ const ActiveFilters: FC<PropsType> = ({ className = '' }) => {
     [EFilterKeys.LEATHER_COLORS]: leatherColorsValues,
   }
 
+  useRefetchAfterChangeLocale(refetch)
+
   useEffect(() => {
     if (leatherArticles) {
       const temp = {} as ObjectForSelectType<string>
 
-      leatherArticles.forEach(({ _id, title }) => {
-        temp[title] = { _id, title, value: title }
+      leatherArticles.forEach(article => {
+        temp[article.value] = article
       })
       setArticles(temp)
     }
@@ -64,7 +67,7 @@ const ActiveFilters: FC<PropsType> = ({ className = '' }) => {
     })
 
     setActiveFilters(newFilters)
-  }, [filtersInStore])
+  }, [filtersInStore, articles])
 
   return (
     <div className={`flex flex-wrap gap-2 ${className} ${activeFilters.length ? '' : 'hidden'}`}>

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 
 import { GetServerSideProps, NextPage } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { dehydrate, QueryClient } from 'react-query'
 
 import { CurrencyAPI } from 'api/currency/currencyApi'
 import { MainContainer } from 'components/common/containers/mainContainer'
@@ -10,12 +11,9 @@ import FilterButtons from 'components/common/ui/buttons/filterButtons'
 import { CatalogFilters } from 'components/pages/catalog/filters/catalogFilters'
 import Products from 'components/pages/catalog/products'
 import { ECost, TCost } from 'enums/cost'
+import { QUERY_KEY } from 'enums/QUERY_KEY'
 import { BasicProductsAPI } from 'features/basicProducts/api/basicProductsAPI'
-import { BasicProductType } from 'features/basicProducts/api/types'
-import { useGetAllBasicProducts } from 'features/basicProducts/hooks/useGetAllBasicProducts'
 import { LeatherArticlesAPI } from 'features/leatherArticles/api/leatherArticlesAPI'
-import { LeatherArticleType } from 'features/leatherArticles/api/types'
-import { useGetAllLeatherArticles } from 'features/leatherArticles/hooks/useGetAllLeatherArticles'
 import {
   initialCurrencyState,
   selectSetActualRates,
@@ -26,13 +24,9 @@ import { getQueryFilters } from 'utils/filters/getQueryFilters'
 
 type PropsType = {
   rates: CostType
-  articles: LeatherArticleType[]
-  basicProducts: BasicProductType[]
 }
 
-const Catalog: NextPage<PropsType> = ({ rates, articles, basicProducts }: PropsType) => {
-  useGetAllLeatherArticles({ initialData: articles }) // TODO: это можно сделать на сервере
-  useGetAllBasicProducts({ initialData: basicProducts })
+const Catalog: NextPage<PropsType> = ({ rates }: PropsType) => {
   const setActualRates = useCurrencyStore(selectSetActualRates)
   const [isOpenFilters, setIsOpenFilters] = useState(false)
 
@@ -71,15 +65,23 @@ export const getServerSideProps: GetServerSideProps = async ({ query, locale }) 
       })
   )
 
-  const basicProducts = await BasicProductsAPI.getAll(filters)
-  const articles = await LeatherArticlesAPI.getAll()
+  const queryClient = new QueryClient()
+
+  await queryClient.prefetchQuery({
+    queryKey: [QUERY_KEY.GET_ALL_ARTICLES],
+    queryFn: LeatherArticlesAPI.getAll,
+  })
+
+  await queryClient.prefetchQuery({
+    queryKey: [QUERY_KEY.GET_ALL_BASIC_PRODUCTS],
+    queryFn: () => BasicProductsAPI.getAll(filters),
+  })
 
   return {
     props: {
       ...(await serverSideTranslations(locale ?? 'ru', ['catalog', 'common'])),
-      basicProducts,
+      dehydratedState: dehydrate(queryClient),
       rates,
-      articles,
     },
   }
 }

@@ -5,6 +5,7 @@ import { useGetLeatherArticle } from 'features/leatherArticles/hooks/useGetLeath
 import { useRemoveLeatherArticle } from 'features/leatherArticles/hooks/useRemoveLeatherArticle'
 // eslint-disable-next-line import/no-cycle
 import { LeatherArticleInfo } from 'features/leatherArticles/ui/leatherArticleInfo'
+import { useRefetchAfterChangeLocale } from 'hooks/useRefetchAfterChangeLocale'
 
 type PropsType = {
   isOpen: boolean
@@ -13,8 +14,10 @@ type PropsType = {
 }
 
 export const LeatherArticleModal: FC<PropsType> = ({ isOpen, closeModal, id }) => {
+  const { data: article, refetch } = useGetLeatherArticle(id, { enabled: isOpen })
   const { mutateAsync: removeArticle } = useRemoveLeatherArticle()
-  const { data: article } = useGetLeatherArticle(id, { enabled: isOpen })
+
+  useRefetchAfterChangeLocale(refetch)
 
   const onDeleteConfirm = async (): Promise<void> => {
     try {

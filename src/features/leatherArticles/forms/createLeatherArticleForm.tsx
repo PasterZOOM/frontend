@@ -28,6 +28,7 @@ export const CreateLeatherArticleForm: FC = () => {
     [ECreateLeatherArticleParams.FACTORY_ID]: '',
     [ECreateLeatherArticleParams.DESCRIPTION]: '',
     [ECreateLeatherArticleParams.TITLE]: '',
+    [ECreateLeatherArticleParams.VALUE]: '',
   }
 
   const onSubmit = async (
@@ -55,6 +56,11 @@ export const CreateLeatherArticleForm: FC = () => {
             <FieldWrapper name={ECreateLeatherArticleParams.TITLE} title="Название артикула:">
               {name => <FormikInput name={name} />}
             </FieldWrapper>
+
+            <FieldWrapper name={ECreateLeatherArticleParams.VALUE} title="Значение:">
+              {name => <FormikInput name={name} />}
+            </FieldWrapper>
+
             <FieldWrapper name={ECreateLeatherArticleParams.FACTORY_ID} title="Фабрика:">
               {name => <FormikSelect name={name} items={factories} />}
             </FieldWrapper>

@@ -37,6 +37,14 @@ export const LeatherArticleInfo: FC<PropsType> = ({ className, article, onDelete
             </EditableSpanInput>
           </PropertyWithUnderline>
 
+          <PropertyWithUnderline title="Значение:">
+            <EditableSpanInput
+              onChange={value => updateLeatherArticle({ _id: article._id, params: { value } })}
+            >
+              {article.value}
+            </EditableSpanInput>
+          </PropertyWithUnderline>
+
           <PropertyWithUnderline title="Фабрика производитель:">
             <TableItem title={article.factory.title}>
               {({ closeModal, isOpen }) => (

@@ -1,4 +1,4 @@
-import { FC, KeyboardEventHandler, useState } from 'react'
+import { FC, KeyboardEventHandler, useEffect, useState } from 'react'
 
 import { Input } from 'components/common/ui/inputs/input'
 import { DefaultSelect } from 'components/common/ui/selects/defaultSelect'
@@ -17,7 +17,8 @@ export const BasicProductInfoPhotoBlock: FC<PropsType> = ({ product }) => {
   const { mutateAsync: removeBasicProductPhoto } = useRemoveBasicProductPhoto()
 
   const { data: leatherArticle } = useGetLeatherArticle(product.leather._id)
-  const [selectValue, setSelectValue] = useState(leatherArticle?.colors[0]?._id || '')
+
+  const [selectValue, setSelectValue] = useState('')
   const [inputValue, setInputValue] = useState('')
 
   const onEnter: KeyboardEventHandler<HTMLInputElement> = e => {
@@ -25,6 +26,12 @@ export const BasicProductInfoPhotoBlock: FC<PropsType> = ({ product }) => {
       addBasicProductPhoto({ _id: product._id, params: { [selectValue]: [inputValue] } })
     }
   }
+
+  useEffect(() => {
+    if (leatherArticle) {
+      setSelectValue(leatherArticle.colors[0]?._id)
+    }
+  }, [leatherArticle])
 
   return (
     <PropertyPreviewWrapper title="Фото:">

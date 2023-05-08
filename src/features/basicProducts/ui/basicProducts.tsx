@@ -5,13 +5,16 @@ import { CreateFormAndListWrapper } from 'components/common/wrappers/createFormA
 import CreateBasicProductForm from 'features/basicProducts/forms/createBasicProductForm'
 import { useGetAllBasicProducts } from 'features/basicProducts/hooks/useGetAllBasicProducts'
 import { BasicProductModal } from 'features/basicProducts/modals/basicProductModal'
+import { useRefetchAfterChangeLocale } from 'hooks/useRefetchAfterChangeLocale'
 
 type PropsType = {
   className?: string
 }
 
 export const BasicProducts: FC<PropsType> = ({ className }) => {
-  const { data: products } = useGetAllBasicProducts()
+  const { data: products, refetch } = useGetAllBasicProducts()
+
+  useRefetchAfterChangeLocale(refetch)
 
   return (
     <CreateFormAndListWrapper

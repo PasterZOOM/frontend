@@ -37,10 +37,10 @@ export const CatalogFilters: FC<PropsType> = ({
 
   if (!data) return null
 
-  const leathers = data.map(({ title, _id }) => ({
+  const leathers = data.map(({ title, _id, value }) => ({
     _id,
     title,
-    value: title,
+    value,
     filterKey: EFilterKeys.LEATHERS,
   }))
 

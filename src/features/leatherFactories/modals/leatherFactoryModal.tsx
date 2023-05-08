@@ -5,6 +5,7 @@ import { useGetLeatherFactory } from 'features/leatherFactories/hooks/useGetLeat
 import { useRemoveLeatherFactory } from 'features/leatherFactories/hooks/useRemoveLeatherFactory'
 // eslint-disable-next-line import/no-cycle
 import { LeatherFactoryInfo } from 'features/leatherFactories/ui/leatherFactoryInfo'
+import { useRefetchAfterChangeLocale } from 'hooks/useRefetchAfterChangeLocale'
 
 type PropsType = {
   isOpen: boolean
@@ -13,8 +14,10 @@ type PropsType = {
 }
 
 export const LeatherFactoryModal: FC<PropsType> = ({ isOpen, closeModal, id }) => {
-  const { data: factory } = useGetLeatherFactory(id, { enabled: isOpen })
+  const { data: factory, refetch } = useGetLeatherFactory(id, { enabled: isOpen })
   const { mutateAsync: removeFactory } = useRemoveLeatherFactory()
+
+  useRefetchAfterChangeLocale(refetch)
 
   const onDeleteConfirm = async (): Promise<void> => {
     try {

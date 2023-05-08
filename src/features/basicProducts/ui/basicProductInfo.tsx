@@ -92,7 +92,7 @@ export const BasicProductInfo: FC<PropsType> = ({ className, product, onDeleteCo
 
           <PropertyWithUnderline title="Категория:">
             <EditableSpanSelect
-              title={productCategories[product.category].title}
+              title={t(productCategories[product.category].title)}
               initialValue={product.category}
               onChange={category => updateBasicProduct({ _id: product._id, params: { category } })}
             >
@@ -149,7 +149,7 @@ export const BasicProductInfo: FC<PropsType> = ({ className, product, onDeleteCo
             <EditableSpanSelect
               title={product.assignments.map(assignment => (
                 <div key={assignment} className="w-fit">
-                  {assignment}
+                  {t(assignment)}
                 </div>
               ))}
               initialValue={product.assignments}

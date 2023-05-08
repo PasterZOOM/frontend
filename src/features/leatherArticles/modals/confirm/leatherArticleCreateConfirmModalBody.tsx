@@ -18,6 +18,7 @@ export const LeatherArticleCreateConfirmModalBody: FC<PropsType> = ({ values }) 
         {factories?.find(f => f._id === values[ECreateLeatherArticleParams.FACTORY_ID])?.title} ?
       </div>
       <div>Название артикула: {values.title}</div>
+      <div>Значение: {values.value}</div>
       <div>Описание: {values.description}</div>
     </div>
   )
