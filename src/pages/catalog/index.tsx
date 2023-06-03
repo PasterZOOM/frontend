@@ -10,7 +10,7 @@ import Header from 'components/common/header/header'
 import FilterButtons from 'components/common/ui/buttons/filterButtons'
 import { CatalogFilters } from 'components/pages/catalog/filters/catalogFilters'
 import Products from 'components/pages/catalog/products'
-import { ECost, TCost } from 'enums/cost'
+import { ECost } from 'enums/cost'
 import { QUERY_KEY } from 'enums/QUERY_KEY'
 import { BasicProductsAPI } from 'features/basicProducts/api/basicProductsAPI'
 import { LeatherArticlesAPI } from 'features/leatherArticles/api/leatherArticlesAPI'
@@ -56,13 +56,13 @@ export const getServerSideProps: GetServerSideProps = async ({ query, locale }) 
   const filters = getQueryFilters(query)
 
   await Promise.all(
-    Object.keys(ECost)
-      .filter(costKey => costKey !== ECost.BYN)
-      .map(async costKey => {
-        const rate = await CurrencyAPI.getRate(costKey as TCost)
+    (Object.keys(ECost) as ECost[]).map(async costKey => {
+      if (costKey !== ECost.BYN) {
+        const rate = await CurrencyAPI.getRate(costKey)
 
-        rates[costKey as ECost] = +(rate.Cur_Scale / rate.Cur_OfficialRate)
-      })
+        rates[costKey] = +(rate.Cur_Scale / rate.Cur_OfficialRate)
+      }
+    })
   )
 
   const queryClient = new QueryClient()

@@ -9,5 +9,3 @@ export enum ECost {
   USD = 'USD',
   PLN = 'PLN',
 }
-
-export type TCost = keyof typeof ECost

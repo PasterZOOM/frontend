@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 
-import { TCost } from 'enums/cost'
+import { ECost } from 'enums/cost'
 import { CostType } from 'types/costType'
 
 export const initialCurrencyState: CostType = {
@@ -27,5 +27,5 @@ type SetActualRatesType = (actualRates: CostType) => void
 type StoreType = CostType & {
   setActualRates: SetActualRatesType
 }
-type RateSelectorType = (currency: TCost) => (store: StoreType) => number
+type RateSelectorType = (currency: ECost) => (store: StoreType) => number
 type SetActualRateSelectorType = (store: StoreType) => SetActualRatesType
