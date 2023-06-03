@@ -38,7 +38,7 @@ export const productCategories: ObjectForSelectType<EProductCategory> = {
   [EProductCategory.DOC_HOLDER]: {
     _id: v1(),
     value: EProductCategory.DOC_HOLDER,
-    title: 'Doc holder',
+    title: 'docHolder',
   },
   [EProductCategory.WATCH_STRAP]: {
     _id: v1(),

@@ -1,19 +1,17 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 
-import { GetServerSideProps, NextPage } from 'next'
+import { GetServerSideProps } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { dehydrate, QueryClient } from 'react-query'
 
 import { CurrencyAPI } from 'api/currency/currencyApi'
-import { MainContainer } from 'components/common/containers/mainContainer'
-import Header from 'components/common/header/header'
-import FilterButtons from 'components/common/ui/buttons/filterButtons'
-import { CatalogFilters } from 'components/pages/catalog/filters/catalogFilters'
-import Products from 'components/pages/catalog/products'
+import { Catalog } from 'components/pages/catalog/catalog'
 import { ECost } from 'enums/cost'
 import { QUERY_KEY } from 'enums/QUERY_KEY'
 import { BasicProductsAPI } from 'features/basicProducts/api/basicProductsAPI'
 import { LeatherArticlesAPI } from 'features/leatherArticles/api/leatherArticlesAPI'
+import { MainLayout } from 'layouts/mainLayout'
+import { NextPageWithLayout } from 'pages/_app'
 import {
   initialCurrencyState,
   selectSetActualRates,
@@ -21,35 +19,6 @@ import {
 } from 'store/useCurrencyStore'
 import { CostType } from 'types/costType'
 import { getQueryFilters } from 'utils/filters/getQueryFilters'
-
-type PropsType = {
-  rates: CostType
-}
-
-const Catalog: NextPage<PropsType> = ({ rates }: PropsType) => {
-  const setActualRates = useCurrencyStore(selectSetActualRates)
-  const [isOpenFilters, setIsOpenFilters] = useState(false)
-
-  useEffect(() => {
-    setActualRates(rates)
-  }, [])
-
-  return (
-    <>
-      <Header />
-      <MainContainer className="min-h-[calc(100vh-9.625rem)] grid-cols-12 gap-6 py-5 md:min-h-[calc(100vh-10.625rem)] xl:grid xl:min-h-fit">
-        <CatalogFilters
-          isOpenFilters={isOpenFilters}
-          setIsOpenFilters={setIsOpenFilters}
-          className="col-span-2"
-        />
-        <Products className="col-span-10" />
-      </MainContainer>
-      {/* кнопки фильтров для мобильной версии */}
-      <FilterButtons open={isOpenFilters} setOpen={setIsOpenFilters} />
-    </>
-  )
-}
 
 export const getServerSideProps: GetServerSideProps = async ({ query, locale }) => {
   const rates: CostType = initialCurrencyState
@@ -85,4 +54,20 @@ export const getServerSideProps: GetServerSideProps = async ({ query, locale }) 
     },
   }
 }
-export default Catalog
+
+type PropsType = {
+  rates: CostType
+}
+
+const CatalogPage: NextPageWithLayout<PropsType> = ({ rates }: PropsType) => {
+  const setActualRates = useCurrencyStore(selectSetActualRates)
+
+  useEffect(() => {
+    setActualRates(rates)
+  }, [])
+
+  return <Catalog />
+}
+
+CatalogPage.getLayout = MainLayout
+export default CatalogPage
