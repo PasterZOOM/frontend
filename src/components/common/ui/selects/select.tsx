@@ -1,4 +1,4 @@
-import { FC, useEffect, useRef, useState } from 'react'
+import { FC, ReactElement, useEffect, useRef, useState } from 'react'
 
 import { SelectItemType } from 'components/common/ui/selects/defaultSelectType'
 
@@ -28,7 +28,7 @@ export const Select = <T,>({
   },
   className = '',
   elementToLabel,
-}: PropsType<SelectItemType<T>>): JSX.Element => {
+}: PropsType<SelectItemType<T>>): ReactElement => {
   const dropdownRef = useRef<HTMLDivElement | null>(null)
 
   const [isOpen, setIsOpen] = useState(false)
@@ -40,12 +40,16 @@ export const Select = <T,>({
 
   useEffect(() => {
     const onClick = (e: MouseEvent): void => {
-      if (!dropdownRef.current!.contains(e.target as Node)) setIsOpen(false)
+      if (!dropdownRef.current?.contains(e.target as Node)) {
+        setIsOpen(false)
+      }
     }
 
     if (isOpen) {
       document.addEventListener('click', onClick)
-    } else document.removeEventListener('click', onClick)
+    } else {
+      document.removeEventListener('click', onClick)
+    }
 
     return () => document.removeEventListener('click', onClick)
   }, [isOpen])

@@ -13,7 +13,7 @@ type PropsType = DefaultButtonPropsType & {
 }
 
 export const Button: FC<PropsType> = ({
-  variant = 'primary',
+  variant = ButtonVariant.PRIMARY,
   children,
   className,
   ...restProps
@@ -21,7 +21,7 @@ export const Button: FC<PropsType> = ({
   return (
     <button
       type="button"
-      className={`transform px-8 py-4 uppercase shadow-button-hover duration-300 dark:shadow-button-hover-dark
+      className={`transform px-8 py-4 uppercase shadow-button-hover duration-300 disabled:pointer-events-none disabled:opacity-50 dark:shadow-button-hover-dark
       ${
         variant === 'primary'
           ? 'bg-anthracite-gray text-white hover:bg-transparent hover:text-anthracite-gray dark:bg-white dark:text-anthracite-gray dark:hover:bg-transparent dark:hover:text-white'

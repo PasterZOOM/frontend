@@ -7,8 +7,8 @@ export type CreateBasicProductFormType = {
   [ECreateBasicProductParams.LEATHER_ARTICLE]: string
   [ECreateBasicProductParams.DESCRIPTION]: string
   [ECreateBasicProductParams.TITLE]: string
-  [ECreateBasicProductParams.COST]: number
   [ECreateBasicProductParams.SIZE]: string
+  [ECreateBasicProductParams.COST]: number
   [ECreateBasicProductParams.CATEGORY]: EProductCategory
   [ECreateBasicProductParams.COST_CURRENCY]: ECost
   [ECreateBasicProductParams.PUNCH_PITCH]: EPunchPitch

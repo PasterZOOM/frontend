@@ -1,68 +1,59 @@
 import { FC } from 'react'
 
-import { Form, Formik, FormikHelpers } from 'formik'
+import { SubmitHandler, useForm } from 'react-hook-form'
 
-import { CreateButton } from 'components/common/ui/buttons/createButton'
 import { H5 } from 'components/common/ui/headers/h5'
-import { FieldWrapper } from 'components/forms/fieldWrapper'
-import { FormikInput } from 'components/forms/formikInput'
-import { FormikSelect } from 'components/forms/formikSelect'
-import { ECreateLeatherFactoryParams } from 'features/leatherFactories/enums/paramsKeys'
+import { CreateForm } from 'components/forms/createForm'
+import { FormInputWithWrapper } from 'components/forms/inputs/formInputWithWrapper'
+import { FormSelectWithWrapper } from 'components/forms/selects/formSelectWithWrapper'
+import { ECountry } from 'enums/countries'
 import { CreateLeatherFactoryFormType } from 'features/leatherFactories/forms/type'
+import { resolver } from 'features/leatherFactories/forms/validation.sheme'
 import { useCreateLeatherFactory } from 'features/leatherFactories/hooks/useCreateLeatherFactory'
 import { LeatherFactoryCreatConfirmModalBody } from 'features/leatherFactories/modals/confirm/leatherFactoryCreatConfirmModalBody'
 import { countriesArray } from 'objects/countries/countryValues'
 
+const defaultValues: CreateLeatherFactoryFormType = {
+  country: ECountry.ITALY,
+  description: '',
+  title: '',
+}
+
 export const CreateLeatherFactoryForm: FC = () => {
   const { mutateAsync: createFactory } = useCreateLeatherFactory()
 
-  const initialValues: CreateLeatherFactoryFormType = {
-    [ECreateLeatherFactoryParams.COUNTRY]: countriesArray()[0].value,
-    [ECreateLeatherFactoryParams.DESCRIPTION]: '',
-    [ECreateLeatherFactoryParams.TITLE]: '',
-  }
-
-  const onSubmit = async (
-    values: CreateLeatherFactoryFormType,
-    { resetForm }: FormikHelpers<CreateLeatherFactoryFormType>
-  ): Promise<void> => {
+  const methods = useForm<CreateLeatherFactoryFormType>({
+    defaultValues,
+    resolver,
+  })
+  const onSubmit: SubmitHandler<CreateLeatherFactoryFormType> = async (formData): Promise<void> => {
     try {
-      await createFactory(values)
+      await createFactory(formData)
 
-      resetForm()
+      methods.reset()
     } catch (e) {
       /* empty */
     }
   }
 
   return (
-    <div>
+    <>
       <H5 className="mb-4 font-bold">Создать фабрику</H5>
-      <Formik initialValues={initialValues} onSubmit={onSubmit}>
-        {({ values, submitForm }) => (
-          <Form className="space-y-3">
-            <FieldWrapper name={ECreateLeatherFactoryParams.TITLE} title="Название фабрики:">
-              {name => <FormikInput name={name} />}
-            </FieldWrapper>
+      <CreateForm
+        methods={methods}
+        onSubmit={onSubmit}
+        confirmModalChildren={<LeatherFactoryCreatConfirmModalBody values={methods.getValues()} />}
+      >
+        <FormInputWithWrapper title="Название фабрики:" name="title" />
 
-            <FieldWrapper
-              name={ECreateLeatherFactoryParams.COUNTRY}
-              title="Страна в которой расположена фабрика:"
-            >
-              {name => <FormikSelect name={name} items={countriesArray()} />}
-            </FieldWrapper>
+        <FormSelectWithWrapper
+          title="Страна в которой расположена фабрика:"
+          name="country"
+          items={countriesArray()}
+        />
 
-            <FieldWrapper name={ECreateLeatherFactoryParams.DESCRIPTION} title="Описание:">
-              {name => <FormikInput name={name} />}
-            </FieldWrapper>
-
-            <CreateButton
-              onConfirm={submitForm}
-              modalChildren={<LeatherFactoryCreatConfirmModalBody values={values} />}
-            />
-          </Form>
-        )}
-      </Formik>
-    </div>
+        <FormInputWithWrapper title="Описание:" name="description" />
+      </CreateForm>
+    </>
   )
 }

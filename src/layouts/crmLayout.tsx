@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 import Header from 'components/common/header/header'
 
-export const CrmLayout = (page: ReactElement): JSX.Element => {
+export const CrmLayout = (page: ReactElement): ReactElement => {
   return (
     <>
       <Header />

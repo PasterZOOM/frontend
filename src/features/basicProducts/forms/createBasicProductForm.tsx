@@ -1,18 +1,17 @@
 import { FC } from 'react'
 
-import { Form, Formik, FormikHelpers } from 'formik'
+import { SubmitHandler, useForm } from 'react-hook-form'
 
-import { CreateButton } from 'components/common/ui/buttons/createButton'
 import { H5 } from 'components/common/ui/headers/h5'
 import { SelectItemType } from 'components/common/ui/selects/defaultSelectType'
-import { FieldWrapper } from 'components/forms/fieldWrapper'
-import { FormikInput } from 'components/forms/formikInput'
-import { FormikSelect } from 'components/forms/formikSelect'
+import { CreateForm } from 'components/forms/createForm'
+import { FormInputWithWrapper } from 'components/forms/inputs/formInputWithWrapper'
+import { FormSelectWithWrapper } from 'components/forms/selects/formSelectWithWrapper'
 import { ECost } from 'enums/cost'
 import { EPunchPitch } from 'enums/materials'
 import { EProductCategory } from 'enums/product'
-import { ECreateBasicProductParams } from 'features/basicProducts/enums/paramsKeys'
 import { CreateBasicProductFormType } from 'features/basicProducts/forms/type'
+import { resolver } from 'features/basicProducts/forms/validation.sheme'
 import { useCreateBasicProduct } from 'features/basicProducts/hooks/useCreateBasicProduct'
 import { BasicProductCreatConfirmModalBody } from 'features/basicProducts/modals/confirm/basicProductCreatConfirmModalBody'
 import { useGetAllLeatherArticles } from 'features/leatherArticles/hooks/useGetAllLeatherArticles'
@@ -21,9 +20,26 @@ import { punchPatchesArray } from 'objects/materials/punchPatch'
 import { productAssignmentsArray } from 'objects/products/productAssignments'
 import { productCategoriesArray } from 'objects/products/productCategories'
 
-const CreateBasicProductForm: FC = () => {
+const defaultValues: CreateBasicProductFormType = {
+  assignments: [],
+  category: EProductCategory.CARD_HOLDER,
+  cost: 0,
+  costCurrency: ECost.USD,
+  description: '',
+  leather: '',
+  punchPitch: EPunchPitch.LITTLE,
+  size: '',
+  title: '',
+}
+
+export const CreateBasicProductForm: FC = () => {
   const { data } = useGetAllLeatherArticles()
   const { mutate: createBasicProduct } = useCreateBasicProduct()
+  const methods = useForm<CreateBasicProductFormType>({
+    defaultValues,
+    resolver,
+    mode: 'onTouched',
+  })
 
   const articles: SelectItemType[] = (data ?? []).map(({ _id, title }) => ({
     _id,
@@ -31,84 +47,58 @@ const CreateBasicProductForm: FC = () => {
     value: _id,
   }))
 
-  const initialValues: CreateBasicProductFormType = {
-    [ECreateBasicProductParams.ASSIGNMENTS]: [],
-    [ECreateBasicProductParams.CATEGORY]: EProductCategory.CARD_HOLDER,
-    [ECreateBasicProductParams.COST]: 0,
-    [ECreateBasicProductParams.COST_CURRENCY]: ECost.USD,
-    [ECreateBasicProductParams.DESCRIPTION]: '',
-    [ECreateBasicProductParams.LEATHER_ARTICLE]: '',
-    [ECreateBasicProductParams.PUNCH_PITCH]: EPunchPitch.LITTLE,
-    [ECreateBasicProductParams.SIZE]: '',
-    [ECreateBasicProductParams.TITLE]: '',
-  }
-
-  const onSubmit = async (
-    { leather, ...params }: CreateBasicProductFormType,
-    { resetForm }: FormikHelpers<CreateBasicProductFormType>
-  ): Promise<void> => {
+  const onSubmit: SubmitHandler<CreateBasicProductFormType> = async (formData): Promise<void> => {
     try {
-      await createBasicProduct({
-        leather: leather || articles[0]?._id,
-        ...params,
-      })
-      resetForm()
+      await createBasicProduct(formData)
+      methods.reset()
     } catch (e) {
       /* empty */
     }
   }
 
   return (
-    <div>
+    <>
       <H5 className="mb-4 font-bold">Создать артикул</H5>
-      <Formik initialValues={initialValues} onSubmit={onSubmit}>
-        {({ values, submitForm }) => (
-          <Form className="space-y-3">
-            <FieldWrapper name={ECreateBasicProductParams.TITLE} title="Название изделия:">
-              {name => <FormikInput name={name} />}
-            </FieldWrapper>
+      <CreateForm
+        methods={methods}
+        onSubmit={onSubmit}
+        confirmModalChildren={<BasicProductCreatConfirmModalBody values={methods.getValues()} />}
+      >
+        <FormInputWithWrapper title="Название изделия:" name="title" />
 
-            <FieldWrapper name={ECreateBasicProductParams.LEATHER_ARTICLE} title="Артикул:">
-              {name => <FormikSelect name={name} items={articles} />}
-            </FieldWrapper>
+        <FormSelectWithWrapper title="Артикул:" name="leather" items={articles} />
 
-            <FieldWrapper name={ECreateBasicProductParams.COST} title="Стоимость:">
-              {name => <FormikInput name={name} type="number" />}
-            </FieldWrapper>
+        <FormInputWithWrapper
+          title="Стоимость:"
+          name="cost"
+          inputProps={{ type: 'number', min: 0 }}
+        />
 
-            <FieldWrapper name={ECreateBasicProductParams.COST_CURRENCY} title="Валюта:">
-              {name => <FormikSelect name={name} items={currencyArray()} />}
-            </FieldWrapper>
+        <FormSelectWithWrapper title="Валюта:" name="costCurrency" items={currencyArray()} />
 
-            <FieldWrapper name={ECreateBasicProductParams.CATEGORY} title="Категория:">
-              {name => <FormikSelect name={name} items={productCategoriesArray()} />}
-            </FieldWrapper>
+        <FormSelectWithWrapper
+          title="Категория:"
+          name="category"
+          items={productCategoriesArray()}
+        />
 
-            <FieldWrapper name={ECreateBasicProductParams.ASSIGNMENTS} title="Назначения:">
-              {name => <FormikSelect name={name} items={productAssignmentsArray()} multiple />}
-            </FieldWrapper>
+        <FormSelectWithWrapper
+          title="Назначения:"
+          name="assignments"
+          items={productAssignmentsArray()}
+          selectProps={{ multiple: true }}
+        />
 
-            <FieldWrapper name={ECreateBasicProductParams.PUNCH_PITCH} title="Шаг пробойника:">
-              {name => <FormikSelect name={name} items={punchPatchesArray()} />}
-            </FieldWrapper>
+        <FormSelectWithWrapper
+          title="Шаг пробойника:"
+          name="punchPitch"
+          items={punchPatchesArray()}
+        />
 
-            <FieldWrapper name={ECreateBasicProductParams.SIZE} title="Размер:">
-              {name => <FormikInput name={name} />}
-            </FieldWrapper>
+        <FormInputWithWrapper title="Размер:" name="size" />
 
-            <FieldWrapper name={ECreateBasicProductParams.DESCRIPTION} title="Описание:">
-              {name => <FormikInput name={name} />}
-            </FieldWrapper>
-
-            <CreateButton
-              onConfirm={submitForm}
-              modalChildren={<BasicProductCreatConfirmModalBody values={values} />}
-            />
-          </Form>
-        )}
-      </Formik>
-    </div>
+        <FormInputWithWrapper title="Описание:" name="description" />
+      </CreateForm>
+    </>
   )
 }
-
-export default CreateBasicProductForm

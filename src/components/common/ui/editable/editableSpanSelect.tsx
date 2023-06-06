@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import { ReactElement, ReactNode } from 'react'
 
 import { EditButton } from 'components/common/ui/editable/editButton'
 import { useEditableSpan } from 'components/common/ui/editable/useEditableSpan'
@@ -22,7 +22,7 @@ export const EditableSpanSelect = <T extends string | string[]>({
   onChange,
   selectProps = {},
   children,
-}: PropsType<T>): JSX.Element => {
+}: PropsType<T>): ReactElement => {
   const {
     value,
     editeMode,

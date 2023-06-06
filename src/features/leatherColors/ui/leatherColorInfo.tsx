@@ -8,7 +8,6 @@ import { EditableSpanSelect } from 'components/common/ui/editable/editableSpanSe
 import { PropertyWithUnderline } from 'components/common/ui/properties/propertyWithUnderline'
 import { TableItem } from 'components/common/ui/tabel/tableItem'
 import { PropertyPreviewWrapper } from 'components/common/wrappers/propertyPreviewWrapper'
-// eslint-disable-next-line import/no-cycle
 import { LeatherArticleModal } from 'features/leatherArticles/modals/leatherArticleModal'
 import { LeatherColorType } from 'features/leatherColors/api/types'
 import { useUpdateLeatherColor } from 'features/leatherColors/hooks/useUpdateLeatherColor'

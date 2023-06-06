@@ -1,10 +1,10 @@
-import { FC } from 'react'
+import { ReactElement } from 'react'
 
 import { EditButton } from 'components/common/ui/editable/editButton'
 import { useEditableSpan } from 'components/common/ui/editable/useEditableSpan'
 import { DefaultInputPropsType } from 'components/common/ui/inputs/defaultInputType'
 
-type PropsType<T = string> = {
+type PropsType<T> = {
   className?: string
   children: T
   onChange: (value: T) => void
@@ -12,12 +12,12 @@ type PropsType<T = string> = {
 }
 const elementId = 'editableInput'
 
-export const EditableSpanInput: FC<PropsType> = <T extends string | string[]>({
+export const EditableSpanInput = <T extends string | string[]>({
   className,
   children,
   onChange,
   inputProps: { type } = {},
-}: PropsType<T>) => {
+}: PropsType<T>): ReactElement => {
   const {
     value,
     editeMode,

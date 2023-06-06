@@ -4,24 +4,21 @@ import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import { ReactElement, useState } from 'react'
 
-import { DevSupport } from '@react-buddy/ide-toolbox-next'
 import { NextPage } from 'next'
 import type { AppProps } from 'next/app'
 import { appWithTranslation } from 'next-i18next'
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
 
-import { ComponentPreviews, useInitial } from 'index'
-
-export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
-  getLayout?: (page: ReactElement) => JSX.Element
+export type NextPageWithLayout<P = unknown, IP = P> = NextPage<P, IP> & {
+  getLayout?: (page: ReactElement) => ReactElement
 }
 
 type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout
 }
 
-const App = ({ Component, pageProps }: AppPropsWithLayout): JSX.Element => {
+const App = ({ Component, pageProps }: AppPropsWithLayout): ReactElement => {
   const [queryClient] = useState(
     () =>
       new QueryClient({
@@ -34,9 +31,7 @@ const App = ({ Component, pageProps }: AppPropsWithLayout): JSX.Element => {
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen />
       <Hydrate state={pageProps.dehydratedState}>
-        <DevSupport ComponentPreviews={ComponentPreviews} useInitialHook={useInitial}>
-          <Component {...pageProps} />
-        </DevSupport>
+        <Component {...pageProps} />
       </Hydrate>
     </QueryClientProvider>
   )

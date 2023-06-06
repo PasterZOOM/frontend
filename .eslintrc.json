@@ -14,7 +14,8 @@
     "plugin:prettier/recommended",
     "plugin:react-hooks/recommended",
     "plugin:jsx-a11y/recommended",
-    "prettier"
+    "prettier",
+    "plugin:@typescript-eslint/recommended"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -48,7 +49,6 @@
   ],
   "rules": {
     "no-shadow": "off",
-    "@typescript-eslint/no-shadow": "warn",
     "import/extensions": "off",
     "import/prefer-default-export": "off",
     "import/order": [
@@ -163,6 +163,8 @@
         "html": "ignore"
       }
     ],
+    "@typescript-eslint/no-extra-semi": "off",
+    "@typescript-eslint/no-shadow": "warn",
     "@typescript-eslint/no-unused-vars": [
       "error"
     ],
