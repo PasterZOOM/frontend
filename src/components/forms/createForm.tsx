@@ -1,31 +1,34 @@
-import { ReactElement, ReactNode } from 'react'
+import { FC, ReactNode } from 'react'
 
-import { FieldValues, FormProvider, SubmitHandler, UseFormReturn } from 'react-hook-form'
+import { FieldValues, UseFormProps, UseFormReturn } from 'react-hook-form'
 
 import { CreateButton } from 'components/common/ui/buttons/createButton'
+import { HookForm } from 'components/forms/hookForm'
 
 type PropsType<T extends FieldValues> = {
-  methods: UseFormReturn<T>
   children: ReactNode
-  onSubmit: SubmitHandler<T>
-  confirmModalChildren: ReactNode
-}
+  onSubmit: (methods: UseFormReturn<T>) => Promise<void>
+  confirmModalChildren: FC<{ values: T }>
+} & UseFormProps<T>
 
 export const CreateForm = <T extends FieldValues>({
-  methods,
   children,
   onSubmit,
   confirmModalChildren,
-}: PropsType<T>): ReactElement => {
+  defaultValues,
+  resolver,
+}: PropsType<T>): ReactNode => {
   return (
-    <FormProvider {...methods}>
-      <form className="space-y-3">
-        {children}
-        <CreateButton
-          onConfirm={methods.handleSubmit(onSubmit)}
-          modalChildren={confirmModalChildren}
-        />
-      </form>
-    </FormProvider>
+    <HookForm defaultValues={defaultValues} resolver={resolver}>
+      {methods => (
+        <>
+          {children}
+          <CreateButton
+            onConfirm={() => onSubmit(methods)}
+            modalChildren={confirmModalChildren({ values: methods.getValues() })}
+          />
+        </>
+      )}
+    </HookForm>
   )
 }

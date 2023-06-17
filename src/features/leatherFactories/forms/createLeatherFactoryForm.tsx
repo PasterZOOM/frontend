@@ -1,6 +1,6 @@
 import { FC } from 'react'
 
-import { SubmitHandler, useForm } from 'react-hook-form'
+import { UseFormReturn } from 'react-hook-form'
 
 import { H5 } from 'components/common/ui/headers/h5'
 import { CreateForm } from 'components/forms/createForm'
@@ -13,7 +13,9 @@ import { useCreateLeatherFactory } from 'features/leatherFactories/hooks/useCrea
 import { LeatherFactoryCreatConfirmModalBody } from 'features/leatherFactories/modals/confirm/leatherFactoryCreatConfirmModalBody'
 import { countriesArray } from 'objects/countries/countryValues'
 
-const defaultValues: CreateLeatherFactoryFormType = {
+type FormValues = CreateLeatherFactoryFormType
+
+const defaultValues: FormValues = {
   country: ECountry.ITALY,
   description: '',
   title: '',
@@ -22,37 +24,35 @@ const defaultValues: CreateLeatherFactoryFormType = {
 export const CreateLeatherFactoryForm: FC = () => {
   const { mutateAsync: createFactory } = useCreateLeatherFactory()
 
-  const methods = useForm<CreateLeatherFactoryFormType>({
-    defaultValues,
-    resolver,
-  })
-  const onSubmit: SubmitHandler<CreateLeatherFactoryFormType> = async (formData): Promise<void> => {
-    try {
-      await createFactory(formData)
-
-      methods.reset()
-    } catch (e) {
-      /* empty */
-    }
+  const onSubmit = async (methods: UseFormReturn<FormValues>): Promise<void> => {
+    await methods.handleSubmit(async (formData): Promise<void> => {
+      try {
+        await createFactory(formData)
+        methods.reset()
+      } catch (e) {
+        /* empty */
+      }
+    })()
   }
 
   return (
     <>
       <H5 className="mb-4 font-bold">Создать фабрику</H5>
       <CreateForm
-        methods={methods}
+        confirmModalChildren={LeatherFactoryCreatConfirmModalBody}
         onSubmit={onSubmit}
-        confirmModalChildren={<LeatherFactoryCreatConfirmModalBody values={methods.getValues()} />}
+        defaultValues={defaultValues}
+        resolver={resolver}
       >
-        <FormInputWithWrapper title="Название фабрики:" name="title" />
+        <FormInputWithWrapper<FormValues> title="Название фабрики:" name="title" />
 
-        <FormSelectWithWrapper
+        <FormSelectWithWrapper<FormValues>
           title="Страна в которой расположена фабрика:"
           name="country"
           items={countriesArray()}
         />
 
-        <FormInputWithWrapper title="Описание:" name="description" />
+        <FormInputWithWrapper<FormValues> title="Описание:" name="description" />
       </CreateForm>
     </>
   )

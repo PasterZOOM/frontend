@@ -1,6 +1,6 @@
 import { FC } from 'react'
 
-import { SubmitHandler, useForm } from 'react-hook-form'
+import { UseFormReturn } from 'react-hook-form'
 
 import { H5 } from 'components/common/ui/headers/h5'
 import { SelectItemType } from 'components/common/ui/selects/defaultSelectType'
@@ -15,7 +15,9 @@ import { useCreateLeatherColor } from 'features/leatherColors/hooks/useCreateLea
 import { LeatherColorCreatConfirmModalBody } from 'features/leatherColors/modals/confirm/leatherColorCreatConfirmModalBody'
 import { leatherColorsArray } from 'objects/colors/leatherColorsValues'
 
-const defaultValues: CreateLeatherColorFormType = {
+type FormValues = CreateLeatherColorFormType
+
+const defaultValues: FormValues = {
   articleId: '',
   description: '',
   title: '',
@@ -28,48 +30,47 @@ export const CreateLeatherColorForm: FC = () => {
   const { data } = useGetAllLeatherArticles()
   const { mutateAsync: createColor } = useCreateLeatherColor()
 
-  const methods = useForm<CreateLeatherColorFormType>({
-    defaultValues,
-    resolver,
-  })
-
   const articles: SelectItemType[] = (data ?? []).map(({ _id, title }) => ({
     _id,
     title,
     value: _id,
   }))
 
-  const onSubmit: SubmitHandler<CreateLeatherColorFormType> = async ({
-    articleId: _id,
-    ...params
-  }): Promise<void> => {
-    try {
-      await createColor({ _id, params })
-      methods.reset()
-    } catch (e) {
-      /* empty */
-    }
+  const onSubmit = async (methods: UseFormReturn<FormValues>): Promise<void> => {
+    await methods.handleSubmit(async ({ articleId: _id, ...params }): Promise<void> => {
+      try {
+        await createColor({ _id, params })
+        methods.reset()
+      } catch (e) {
+        /* empty */
+      }
+    })()
   }
 
   return (
     <>
       <H5 className="mb-4 font-bold">Создать артикул</H5>
       <CreateForm
-        methods={methods}
+        confirmModalChildren={LeatherColorCreatConfirmModalBody}
         onSubmit={onSubmit}
-        confirmModalChildren={<LeatherColorCreatConfirmModalBody values={methods.getValues()} />}
+        defaultValues={defaultValues}
+        resolver={resolver}
       >
-        <FormSelectWithWrapper title="Артикул:" name="articleId" items={articles} />
+        <FormSelectWithWrapper<FormValues> title="Артикул:" name="articleId" items={articles} />
 
-        <FormSelectWithWrapper title="Значение цвета:" name="value" items={leatherColorsArray()} />
+        <FormSelectWithWrapper<FormValues>
+          title="Значение цвета:"
+          name="value"
+          items={leatherColorsArray()}
+        />
 
-        <FormInputWithWrapper title="Название цвета:" name="title" />
+        <FormInputWithWrapper<FormValues> title="Название цвета:" name="title" />
 
-        <FormInputWithWrapper title="Код цвета:" name="code" />
+        <FormInputWithWrapper<FormValues> title="Код цвета:" name="code" />
 
-        <FormInputWithWrapper title="Фото цвета:" name="photo" />
+        <FormInputWithWrapper<FormValues> title="Фото цвета:" name="photo" />
 
-        <FormInputWithWrapper title="Описание:" name="description" />
+        <FormInputWithWrapper<FormValues> title="Описание:" name="description" />
       </CreateForm>
     </>
   )

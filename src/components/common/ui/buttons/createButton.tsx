@@ -43,7 +43,6 @@ export const CreateButton: FC<PropsType> = ({ modalChildren, buttonProps, onConf
         confirmButton={{
           children: 'Создать',
           onClick: onConfirmHandler,
-          type: 'submit',
           disabled: isSubmitting,
         }}
       >

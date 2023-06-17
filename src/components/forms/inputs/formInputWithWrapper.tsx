@@ -1,18 +1,24 @@
-import { FC } from 'react'
+import { ReactElement } from 'react'
+
+import { Path } from 'react-hook-form'
 
 import { DefaultInputPropsType } from 'components/common/ui/inputs/defaultInputType'
 import { FieldWrapper } from 'components/forms/fieldWrapper'
 import { FormInput } from 'components/forms/inputs/formInput'
 
-type PropsType = {
-  name: string
+type PropsType<T> = {
+  name: Path<T>
   inputProps?: DefaultInputPropsType
   title: string
 }
-export const FormInputWithWrapper: FC<PropsType> = ({ inputProps, title, name }) => {
+export const FormInputWithWrapper = <T,>({
+  inputProps,
+  title,
+  name,
+}: PropsType<T>): ReactElement => {
   return (
     <FieldWrapper title={title} name={name}>
-      <FormInput {...inputProps} name={name} />
+      <FormInput<T> {...inputProps} name={name} />
     </FieldWrapper>
   )
 }

@@ -1,6 +1,6 @@
 import { FC } from 'react'
 
-import { SubmitHandler, useForm } from 'react-hook-form'
+import { UseFormReturn } from 'react-hook-form'
 
 import { H5 } from 'components/common/ui/headers/h5'
 import { SelectItemType } from 'components/common/ui/selects/defaultSelectType'
@@ -20,7 +20,9 @@ import { punchPatchesArray } from 'objects/materials/punchPatch'
 import { productAssignmentsArray } from 'objects/products/productAssignments'
 import { productCategoriesArray } from 'objects/products/productCategories'
 
-const defaultValues: CreateBasicProductFormType = {
+type FormValues = CreateBasicProductFormType
+
+const defaultValues: FormValues = {
   assignments: [],
   category: EProductCategory.CARD_HOLDER,
   cost: 0,
@@ -35,11 +37,6 @@ const defaultValues: CreateBasicProductFormType = {
 export const CreateBasicProductForm: FC = () => {
   const { data } = useGetAllLeatherArticles()
   const { mutate: createBasicProduct } = useCreateBasicProduct()
-  const methods = useForm<CreateBasicProductFormType>({
-    defaultValues,
-    resolver,
-    mode: 'onTouched',
-  })
 
   const articles: SelectItemType[] = (data ?? []).map(({ _id, title }) => ({
     _id,
@@ -47,57 +44,65 @@ export const CreateBasicProductForm: FC = () => {
     value: _id,
   }))
 
-  const onSubmit: SubmitHandler<CreateBasicProductFormType> = async (formData): Promise<void> => {
-    try {
-      await createBasicProduct(formData)
-      methods.reset()
-    } catch (e) {
-      /* empty */
-    }
+  const onSubmit = async (methods: UseFormReturn<FormValues>): Promise<void> => {
+    await methods.handleSubmit(async (formData): Promise<void> => {
+      try {
+        await createBasicProduct(formData)
+        methods.reset()
+      } catch (e) {
+        /* empty */
+      }
+    })()
   }
 
   return (
     <>
       <H5 className="mb-4 font-bold">Создать артикул</H5>
       <CreateForm
-        methods={methods}
+        confirmModalChildren={BasicProductCreatConfirmModalBody}
         onSubmit={onSubmit}
-        confirmModalChildren={<BasicProductCreatConfirmModalBody values={methods.getValues()} />}
+        defaultValues={defaultValues}
+        resolver={resolver}
+        mode="onTouched"
       >
-        <FormInputWithWrapper title="Название изделия:" name="title" />
+        <FormInputWithWrapper<FormValues> title="Название изделия:" name="title" />
 
-        <FormSelectWithWrapper title="Артикул:" name="leather" items={articles} />
+        <FormSelectWithWrapper<FormValues> title="Артикул:" name="leather" items={articles} />
 
-        <FormInputWithWrapper
+        <FormInputWithWrapper<FormValues>
           title="Стоимость:"
           name="cost"
           inputProps={{ type: 'number', min: 0 }}
         />
 
-        <FormSelectWithWrapper title="Валюта:" name="costCurrency" items={currencyArray()} />
+        <FormSelectWithWrapper<FormValues>
+          title="Валюта:"
+          name="costCurrency"
+          items={currencyArray()}
+        />
 
-        <FormSelectWithWrapper
+        <FormSelectWithWrapper<FormValues>
           title="Категория:"
           name="category"
           items={productCategoriesArray()}
         />
 
-        <FormSelectWithWrapper
+        <FormSelectWithWrapper<FormValues>
           title="Назначения:"
           name="assignments"
           items={productAssignmentsArray()}
           selectProps={{ multiple: true }}
         />
 
-        <FormSelectWithWrapper
+        <FormSelectWithWrapper<FormValues>
           title="Шаг пробойника:"
           name="punchPitch"
           items={punchPatchesArray()}
         />
 
-        <FormInputWithWrapper title="Размер:" name="size" />
+        <FormInputWithWrapper<FormValues> title="Размер:" name="size" />
 
-        <FormInputWithWrapper title="Описание:" name="description" />
+        <FormInputWithWrapper<FormValues> title="Описание:" name="description" />
       </CreateForm>
     </>
   )

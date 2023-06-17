@@ -1,14 +1,18 @@
-import { FC } from 'react'
+import { ReactElement } from 'react'
 
-import { useFormContext } from 'react-hook-form'
+import { Path, useFormContext } from 'react-hook-form'
 
 import { DefaultInputPropsType } from 'components/common/ui/inputs/defaultInputType'
 
-type PropsType = DefaultInputPropsType & {
-  name: string
+type PropsType<T> = DefaultInputPropsType & {
+  name: Path<T>
 }
 
-export const FormInput: FC<PropsType> = ({ className = '', name, ...restProps }) => {
+export const FormInput = <T,>({
+  className = '',
+  name,
+  ...restProps
+}: PropsType<T>): ReactElement => {
   const {
     register,
     formState: { errors },

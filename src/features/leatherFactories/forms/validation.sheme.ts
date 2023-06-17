@@ -3,13 +3,15 @@ import * as yup from 'yup'
 import { Schema } from 'yup'
 
 import { MIN_TITLE_LENGTH, REQUIRED_MESSAGE } from 'constants/forms/validate'
-import { CreateLeatherFactoryFormType } from 'features/leatherFactories/forms/type'
+import { ECreateLeatherFactoryParams } from 'features/leatherFactories/enums/paramsKeys'
 
-const validate: Partial<Record<keyof CreateLeatherFactoryFormType, Schema>> = {
+const validate: Record<ECreateLeatherFactoryParams, Schema> = {
   title: yup
     .string()
-    .min(MIN_TITLE_LENGTH, 'Должно быть более 6 символов')
-    .required(REQUIRED_MESSAGE),
+    .required(REQUIRED_MESSAGE)
+    .min(MIN_TITLE_LENGTH, 'Должно быть более 6 символов'),
+  description: yup.string(),
+  country: yup.string(),
 }
 
 export const resolver = yupResolver(yup.object(validate).required())

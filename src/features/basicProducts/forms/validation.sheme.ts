@@ -4,14 +4,14 @@ import { Schema } from 'yup'
 
 import { MIN_TITLE_LENGTH, REQUIRED_MESSAGE } from 'constants/forms/validate'
 import { EProductAssignment } from 'enums/product'
-import { CreateBasicProductFormType } from 'features/basicProducts/forms/type'
+import { ECreateBasicProductParams } from 'features/basicProducts/enums/paramsKeys'
 
-const validate: Partial<Record<keyof CreateBasicProductFormType, Schema>> = {
+const validate: Record<ECreateBasicProductParams, Schema> = {
   leather: yup.string().required(REQUIRED_MESSAGE),
   title: yup
     .string()
-    .min(MIN_TITLE_LENGTH, 'Должно быть более 6 символов')
-    .required(REQUIRED_MESSAGE),
+    .required(REQUIRED_MESSAGE)
+    .min(MIN_TITLE_LENGTH, 'Должно быть более 6 символов'),
   assignments: yup
     .array()
     .min(1, 'Минимум одно назначение')
@@ -22,9 +22,13 @@ const validate: Partial<Record<keyof CreateBasicProductFormType, Schema>> = {
           Object.values(EProductAssignment).every(assignment => assignment !== el)
         )}`,
       values => values?.every(value => Object.values(EProductAssignment).includes(value))
-    )
-    .required(REQUIRED_MESSAGE),
-  cost: yup.number().moreThan(0, 'Цена должна быть больше 0').required(REQUIRED_MESSAGE),
+    ),
+  cost: yup.number().required(REQUIRED_MESSAGE).moreThan(0, 'Цена должна быть больше 0'),
+  description: yup.string(),
+  category: yup.string(),
+  costCurrency: yup.string(),
+  punchPitch: yup.string(),
+  size: yup.string(),
 }
 
 export const resolver = yupResolver(yup.object(validate).required())
