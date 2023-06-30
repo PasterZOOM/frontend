@@ -5,15 +5,14 @@ import { PropertyPreviewWrapper } from 'components/common/wrappers/propertyPrevi
 type PropsType = {
   children: ReactNode
   title: string
-  childrenClassName?: string
+  className?: string
 }
 
-export const PropertyWithUnderline: FC<PropsType> = ({ children, title, childrenClassName }) => {
+export const PropertyInOneRow: FC<PropsType> = ({ children, title, className = '' }) => {
   return (
     <PropertyPreviewWrapper
       title={title}
-      wrapperClassName="flex items-end justify-between gap-10 border-b border-anthracite-gray border-opacity-20 dark:border-white"
-      childrenClassName={childrenClassName}
+      className={`flex items-end justify-between gap-10 ${className}`}
     >
       {children}
     </PropertyPreviewWrapper>

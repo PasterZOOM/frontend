@@ -1,15 +1,14 @@
-import { FC, ReactNode } from 'react'
+import { ComponentPropsWithoutRef, FC, ReactNode } from 'react'
 
 import { useFormContext } from 'react-hook-form'
 
 import { Button } from 'components/common/ui/buttons/button'
-import { DefaultButtonPropsType } from 'components/common/ui/buttons/defaultButtonType'
 import { ConfirmModalLayout } from 'components/modals/confirmModalLayout'
 import { useModal } from 'hooks/useModal'
 
 type PropsType = {
   modalChildren: ReactNode
-  buttonProps?: DefaultButtonPropsType
+  buttonProps?: ComponentPropsWithoutRef<'button'>
   onConfirm: () => Promise<void>
 }
 

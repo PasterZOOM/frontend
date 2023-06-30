@@ -1,14 +1,13 @@
-import { ReactElement } from 'react'
+import { ComponentPropsWithoutRef, ReactElement } from 'react'
 
 import { EditButton } from 'components/common/ui/editable/editButton'
 import { useEditableSpan } from 'components/common/ui/editable/useEditableSpan'
-import { DefaultInputPropsType } from 'components/common/ui/inputs/defaultInputType'
 
 type PropsType<T> = {
   className?: string
   children: T
   onChange: (value: T) => void
-  inputProps?: DefaultInputPropsType
+  inputProps?: ComponentPropsWithoutRef<'input'>
 }
 const elementId = 'editableInput'
 

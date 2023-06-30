@@ -1,7 +1,6 @@
-import { FC, ReactNode } from 'react'
+import { ComponentPropsWithoutRef, FC, ReactNode } from 'react'
 
 import { Button, ButtonVariant } from 'components/common/ui/buttons/button'
-import { DefaultButtonPropsType } from 'components/common/ui/buttons/defaultButtonType'
 import { ModalOverlay } from 'components/modals/modalOverlay'
 
 type PropsType = {
@@ -9,7 +8,7 @@ type PropsType = {
   closeModal: () => void
   children: ReactNode
   title: string
-  confirmButton: DefaultButtonPropsType & {
+  confirmButton: ComponentPropsWithoutRef<'button'> & {
     variant?: ButtonVariant
   }
 }

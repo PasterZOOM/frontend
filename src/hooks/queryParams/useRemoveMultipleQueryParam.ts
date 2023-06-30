@@ -6,17 +6,21 @@ export const useRemoveMultipleQueryParam: UseRemoveMultipleQueryParamType = () =
   const { pathname, query, replace } = useRouter()
 
   return async (filterKey, filterValue) => {
-    const param = `${query[filterKey]}`
-      .replace(`,${filterValue}`, '')
-      .replace(filterValue, '')
-      .replace(/^,/, '')
+    let value = query[filterKey]
+
+    if (Array.isArray(value)) {
+      value = value.filter(el => el !== filterValue)
+    }
+    if (typeof value === 'string') {
+      value = []
+    }
 
     await replace(
       {
         pathname,
         query: {
           ...query,
-          [filterKey]: param.length ? param : [],
+          [filterKey]: value,
         },
       },
       undefined,

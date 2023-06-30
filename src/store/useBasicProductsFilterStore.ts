@@ -4,10 +4,11 @@ import { EFilterKeys } from 'components/pages/catalog/filters/filters'
 
 const initialState: FilterStateType = {
   filters: {
-    assignments: '',
-    leathers: '',
-    leatherColors: '',
-    categories: '',
+    assignments: undefined,
+    leathers: undefined,
+    leatherColors: undefined,
+    categories: undefined,
+    search: undefined,
   },
 }
 
@@ -24,13 +25,17 @@ export const selectSetFilter: SetFilterSelectorType = store => store.setFilter
 export const selectFilters: SetFiltersSelectorType = store => store.filters
 export const selectFilter: FilterSelectorType = filterKey => store => store.filters[filterKey]
 
+export type FiltersType = Record<EFilterKeys, string | string[] | undefined>
+
 type FilterStateType = {
-  filters: Record<EFilterKeys, string>
+  filters: FiltersType
 }
 type SetFilterType = (filterKey: EFilterKeys, value: string) => void
 type StoreType = FilterStateType & {
   setFilter: SetFilterType
 }
 type SetFilterSelectorType = (store: StoreType) => SetFilterType
-type SetFiltersSelectorType = (store: StoreType) => Record<EFilterKeys, string>
-type FilterSelectorType = (filterKey: EFilterKeys) => (store: StoreType) => string
+type SetFiltersSelectorType = (store: StoreType) => FiltersType
+type FilterSelectorType = (
+  filterKey: EFilterKeys
+) => (store: StoreType) => string | string[] | undefined

@@ -1,6 +1,6 @@
 import { FC } from 'react'
 
-import { H1 } from 'components/common/ui/headers/h1'
+import { TypographyHeader } from 'components/common/ui/typographyHeader/typographyHeader'
 import { LeatherArticles } from 'features/leatherArticles/ui/leatherArticles'
 import { LeatherColors } from 'features/leatherColors/ui/leatherColors'
 import { LeatherFactories } from 'features/leatherFactories/ui/leatherFactories'
@@ -11,7 +11,9 @@ export const Leather: FC = () => {
 
   return (
     <>
-      <H1 className="mb-6 text-center">Кожа</H1>
+      <TypographyHeader className="mb-6 text-center" as="h1">
+        Кожа
+      </TypographyHeader>
 
       <div className="flex gap-4">
         <LeatherFactories className="w-full" />

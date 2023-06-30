@@ -5,7 +5,7 @@ import { ELeatherColor } from 'enums/materials'
 import { useChangeMultipleQueryParams } from 'hooks/queryParams/useChangeMultipleQueryParams'
 
 type PropsType = {
-  color: FilterType<ELeatherColor, EFilterKeys>
+  color: FilterType<EFilterKeys, ELeatherColor>
   filterKey: EFilterKeys
 }
 
@@ -13,6 +13,7 @@ export const ColorFilterCheckbox: FC<PropsType> = ({ color, filterKey }) => {
   const checkboxRef = useRef<HTMLInputElement | null>(null)
 
   const { setQueryParams, queryParams } = useChangeMultipleQueryParams(filterKey, color.value)
+  const checked = queryParams?.includes(color.value)
 
   const bg = useMemo(() => {
     switch (color.value) {
@@ -37,14 +38,14 @@ export const ColorFilterCheckbox: FC<PropsType> = ({ color, filterKey }) => {
   return (
     <div
       className={` aspect-square h-6 rounded-full  border-anthracite-gray dark:border-white ${bg} ${
-        queryParams ? 'border-4' : 'border'
+        checked ? 'border-4' : 'border'
       }`}
     >
       <input
         ref={checkboxRef}
         type="checkbox"
-        checked={queryParams}
-        onChange={setQueryParams}
+        checked={checked}
+        onChange={e => setQueryParams(e.currentTarget.checked)}
         className="h-full w-full cursor-pointer opacity-0"
       />
     </div>

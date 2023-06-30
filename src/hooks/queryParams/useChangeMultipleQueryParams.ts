@@ -1,9 +1,6 @@
-import { ChangeEventHandler } from 'react'
-
 import { useRouter } from 'next/router'
 
 import { EFilterKeys } from 'components/pages/catalog/filters/filters'
-import { useRemoveMultipleQueryParam } from 'hooks/queryParams/useRemoveMultipleQueryParam'
 import { useChangeFilterParams } from 'hooks/useChangeFilterParams'
 
 export const useChangeMultipleQueryParams: UseChangeMultipleQueryParamsType = (
@@ -12,37 +9,58 @@ export const useChangeMultipleQueryParams: UseChangeMultipleQueryParamsType = (
 ) => {
   const { pathname, query, replace } = useRouter()
 
-  const removeQueryParam = useRemoveMultipleQueryParam()
-
   useChangeFilterParams(filterKey)
 
-  const setQueryParams: ChangeEventHandler<HTMLInputElement> = async e => {
-    if (e.currentTarget.checked) {
-      replace(
-        {
-          pathname,
-          query: {
-            ...query,
-            [filterKey]: query[filterKey]
-              ? `${query[filterKey]},${filterValue}`.split(',').sort().join(',') // сортировка нужна чтобы не было лишних запросов из-за того, что параметры поменялись местами
-              : filterValue,
-          },
-        },
-        undefined,
-        { shallow: true }
-      ).then()
+  const setQueryParams = async (value?: boolean): Promise<void> => {
+    let oldValue: string[] | string | undefined = query[filterKey]
+
+    if (filterKey === 'search') {
+      oldValue = filterValue || []
     } else {
-      await removeQueryParam(filterKey, filterValue)
+      if (Array.isArray(oldValue)) {
+        if (value) {
+          oldValue = [...oldValue, filterValue].sort()
+        } else {
+          oldValue = oldValue.filter(el => el !== filterValue)
+        }
+      }
+
+      if (typeof oldValue === 'string') {
+        if (value) {
+          oldValue = [oldValue, filterValue].sort()
+        } else {
+          oldValue = []
+        }
+      }
+
+      if (!oldValue) {
+        oldValue = filterValue
+      }
     }
+
+    replace(
+      {
+        pathname,
+        query: {
+          ...query,
+          [filterKey]: oldValue ?? [],
+        },
+      },
+      undefined,
+      { shallow: true }
+    ).then()
   }
 
-  return { setQueryParams, queryParams: !!query[filterKey]?.includes(filterValue) }
+  return {
+    setQueryParams,
+    queryParams: (query[filterKey] as string) ?? '',
+  }
 }
 
 type UseChangeMultipleQueryParamsType = (
   filterKey: EFilterKeys,
   filterValue: string
 ) => {
-  setQueryParams: ChangeEventHandler<HTMLInputElement>
-  queryParams: boolean
+  setQueryParams: (value?: boolean) => void
+  queryParams: string
 }

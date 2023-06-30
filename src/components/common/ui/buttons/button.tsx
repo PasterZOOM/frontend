@@ -1,6 +1,4 @@
-import { FC } from 'react'
-
-import { DefaultButtonPropsType } from 'components/common/ui/buttons/defaultButtonType'
+import { ComponentPropsWithoutRef, FC } from 'react'
 
 export enum ButtonVariant {
   PRIMARY = 'primary',
@@ -8,7 +6,7 @@ export enum ButtonVariant {
   DELETE = 'delete',
 }
 
-type PropsType = DefaultButtonPropsType & {
+type PropsType = ComponentPropsWithoutRef<'button'> & {
   variant?: ButtonVariant
 }
 

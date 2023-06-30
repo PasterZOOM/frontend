@@ -32,7 +32,9 @@
   "carDocHolder": "Car-doc holder",
   "docHolder": "Doc holder",
   "watchStrap": "Watch strap",
-  "systemColorScheme": "System color scheme",
-  "light": "☀\uFE0F Light",
-  "dark": "\uD83C\uDF12 Dark"
+  "systemColorScheme": "\uD83C\uDF13 System color scheme",
+  "light": "\uD83C\uDF15 Light",
+  "dark": "\uD83C\uDF11 Dark",
+  "search": "search",
+  "searchPlaceholder": "Search"
 }

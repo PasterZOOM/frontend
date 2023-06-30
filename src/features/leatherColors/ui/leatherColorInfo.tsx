@@ -5,7 +5,7 @@ import { useTranslation } from 'next-i18next'
 import { RemoveButton } from 'components/common/ui/buttons/removeButton'
 import { EditableSpanInput } from 'components/common/ui/editable/editableSpanInput'
 import { EditableSpanSelect } from 'components/common/ui/editable/editableSpanSelect'
-import { PropertyWithUnderline } from 'components/common/ui/properties/propertyWithUnderline'
+import { PropertyInOneRow } from 'components/common/ui/properties/propertyInOneRow'
 import { TableItem } from 'components/common/ui/tabel/tableItem'
 import { PropertyPreviewWrapper } from 'components/common/wrappers/propertyPreviewWrapper'
 import { LeatherArticleModal } from 'features/leatherArticles/modals/leatherArticleModal'
@@ -29,27 +29,25 @@ export const LeatherColorInfo: FC<PropsType> = ({ className, color, onDeleteConf
     <div className={`${className ?? ''} flex w-full flex-col justify-between`}>
       <div>
         <div className="w-fit space-y-1">
-          <PropertyWithUnderline title="Идентификационный номер:">
-            {color._id}
-          </PropertyWithUnderline>
+          <PropertyInOneRow title="Идентификационный номер:">{color._id}</PropertyInOneRow>
 
-          <PropertyWithUnderline title="Название цвета:">
+          <PropertyInOneRow title="Название цвета:">
             <EditableSpanInput
               onChange={title => updateLeatherColor({ _id: color._id, params: { title } })}
             >
               {t(color.title)}
             </EditableSpanInput>
-          </PropertyWithUnderline>
+          </PropertyInOneRow>
 
-          <PropertyWithUnderline title="Код цвета:">
+          <PropertyInOneRow title="Код цвета:">
             <EditableSpanInput
               onChange={code => updateLeatherColor({ _id: color._id, params: { code } })}
             >
               {color.code}
             </EditableSpanInput>
-          </PropertyWithUnderline>
+          </PropertyInOneRow>
 
-          <PropertyWithUnderline title="Значение цвета:">
+          <PropertyInOneRow title="Значение цвета:">
             <EditableSpanSelect
               title={t(leatherColorsValues[color.value].title)}
               initialValue={color.value}
@@ -61,9 +59,9 @@ export const LeatherColorInfo: FC<PropsType> = ({ className, color, onDeleteConf
                 </option>
               ))}
             </EditableSpanSelect>
-          </PropertyWithUnderline>
+          </PropertyInOneRow>
 
-          <PropertyWithUnderline title="Артикул:">
+          <PropertyInOneRow title="Артикул:">
             <TableItem title={color.article.title}>
               {({ closeModal, isOpen }) => (
                 <LeatherArticleModal
@@ -73,18 +71,19 @@ export const LeatherColorInfo: FC<PropsType> = ({ className, color, onDeleteConf
                 />
               )}
             </TableItem>
-          </PropertyWithUnderline>
+          </PropertyInOneRow>
 
-          <PropertyWithUnderline title="Фото:">
+          <PropertyInOneRow title="Фото:">
             <EditableSpanInput
               onChange={photo => updateLeatherColor({ _id: color._id, params: { photo } })}
             >
               {color.photo}
             </EditableSpanInput>
-          </PropertyWithUnderline>
+          </PropertyInOneRow>
 
-          <PropertyPreviewWrapper title="Описание:" childrenClassName="ml-5">
+          <PropertyPreviewWrapper title="Описание:">
             <EditableSpanInput
+              className="ml-5"
               onChange={description =>
                 updateLeatherColor({ _id: color._id, params: { description } })
               }

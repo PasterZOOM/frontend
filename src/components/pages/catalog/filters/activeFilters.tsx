@@ -1,6 +1,7 @@
 import { FC, useEffect, useState } from 'react'
 
 import { useTranslation } from 'next-i18next'
+import { v1 } from 'uuid'
 
 import { EFilterKeys, GeneralFilterType } from 'components/pages/catalog/filters/filters'
 import { ELeatherColor } from 'enums/materials'
@@ -37,6 +38,7 @@ const ActiveFilters: FC<PropsType> = ({ className = '' }) => {
     [EFilterKeys.CATEGORIES]: productCategories,
     [EFilterKeys.LEATHERS]: articles,
     [EFilterKeys.LEATHER_COLORS]: leatherColorsValues,
+    [EFilterKeys.SEARCH]: { search: { _id: v1(), title: '', value: '' } },
   }
 
   useRefetchAfterChangeLocale(refetch)
@@ -55,18 +57,41 @@ const ActiveFilters: FC<PropsType> = ({ className = '' }) => {
   useEffect(() => {
     let newFilters: GeneralFilterType[] = []
 
-    const filtersArray = Object.entries(filtersInStore) as [EFilterKeys, string][]
+    const filtersArray = Object.entries(filtersInStore) as [
+      EFilterKeys,
+      string | string[] | undefined
+    ][]
 
     filtersArray.forEach(([filterKey, filterValue]) => {
-      const temp: GeneralFilterType[] = filterValue
-        .split(',')
-        .map(filter => ({ ...filters[filterKey][filter], filterKey }))
-        .filter(filter => !!filter.value)
+      let temp: GeneralFilterType[] = []
 
-      newFilters = [...newFilters, ...temp]
+      if (Array.isArray(filterValue)) {
+        temp = filterValue.map(filter => ({ ...filters[filterKey][filter], filterKey }))
+      } else if (filterKey === 'search') {
+        temp = [
+          {
+            ...filters[filterKey][filterKey],
+            value: filterValue ?? '',
+            title: filterValue ?? '',
+            filterKey,
+          },
+        ]
+      } else if (typeof filterValue === 'string') {
+        temp = [{ ...filters[filterKey][filterValue], filterKey }]
+      }
+      newFilters = [...newFilters, ...temp].filter(filter => !!filter.value)
     })
 
-    setActiveFilters(newFilters)
+    setActiveFilters(prevFilters => {
+      if (
+        newFilters.length !== prevFilters.length ||
+        !newFilters.every((filter, index) => filter === prevFilters[index])
+      ) {
+        return newFilters
+      }
+
+      return prevFilters
+    })
   }, [filtersInStore, articles])
 
   return (

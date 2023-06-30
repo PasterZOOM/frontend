@@ -15,11 +15,10 @@ export const CreateForm = <T extends FieldValues>({
   children,
   onSubmit,
   confirmModalChildren,
-  defaultValues,
-  resolver,
+  ...options
 }: PropsType<T>): ReactNode => {
   return (
-    <HookForm defaultValues={defaultValues} resolver={resolver}>
+    <HookForm {...options}>
       {methods => (
         <>
           {children}

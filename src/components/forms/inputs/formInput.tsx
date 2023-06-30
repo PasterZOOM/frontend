@@ -1,10 +1,8 @@
-import { ReactElement } from 'react'
+import { ComponentPropsWithoutRef, ReactElement } from 'react'
 
 import { Path, useFormContext } from 'react-hook-form'
 
-import { DefaultInputPropsType } from 'components/common/ui/inputs/defaultInputType'
-
-type PropsType<T> = DefaultInputPropsType & {
+type PropsType<T> = ComponentPropsWithoutRef<'input'> & {
   name: Path<T>
 }
 

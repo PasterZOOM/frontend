@@ -4,6 +4,7 @@ import { MainContainer } from 'components/common/containers/mainContainer'
 import FilterButtons from 'components/common/ui/buttons/filterButtons'
 import { CatalogFilters } from 'components/pages/catalog/filters/catalogFilters'
 import Products from 'components/pages/catalog/products'
+import { ProductSearch } from 'components/pages/productSearch'
 
 export const Catalog: FC = () => {
   const [isOpenFilters, setIsOpenFilters] = useState(false)
@@ -16,7 +17,10 @@ export const Catalog: FC = () => {
           setIsOpenFilters={setIsOpenFilters}
           className="col-span-2"
         />
-        <Products className="col-span-10" />
+        <div className="col-span-10 space-y-4">
+          <ProductSearch />
+          <Products />
+        </div>
       </MainContainer>
       {/* кнопки фильтров для мобильной версии */}
       <FilterButtons open={isOpenFilters} setOpen={setIsOpenFilters} />

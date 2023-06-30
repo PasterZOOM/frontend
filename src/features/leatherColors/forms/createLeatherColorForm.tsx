@@ -2,8 +2,8 @@ import { FC } from 'react'
 
 import { UseFormReturn } from 'react-hook-form'
 
-import { H5 } from 'components/common/ui/headers/h5'
 import { SelectItemType } from 'components/common/ui/selects/defaultSelectType'
+import { TypographyHeader } from 'components/common/ui/typographyHeader/typographyHeader'
 import { CreateForm } from 'components/forms/createForm'
 import { FormInputWithWrapper } from 'components/forms/inputs/formInputWithWrapper'
 import { FormSelectWithWrapper } from 'components/forms/selects/formSelectWithWrapper'
@@ -49,7 +49,9 @@ export const CreateLeatherColorForm: FC = () => {
 
   return (
     <>
-      <H5 className="mb-4 font-bold">Создать артикул</H5>
+      <TypographyHeader as="h5" className="mb-4 font-bold">
+        Создать артикул
+      </TypographyHeader>
       <CreateForm
         confirmModalChildren={LeatherColorCreatConfirmModalBody}
         onSubmit={onSubmit}

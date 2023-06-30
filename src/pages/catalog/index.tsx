@@ -12,17 +12,16 @@ import { BasicProductsAPI } from 'features/basicProducts/api/basicProductsAPI'
 import { LeatherArticlesAPI } from 'features/leatherArticles/api/leatherArticlesAPI'
 import { MainLayout } from 'layouts/mainLayout'
 import { NextPageWithLayout } from 'pages/_app'
+import { FiltersType } from 'store/useBasicProductsFilterStore'
 import {
   initialCurrencyState,
   selectSetActualRates,
   useCurrencyStore,
 } from 'store/useCurrencyStore'
 import { CostType } from 'types/costType'
-import { getQueryFilters } from 'utils/filters/getQueryFilters'
 
 export const getServerSideProps: GetServerSideProps = async ({ query, locale }) => {
   const rates: CostType = initialCurrencyState
-  const filters = getQueryFilters(query)
 
   await Promise.all(
     (Object.keys(ECost) as ECost[]).map(async costKey => {
@@ -43,7 +42,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query, locale }) 
 
   await queryClient.prefetchQuery({
     queryKey: [QUERY_KEY.GET_ALL_BASIC_PRODUCTS],
-    queryFn: () => BasicProductsAPI.getAll(filters),
+    queryFn: () => BasicProductsAPI.getAll(query as FiltersType),
   })
 
   return {

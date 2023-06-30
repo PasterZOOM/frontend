@@ -5,7 +5,7 @@ import { useTranslation } from 'next-i18next'
 import { RemoveButton } from 'components/common/ui/buttons/removeButton'
 import { EditableSpanInput } from 'components/common/ui/editable/editableSpanInput'
 import { EditableSpanSelect } from 'components/common/ui/editable/editableSpanSelect'
-import { PropertyWithUnderline } from 'components/common/ui/properties/propertyWithUnderline'
+import { PropertyInOneRow } from 'components/common/ui/properties/propertyInOneRow'
 import { SelectItemType } from 'components/common/ui/selects/defaultSelectType'
 import { PropertyPreviewWrapper } from 'components/common/wrappers/propertyPreviewWrapper'
 import { BasicProductType } from 'features/basicProducts/api/types'
@@ -39,19 +39,17 @@ export const BasicProductInfo: FC<PropsType> = ({ className, product, onDeleteCo
     <div className={`${className ?? ''} flex w-full flex-col justify-between`}>
       <div>
         <div className="space-y-1">
-          <PropertyWithUnderline title="Идентификационный номер:">
-            {product._id}
-          </PropertyWithUnderline>
+          <PropertyInOneRow title="Идентификационный номер:">{product._id}</PropertyInOneRow>
 
-          <PropertyWithUnderline title="Название изделия:">
+          <PropertyInOneRow title="Название изделия:">
             <EditableSpanInput
               onChange={title => updateBasicProduct({ _id: product._id, params: { title } })}
             >
               {product.title}
             </EditableSpanInput>
-          </PropertyWithUnderline>
+          </PropertyInOneRow>
 
-          <PropertyWithUnderline title="Кожа:">
+          <PropertyInOneRow title="Кожа:">
             <EditableSpanSelect
               title={product.leather.title}
               initialValue={product.leather._id}
@@ -63,18 +61,18 @@ export const BasicProductInfo: FC<PropsType> = ({ className, product, onDeleteCo
                 </option>
               ))}
             </EditableSpanSelect>
-          </PropertyWithUnderline>
+          </PropertyInOneRow>
 
-          <PropertyWithUnderline title="Стоимость:">
+          <PropertyInOneRow title="Стоимость:">
             <EditableSpanInput
               onChange={cost => updateBasicProduct({ _id: product._id, params: { cost: +cost } })}
               inputProps={{ type: 'number' }}
             >
               {product.cost.toString()}
             </EditableSpanInput>
-          </PropertyWithUnderline>
+          </PropertyInOneRow>
 
-          <PropertyWithUnderline title="Валюта:">
+          <PropertyInOneRow title="Валюта:">
             <EditableSpanSelect
               title={t(currencies[product.costCurrency].title)}
               initialValue={product.costCurrency}
@@ -88,9 +86,9 @@ export const BasicProductInfo: FC<PropsType> = ({ className, product, onDeleteCo
                 </option>
               ))}
             </EditableSpanSelect>
-          </PropertyWithUnderline>
+          </PropertyInOneRow>
 
-          <PropertyWithUnderline title="Категория:">
+          <PropertyInOneRow title="Категория:">
             <EditableSpanSelect
               title={t(productCategories[product.category].title)}
               initialValue={product.category}
@@ -102,17 +100,17 @@ export const BasicProductInfo: FC<PropsType> = ({ className, product, onDeleteCo
                 </option>
               ))}
             </EditableSpanSelect>
-          </PropertyWithUnderline>
+          </PropertyInOneRow>
 
-          <PropertyWithUnderline title="Размер:">
+          <PropertyInOneRow title="Размер:">
             <EditableSpanInput
               onChange={size => updateBasicProduct({ _id: product._id, params: { size } })}
             >
               {product.size}
             </EditableSpanInput>
-          </PropertyWithUnderline>
+          </PropertyInOneRow>
 
-          <PropertyWithUnderline title="Шаг пробойника:">
+          <PropertyInOneRow title="Шаг пробойника:">
             <EditableSpanSelect
               title={punchPatches[product.punchPitch].title}
               initialValue={product.punchPitch}
@@ -126,9 +124,9 @@ export const BasicProductInfo: FC<PropsType> = ({ className, product, onDeleteCo
                 </option>
               ))}
             </EditableSpanSelect>
-          </PropertyWithUnderline>
+          </PropertyInOneRow>
 
-          <PropertyWithUnderline title="Опубликовано:">
+          <PropertyInOneRow title="Опубликовано:">
             <input
               type="checkbox"
               checked={product.isPublished}
@@ -139,14 +137,11 @@ export const BasicProductInfo: FC<PropsType> = ({ className, product, onDeleteCo
                 })
               }
             />
-          </PropertyWithUnderline>
+          </PropertyInOneRow>
 
-          <PropertyPreviewWrapper
-            title="Назначения:"
-            wrapperClassName="mt-1"
-            childrenClassName="ml-5"
-          >
+          <PropertyPreviewWrapper title="Назначения:" className="mt-1">
             <EditableSpanSelect
+              className="ml-5"
               title={product.assignments.map(assignment => (
                 <div key={assignment} className="w-fit">
                   {t(assignment)}
@@ -166,8 +161,9 @@ export const BasicProductInfo: FC<PropsType> = ({ className, product, onDeleteCo
             </EditableSpanSelect>
           </PropertyPreviewWrapper>
 
-          <PropertyPreviewWrapper title="Описание:" childrenClassName="ml-5">
+          <PropertyPreviewWrapper title="Описание:">
             <EditableSpanInput
+              className="ml-5"
               onChange={description =>
                 updateBasicProduct({ _id: product._id, params: { description } })
               }

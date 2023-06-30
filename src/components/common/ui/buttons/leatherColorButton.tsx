@@ -1,8 +1,6 @@
-import { FC } from 'react'
+import { ComponentPropsWithoutRef, FC } from 'react'
 
-import { DefaultButtonPropsType } from 'components/common/ui/buttons/defaultButtonType'
-
-type PropsType = DefaultButtonPropsType & {
+type PropsType = ComponentPropsWithoutRef<'button'> & {
   isActive: boolean
   photo: string
 }

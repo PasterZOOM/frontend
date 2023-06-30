@@ -8,15 +8,15 @@ import { productCategoriesArray } from 'objects/products/productCategories'
 const selectItemsToFiltersTransformer: SelectItemsToFiltersTransformerFnType = (items, filterKey) =>
   items.map(item => ({ ...item, filterKey }))
 
-export type FilterType<T, K extends EFilterKeys> = {
+export type FilterType<K extends EFilterKeys, T> = {
   _id: string
   value: T
   title: string
   filterKey: K
 }
 export type GeneralFilterType = FilterType<
-  EProductAssignment | EProductCategory | ELeatherColor | string,
-  EFilterKeys
+  EFilterKeys,
+  EProductAssignment | EProductCategory | ELeatherColor | string
 >
 
 export enum EFilterKeys {
@@ -24,17 +24,18 @@ export enum EFilterKeys {
   CATEGORIES = 'categories',
   LEATHERS = 'leathers',
   LEATHER_COLORS = 'leatherColors',
+  SEARCH = 'search',
 }
 
-export const productCategoriesFilters = (): FilterType<EProductCategory, EFilterKeys>[] =>
+export const productCategoriesFilters = (): FilterType<EFilterKeys, EProductCategory>[] =>
   selectItemsToFiltersTransformer(productCategoriesArray(), EFilterKeys.CATEGORIES)
-export const productAssignmentsFilters = (): FilterType<EProductAssignment, EFilterKeys>[] =>
+export const productAssignmentsFilters = (): FilterType<EFilterKeys, EProductAssignment>[] =>
   selectItemsToFiltersTransformer(productAssignmentsArray(), EFilterKeys.ASSIGNMENTS)
 
-export const leatherColorFilters = (): FilterType<ELeatherColor, EFilterKeys>[] =>
+export const leatherColorFilters = (): FilterType<EFilterKeys, ELeatherColor>[] =>
   selectItemsToFiltersTransformer(leatherColorsArray(), EFilterKeys.LEATHER_COLORS)
 
 type SelectItemsToFiltersTransformerFnType = <T>(
   items: SelectItemType<T>[],
   filterKey: EFilterKeys
-) => FilterType<T, EFilterKeys>[]
+) => FilterType<EFilterKeys, T>[]

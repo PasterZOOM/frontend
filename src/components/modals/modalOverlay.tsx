@@ -28,7 +28,7 @@ export const ModalOverlay: FC<PropsType> = ({
 }) => {
   const containerRef = useRef<HTMLDivElement | null>(null)
 
-  const [container, setContainer] = useState<Element | null>(null)
+  const [container, setContainer] = useState<HTMLElement | null>(null)
 
   const onEscape: KeyboardEventHandler<HTMLDivElement> = e => {
     if (e.key === 'Escape' && onClose) {
@@ -49,7 +49,11 @@ export const ModalOverlay: FC<PropsType> = ({
   )
 
   useEffect(() => {
-    setContainer(document.querySelector(modalContainer))
+    const modalContainerElement = document.getElementById(modalContainer)
+
+    if (modalContainerElement) {
+      setContainer(modalContainerElement)
+    }
   }, [])
 
   useEffect(() => {
@@ -76,8 +80,10 @@ export const ModalOverlay: FC<PropsType> = ({
         document.body.style.overflow = 'auto'
         nextScript?.removeAttribute('inert')
       }
-      container?.lastElementChild?.removeAttribute('inert')
-      ;(container?.lastElementChild as HTMLElement)?.focus()
+      const lastChild = container?.lastElementChild as HTMLElement
+
+      lastChild?.removeAttribute('inert')
+      lastChild?.focus()
     }
   }, [isOpen, container])
 

@@ -1,6 +1,6 @@
 import { FC, ReactNode } from 'react'
 
-import { H5 } from 'components/common/ui/headers/h5'
+import { TypographyHeader } from 'components/common/ui/typographyHeader/typographyHeader'
 
 type PropsType = {
   title: string
@@ -13,7 +13,9 @@ export const CreateFormAndListWrapper: FC<PropsType> = ({ title, form, children,
   return (
     <div className={`${className || ''}`}>
       {form}
-      <H5 className="mb-2 mt-4 font-bold">{title}</H5>
+      <TypographyHeader as="h5" className="mb-2 mt-4 font-bold">
+        {title}
+      </TypographyHeader>
       <div className="ml-4">{children}</div>
     </div>
   )

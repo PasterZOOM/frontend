@@ -1,26 +1,26 @@
-import { ParsedUrlQuery } from 'querystring'
-
 import { EFilterKeys } from 'components/pages/catalog/filters/filters'
+import { FiltersType } from 'store/useBasicProductsFilterStore'
 
 export const getQueryFilters: GetFiltersFnType = query => {
-  const filters: Record<EFilterKeys, string> = {
-    assignments: '',
-    leathers: '',
-    leatherColors: '',
-    categories: '',
+  const filters: FiltersType = {
+    assignments: undefined,
+    leathers: undefined,
+    leatherColors: undefined,
+    categories: undefined,
+    search: undefined,
   }
 
   const filterKeys = Object.keys(filters) as EFilterKeys[]
 
   filterKeys.forEach(filterKey => {
-    if (query && Array.isArray(query[filterKey])) {
+    if (Array.isArray(query[filterKey])) {
       filters[filterKey] = (query[filterKey] as string[]).join()
     } else {
-      filters[filterKey] = (query[filterKey] as string) ?? ''
+      filters[filterKey] = query[filterKey] ?? ''
     }
   })
 
-  return filters
+  return query
 }
 
-type GetFiltersFnType = (query: ParsedUrlQuery) => Record<EFilterKeys, string>
+type GetFiltersFnType = (query: FiltersType) => FiltersType

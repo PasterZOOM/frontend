@@ -1,8 +1,6 @@
-import { FC } from 'react'
+import { ComponentPropsWithoutRef, FC } from 'react'
 
-import { DefaultInputPropsType } from 'components/common/ui/inputs/defaultInputType'
-
-type PropsType = DefaultInputPropsType
+type PropsType = ComponentPropsWithoutRef<'input'>
 export const Input: FC<PropsType> = ({ className, ...props }) => {
   return (
     <input

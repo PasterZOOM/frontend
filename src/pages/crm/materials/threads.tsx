@@ -1,7 +1,7 @@
 import { GetStaticProps } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
-import { H1 } from 'components/common/ui/headers/h1'
+import { TypographyHeader } from 'components/common/ui/typographyHeader/typographyHeader'
 import { useRedirect } from 'hooks/useRedirect'
 import { CrmLayout } from 'layouts/crmLayout'
 import { NextPageWithLayout } from 'pages/_app'
@@ -9,7 +9,11 @@ import { NextPageWithLayout } from 'pages/_app'
 const Threads: NextPageWithLayout = () => {
   useRedirect()
 
-  return <H1 className="text-center">Нитки</H1>
+  return (
+    <TypographyHeader as="h1" className="text-center">
+      Нитки
+    </TypographyHeader>
+  )
 }
 
 Threads.getLayout = CrmLayout
