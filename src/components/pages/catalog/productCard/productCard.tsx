@@ -35,7 +35,7 @@ export const ProductCard: FC<PropsType> = ({ defPrice = ECost.USD, product }) =>
 
   return (
     <div>
-      {product.photos[activeColor] ? (
+      {product.photos?.[activeColor] ? (
         <ProductCardPhoto photos={product.photos[activeColor]} />
       ) : (
         <NoPhoto />

@@ -11,7 +11,7 @@ export type BasicProductType = {
   costCurrency: ECost
   leather: { _id: string; title: string }
   description: string
-  photos: PhotosType
+  photos?: PhotosType
   punchPitch: EPunchPitch
   size: string
   title: string

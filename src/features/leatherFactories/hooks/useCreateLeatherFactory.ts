@@ -14,14 +14,12 @@ export const useCreateLeatherFactory: UseMutationHook<
   CreateLeatherFactoryParamsType
 > = options => {
   const queryClient = useQueryClient()
-  const factories = queryClient.getQueryData<Pick<LeatherFactoryType, '_id' | 'title'>[]>(
-    QUERY_KEY.GET_ALL_FACTORIES
-  )
+  const factories = queryClient.getQueryData<LeatherFactoryType[]>(QUERY_KEY.GET_ALL_FACTORIES)
 
   return useMutation({
     mutationFn: LeatherFactoriesAPI.create,
-    onSuccess: ({ _id, title }) => {
-      queryClient.setQueryData(QUERY_KEY.GET_ALL_FACTORIES, [...(factories ?? []), { _id, title }])
+    onSuccess: data => {
+      queryClient.setQueryData(QUERY_KEY.GET_ALL_FACTORIES, [...(factories ?? []), data])
     },
     ...options,
   })

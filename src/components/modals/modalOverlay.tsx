@@ -49,11 +49,7 @@ export const ModalOverlay: FC<PropsType> = ({
   )
 
   useEffect(() => {
-    const modalContainerElement = document.getElementById(modalContainer)
-
-    if (modalContainerElement) {
-      setContainer(modalContainerElement)
-    }
+    setContainer(document.querySelector(modalContainer) as HTMLElement)
   }, [])
 
   useEffect(() => {

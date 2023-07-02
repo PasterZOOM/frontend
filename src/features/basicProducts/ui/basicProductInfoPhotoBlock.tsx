@@ -51,7 +51,7 @@ export const BasicProductInfoPhotoBlock: FC<PropsType> = ({ product }) => {
       </div>
       {product.productColors.map(({ _id }) => (
         <div key={_id}>
-          {product.photos[_id] && (
+          {product.photos && product.photos[_id] && (
             <div>
               <span className="font-bold">
                 {leatherArticle?.colors.find(color => color._id === _id)?.title}

@@ -4,7 +4,7 @@ import { MainContainer } from 'components/common/containers/mainContainer'
 import FilterButtons from 'components/common/ui/buttons/filterButtons'
 import { CatalogFilters } from 'components/pages/catalog/filters/catalogFilters'
 import Products from 'components/pages/catalog/products'
-import { ProductSearch } from 'components/pages/productSearch'
+import { ProductSearch } from 'components/pages/catalog/productSearch'
 
 export const Catalog: FC = () => {
   const [isOpenFilters, setIsOpenFilters] = useState(false)

@@ -6,7 +6,7 @@ import { LeatherFactoryType } from 'features/leatherFactories/api/types'
 import { UseQueryAllHook } from 'types/hooks/useQueryHooks'
 
 export const useGetAllLeatherFactories: UseQueryAllHook<
-  Pick<LeatherFactoryType, '_id' | 'title'>[],
+  LeatherFactoryType[],
   unknown,
   [QUERY_KEY.GET_ALL_FACTORIES]
 > = options => {

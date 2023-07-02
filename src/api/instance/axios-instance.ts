@@ -8,7 +8,7 @@ instance.interceptors.request.use(req => {
   const request = { ...req }
 
   if (typeof window !== 'undefined') {
-    request.headers['Accept-Language'] = window.location.pathname.match(/^\/en\//) ? 'en' : 'ru'
+    request.headers['x-accept-language'] = window.location.pathname.match(/^\/en\//) ? 'en' : 'ru'
   }
 
   return request
