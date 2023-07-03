@@ -15,9 +15,7 @@ export const useCreateLeatherArticle: UseMutationHook<
   CreateType<CreateLeatherArticleParamsType>
 > = options => {
   const queryClient = useQueryClient()
-  const articles = queryClient.getQueryData<Pick<LeatherArticleType, '_id' | 'title'>[]>(
-    QUERY_KEY.GET_ALL_ARTICLES
-  )
+  const articles = queryClient.getQueryData<LeatherArticleType[]>(QUERY_KEY.GET_ALL_ARTICLES)
 
   return useMutation({
     mutationFn: LeatherArticlesAPI.create,

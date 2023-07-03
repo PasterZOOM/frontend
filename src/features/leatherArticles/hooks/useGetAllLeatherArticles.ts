@@ -6,7 +6,7 @@ import { LeatherArticleType } from 'features/leatherArticles/api/types'
 import { UseQueryAllHook } from 'types/hooks/useQueryHooks'
 
 export const useGetAllLeatherArticles: UseQueryAllHook<
-  Pick<LeatherArticleType, '_id' | 'title' | 'value'>[],
+  LeatherArticleType[],
   unknown,
   [QUERY_KEY.GET_ALL_ARTICLES]
 > = options => {

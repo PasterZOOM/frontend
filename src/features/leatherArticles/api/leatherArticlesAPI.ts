@@ -16,9 +16,7 @@ export const LeatherArticlesAPI = {
   },
 
   getAll: async () => {
-    const res = await instance.get<Pick<LeatherArticleType, '_id' | 'title' | 'value'>[]>(
-      `${BASE_URL}`
-    )
+    const res = await instance.get<LeatherArticleType[]>(`${BASE_URL}`)
 
     return res.data
   },

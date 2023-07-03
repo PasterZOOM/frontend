@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 
+import { useIsFirstRender } from 'hooks/useFirstRender'
 import { useLocale } from 'hooks/useLocale'
 
 /**
@@ -8,8 +9,9 @@ import { useLocale } from 'hooks/useLocale'
  */
 export const useRefetchAfterChangeLocale = (refetch: () => void): void => {
   const locale = useLocale()
+  const isFirstRender = useIsFirstRender()
 
   useEffect(() => {
-    ;(async () => refetch())()
+    ;(async () => !isFirstRender && refetch())()
   }, [locale])
 }
