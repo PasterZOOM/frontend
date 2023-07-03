@@ -17,11 +17,11 @@ type UseGetAllLeatherColorsType = (
   filter?: string[],
   options?: Omit<
     UseQueryOptions<
-      Pick<LeatherColorType, '_id' | 'title' | 'photo'>[],
+      LeatherColorType[],
       unknown,
-      Pick<LeatherColorType, '_id' | 'title' | 'photo'>[],
+      LeatherColorType[],
       (QUERY_KEY.GET_ALL_COLORS | string)[]
     >,
     'queryKey' | 'queryFn'
   >
-) => UseQueryResult<Pick<LeatherColorType, '_id' | 'title' | 'photo'>[]>
+) => UseQueryResult<LeatherColorType[]>

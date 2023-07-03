@@ -16,7 +16,7 @@ export const LeatherColorsAPI = {
   },
 
   getAll: async (filters?: string[]) => {
-    const res = await instance.get<Pick<LeatherColorType, '_id' | 'title' | 'photo'>[]>(BASE_URL, {
+    const res = await instance.get<LeatherColorType[]>(BASE_URL, {
       params: { _id: filters },
     })
 

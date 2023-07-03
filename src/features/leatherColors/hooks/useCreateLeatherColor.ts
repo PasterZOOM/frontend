@@ -12,9 +12,7 @@ export const useCreateLeatherColor: UseMutationHook<
   CreateType<CreateLeatherColorParamsType>
 > = options => {
   const queryClient = useQueryClient()
-  const colors = queryClient.getQueryData<Pick<LeatherColorType, '_id' | 'title' | 'photo'>[]>(
-    QUERY_KEY.GET_ALL_COLORS
-  )
+  const colors = queryClient.getQueryData<LeatherColorType[]>(QUERY_KEY.GET_ALL_COLORS)
 
   return useMutation({
     mutationFn: LeatherColorsAPI.create,
