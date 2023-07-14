@@ -42,6 +42,7 @@ export const Pagination: React.FC<PaginatorPropsType> = ({
       onPageChanged(inputValue)
     }
   }
+
   const buttons = useMemo(
     () => generatePaginationArray(currentPage, pagesCount, nextButtonsCount),
     [currentPage, pagesCount]

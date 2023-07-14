@@ -26,7 +26,7 @@ export const Catalog: FC = () => {
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}
             pageSize={10}
-            totalItemsCount={200}
+            totalItemsCount={100}
           />
         </div>
       </MainContainer>
