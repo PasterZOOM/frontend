@@ -14,8 +14,11 @@ export const useChangeMultipleQueryParams: UseChangeMultipleQueryParamsType = (
   const setQueryParams = async (value?: boolean): Promise<void> => {
     let oldValue: string[] | string | undefined = query[filterKey]
 
-    if (filterKey === 'search') {
+    if (filterKey === EFilterKeys.SEARCH) {
       oldValue = filterValue || []
+    } else if (filterKey === EFilterKeys.PAGE) {
+      if (filterValue === '1') oldValue = []
+      else oldValue = filterValue
     } else {
       if (Array.isArray(oldValue)) {
         if (value) {

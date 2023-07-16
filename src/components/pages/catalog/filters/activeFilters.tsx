@@ -39,6 +39,8 @@ const ActiveFilters: FC<PropsType> = ({ className = '' }) => {
     [EFilterKeys.LEATHERS]: articles,
     [EFilterKeys.LEATHER_COLORS]: leatherColorsValues,
     [EFilterKeys.SEARCH]: { search: { _id: v1(), title: '', value: '' } },
+    [EFilterKeys.PAGE]: { page: { _id: v1(), title: '', value: '' } },
+    [EFilterKeys.PAGE_SIZE]: { pageSize: { _id: v1(), title: '', value: '' } },
   }
 
   useRefetchAfterChangeLocale(refetch)
@@ -67,7 +69,7 @@ const ActiveFilters: FC<PropsType> = ({ className = '' }) => {
 
       if (Array.isArray(filterValue)) {
         temp = filterValue.map(filter => ({ ...filters[filterKey][filter], filterKey }))
-      } else if (filterKey === 'search') {
+      } else if (filterKey === EFilterKeys.SEARCH) {
         temp = [
           {
             ...filters[filterKey][filterKey],
@@ -76,6 +78,8 @@ const ActiveFilters: FC<PropsType> = ({ className = '' }) => {
             filterKey,
           },
         ]
+      } else if (filterKey === EFilterKeys.PAGE || filterKey === EFilterKeys.PAGE_SIZE) {
+        temp = []
       } else if (typeof filterValue === 'string') {
         temp = [{ ...filters[filterKey][filterValue], filterKey }]
       }

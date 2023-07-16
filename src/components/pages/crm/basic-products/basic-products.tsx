@@ -27,7 +27,7 @@ export const BasicProducts: FC = () => {
         className="w-full"
       >
         {products &&
-          products.map(product => (
+          products.data.map(product => (
             <TableItem key={product._id} title={product.title}>
               {({ closeModal, isOpen }) => (
                 <BasicProductModal closeModal={closeModal} isOpen={isOpen} id={product._id} />

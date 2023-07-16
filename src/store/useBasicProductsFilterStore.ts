@@ -9,6 +9,8 @@ const initialState: FilterStateType = {
     leatherColors: undefined,
     categories: undefined,
     search: undefined,
+    page: '1',
+    pageSize: '9',
   },
 }
 
@@ -22,7 +24,7 @@ export const useBasicProductsFilterStore = create<StoreType>((set, get) => ({
 }))
 
 export const selectSetFilter: SetFilterSelectorType = store => store.setFilter
-export const selectFilters: SetFiltersSelectorType = store => store.filters
+export const selectFilters: FiltersSelectorType = store => store.filters
 export const selectFilter: FilterSelectorType = filterKey => store => store.filters[filterKey]
 
 export type FiltersType = Record<EFilterKeys, string | string[] | undefined>
@@ -35,7 +37,7 @@ type StoreType = FilterStateType & {
   setFilter: SetFilterType
 }
 type SetFilterSelectorType = (store: StoreType) => SetFilterType
-type SetFiltersSelectorType = (store: StoreType) => FiltersType
+type FiltersSelectorType = (store: StoreType) => FiltersType
 type FilterSelectorType = (
   filterKey: EFilterKeys
 ) => (store: StoreType) => string | string[] | undefined
