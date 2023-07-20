@@ -6,7 +6,7 @@ import { TypographyHeader } from 'components/common/ui/typographyHeader/typograp
 import { CreateForm } from 'components/forms/createForm'
 import { FormInputWithWrapper } from 'components/forms/inputs/formInputWithWrapper'
 import { FormSelectWithWrapper } from 'components/forms/selects/formSelectWithWrapper'
-import { ECountry } from 'enums/countries'
+import { ECountry } from 'enums/country'
 import { CreateLeatherFactoryFormType } from 'features/leatherFactories/forms/type'
 import { resolver } from 'features/leatherFactories/forms/validation.sheme'
 import { useCreateLeatherFactory } from 'features/leatherFactories/hooks/useCreateLeatherFactory'

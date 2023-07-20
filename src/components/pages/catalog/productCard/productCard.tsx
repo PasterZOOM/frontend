@@ -10,24 +10,33 @@ import { ProductCardPhoto } from 'components/pages/catalog/productCard/productCa
 import { ECost } from 'enums/cost'
 import { BasicProductType } from 'features/basicProducts/api/types'
 import { useGetPriceInCurrency } from 'hooks/useGetPriceInCurrency'
-import { useGetPriceInCurrentCurrency } from 'hooks/useGetPriceInCurrentCurrency'
+import { selectRate, useCurrencyRatesStore } from 'store/useCurrencyRatesStore'
 import { selectCurrentCurrency, useUserSettings } from 'store/useUserSettings'
 import { cutText } from 'utils/text/cutText'
 
 type PropsType = {
   product: BasicProductType
-  defPrice?: ECost
+  defCurrency?: ECost
 }
 
-export const ProductCard: FC<PropsType> = ({ defPrice = ECost.USD, product }) => {
+export const ProductCard: FC<PropsType> = ({ defCurrency = ECost.USD, product }) => {
   const { t } = useTranslation('catalog')
 
   const [activeColor, setActiveColor] = useState(product.productColors[0]?._id ?? '')
 
   const currentCurrency = useUserSettings(selectCurrentCurrency)
+  const rate = useCurrencyRatesStore(selectRate(currentCurrency))
 
-  const priceInCurrentCurrency = useGetPriceInCurrentCurrency(product.cost, product.costCurrency)
-  const priceInDefaultCurrency = useGetPriceInCurrency(product.cost, product.costCurrency, defPrice)
+  const currentCurrencyPrice = useGetPriceInCurrency(
+    product.cost,
+    product.costCurrency,
+    currentCurrency
+  )
+  const defaultCurrencyPrice = useGetPriceInCurrency(
+    product.cost,
+    product.costCurrency,
+    defCurrency
+  )
 
   useEffect(() => {
     setActiveColor(product.productColors[0]?._id ?? '')
@@ -60,13 +69,11 @@ export const ProductCard: FC<PropsType> = ({ defPrice = ECost.USD, product }) =>
         )}
         <div className="mt-3 cursor-default">
           <div className="flex gap-2 pb-3 text-custom-lg font-light">
-            {priceInCurrentCurrency && <div>{priceInCurrentCurrency}</div>}
-            {(defPrice !== currentCurrency || !priceInCurrentCurrency) && (
-              <div className="opacity-60">{priceInDefaultCurrency}</div>
+            <div>{currentCurrencyPrice.title}</div>
+            {defCurrency !== currentCurrency && !!rate && (
+              <div className="opacity-60">{defaultCurrencyPrice.title}</div>
             )}
-            {!priceInCurrentCurrency && (
-              <div className="text-sm text-red-500">Не удалось загрузить курсы валют</div>
-            )}
+            {!rate && <div className="text-sm text-red-500">Не удалось загрузить курсы валют</div>}
           </div>
           <Link href={`/products/${product.category}/${product._id}`}>
             <Button>{t('more')}</Button>

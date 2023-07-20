@@ -1,15 +1,33 @@
 import { ECost } from 'enums/cost'
 import { CurrencySign } from 'enums/currencySign'
-import { useCurrencyStore } from 'store/useCurrencyStore'
+import {
+  selectGetCurrentPrice,
+  selectRate,
+  useCurrencyRatesStore,
+} from 'store/useCurrencyRatesStore'
 
 export const useGetPriceInCurrency: UseGetPriceInCurrencyType = (
   price,
   priceCurrency,
-  currency
-): string => {
-  const currentPrise = useCurrencyStore(state => (price * state[currency]) / state[priceCurrency])
+  targetCurrency
+) => {
+  const rate = useCurrencyRatesStore(selectRate(priceCurrency))
 
-  return `${CurrencySign[currency]}${currentPrise.toFixed()}`
+  const targetPrise = useCurrencyRatesStore(
+    selectGetCurrentPrice({ price, priceCurrency, targetCurrency })
+  )
+
+  return {
+    price: targetPrise,
+    currency: targetCurrency,
+    title: rate
+      ? `${CurrencySign[targetCurrency]}${targetPrise.toFixed()}`
+      : `${CurrencySign[priceCurrency]}${price.toFixed()}`,
+  }
 }
 
-type UseGetPriceInCurrencyType = (price: number, priceCurrency: ECost, currency: ECost) => string
+type UseGetPriceInCurrencyType = (
+  price: number,
+  priceCurrency: ECost,
+  currentCurrency: ECost
+) => { price: number; currency: ECost; title: string | undefined }

@@ -1,7 +1,7 @@
 import { v1 } from 'uuid'
 
 import { SelectItemType } from 'components/common/ui/selects/defaultSelectType'
-import { ECountry } from 'enums/countries'
+import { ECountry } from 'enums/country'
 import { ObjectForSelectType } from 'types/objectForSelectType'
 
 export const countryValues: ObjectForSelectType<ECountry> = {

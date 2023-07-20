@@ -14,21 +14,23 @@ import { MainLayout } from 'layouts/mainLayout'
 import { NextPageWithLayout } from 'pages/_app'
 import { FiltersType } from 'store/useBasicProductsFilterStore'
 import {
-  initialCurrencyState,
+  initialCurrencyRatesState,
   selectSetActualRates,
-  useCurrencyStore,
-} from 'store/useCurrencyStore'
+  useCurrencyRatesStore,
+} from 'store/useCurrencyRatesStore'
 import { CostType } from 'types/costType'
 
 export const getServerSideProps: GetServerSideProps = async ({ query, locale }) => {
-  const rates: CostType = initialCurrencyState
+  const rates: CostType = initialCurrencyRatesState
 
   await Promise.all(
     (Object.keys(ECost) as ECost[]).map(async costKey => {
-      if (costKey !== ECost.BYN) {
-        const rate = await CurrencyAPI.getRate(costKey)
+      const rate = await CurrencyAPI.getRate(costKey)
 
-        rates[costKey] = +(rate.Cur_Scale / rate.Cur_OfficialRate)
+      if (costKey !== ECost.BYN) {
+        rates[costKey] = rate.Cur_Scale / rate.Cur_OfficialRate
+      } else {
+        rates[costKey] = rate.Cur_OfficialRate
       }
     })
   )
@@ -59,7 +61,7 @@ type PropsType = {
 }
 
 const CatalogPage: NextPageWithLayout<PropsType> = ({ rates }: PropsType) => {
-  const setActualRates = useCurrencyStore(selectSetActualRates)
+  const setActualRates = useCurrencyRatesStore(selectSetActualRates)
 
   useEffect(() => {
     setActualRates(rates)
