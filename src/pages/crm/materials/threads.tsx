@@ -1,4 +1,5 @@
 import { GetStaticProps } from 'next'
+import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import { TypographyHeader } from 'components/common/ui/typographyHeader/typographyHeader'
@@ -8,10 +9,11 @@ import { NextPageWithLayout } from 'pages/_app'
 
 const Threads: NextPageWithLayout = () => {
   useRedirect()
+  const { t } = useTranslation()
 
   return (
     <TypographyHeader as="h1" className="text-center">
-      Нитки
+      {t('Нитки')}
     </TypographyHeader>
   )
 }

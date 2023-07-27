@@ -41,12 +41,12 @@ type UserSettingsActionsType = {
   setUserStatus: SetUserStatusType
 }
 type UserSettingsStateType = {
-  userStatus: UserStatus
   currentCurrency: ECost
   theme: ETheme
+  userStatus: UserStatus
 }
 
-type StoreType = UserSettingsStateType & UserSettingsActionsType
+type StoreType = UserSettingsActionsType & UserSettingsStateType
 
 type UserStatusSelectorType = (store: StoreType) => UserStatus
 type CurrentCurrencySelectorType = (store: StoreType) => ECost

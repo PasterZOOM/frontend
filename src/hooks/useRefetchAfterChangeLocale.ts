@@ -13,5 +13,5 @@ export const useRefetchAfterChangeLocale = (refetch: () => void): void => {
 
   useEffect(() => {
     ;(async () => !isFirstRender && refetch())()
-  }, [locale])
+  }, [isFirstRender, locale, refetch])
 }

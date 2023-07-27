@@ -49,8 +49,8 @@ export const LeatherColorInfo: FC<PropsType> = ({ className, color, onDeleteConf
 
           <PropertyInOneRow title="Значение цвета:">
             <EditableSpanSelect
-              title={t(leatherColorsValues[color.value].title)}
               initialValue={color.value}
+              title={t(leatherColorsValues[color.value].title)}
               onChange={value => updateLeatherColor({ _id: color._id, params: { value } })}
             >
               {leatherColorsArray().map(leatherColor => (
@@ -66,8 +66,8 @@ export const LeatherColorInfo: FC<PropsType> = ({ className, color, onDeleteConf
               {({ closeModal, isOpen }) => (
                 <LeatherArticleModal
                   closeModal={closeModal}
-                  isOpen={isOpen}
                   id={color.article._id}
+                  isOpen={isOpen}
                 />
               )}
             </TableItem>
@@ -94,9 +94,9 @@ export const LeatherColorInfo: FC<PropsType> = ({ className, color, onDeleteConf
         </div>
       </div>
       <RemoveButton
-        onConfirm={onDeleteConfirm}
         className="mt-3"
         modalChildren={<LeatherColorRemoveConfirmModalBody color={color} />}
+        onConfirm={onDeleteConfirm}
       />
     </div>
   )

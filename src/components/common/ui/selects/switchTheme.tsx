@@ -19,9 +19,9 @@ const SwitchTheme: FC = () => {
   return (
     <Select
       activeItem={activeTheme}
-      setActiveItem={setActiveTheme}
-      items={themesArray()}
       elementToLabel={ThemeElement}
+      items={themesArray()}
+      setActiveItem={setActiveTheme}
     />
   )
 }

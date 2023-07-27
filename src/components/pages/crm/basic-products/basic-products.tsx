@@ -1,5 +1,7 @@
 import { FC } from 'react'
 
+import { useTranslation } from 'next-i18next'
+
 import { TableItem } from 'components/common/ui/tabel/tableItem'
 import { TypographyHeader } from 'components/common/ui/typographyHeader/typographyHeader'
 import { CreateFormAndListWrapper } from 'components/common/wrappers/createFormAndListWrapper'
@@ -11,6 +13,7 @@ import { useRefetchAfterChangeLocale } from 'hooks/useRefetchAfterChangeLocale'
 
 export const BasicProducts: FC = () => {
   useRedirect()
+  const { t } = useTranslation()
 
   const { data: products, refetch } = useGetAllBasicProducts()
 
@@ -19,18 +22,18 @@ export const BasicProducts: FC = () => {
   return (
     <>
       <TypographyHeader as="h1" className="mb-6 text-center">
-        Базовые изделия
+        {t('Базовые изделия')}
       </TypographyHeader>
       <CreateFormAndListWrapper
-        title="Список базовых изделий:"
-        form={<CreateBasicProductForm />}
         className="w-full"
+        form={<CreateBasicProductForm />}
+        title="Список базовых изделий:"
       >
         {products &&
           products.data.map(product => (
             <TableItem key={product._id} title={product.title}>
               {({ closeModal, isOpen }) => (
-                <BasicProductModal closeModal={closeModal} isOpen={isOpen} id={product._id} />
+                <BasicProductModal closeModal={closeModal} id={product._id} isOpen={isOpen} />
               )}
             </TableItem>
           ))}

@@ -33,7 +33,7 @@ export const ColorFilterCheckbox: FC<PropsType> = ({ color, filterKey }) => {
         return ''
       }
     }
-  }, [color])
+  }, [color.value])
 
   return (
     <div
@@ -43,10 +43,10 @@ export const ColorFilterCheckbox: FC<PropsType> = ({ color, filterKey }) => {
     >
       <input
         ref={checkboxRef}
-        type="checkbox"
         checked={checked}
-        onChange={e => setQueryParams(e.currentTarget.checked)}
         className="h-full w-full cursor-pointer opacity-0"
+        type="checkbox"
+        onChange={e => setQueryParams(e.currentTarget.checked)}
       />
     </div>
   )

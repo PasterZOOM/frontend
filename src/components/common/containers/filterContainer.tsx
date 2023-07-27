@@ -15,7 +15,7 @@ const FilterContainer: FC<PropsType> = ({ children, className = '', open, setOpe
 
   useEffect(() => {
     if (width > DESKTOP) setOpen(false)
-  }, [width])
+  }, [setOpen, width])
 
   return (
     <div

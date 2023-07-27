@@ -2,9 +2,9 @@ import { ReactElement, ReactNode } from 'react'
 
 type HeaderComponent = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
 type PropsType<T extends HeaderComponent> = {
-  className?: string
-  children: ReactNode
   as: T
+  children: ReactNode
+  className?: string
 }
 
 const textSize = {

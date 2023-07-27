@@ -1,9 +1,9 @@
 import { v1 } from 'uuid'
 
 type PageButtonType = {
-  value: number
   id: string
   title: string
+  value: number
 }
 const LEFT_DOP_BUTTONS = 2
 const RIGHT_DOP_BUTTONS = 2

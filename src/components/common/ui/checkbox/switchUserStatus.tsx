@@ -1,11 +1,14 @@
 import { FC, useEffect, useState } from 'react'
 
+import { useTranslation } from 'next-i18next'
+
 import { UserStatus } from 'enums/userStatus'
 import { selectSetUserStatus, selectUserStatus, useUserSettings } from 'store/useUserSettings'
 
 export const SwitchUserStatus: FC = () => {
   const userStatus = useUserSettings(selectUserStatus)
   const setUserStatus = useUserSettings(selectSetUserStatus)
+  const { t } = useTranslation()
 
   const [checked, setChecked] = useState(userStatus === UserStatus.ADMIN)
 
@@ -15,15 +18,15 @@ export const SwitchUserStatus: FC = () => {
     } else {
       setUserStatus(UserStatus.NONE)
     }
-  }, [checked])
+  }, [checked, setUserStatus])
 
   return (
-    <label htmlFor="isAdminCheckbox" className="cursor-pointer">
-      <span className="m-2">Админ</span>
+    <label className="cursor-pointer" htmlFor="isAdminCheckbox">
+      <span className="m-2">{t('Админ')}</span>
       <input
+        checked={checked}
         id="isAdminCheckbox"
         type="checkbox"
-        checked={checked}
         onChange={e => setChecked(e.currentTarget.checked)}
       />
     </label>

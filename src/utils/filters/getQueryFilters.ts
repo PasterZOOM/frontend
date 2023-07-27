@@ -2,13 +2,7 @@ import { EFilterKeys } from 'components/pages/catalog/filters/filters'
 import { FiltersType } from 'store/useBasicProductsFilterStore'
 
 export const getQueryFilters: GetFiltersFnType = query => {
-  const filters: FiltersType = {
-    assignments: undefined,
-    leathers: undefined,
-    leatherColors: undefined,
-    categories: undefined,
-    search: undefined,
-  }
+  const filters: Partial<FiltersType> = {}
 
   const filterKeys = Object.keys(filters) as EFilterKeys[]
 

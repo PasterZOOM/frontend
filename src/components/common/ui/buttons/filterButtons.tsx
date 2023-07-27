@@ -1,5 +1,7 @@
 import { FC } from 'react'
 
+import { useTranslation } from 'next-i18next'
+
 import { Button, ButtonVariant } from 'components/common/ui/buttons/button'
 import { useClearAllQueryParams } from 'hooks/queryParams/useClearAllQueryParams'
 
@@ -10,6 +12,7 @@ interface FilterButtonsProps {
 
 const FilterButtons: FC<FilterButtonsProps> = ({ open, setOpen }) => {
   const clearAll = useClearAllQueryParams()
+  const { t } = useTranslation()
 
   return (
     <div
@@ -20,15 +23,15 @@ const FilterButtons: FC<FilterButtonsProps> = ({ open, setOpen }) => {
       {open ? (
         <>
           <Button className="w-full" variant={ButtonVariant.SECONDARY} onClick={clearAll}>
-            Очистить
+            {t('Очистить')}
           </Button>
           <Button className="w-full" onClick={() => setOpen(false)}>
-            Применить
+            {t('Применить')}
           </Button>
         </>
       ) : (
-        <Button onClick={() => setOpen(true)} className="w-full">
-          Фильтра
+        <Button className="w-full" onClick={() => setOpen(true)}>
+          {t('Фильтра')}
         </Button>
       )}
     </div>

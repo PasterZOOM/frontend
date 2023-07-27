@@ -1,6 +1,6 @@
 export enum ECreateLeatherArticleParams {
-  FACTORY_ID = 'factoryId',
   DESCRIPTION = 'description',
+  FACTORY_ID = 'factoryId',
   TITLE = 'title',
   VALUE = 'value',
 }

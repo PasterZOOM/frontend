@@ -15,8 +15,8 @@ import { selectCurrentCurrency, useUserSettings } from 'store/useUserSettings'
 import { cutText } from 'utils/text/cutText'
 
 type PropsType = {
-  product: BasicProductType
   defCurrency?: ECost
+  product: BasicProductType
 }
 
 export const ProductCard: FC<PropsType> = ({ defCurrency = ECost.USD, product }) => {
@@ -60,8 +60,8 @@ export const ProductCard: FC<PropsType> = ({ defCurrency = ECost.USD, product })
             {product.productColors.map(color => (
               <LeatherColorButton
                 key={color._id}
-                photo={color.photo}
                 isActive={color._id === activeColor}
+                photo={color.photo}
                 onClick={() => setActiveColor(color._id)}
               />
             ))}
@@ -73,7 +73,9 @@ export const ProductCard: FC<PropsType> = ({ defCurrency = ECost.USD, product })
             {defCurrency !== currentCurrency && !!rate && (
               <div className="opacity-60">{defaultCurrencyPrice.title}</div>
             )}
-            {!rate && <div className="text-sm text-red-500">Не удалось загрузить курсы валют</div>}
+            {!rate && (
+              <div className="text-sm text-red-500">{t('Не удалось загрузить курсы валют')}</div>
+            )}
           </div>
           <Link href={`/products/${product.category}/${product._id}`}>
             <Button>{t('more')}</Button>

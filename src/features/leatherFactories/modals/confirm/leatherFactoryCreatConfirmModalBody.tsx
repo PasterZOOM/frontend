@@ -14,9 +14,15 @@ export const LeatherFactoryCreatConfirmModalBody: FC<PropsType> = ({ values }) =
 
   return (
     <div className="space-y-2">
-      <div>Вы уверены что хотите создать фабрику {values.title}?</div>
-      <div>Страна: {t(countryValues[values.country].title)}</div>
-      <div>Описание: {values.description}</div>
+      <div>
+        {t('Вы уверены что хотите создать фабрику')} {values.title}?
+      </div>
+      <div>
+        {t('Страна')}: {t(countryValues[values.country].title)}
+      </div>
+      <div>
+        {t('Описание')}: {values.description}
+      </div>
     </div>
   )
 }

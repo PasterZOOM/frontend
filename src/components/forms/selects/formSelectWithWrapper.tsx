@@ -11,10 +11,10 @@ import { FormSelect } from 'components/forms/selects/formSelect'
 import { ETheme } from 'enums/theme'
 
 type PropsType<T> = {
+  items: SelectItemType<ETheme | string[] | string>[]
   name: Path<T>
   selectProps?: DefaultSelectPropsType
   title: string
-  items: SelectItemType<string | string[] | ETheme>[]
 }
 
 export const FormSelectWithWrapper = <T,>({
@@ -24,7 +24,7 @@ export const FormSelectWithWrapper = <T,>({
   items,
 }: PropsType<T>): ReactElement => {
   return (
-    <FieldWrapper title={title} name={name}>
+    <FieldWrapper name={name} title={title}>
       <FormSelect {...selectProps} items={items} name={name} />
     </FieldWrapper>
   )

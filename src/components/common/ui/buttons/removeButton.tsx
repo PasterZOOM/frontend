@@ -1,13 +1,15 @@
 import { FC, ReactNode } from 'react'
 
+import { useTranslation } from 'next-i18next'
+
 import { Button, ButtonVariant } from 'components/common/ui/buttons/button'
 import { ConfirmModalLayout } from 'components/modals/confirmModalLayout'
 import { useModal } from 'hooks/useModal'
 
 type PropsType = {
+  className?: string
   modalChildren: ReactNode
   onConfirm: () => void
-  className?: string
 }
 
 export const RemoveButton: FC<PropsType> = ({
@@ -16,6 +18,7 @@ export const RemoveButton: FC<PropsType> = ({
   className,
 }) => {
   const { openModal, closeModal, isOpen } = useModal()
+  const { t } = useTranslation()
 
   const onConfirm = async (): Promise<void> => {
     await onDeleteConfirm()
@@ -24,8 +27,8 @@ export const RemoveButton: FC<PropsType> = ({
 
   return (
     <>
-      <Button variant={ButtonVariant.DELETE} onClick={openModal} className={className || ''}>
-        удалить
+      <Button className={className || ''} variant={ButtonVariant.DELETE} onClick={openModal}>
+        {t('удалить')}
       </Button>
       <ConfirmModalLayout
         closeModal={closeModal}

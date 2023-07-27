@@ -12,8 +12,8 @@ import { LeatherColorModal } from 'features/leatherColors/modals/leatherColorMod
 import { LeatherFactoryModal } from 'features/leatherFactories/modals/leatherFactoryModal'
 
 type PropsType = {
-  className?: string
   article: LeatherArticleType
+  className?: string
   onDeleteConfirm: () => void
 }
 
@@ -47,8 +47,8 @@ export const LeatherArticleInfo: FC<PropsType> = ({ className, article, onDelete
               {({ closeModal, isOpen }) => (
                 <LeatherFactoryModal
                   closeModal={closeModal}
-                  isOpen={isOpen}
                   id={article.factory._id}
+                  isOpen={isOpen}
                 />
               )}
             </TableItem>
@@ -66,12 +66,12 @@ export const LeatherArticleInfo: FC<PropsType> = ({ className, article, onDelete
           </PropertyPreviewWrapper>
         </div>
 
-        <PropertyPreviewWrapper title="Цвета:" className="mt-1">
+        <PropertyPreviewWrapper className="mt-1" title="Цвета:">
           <div className="ml-5">
             {article.colors.map(color => (
               <TableItem key={color._id} title={color.title}>
                 {({ closeModal, isOpen }) => (
-                  <LeatherColorModal closeModal={closeModal} isOpen={isOpen} id={color._id} />
+                  <LeatherColorModal closeModal={closeModal} id={color._id} isOpen={isOpen} />
                 )}
               </TableItem>
             ))}
@@ -79,9 +79,9 @@ export const LeatherArticleInfo: FC<PropsType> = ({ className, article, onDelete
         </PropertyPreviewWrapper>
       </div>
       <RemoveButton
-        onConfirm={onDeleteConfirm}
         className="mt-3"
         modalChildren={<LeatherArticleRemoveConfirmModalBody article={article} />}
+        onConfirm={onDeleteConfirm}
       />
     </div>
   )

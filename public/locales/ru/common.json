@@ -36,5 +36,6 @@
   "light": "\uD83C\uDF15 Светлая",
   "dark": "\uD83C\uDF11 Темная",
   "search": "Искать",
-  "searchPlaceholder": "Поиск"
+  "searchPlaceholder": "Поиск",
+  "---пусто---": "---пусто---"
 }

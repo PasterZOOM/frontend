@@ -1,5 +1,7 @@
 import { FC } from 'react'
 
+import { useTranslation } from 'next-i18next'
+
 import { TypographyHeader } from 'components/common/ui/typographyHeader/typographyHeader'
 import { LeatherArticles } from 'features/leatherArticles/ui/leatherArticles'
 import { LeatherColors } from 'features/leatherColors/ui/leatherColors'
@@ -8,11 +10,12 @@ import { useRedirect } from 'hooks/useRedirect'
 
 export const Leather: FC = () => {
   useRedirect()
+  const { t } = useTranslation()
 
   return (
     <>
-      <TypographyHeader className="mb-6 text-center" as="h1">
-        Кожа
+      <TypographyHeader as="h1" className="mb-6 text-center">
+        {t('Кожа')}
       </TypographyHeader>
 
       <div className="flex gap-4">

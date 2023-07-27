@@ -13,7 +13,7 @@ import {
 import { UseQueryAllHook } from 'types/hooks/useQueryHooks'
 
 export const useGetAllBasicProducts: UseQueryAllHook<
-  { totalCount: number; data: BasicProductType[] },
+  { data: BasicProductType[]; totalCount: number },
   unknown,
   [QUERY_KEY.GET_ALL_BASIC_PRODUCTS, FiltersType]
 > = options => {

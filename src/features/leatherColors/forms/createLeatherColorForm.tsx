@@ -1,5 +1,6 @@
 import { FC } from 'react'
 
+import { useTranslation } from 'next-i18next'
 import { UseFormReturn } from 'react-hook-form'
 
 import { SelectItemType } from 'components/common/ui/selects/defaultSelectType'
@@ -29,6 +30,7 @@ const defaultValues: FormValues = {
 export const CreateLeatherColorForm: FC = () => {
   const { data } = useGetAllLeatherArticles()
   const { mutateAsync: createColor } = useCreateLeatherColor()
+  const { t } = useTranslation()
 
   const articles: SelectItemType[] = (data ?? []).map(({ _id, title }) => ({
     _id,
@@ -50,29 +52,29 @@ export const CreateLeatherColorForm: FC = () => {
   return (
     <>
       <TypographyHeader as="h5" className="mb-4 font-bold">
-        Создать артикул
+        {t('Создать артикул')}
       </TypographyHeader>
       <CreateForm
         confirmModalChildren={LeatherColorCreatConfirmModalBody}
-        onSubmit={onSubmit}
         defaultValues={defaultValues}
         resolver={resolver}
+        onSubmit={onSubmit}
       >
-        <FormSelectWithWrapper<FormValues> title="Артикул:" name="articleId" items={articles} />
+        <FormSelectWithWrapper<FormValues> items={articles} name="articleId" title="Артикул:" />
 
         <FormSelectWithWrapper<FormValues>
-          title="Значение цвета:"
-          name="value"
           items={leatherColorsArray()}
+          name="value"
+          title="Значение цвета:"
         />
 
-        <FormInputWithWrapper<FormValues> title="Название цвета:" name="title" />
+        <FormInputWithWrapper<FormValues> name="title" title="Название цвета:" />
 
-        <FormInputWithWrapper<FormValues> title="Код цвета:" name="code" />
+        <FormInputWithWrapper<FormValues> name="code" title="Код цвета:" />
 
-        <FormInputWithWrapper<FormValues> title="Фото цвета:" name="photo" />
+        <FormInputWithWrapper<FormValues> name="photo" title="Фото цвета:" />
 
-        <FormInputWithWrapper<FormValues> title="Описание:" name="description" />
+        <FormInputWithWrapper<FormValues> name="description" title="Описание:" />
       </CreateForm>
     </>
   )

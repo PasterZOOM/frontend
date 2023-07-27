@@ -30,10 +30,12 @@ const ActiveFilters: FC<PropsType> = ({ className = '' }) => {
 
   const filtersInStore = useBasicProductsFilterStore(selectFilters)
 
-  const filters: Record<
-    EFilterKeys,
-    ObjectForSelectType<EProductAssignment | EProductCategory | ELeatherColor | string>
-  > = {
+  const [filters] = useState<
+    Record<
+      EFilterKeys,
+      ObjectForSelectType<ELeatherColor | EProductAssignment | EProductCategory | string>
+    >
+  >({
     [EFilterKeys.ASSIGNMENTS]: productAssignments,
     [EFilterKeys.CATEGORIES]: productCategories,
     [EFilterKeys.LEATHERS]: articles,
@@ -41,7 +43,7 @@ const ActiveFilters: FC<PropsType> = ({ className = '' }) => {
     [EFilterKeys.SEARCH]: { search: { _id: v1(), title: '', value: '' } },
     [EFilterKeys.PAGE]: { page: { _id: v1(), title: '', value: '' } },
     [EFilterKeys.PAGE_SIZE]: { pageSize: { _id: v1(), title: '', value: '' } },
-  }
+  })
 
   useRefetchAfterChangeLocale(refetch)
 
@@ -61,7 +63,7 @@ const ActiveFilters: FC<PropsType> = ({ className = '' }) => {
 
     const filtersArray = Object.entries(filtersInStore) as [
       EFilterKeys,
-      string | string[] | undefined
+      string[] | string | undefined,
     ][]
 
     filtersArray.forEach(([filterKey, filterValue]) => {
@@ -96,15 +98,15 @@ const ActiveFilters: FC<PropsType> = ({ className = '' }) => {
 
       return prevFilters
     })
-  }, [filtersInStore, articles])
+  }, [filtersInStore, articles, filters])
 
   return (
     <div className={`flex flex-wrap gap-2 ${className} ${activeFilters.length ? '' : 'hidden'}`}>
       {activeFilters.map(activeFilter => (
         <button
-          type="button"
-          className="h-fit rounded-full border border-anthracite-gray px-2 dark:border-light-gray"
           key={activeFilter._id}
+          className="h-fit rounded-full border border-anthracite-gray px-2 dark:border-light-gray"
+          type="button"
           onClick={() => removeQueryParam(activeFilter.filterKey, activeFilter.value)}
         >
           {t(activeFilter.title, { ns: 'common' })}
@@ -112,9 +114,9 @@ const ActiveFilters: FC<PropsType> = ({ className = '' }) => {
       ))}
       {activeFilters.length && (
         <button
+          className="h-fit rounded-full border border-anthracite-gray px-2 dark:border-light-gray"
           type="button"
           onClick={clearAll}
-          className="h-fit rounded-full border border-anthracite-gray px-2 dark:border-light-gray"
         >
           {t('clear-all')}
         </button>

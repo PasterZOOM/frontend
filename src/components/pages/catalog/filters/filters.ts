@@ -10,13 +10,13 @@ const selectItemsToFiltersTransformer: SelectItemsToFiltersTransformerFnType = (
 
 export type FilterType<K extends EFilterKeys, T> = {
   _id: string
-  value: T
-  title: string
   filterKey: K
+  title: string
+  value: T
 }
 export type GeneralFilterType = FilterType<
   EFilterKeys,
-  EProductAssignment | EProductCategory | ELeatherColor | string
+  ELeatherColor | EProductAssignment | EProductCategory | string
 >
 
 export enum EFilterKeys {
@@ -24,9 +24,9 @@ export enum EFilterKeys {
   CATEGORIES = 'categories',
   LEATHERS = 'leathers',
   LEATHER_COLORS = 'leatherColors',
-  SEARCH = 'search',
   PAGE = 'page',
   PAGE_SIZE = 'pageSize',
+  SEARCH = 'search',
 }
 
 export const productCategoriesFilters = (): FilterType<EFilterKeys, EProductCategory>[] =>

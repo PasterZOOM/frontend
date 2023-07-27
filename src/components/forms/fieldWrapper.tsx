@@ -14,7 +14,7 @@ export const FieldWrapper: FC<PropsType> = ({ title, children, name }) => {
   } = useFormContext()
 
   return (
-    <label htmlFor={name} className="block">
+    <label className="block" htmlFor={name}>
       {title}
       {children}
       {errors[name] && <div className="text-red-500">{errors[name]?.message?.toString()}</div>}

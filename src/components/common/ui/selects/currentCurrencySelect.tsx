@@ -27,18 +27,18 @@ export const CurrentCurrencySelect: FC = () => {
 
   useEffect(() => {
     setCurrentCurrency(activeCurrency.value)
-  }, [activeCurrency])
+  }, [activeCurrency, setCurrentCurrency])
 
   useEffect(() => {
     setActiveCurrency(currencies[currentCurrency])
-  }, [locale])
+  }, [currentCurrency, locale])
 
   return (
     <Select
       activeItem={activeCurrency}
-      setActiveItem={setActiveCurrency}
-      items={currencyArray()}
       elementToLabel={CurrencyElement}
+      items={currencyArray()}
+      setActiveItem={setActiveCurrency}
     />
   )
 }

@@ -30,4 +30,4 @@ type UseGetPriceInCurrencyType = (
   price: number,
   priceCurrency: ECost,
   currentCurrency: ECost
-) => { price: number; currency: ECost; title: string | undefined }
+) => { currency: ECost; price: number; title: string | undefined }

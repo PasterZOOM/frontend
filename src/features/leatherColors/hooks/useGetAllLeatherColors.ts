@@ -22,6 +22,6 @@ type UseGetAllLeatherColorsType = (
       LeatherColorType[],
       (QUERY_KEY.GET_ALL_COLORS | string)[]
     >,
-    'queryKey' | 'queryFn'
+    'queryFn' | 'queryKey'
   >
 ) => UseQueryResult<LeatherColorType[]>

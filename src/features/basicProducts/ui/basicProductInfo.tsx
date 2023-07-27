@@ -20,8 +20,8 @@ import { productCategories, productCategoriesArray } from 'objects/products/prod
 
 type PropsType = {
   className?: string
-  product: BasicProductType
   onDeleteConfirm: () => void
+  product: BasicProductType
 }
 
 export const BasicProductInfo: FC<PropsType> = ({ className, product, onDeleteConfirm }) => {
@@ -51,8 +51,8 @@ export const BasicProductInfo: FC<PropsType> = ({ className, product, onDeleteCo
 
           <PropertyInOneRow title="Кожа:">
             <EditableSpanSelect
-              title={product.leather.title}
               initialValue={product.leather._id}
+              title={product.leather.title}
               onChange={leather => updateBasicProduct({ _id: product._id, params: { leather } })}
             >
               {articles.map(article => (
@@ -65,8 +65,8 @@ export const BasicProductInfo: FC<PropsType> = ({ className, product, onDeleteCo
 
           <PropertyInOneRow title="Стоимость:">
             <EditableSpanInput
-              onChange={cost => updateBasicProduct({ _id: product._id, params: { cost: +cost } })}
               inputProps={{ type: 'number' }}
+              onChange={cost => updateBasicProduct({ _id: product._id, params: { cost: +cost } })}
             >
               {product.cost.toString()}
             </EditableSpanInput>
@@ -74,8 +74,8 @@ export const BasicProductInfo: FC<PropsType> = ({ className, product, onDeleteCo
 
           <PropertyInOneRow title="Валюта:">
             <EditableSpanSelect
-              title={t(currencies[product.costCurrency].title)}
               initialValue={product.costCurrency}
+              title={t(currencies[product.costCurrency].title)}
               onChange={costCurrency =>
                 updateBasicProduct({ _id: product._id, params: { costCurrency } })
               }
@@ -90,8 +90,8 @@ export const BasicProductInfo: FC<PropsType> = ({ className, product, onDeleteCo
 
           <PropertyInOneRow title="Категория:">
             <EditableSpanSelect
-              title={t(productCategories[product.category].title)}
               initialValue={product.category}
+              title={t(productCategories[product.category].title)}
               onChange={category => updateBasicProduct({ _id: product._id, params: { category } })}
             >
               {productCategoriesArray().map(category => (
@@ -112,8 +112,8 @@ export const BasicProductInfo: FC<PropsType> = ({ className, product, onDeleteCo
 
           <PropertyInOneRow title="Шаг пробойника:">
             <EditableSpanSelect
-              title={punchPatches[product.punchPitch].title}
               initialValue={product.punchPitch}
+              title={punchPatches[product.punchPitch].title}
               onChange={punchPitch =>
                 updateBasicProduct({ _id: product._id, params: { punchPitch } })
               }
@@ -128,8 +128,8 @@ export const BasicProductInfo: FC<PropsType> = ({ className, product, onDeleteCo
 
           <PropertyInOneRow title="Опубликовано:">
             <input
-              type="checkbox"
               checked={product.isPublished}
+              type="checkbox"
               onChange={({ currentTarget }) =>
                 updateBasicProduct({
                   _id: product._id,
@@ -139,19 +139,19 @@ export const BasicProductInfo: FC<PropsType> = ({ className, product, onDeleteCo
             />
           </PropertyInOneRow>
 
-          <PropertyPreviewWrapper title="Назначения:" className="mt-1">
+          <PropertyPreviewWrapper className="mt-1" title="Назначения:">
             <EditableSpanSelect
               className="ml-5"
+              initialValue={product.assignments}
+              selectProps={{ multiple: true }}
               title={product.assignments.map(assignment => (
                 <div key={assignment} className="w-fit">
                   {t(assignment)}
                 </div>
               ))}
-              initialValue={product.assignments}
               onChange={assignments =>
                 updateBasicProduct({ _id: product._id, params: { assignments } })
               }
-              selectProps={{ multiple: true }}
             >
               {productAssignmentsArray().map(assignment => (
                 <option key={assignment._id} value={assignment.value}>
@@ -176,9 +176,9 @@ export const BasicProductInfo: FC<PropsType> = ({ className, product, onDeleteCo
         </div>
       </div>
       <RemoveButton
-        onConfirm={onDeleteConfirm}
         className="mt-3"
         modalChildren={<BasicProductRemoveConfirmModalBody basicProduct={product} />}
+        onConfirm={onDeleteConfirm}
       />
     </div>
   )

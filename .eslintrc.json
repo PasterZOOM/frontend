@@ -14,8 +14,8 @@
     "plugin:prettier/recommended",
     "plugin:react-hooks/recommended",
     "plugin:jsx-a11y/recommended",
-    "prettier",
-    "plugin:@typescript-eslint/recommended"
+      "prettier",
+      "plugin:@typescript-eslint/recommended"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -31,7 +31,11 @@
     "prettier",
     "react-hooks",
     "jsx-a11y",
-    "@typescript-eslint"
+    "i18next",
+    "sort-destructure-keys",
+    "sort-keys-fix",
+    "@typescript-eslint",
+    "typescript-sort-keys"
   ],
   "overrides": [
     {
@@ -48,9 +52,13 @@
     }
   ],
   "rules": {
-    "no-shadow": "off",
     "import/extensions": "off",
     "import/prefer-default-export": "off",
+    "no-debugger": "warn",
+    "no-shadow": "off",
+    "class-methods-use-this": "off",
+    "no-unused-vars": "off",
+    "no-underscore-dangle": "off",
     "import/order": [
       "error",
       {
@@ -78,8 +86,6 @@
         ]
       }
     ],
-    "no-unused-vars": "off",
-    "no-underscore-dangle": "off",
     "no-magic-numbers": [
       "error",
       {
@@ -120,13 +126,6 @@
         ]
       }
     ],
-    "no-debugger": "warn",
-    "prettier/prettier": [
-      "error",
-      {
-        "endOfLine": "auto"
-      }
-    ],
     "no-use-before-define": "off",
     "no-param-reassign": [
       "error",
@@ -139,8 +138,15 @@
       }
     ],
     "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "off",
+    "react-hooks/exhaustive-deps":"warn",
     "react/require-default-props": "off",
+    "react/function-component-definition": [
+      2,
+      {
+        "namedComponents": "arrow-function",
+        "unnamedComponents": "arrow-function"
+      }
+    ],
     "react/jsx-filename-extension": [
       1,
       {
@@ -150,23 +156,31 @@
         ]
       }
     ],
-    "react/function-component-definition": [
-      2,
-      {
-        "namedComponents": "arrow-function",
-        "unnamedComponents": "arrow-function"
-      }
-    ],
     "react/jsx-props-no-spreading": [
       0,
       {
         "html": "ignore"
       }
     ],
+    "react/jsx-sort-props": [
+      "error",
+      {
+        "callbacksLast": true,
+        "shorthandFirst": true,
+        "multiline": "last",
+        "ignoreCase": false,
+        "noSortAlphabetically": false,
+        "reservedFirst": true
+      }
+    ],
     "@typescript-eslint/no-extra-semi": "off",
     "@typescript-eslint/no-shadow": "warn",
+    "@typescript-eslint/sort-type-constituents": "error",
     "@typescript-eslint/no-unused-vars": [
-      "error"
+      "warn",
+      {
+        "argsIgnorePattern": "^_"
+      }
     ],
     "@typescript-eslint/explicit-function-return-type": [
       "error",
@@ -174,7 +188,20 @@
         "allowExpressions": true
       }
     ],
-    "class-methods-use-this": "off"
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
+    ],
+    "typescript-sort-keys/interface": "error",
+    "typescript-sort-keys/string-enum": "error",
+    "i18next/no-literal-string": [
+      "error",
+      {
+        "markupOnly": true
+      }
+    ]
   },
   "settings": {
     "import/resolver": {

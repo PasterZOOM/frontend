@@ -7,9 +7,9 @@ import { LeatherColorInfo } from 'features/leatherColors/ui/leatherColorInfo'
 import { useRefetchAfterChangeLocale } from 'hooks/useRefetchAfterChangeLocale'
 
 type PropsType = {
-  isOpen: boolean
   closeModal: () => void
   id: string
+  isOpen: boolean
 }
 
 export const LeatherColorModal: FC<PropsType> = ({ isOpen, closeModal, id }) => {
@@ -29,8 +29,8 @@ export const LeatherColorModal: FC<PropsType> = ({ isOpen, closeModal, id }) => 
 
   return (
     <ModalLayout
-      isOpen={isOpen}
       closeModal={closeModal}
+      isOpen={isOpen}
       title={`Информация об артикле ${color?.title}`}
     >
       {color && (

@@ -14,11 +14,11 @@ export const LeatherColorButton: FC<PropsType> = ({ isActive, onClick, photo }) 
     >
       <button
         type="button"
-        onClick={onClick}
         className={`relative h-full w-full rounded-full border border-anthracite-gray dark:border-white ${photo} ${
           // TODO: заменить бэкграунд на картинку
           isActive ? 'cursor-default' : ''
         }`}
+        onClick={onClick}
       />
     </div>
   )

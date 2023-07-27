@@ -4,8 +4,8 @@ export enum ECost {
   EUR = 'EUR',
   GBP = 'GBP',
   JPY = 'JPY',
+  PLN = 'PLN',
   RUB = 'RUB',
   UAH = 'UAH',
   USD = 'USD',
-  PLN = 'PLN',
 }

@@ -3,9 +3,9 @@ import { FC, ReactNode, useCallback, useEffect, useRef } from 'react'
 import useResizeObserver, { ObservedSize } from 'use-resize-observer'
 
 interface AccordionProps {
-  open: boolean
   children: ReactNode
   className?: string
+  open: boolean
 }
 
 const Accordion: FC<AccordionProps> = ({ open, children, className = '' }) => {
@@ -46,7 +46,7 @@ const Accordion: FC<AccordionProps> = ({ open, children, className = '' }) => {
   }, [open])
 
   return (
-    <div className={`${className}`}>
+    <div className={className}>
       <div
         ref={accordionRef}
         {...{ open }}

@@ -8,9 +8,9 @@ import { LeatherFactoryInfo } from 'features/leatherFactories/ui/leatherFactoryI
 import { useRefetchAfterChangeLocale } from 'hooks/useRefetchAfterChangeLocale'
 
 type PropsType = {
-  isOpen: boolean
   closeModal: () => void
   id: string
+  isOpen: boolean
 }
 
 export const LeatherFactoryModal: FC<PropsType> = ({ isOpen, closeModal, id }) => {
@@ -30,8 +30,8 @@ export const LeatherFactoryModal: FC<PropsType> = ({ isOpen, closeModal, id }) =
 
   return (
     <ModalLayout
-      isOpen={isOpen}
       closeModal={closeModal}
+      isOpen={isOpen}
       title={`Информация о фабрике ${factory?.title}`}
     >
       {factory && (

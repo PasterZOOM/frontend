@@ -2,6 +2,7 @@ import { FC, useEffect, useState } from 'react'
 
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { useTranslation } from 'next-i18next'
 
 import { LanguageSwitch } from 'components/common/header/languageSwitch'
 import { SwitchUserStatus } from 'components/common/ui/checkbox/switchUserStatus'
@@ -10,6 +11,7 @@ import SwitchTheme from 'components/common/ui/selects/switchTheme'
 
 const Header: FC = () => {
   const router = useRouter()
+  const { t } = useTranslation()
   const [isVisible, setIsVisible] = useState(true)
 
   useEffect(() => {
@@ -39,7 +41,7 @@ const Header: FC = () => {
       {router.pathname.includes('catalog') ? (
         <Link href="/crm">CRM</Link>
       ) : (
-        <Link href="/catalog">Catalog</Link>
+        <Link href="/catalog">{t('Каталог')}</Link>
       )}
       <CurrentCurrencySelect />
       <SwitchTheme />

@@ -16,10 +16,10 @@ export const Search: FC<PropsType> = ({
 
   return (
     <input
+      className={`w-full rounded border px-4 py-2 dark:border-gray-200 dark:bg-anthracite-gray ${className}`}
+      placeholder={t('searchPlaceholder') ?? placeholder}
       type="search"
       value={value}
-      placeholder={t('searchPlaceholder') ?? placeholder}
-      className={`w-full rounded border px-4 py-2 dark:border-gray-200 dark:bg-anthracite-gray ${className}`}
       {...rest}
     />
   )

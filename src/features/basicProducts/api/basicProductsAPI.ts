@@ -18,7 +18,7 @@ export const BasicProductsAPI = {
   },
 
   getAll: async (filters?: FiltersType) => {
-    const res = await instance.get<{ totalCount: number; data: BasicProductType[] }>(
+    const res = await instance.get<{ data: BasicProductType[]; totalCount: number }>(
       `${BASE_URL}`,
       {
         params: { ...filters },

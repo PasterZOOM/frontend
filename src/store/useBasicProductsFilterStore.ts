@@ -27,7 +27,7 @@ export const selectSetFilter: SetFilterSelectorType = store => store.setFilter
 export const selectFilters: FiltersSelectorType = store => store.filters
 export const selectFilter: FilterSelectorType = filterKey => store => store.filters[filterKey]
 
-export type FiltersType = Record<EFilterKeys, string | string[] | undefined>
+export type FiltersType = Record<EFilterKeys, string[] | string | undefined>
 
 type FilterStateType = {
   filters: FiltersType
@@ -40,4 +40,4 @@ type SetFilterSelectorType = (store: StoreType) => SetFilterType
 type FiltersSelectorType = (store: StoreType) => FiltersType
 type FilterSelectorType = (
   filterKey: EFilterKeys
-) => (store: StoreType) => string | string[] | undefined
+) => (store: StoreType) => string[] | string | undefined

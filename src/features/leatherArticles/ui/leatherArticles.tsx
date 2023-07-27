@@ -18,15 +18,15 @@ export const LeatherArticles: FC<PropsType> = ({ className }) => {
 
   return (
     <CreateFormAndListWrapper
-      title="Список артикулов:"
-      form={<CreateLeatherArticleForm />}
       className={className}
+      form={<CreateLeatherArticleForm />}
+      title="Список артикулов:"
     >
       {articles &&
         articles.map(article => (
           <TableItem key={article._id} title={article.title}>
             {({ closeModal, isOpen }) => (
-              <LeatherArticleModal closeModal={closeModal} isOpen={isOpen} id={article._id} />
+              <LeatherArticleModal closeModal={closeModal} id={article._id} isOpen={isOpen} />
             )}
           </TableItem>
         ))}

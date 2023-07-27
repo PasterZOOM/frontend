@@ -4,8 +4,8 @@ import Accordion from 'components/common/ui/accordion/accordion'
 
 interface AccordionWrapperProps {
   children: ReactNode
+  classes?: { children?: string; title?: string; wrapper?: string }
   title: string
-  classes?: { wrapper?: string; title?: string; children?: string }
 }
 
 const AccordionWrapper: FC<AccordionWrapperProps> = ({
@@ -18,11 +18,11 @@ const AccordionWrapper: FC<AccordionWrapperProps> = ({
   return (
     <div className={`border-b border-light-gray dark:border-gray-500 ${classes.wrapper}`}>
       <div
-        tabIndex={0}
-        role="button"
-        onKeyDown={e => e.key === 'Enter' && setOpen(!open)}
-        onClick={() => setOpen(!open)}
         className={`${classes.title} flex cursor-pointer items-center justify-between px-4 py-5 md:px-6 xl:px-0`}
+        role="button"
+        tabIndex={0}
+        onClick={() => setOpen(!open)}
+        onKeyDown={e => e.key === 'Enter' && setOpen(!open)}
       >
         <h2 className="uppercase">{title}</h2>
         <div>{open ? '-' : '+'}</div>

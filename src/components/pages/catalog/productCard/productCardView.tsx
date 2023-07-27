@@ -30,18 +30,18 @@ export const ProductCardView: FC<PropsType> = ({ photos }) => {
 
   return (
     <div
+      className={`flex aspect-square w-full justify-between ${activePhoto.url}`}
       role="button"
       tabIndex={0}
       onClick={openModal}
       onKeyDown={e => e.key === 'Enter' && openModal()}
-      className={`flex aspect-square w-full justify-between ${activePhoto.url}`}
     >
       {photos.map(photo => (
         <div
           key={photo._id}
-          onMouseMove={() => mouseMoveHandler(photo)}
-          onMouseLeave={leaveMouseHandler}
           className="relative flex w-full cursor-zoom-in justify-center"
+          onMouseLeave={leaveMouseHandler}
+          onMouseMove={() => mouseMoveHandler(photo)}
         >
           <div
             className={`absolute bottom-1 h-1 w-11/12 rounded-full bg-white dark:bg-anthracite-gray ${
@@ -51,10 +51,10 @@ export const ProductCardView: FC<PropsType> = ({ photos }) => {
         </div>
       ))}
       <MagnifiedViewModal
+        activePhoto={activePhoto}
         closeModal={closeModal}
         isOpen={isOpen}
         photos={photos}
-        activePhoto={activePhoto}
       />
     </div>
   )

@@ -39,8 +39,8 @@ type GetCurrentPriceParamsType = {
 type SetActualRatesType = (actualRates: CostType) => void
 type GetCurrentPriceType = (params: GetCurrentPriceParamsType) => number
 type StoreType = CostType & {
-  setActualRates: SetActualRatesType
   getCurrentPrice: GetCurrentPriceType
+  setActualRates: SetActualRatesType
 }
 type RateSelectorType = (currency: ECost) => (store: StoreType) => number
 type GetCurrentPriceSelectorType = (

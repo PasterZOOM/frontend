@@ -24,7 +24,7 @@ export const useChangeFilterParams: UseChangeFilterParamsType = filterKey => {
         setFilter(filterKey, '')
       }
     }
-  }, [query[filterKey]])
+  }, [filter, filterKey, query, setFilter]) // TODO: ВОЗМОЖНЫЙ БАГ
 }
 
 type UseChangeFilterParamsType = (filterKey: EFilterKeys) => void

@@ -15,11 +15,11 @@ export const useSwitchTheme: UseSwitchThemeType = () => {
 
   useEffect(() => {
     setTheme(activeTheme.value as ETheme)
-  }, [activeTheme])
+  }, [activeTheme, setTheme])
 
   useEffect(() => {
     setActiveTheme(themes[theme])
-  }, [locale])
+  }, [locale, theme])
 
   useEffect(() => {
     if (

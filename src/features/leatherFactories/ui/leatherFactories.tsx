@@ -17,15 +17,15 @@ export const LeatherFactories: FC<PropsType> = ({ className }) => {
 
   return (
     <CreateFormAndListWrapper
-      title="Список фабрик:"
-      form={<CreateLeatherFactoryForm />}
       className={className}
+      form={<CreateLeatherFactoryForm />}
+      title="Список фабрик:"
     >
       {factories &&
         factories.map(factory => (
           <TableItem key={factory._id} title={factory.title}>
             {({ closeModal, isOpen }) => (
-              <LeatherFactoryModal closeModal={closeModal} isOpen={isOpen} id={factory._id} />
+              <LeatherFactoryModal closeModal={closeModal} id={factory._id} isOpen={isOpen} />
             )}
           </TableItem>
         ))}

@@ -64,6 +64,6 @@ type UseChangeMultipleQueryParamsType = (
   filterKey: EFilterKeys,
   filterValue: string
 ) => {
-  setQueryParams: (value?: boolean) => void
   queryParams: string
+  setQueryParams: (value?: boolean) => void
 }

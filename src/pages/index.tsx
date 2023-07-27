@@ -7,7 +7,7 @@ const Page: FC = () => {
 
   useEffect(() => {
     router.push('/catalog').then()
-  }, [])
+  }, [router]) // TODO: ВОЗМОЖНЫЙ БАГ
 
   return null
 }

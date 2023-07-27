@@ -9,14 +9,14 @@ export type BasicProductType = {
   category: EProductCategory
   cost: number
   costCurrency: ECost
-  leather: { _id: string; title: string }
   description: string
+  isPublished: boolean
+  leather: { _id: string; title: string }
   photos?: PhotosType
+  productColors: { _id: string; photo: string; title: string }[]
   punchPitch: EPunchPitch
   size: string
   title: string
-  isPublished: boolean
-  productColors: { _id: string; title: string; photo: string }[]
 }
 
 export type CreateBasicProductParamsType = {
@@ -35,4 +35,4 @@ export type UpdateBasicProductParamsType = Partial<
   CreateBasicProductParamsType & { isPublished: boolean }
 >
 
-export type RemoveBasicProductPhotoParamsType = { productId: string; photoId: string }
+export type RemoveBasicProductPhotoParamsType = { photoId: string; productId: string }

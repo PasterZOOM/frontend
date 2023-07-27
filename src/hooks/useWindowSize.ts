@@ -26,7 +26,7 @@ export const useWindowSize: UseWindowSizeType = () => {
 }
 
 type Size = {
-  width: number
   height: number
+  width: number
 }
 type UseWindowSizeType = () => Size

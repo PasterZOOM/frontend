@@ -2,9 +2,9 @@ import { ReactElement, ReactNode } from 'react'
 
 import { FieldValues, FormProvider, useForm, UseFormProps, UseFormReturn } from 'react-hook-form'
 
-type PropsType<T extends FieldValues> = {
+type PropsType<T extends FieldValues> = UseFormProps<T> & {
   children: (methods: UseFormReturn<T>) => ReactNode
-} & UseFormProps<T>
+}
 
 export const HookForm = <T extends FieldValues>({
   children,

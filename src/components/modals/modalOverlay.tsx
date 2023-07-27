@@ -15,10 +15,10 @@ import ReactDOM from 'react-dom'
 import { getNumberOfPenultimateElement } from 'utils/arrays/getNumberOfPenultimateElement'
 
 type PropsType = {
-  isOpen: boolean
   children: ReactNode
-  onClose?: () => void
+  isOpen: boolean
   modalContainer?: string
+  onClose?: () => void
 }
 export const ModalOverlay: FC<PropsType> = ({
   children,
@@ -50,7 +50,7 @@ export const ModalOverlay: FC<PropsType> = ({
 
   useEffect(() => {
     setContainer(document.querySelector(modalContainer) as HTMLElement)
-  }, [])
+  }, [modalContainer])
 
   useEffect(() => {
     const length = container?.childNodes.length || 0
@@ -89,12 +89,12 @@ export const ModalOverlay: FC<PropsType> = ({
     <>
       {ReactDOM.createPortal(
         <div
-          onKeyDown={onEscape}
-          aria-hidden
-          tabIndex={-1}
           ref={containerRef}
-          onClick={handleClick}
+          aria-hidden
           className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-black bg-opacity-50"
+          tabIndex={-1}
+          onClick={handleClick}
+          onKeyDown={onEscape}
         >
           {children}
         </div>,

@@ -1,6 +1,6 @@
 import { FC } from 'react'
 
-import { Keyboard, Pagination } from 'swiper'
+import { Keyboard, Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 import { ProductPhotoType } from 'types/productType'
@@ -13,8 +13,8 @@ export const ProductCardViewMobile: FC<PropsType> = ({ photos }) => {
   return (
     <Swiper
       pagination
-      modules={[Pagination, Keyboard]}
       className="mySwiper flex aspect-square w-full justify-between"
+      modules={[Pagination, Keyboard]}
     >
       {photos.map(photo => {
         return (

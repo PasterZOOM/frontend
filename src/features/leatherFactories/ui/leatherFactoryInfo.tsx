@@ -40,8 +40,8 @@ export const LeatherFactoryInfo: FC<PropsType> = ({ className, factory, onDelete
 
         <PropertyInOneRow title="Страна:">
           <EditableSpanSelect
-            title={t(countryValues[factory.country].title)}
             initialValue={factory.country}
+            title={t(countryValues[factory.country].title)}
             onChange={country => updateLeatherFactory({ _id: factory._id, params: { country } })}
           >
             {countriesArray().map(country => (
@@ -63,12 +63,12 @@ export const LeatherFactoryInfo: FC<PropsType> = ({ className, factory, onDelete
           </EditableSpanInput>
         </PropertyInOneRow>
 
-        <PropertyPreviewWrapper title="Артикулы:" className="mt-1">
+        <PropertyPreviewWrapper className="mt-1" title="Артикулы:">
           <div className="ml-5">
             {factory.articles.map(article => (
               <TableItem key={article._id} title={article.title}>
                 {({ closeModal, isOpen }) => (
-                  <LeatherArticleModal closeModal={closeModal} isOpen={isOpen} id={article._id} />
+                  <LeatherArticleModal closeModal={closeModal} id={article._id} isOpen={isOpen} />
                 )}
               </TableItem>
             ))}
@@ -77,9 +77,9 @@ export const LeatherFactoryInfo: FC<PropsType> = ({ className, factory, onDelete
       </div>
 
       <RemoveButton
-        onConfirm={onDeleteConfirm}
         className="mt-3"
         modalChildren={<LeatherFactoryRemoveConfirmModalBody factory={factory} />}
+        onConfirm={onDeleteConfirm}
       />
     </div>
   )

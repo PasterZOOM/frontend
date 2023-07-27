@@ -15,7 +15,7 @@ export const useRedirect: UseRedirectType = () => {
         await router.push('/')
       }
     })()
-  }, [])
+  }, [router, userStatus]) // TODO: ВОЗМОЖНЫЙ БАГ
 }
 
 type UseRedirectType = () => void

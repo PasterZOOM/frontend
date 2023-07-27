@@ -1,5 +1,6 @@
 import { FC } from 'react'
 
+import { useTranslation } from 'next-i18next'
 import { UseFormReturn } from 'react-hook-form'
 
 import { SelectItemType } from 'components/common/ui/selects/defaultSelectType'
@@ -24,6 +25,7 @@ const defaultValues: FormValues = {
 export const CreateLeatherArticleForm: FC = () => {
   const { data } = useGetAllLeatherFactories()
   const { mutateAsync: createArticle } = useCreateLeatherArticle()
+  const { t } = useTranslation()
 
   const factories: SelectItemType[] = (data ?? []).map(({ _id, title }) => ({
     _id,
@@ -45,21 +47,21 @@ export const CreateLeatherArticleForm: FC = () => {
   return (
     <>
       <TypographyHeader as="h5" className="mb-4 font-bold">
-        Создать артикул
+        {t('Создать артикул')}
       </TypographyHeader>
       <CreateForm
         confirmModalChildren={LeatherArticleCreateConfirmModalBody}
-        onSubmit={onSubmit}
         defaultValues={defaultValues}
         resolver={resolver}
+        onSubmit={onSubmit}
       >
-        <FormInputWithWrapper<FormValues> title="Название артикула:" name="title" />
+        <FormInputWithWrapper<FormValues> name="title" title="Название артикула:" />
 
-        <FormInputWithWrapper<FormValues> title="Значение:" name="value" />
+        <FormInputWithWrapper<FormValues> name="value" title="Значение:" />
 
-        <FormSelectWithWrapper<FormValues> title="Фабрика:" name="factoryId" items={factories} />
+        <FormSelectWithWrapper<FormValues> items={factories} name="factoryId" title="Фабрика:" />
 
-        <FormInputWithWrapper<FormValues> title="Описание:" name="description" />
+        <FormInputWithWrapper<FormValues> name="description" title="Описание:" />
       </CreateForm>
     </>
   )

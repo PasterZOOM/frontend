@@ -18,7 +18,7 @@ export const useRemoveBasicProductPhoto: UseMutationHook<
   return useMutation({
     mutationFn: BasicProductsAPI.removePhoto,
     onSuccess: async data => {
-      await queryClient.setQueryData([QUERY_KEY.GET_BASIC_PRODUCT, data._id], data)
+      queryClient.setQueryData([QUERY_KEY.GET_BASIC_PRODUCT, data._id], data)
     },
     ...options,
   })

@@ -10,8 +10,8 @@ import {
 import { ETheme } from 'enums/theme'
 
 type PropsType = DefaultSelectPropsType & {
+  items: SelectItemType<ETheme | string[] | string>[]
   name: string
-  items: SelectItemType<string | string[] | ETheme>[]
 }
 
 export const FormSelect: FC<PropsType> = ({ className = '', items, name, ...restProps }) => {
@@ -31,8 +31,8 @@ export const FormSelect: FC<PropsType> = ({ className = '', items, name, ...rest
       {...register(name)}
     >
       {!restProps.multiple && (
-        <option value="" disabled>
-          --- пусто ---
+        <option disabled value="">
+          {t('---пусто---')}
         </option>
       )}
       {items &&

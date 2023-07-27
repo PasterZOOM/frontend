@@ -1,9 +1,9 @@
 import { FC, KeyboardEventHandler, ReactNode } from 'react'
 
 type PropsType = {
+  children: ReactNode
   className?: string
   enableEditMode: () => void
-  children: ReactNode
 }
 
 export const EditButton: FC<PropsType> = ({ className, enableEditMode, children }) => {
@@ -15,18 +15,18 @@ export const EditButton: FC<PropsType> = ({ className, enableEditMode, children 
 
   return (
     <div
-      className={`${className || ''} flex cursor-default gap-2`}
-      onDoubleClick={enableEditMode}
       aria-hidden
+      className={`${className || ''} flex cursor-default gap-2`}
       title="двойной клин для редактирования"
+      onDoubleClick={enableEditMode}
     >
       {children || 'нет данных'}
       <span
-        className="text-blue-500 hover:font-bold hover:text-blue-700 focus:font-bold focus:text-blue-700 focus:outline-0"
-        onClick={enableEditMode}
         aria-hidden
+        className="text-blue-500 hover:font-bold hover:text-blue-700 focus:font-bold focus:text-blue-700 focus:outline-0"
         role="button"
         tabIndex={0}
+        onClick={enableEditMode}
         onKeyDown={onKeyEnter}
       >
         (ред.)

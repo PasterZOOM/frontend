@@ -51,7 +51,7 @@ export const useEditableSpan: UseEditableSpanType = <T>(
 
       element?.focus()
     }
-  }, [editeMode])
+  }, [editeMode, elementId])
 
   return {
     value,
@@ -67,10 +67,10 @@ type UseEditableSpanType = <T>(
   elementId: string,
   onChange: (value: T) => void
 ) => {
-  value: T
+  disableEditMode: () => void
   editeMode: boolean
   enableEditMode: () => void
-  disableEditMode: () => void
   onChangeValueHandler: ChangeEventHandler<HTMLInputElement | HTMLSelectElement>
   onKeyDownHandler: KeyboardEventHandler<HTMLInputElement | HTMLSelectElement>
+  value: T
 }

@@ -1,5 +1,6 @@
 import { FC } from 'react'
 
+import { useTranslation } from 'next-i18next'
 import { UseFormReturn } from 'react-hook-form'
 
 import { SelectItemType } from 'components/common/ui/selects/defaultSelectType'
@@ -37,6 +38,7 @@ const defaultValues: FormValues = {
 export const CreateBasicProductForm: FC = () => {
   const { data } = useGetAllLeatherArticles()
   const { mutate: createBasicProduct } = useCreateBasicProduct()
+  const { t } = useTranslation()
 
   const articles: SelectItemType[] = (data ?? []).map(({ _id, title }) => ({
     _id,
@@ -47,7 +49,7 @@ export const CreateBasicProductForm: FC = () => {
   const onSubmit = async (methods: UseFormReturn<FormValues>): Promise<void> => {
     await methods.handleSubmit(async (formData): Promise<void> => {
       try {
-        await createBasicProduct(formData)
+        createBasicProduct(formData)
         methods.reset()
       } catch (e) {
         /* empty */
@@ -58,53 +60,53 @@ export const CreateBasicProductForm: FC = () => {
   return (
     <>
       <TypographyHeader as="h5" className="mb-4 font-bold">
-        Создать артикул
+        {t('Создать артикул')}
       </TypographyHeader>
       <CreateForm
         confirmModalChildren={BasicProductCreatConfirmModalBody}
-        onSubmit={onSubmit}
         defaultValues={defaultValues}
-        resolver={resolver}
         mode="onTouched"
+        resolver={resolver}
+        onSubmit={onSubmit}
       >
-        <FormInputWithWrapper<FormValues> title="Название изделия:" name="title" />
+        <FormInputWithWrapper<FormValues> name="title" title="Название изделия:" />
 
-        <FormSelectWithWrapper<FormValues> title="Артикул:" name="leather" items={articles} />
+        <FormSelectWithWrapper<FormValues> items={articles} name="leather" title="Артикул:" />
 
         <FormInputWithWrapper<FormValues>
-          title="Стоимость:"
-          name="cost"
           inputProps={{ type: 'number', min: 0 }}
+          name="cost"
+          title="Стоимость:"
         />
 
         <FormSelectWithWrapper<FormValues>
-          title="Валюта:"
-          name="costCurrency"
           items={currencyArray()}
+          name="costCurrency"
+          title="Валюта:"
         />
 
         <FormSelectWithWrapper<FormValues>
-          title="Категория:"
-          name="category"
           items={productCategoriesArray()}
+          name="category"
+          title="Категория:"
         />
 
         <FormSelectWithWrapper<FormValues>
-          title="Назначения:"
-          name="assignments"
           items={productAssignmentsArray()}
+          name="assignments"
           selectProps={{ multiple: true }}
+          title="Назначения:"
         />
 
         <FormSelectWithWrapper<FormValues>
-          title="Шаг пробойника:"
-          name="punchPitch"
           items={punchPatchesArray()}
+          name="punchPitch"
+          title="Шаг пробойника:"
         />
 
-        <FormInputWithWrapper<FormValues> title="Размер:" name="size" />
+        <FormInputWithWrapper<FormValues> name="size" title="Размер:" />
 
-        <FormInputWithWrapper<FormValues> title="Описание:" name="description" />
+        <FormInputWithWrapper<FormValues> name="description" title="Описание:" />
       </CreateForm>
     </>
   )

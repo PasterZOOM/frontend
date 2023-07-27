@@ -1,5 +1,6 @@
 import { ComponentPropsWithoutRef, FC, ReactNode } from 'react'
 
+import { useTranslation } from 'next-i18next'
 import { useFormContext } from 'react-hook-form'
 
 import { Button } from 'components/common/ui/buttons/button'
@@ -7,13 +8,15 @@ import { ConfirmModalLayout } from 'components/modals/confirmModalLayout'
 import { useModal } from 'hooks/useModal'
 
 type PropsType = {
-  modalChildren: ReactNode
   buttonProps?: ComponentPropsWithoutRef<'button'>
+  modalChildren: ReactNode
   onConfirm: () => Promise<void>
 }
 
 export const CreateButton: FC<PropsType> = ({ modalChildren, buttonProps, onConfirm }) => {
   const { className, ...restButtonProps } = buttonProps ?? {}
+  const { t } = useTranslation()
+
   const { openModal, closeModal, isOpen } = useModal()
   const {
     trigger,
@@ -33,7 +36,7 @@ export const CreateButton: FC<PropsType> = ({ modalChildren, buttonProps, onConf
         className={`w-full ${className || ''}`}
         onClick={handleSubmit(openModal, () => trigger())}
       >
-        создать
+        {t('создать')}
       </Button>
       <ConfirmModalLayout
         closeModal={closeModal}

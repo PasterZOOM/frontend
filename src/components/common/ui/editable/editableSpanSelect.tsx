@@ -5,17 +5,17 @@ import { useEditableSpan } from 'components/common/ui/editable/useEditableSpan'
 import { DefaultSelectPropsType } from 'components/common/ui/selects/defaultSelectType'
 
 type PropsType<T> = {
-  title: ReactNode
+  children: ReactNode[]
   className?: string
   initialValue: T
   onChange: (value: T) => void
   selectProps?: DefaultSelectPropsType
-  children: ReactNode[]
+  title: ReactNode
 }
 
 const elementId = 'editableSelect'
 
-export const EditableSpanSelect = <T extends string | string[]>({
+export const EditableSpanSelect = <T extends string[] | string>({
   title,
   className,
   initialValue,
@@ -34,18 +34,18 @@ export const EditableSpanSelect = <T extends string | string[]>({
 
   return editeMode ? (
     <select
-      id={elementId}
       className="w-full px-1 py-0.5 dark:bg-anthracite-gray"
+      id={elementId}
       value={value}
-      onChange={onChangeValueHandler}
       onBlur={disableEditMode}
+      onChange={onChangeValueHandler}
       onKeyDown={onKeyDownHandler}
       {...selectProps}
     >
       {children.map(el => el)}
     </select>
   ) : (
-    <EditButton enableEditMode={enableEditMode} className={className}>
+    <EditButton className={className} enableEditMode={enableEditMode}>
       {title}
     </EditButton>
   )

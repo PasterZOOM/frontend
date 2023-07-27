@@ -1,4 +1,4 @@
-import { FC, KeyboardEventHandler, useEffect, useState } from 'react'
+import { FC, KeyboardEventHandler, useCallback, useEffect, useState } from 'react'
 
 import { Input } from 'components/common/ui/inputs/input'
 import { DefaultSelect } from 'components/common/ui/selects/defaultSelect'
@@ -6,6 +6,7 @@ import { PropertyPreviewWrapper } from 'components/common/wrappers/propertyPrevi
 import { BasicProductType } from 'features/basicProducts/api/types'
 import { useAddBasicProductPhoto } from 'features/basicProducts/hooks/useAddBasicProductPhoto'
 import { useRemoveBasicProductPhoto } from 'features/basicProducts/hooks/useRemoveBasicProductPhoto'
+import { BasicProductPhoto } from 'features/basicProducts/ui/basicProductPhoto'
 import { useGetLeatherArticle } from 'features/leatherArticles/hooks/useGetLeatherArticle'
 
 type PropsType = {
@@ -21,11 +22,14 @@ export const BasicProductInfoPhotoBlock: FC<PropsType> = ({ product }) => {
   const [selectValue, setSelectValue] = useState('')
   const [inputValue, setInputValue] = useState('')
 
-  const onEnter: KeyboardEventHandler<HTMLInputElement> = e => {
-    if (e.key === 'Enter') {
-      addBasicProductPhoto({ _id: product._id, params: { [selectValue]: [inputValue] } })
-    }
-  }
+  const onEnter: KeyboardEventHandler = useCallback(
+    e => {
+      if (e.key === 'Enter') {
+        addBasicProductPhoto({ _id: product._id, params: { [selectValue]: [inputValue] } })
+      }
+    },
+    [addBasicProductPhoto, product._id, selectValue, inputValue]
+  )
 
   useEffect(() => {
     if (leatherArticle) {
@@ -43,11 +47,7 @@ export const BasicProductInfoPhotoBlock: FC<PropsType> = ({ product }) => {
             </option>
           ))}
         </DefaultSelect>
-        <Input
-          onKeyDown={onEnter}
-          value={inputValue}
-          onChange={e => setInputValue(e.currentTarget.value)}
-        />
+        <Input value={inputValue} onChangeValue={setInputValue} onKeyDown={onEnter} />
       </div>
       {product.productColors.map(({ _id }) => (
         <div key={_id}>
@@ -57,18 +57,12 @@ export const BasicProductInfoPhotoBlock: FC<PropsType> = ({ product }) => {
                 {leatherArticle?.colors.find(color => color._id === _id)?.title}
               </span>
               {product.photos[_id].map(photo => (
-                <div key={photo._id} className="ml-5">
-                  <span className="mr-2">{photo.url}</span>
-                  <button
-                    type="button"
-                    className="border px-1"
-                    onClick={() =>
-                      removeBasicProductPhoto({ productId: product._id, photoId: photo._id })
-                    }
-                  >
-                    X
-                  </button>
-                </div>
+                <BasicProductPhoto
+                  key={photo._id}
+                  photo={photo}
+                  productId={product._id}
+                  removeBasicProductPhoto={removeBasicProductPhoto}
+                />
               ))}
             </div>
           )}

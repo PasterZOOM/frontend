@@ -7,8 +7,8 @@ export type LeatherArticleType = {
   value: string
 }
 export type CreateLeatherArticleParamsType = {
-  title: string
   description: string
+  title: string
   value: string
 }
 export type UpdateLeatherArticleParamsType = Partial<CreateLeatherArticleParamsType>

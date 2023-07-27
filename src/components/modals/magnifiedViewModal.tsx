@@ -1,35 +1,37 @@
 import { FC } from 'react'
 
-import { Keyboard, Mousewheel, Navigation, Pagination } from 'swiper'
+import { useTranslation } from 'next-i18next'
+import { Keyboard, Mousewheel, Navigation, Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 import { ModalOverlay } from 'components/modals/modalOverlay'
 import { ProductPhotoType } from 'types/productType'
 
 type PropsType = {
-  isOpen: boolean
-  closeModal: () => void
-  photos: ProductPhotoType[]
   activePhoto: ProductPhotoType
+  closeModal: () => void
+  isOpen: boolean
+  photos: ProductPhotoType[]
 }
 
 export const MagnifiedViewModal: FC<PropsType> = ({ closeModal, isOpen, photos, activePhoto }) => {
   const initSlide = photos.findIndex(photo => photo._id === activePhoto._id)
+  const { t } = useTranslation()
 
   return (
     <ModalOverlay isOpen={isOpen} onClose={closeModal}>
       <div className="relative h-[95%] w-[95%] bg-white dark:bg-anthracite-gray">
-        <button type="button" onClick={closeModal} className="absolute right-4 top-4 z-10 text-lg">
-          закрыть
+        <button className="absolute right-4 top-4 z-10 text-lg" type="button" onClick={closeModal}>
+          {t('закрыть')}
         </button>
         <Swiper
-          initialSlide={initSlide}
+          keyboard
+          mousewheel
           navigation
           pagination
-          mousewheel
-          keyboard
-          modules={[Navigation, Pagination, Mousewheel, Keyboard]}
           className="mySwiper h-full w-full"
+          initialSlide={initSlide}
+          modules={[Navigation, Pagination, Mousewheel, Keyboard]}
         >
           {photos.map(photo => (
             <SwiperSlide key={photo._id} className="w-fit">

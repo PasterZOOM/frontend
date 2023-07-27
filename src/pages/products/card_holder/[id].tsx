@@ -1,4 +1,5 @@
 import { GetServerSideProps } from 'next'
+import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import { MainLayout } from 'layouts/mainLayout'
@@ -13,7 +14,9 @@ export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
 }
 
 const CardHolderPage: NextPageWithLayout = () => {
-  return <>card holder</>
+  const { t } = useTranslation()
+
+  return <>{t('card holder')}</>
 }
 
 CardHolderPage.getLayout = MainLayout

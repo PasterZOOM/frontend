@@ -9,12 +9,12 @@ type ClassesType = {
 }
 
 type PropsType<T> = {
-  items: T[]
   activeItem: T
-  setActiveItem: (newActiveItem: T) => void
-  classes?: ClassesType
   className?: string
+  classes?: ClassesType
   elementToLabel: FC<T>
+  items: T[]
+  setActiveItem: (newActiveItem: T) => void
 }
 
 export const Select = <T,>({
@@ -56,14 +56,14 @@ export const Select = <T,>({
 
   return (
     <div
-      className={`${className || ''} relative cursor-pointer border border-anthracite-gray`}
       ref={dropdownRef}
+      className={`${className || ''} relative cursor-pointer border border-anthracite-gray`}
     >
       <div
+        className={`${classes.activeItemClassName} `}
         role="button"
         tabIndex={0}
         onKeyDown={e => e.key === 'Enter' && setIsOpen(prevState => !prevState)}
-        className={`${classes.activeItemClassName} `}
         onClick={() => {
           setIsOpen(e => !e)
         }}
@@ -79,14 +79,14 @@ export const Select = <T,>({
           return (
             <div
               key={item._id}
-              role="button"
               aria-label={item.title}
+              role="button"
               tabIndex={0}
-              onKeyDown={e => e.key === 'Enter' && onClickItem(item)}
               className={`${classes.itemClassName} ${
                 activeItem === item ? 'bg-gray-300 hover:bg-gray-300' : ''
               } hover:bg-gray-100`}
               onClick={() => onClickItem(item)}
+              onKeyDown={e => e.key === 'Enter' && onClickItem(item)}
             >
               <div className="">{elementToLabel(item)}</div>
             </div>

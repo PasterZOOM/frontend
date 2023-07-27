@@ -1,9 +1,9 @@
 import { ComponentPropsWithoutRef, FC } from 'react'
 
 export enum ButtonVariant {
+  DELETE = 'delete',
   PRIMARY = 'primary',
   SECONDARY = 'secondary',
-  DELETE = 'delete',
 }
 
 type PropsType = ComponentPropsWithoutRef<'button'> & {

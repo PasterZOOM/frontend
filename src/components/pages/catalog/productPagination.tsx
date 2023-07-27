@@ -29,21 +29,21 @@ export const ProductPagination: FC = () => {
     } else if (pageSize !== '9') {
       setFilter(EFilterKeys.PAGE_SIZE, '9')
     }
-  }, [width])
+  }, [pageSize, setFilter, width])
 
   useEffect(() => {
     setQueryParams()
-  }, [currentPage])
+  }, [currentPage, setQueryParams])
 
   useEffect(() => {
-    refetch()
-  }, [pageSize])
+    refetch().then()
+  }, [pageSize, refetch])
 
   return products && +products.totalCount > +(pageSize as string) ? (
     <Pagination
       currentPage={currentPage}
-      setCurrentPage={setCurrentPage}
       pageSize={pageSize ? +pageSize : 1}
+      setCurrentPage={setCurrentPage}
       totalItemsCount={products?.totalCount || 1}
     />
   ) : null

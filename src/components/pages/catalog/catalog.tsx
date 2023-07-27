@@ -14,9 +14,9 @@ export const Catalog: FC = () => {
     <>
       <MainContainer className="min-h-[calc(100vh-9.625rem)] grid-cols-12 gap-6 py-5 md:min-h-[calc(100vh-10.625rem)] xl:grid xl:min-h-fit">
         <CatalogFilters
+          className="col-span-2"
           isOpenFilters={isOpenFilters}
           setIsOpenFilters={setIsOpenFilters}
-          className="col-span-2"
         />
         <div className="col-span-10 space-y-4">
           <ProductSearch />

@@ -16,7 +16,7 @@ const Products: FC<PropsType> = ({ className = '' }) => {
 
   useEffect(() => {
     refetch().then()
-  }, [locale])
+  }, [locale, refetch])
 
   if (!products) {
     return null

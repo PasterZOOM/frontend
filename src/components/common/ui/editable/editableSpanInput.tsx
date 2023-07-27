@@ -4,14 +4,14 @@ import { EditButton } from 'components/common/ui/editable/editButton'
 import { useEditableSpan } from 'components/common/ui/editable/useEditableSpan'
 
 type PropsType<T> = {
-  className?: string
   children: T
-  onChange: (value: T) => void
+  className?: string
   inputProps?: ComponentPropsWithoutRef<'input'>
+  onChange: (value: T) => void
 }
 const elementId = 'editableInput'
 
-export const EditableSpanInput = <T extends string | string[]>({
+export const EditableSpanInput = <T extends string[] | string>({
   className,
   children,
   onChange,
@@ -28,16 +28,16 @@ export const EditableSpanInput = <T extends string | string[]>({
 
   return editeMode ? (
     <input
-      id={elementId}
       className="w-full px-1 dark:bg-anthracite-gray"
+      id={elementId}
       type={type}
       value={value}
-      onChange={onChangeValueHandler}
       onBlur={disableEditMode}
+      onChange={onChangeValueHandler}
       onKeyDown={onKeyDownHandler}
     />
   ) : (
-    <EditButton enableEditMode={enableEditMode} className={className}>
+    <EditButton className={className} enableEditMode={enableEditMode}>
       {Array.isArray(children) ? children.map(el => el) : children}
     </EditButton>
   )

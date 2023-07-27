@@ -16,9 +16,9 @@ import { useGetAllLeatherArticles } from 'features/leatherArticles/hooks/useGetA
 import { useLocale } from 'hooks/useLocale'
 
 type PropsType = {
+  className?: string
   isOpenFilters: boolean
   setIsOpenFilters: Dispatch<SetStateAction<boolean>>
-  className?: string
 }
 
 export const CatalogFilters: FC<PropsType> = ({
@@ -33,7 +33,7 @@ export const CatalogFilters: FC<PropsType> = ({
 
   useEffect(() => {
     refetch().then()
-  }, [locale])
+  }, [locale, refetch])
 
   if (!data) return null
 
@@ -45,15 +45,15 @@ export const CatalogFilters: FC<PropsType> = ({
   }))
 
   return (
-    <div className={`${className}`}>
-      <FilterContainer open={isOpenFilters} setOpen={setIsOpenFilters} className="xl:top-18">
-        <AccordionWrapper title={t('assignments')} classes={{ wrapper: 'xl:-mt-5' }}>
+    <div className={className}>
+      <FilterContainer className="xl:top-18" open={isOpenFilters} setOpen={setIsOpenFilters}>
+        <AccordionWrapper classes={{ wrapper: 'xl:-mt-5' }} title={t('assignments')}>
           <div className="px-4 pb-4 md:px-6 xl:px-0">
             {productAssignmentsFilters().map(assignment => (
               <MultipleFilter
                 key={assignment._id}
-                item={assignment}
                 filterKey={EFilterKeys.ASSIGNMENTS}
+                item={assignment}
               />
             ))}
           </div>
@@ -63,8 +63,8 @@ export const CatalogFilters: FC<PropsType> = ({
             {productCategoriesFilters().map(category => (
               <MultipleFilter
                 key={category._id}
-                item={category}
                 filterKey={EFilterKeys.CATEGORIES}
+                item={category}
               />
             ))}
           </div>
@@ -72,7 +72,7 @@ export const CatalogFilters: FC<PropsType> = ({
         <AccordionWrapper title={t('leather')}>
           <div className="px-4 pb-4 md:px-6 xl:px-0">
             {leathers.map(leather => (
-              <MultipleFilter key={leather._id} item={leather} filterKey={EFilterKeys.LEATHERS} />
+              <MultipleFilter key={leather._id} filterKey={EFilterKeys.LEATHERS} item={leather} />
             ))}
           </div>
         </AccordionWrapper>

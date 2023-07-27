@@ -65,7 +65,7 @@ const CatalogPage: NextPageWithLayout<PropsType> = ({ rates }: PropsType) => {
 
   useEffect(() => {
     setActualRates(rates)
-  }, [])
+  }, [rates, setActualRates])
 
   return <Catalog />
 }

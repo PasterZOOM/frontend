@@ -3,9 +3,9 @@ export enum CurrencySign {
   CNY = '¥',
   EUR = '€',
   GBP = '£',
-  JPY = '¥',
+  JPY = ' ¥',
+  PLN = 'zł',
   RUB = '₽',
   UAH = '₴',
   USD = '$',
-  PLN = 'zł',
 }

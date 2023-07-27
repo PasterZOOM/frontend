@@ -1,5 +1,6 @@
 import { FC } from 'react'
 
+import { useTranslation } from 'next-i18next'
 import { UseFormReturn } from 'react-hook-form'
 
 import { TypographyHeader } from 'components/common/ui/typographyHeader/typographyHeader'
@@ -23,6 +24,7 @@ const defaultValues: FormValues = {
 
 export const CreateLeatherFactoryForm: FC = () => {
   const { mutateAsync: createFactory } = useCreateLeatherFactory()
+  const { t } = useTranslation()
 
   const onSubmit = async (methods: UseFormReturn<FormValues>): Promise<void> => {
     await methods.handleSubmit(async (formData): Promise<void> => {
@@ -38,23 +40,23 @@ export const CreateLeatherFactoryForm: FC = () => {
   return (
     <>
       <TypographyHeader as="h5" className="mb-4 font-bold">
-        Создать фабрику
+        {t('Создать фабрику')}
       </TypographyHeader>
       <CreateForm
         confirmModalChildren={LeatherFactoryCreatConfirmModalBody}
-        onSubmit={onSubmit}
         defaultValues={defaultValues}
         resolver={resolver}
+        onSubmit={onSubmit}
       >
-        <FormInputWithWrapper<FormValues> title="Название фабрики:" name="title" />
+        <FormInputWithWrapper<FormValues> name="title" title="Название фабрики:" />
 
         <FormSelectWithWrapper<FormValues>
-          title="Страна в которой расположена фабрика:"
-          name="country"
           items={countriesArray()}
+          name="country"
+          title="Страна в которой расположена фабрика:"
         />
 
-        <FormInputWithWrapper<FormValues> title="Описание:" name="description" />
+        <FormInputWithWrapper<FormValues> name="description" title="Описание:" />
       </CreateForm>
     </>
   )

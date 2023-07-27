@@ -14,7 +14,7 @@ export const useModal: UseModalType = (defaultState = false) => {
 }
 
 type UseModalType = (defaultState?: boolean) => {
+  closeModal: () => void
   isOpen: boolean
   openModal: () => void
-  closeModal: () => void
 }

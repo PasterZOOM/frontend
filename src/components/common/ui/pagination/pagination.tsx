@@ -5,11 +5,11 @@ import { Input } from 'components/common/ui/inputs/input'
 import { generatePaginationArray } from 'utils/arrays/generatePaginationArray'
 
 type PaginatorPropsType = {
-  pageSize: number
-  totalItemsCount: number
   currentPage: number
-  setCurrentPage: (page: number) => void
   nextButtonsCount?: number
+  pageSize: number
+  setCurrentPage: (page: number) => void
+  totalItemsCount: number
 }
 const DEFAULT_NEXT_BUTTONS_COUNT = 2
 
@@ -45,7 +45,7 @@ export const Pagination: React.FC<PaginatorPropsType> = ({
 
   const buttons = useMemo(
     () => generatePaginationArray(currentPage, pagesCount, nextButtonsCount),
-    [currentPage, pagesCount]
+    [currentPage, nextButtonsCount, pagesCount]
   )
 
   return (
@@ -57,20 +57,20 @@ export const Pagination: React.FC<PaginatorPropsType> = ({
           )}
           {page.value === currentPage && (
             <Input
-              type="number"
-              min={1}
+              className="h-full w-20"
               max={pagesCount}
+              min={1}
+              type="number"
               value={inputValue}
               onChange={onChangeInputNumberHandler}
               onKeyUp={onKeyEnter}
-              className="h-full w-20"
             />
           )}
           {page.value !== 0 && page.value !== currentPage && (
             <Button
+              className="w-20 p-0"
               type="button"
               variant={currentPage === page.value ? ButtonVariant.SECONDARY : ButtonVariant.PRIMARY}
-              className="w-20 p-0"
               onClick={() => onPageChanged(page.value)}
             >
               {page.title}

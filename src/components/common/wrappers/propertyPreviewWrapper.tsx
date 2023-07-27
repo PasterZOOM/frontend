@@ -2,8 +2,8 @@ import { FC, ReactNode } from 'react'
 
 type PropsType = {
   children: ReactNode
-  title: string
   className?: string
+  title: string
 }
 
 export const PropertyPreviewWrapper: FC<PropsType> = ({ children, title, className }) => {

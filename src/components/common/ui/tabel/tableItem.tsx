@@ -3,8 +3,8 @@ import { FC, KeyboardEventHandler, ReactNode } from 'react'
 import { useModal } from 'hooks/useModal'
 
 type PropsType = {
-  title: string
-  children: ({ closeModal, isOpen }: { isOpen: boolean; closeModal: () => void }) => ReactNode // прокидывается callBack с модальным окном
+  children: ({ closeModal, isOpen }: { closeModal: () => void; isOpen: boolean }) => ReactNode
+  title: string // прокидывается callBack с модальным окном
 }
 
 export const TableItem: FC<PropsType> = ({ title, children }) => {
@@ -19,11 +19,11 @@ export const TableItem: FC<PropsType> = ({ title, children }) => {
   return (
     <>
       <div
-        onClick={openModal}
-        className="p-1 text-blue-500 hover:font-bold hover:text-blue-700 focus:font-bold focus:text-blue-700 focus:outline-0"
         aria-hidden
-        tabIndex={0}
+        className="p-1 text-blue-500 hover:font-bold hover:text-blue-700 focus:font-bold focus:text-blue-700 focus:outline-0"
         role="button"
+        tabIndex={0}
+        onClick={openModal}
         onKeyDown={onKeyEnter}
       >
         {title || '--Нет данных--'}
