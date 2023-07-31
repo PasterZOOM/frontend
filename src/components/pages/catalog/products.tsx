@@ -1,8 +1,7 @@
 import { FC, useEffect } from 'react'
 
-import { ProductCard } from './productCard/productCard'
-
 import ActiveFilters from 'components/pages/catalog/filters/activeFilters'
+import { ProductCard } from 'components/pages/catalog/productCard/productCard/productCard'
 import { useGetAllBasicProducts } from 'features/basicProducts/hooks/useGetAllBasicProducts'
 import { useLocale } from 'hooks/useLocale'
 

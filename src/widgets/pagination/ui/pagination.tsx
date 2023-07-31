@@ -1,8 +1,9 @@
-import React, { ChangeEvent, KeyboardEvent, useMemo, useState } from 'react'
+import { ChangeEvent, FC, KeyboardEvent, useMemo, useState } from 'react'
+
+import { generatePaginationArray } from '../model/utils/generatePaginationArray'
 
 import { Button, ButtonVariant } from 'components/common/ui/buttons/button'
 import { Input } from 'components/common/ui/inputs/input'
-import { generatePaginationArray } from 'utils/arrays/generatePaginationArray'
 
 type PaginatorPropsType = {
   currentPage: number
@@ -13,7 +14,7 @@ type PaginatorPropsType = {
 }
 const DEFAULT_NEXT_BUTTONS_COUNT = 2
 
-export const Pagination: React.FC<PaginatorPropsType> = ({
+export const Pagination: FC<PaginatorPropsType> = ({
   pageSize,
   totalItemsCount,
   setCurrentPage,

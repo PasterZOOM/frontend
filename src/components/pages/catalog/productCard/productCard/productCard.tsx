@@ -3,6 +3,8 @@ import { FC, useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useTranslation } from 'next-i18next'
 
+import cls from './productCard.module.scss'
+
 import { Button } from 'components/common/ui/buttons/button'
 import { LeatherColorButton } from 'components/common/ui/buttons/leatherColorButton'
 import { NoPhoto } from 'components/common/ui/noPhoto'
@@ -12,7 +14,6 @@ import { BasicProductType } from 'features/basicProducts/api/types'
 import { useGetPriceInCurrency } from 'hooks/useGetPriceInCurrency'
 import { selectRate, useCurrencyRatesStore } from 'store/useCurrencyRatesStore'
 import { selectCurrentCurrency, useUserSettings } from 'store/useUserSettings'
-import { cutText } from 'utils/text/cutText'
 
 type PropsType = {
   defCurrency?: ECost
@@ -43,18 +44,26 @@ export const ProductCard: FC<PropsType> = ({ defCurrency = ECost.USD, product })
   }, [product])
 
   return (
-    <div>
-      {product.photos?.[activeColor] ? (
-        <ProductCardPhoto photos={product.photos[activeColor]} />
-      ) : (
-        <NoPhoto />
-      )}
+    <div className={`${cls.card} grid-rows-product-card grid`}>
+      <div className={`${cls.photo} row-auto`}>
+        {product.photos?.[activeColor] ? (
+          <ProductCardPhoto photos={product.photos[activeColor]} />
+        ) : (
+          <NoPhoto />
+        )}
+      </div>
 
-      <div className="mt-10">
-        <Link href={`/products/${product.category}/${product._id}`}>
-          <div className="mb-3 mt-4 text-custom-xl font-bold">{product.title}</div>
-          <div className="my-3 font-light">{cutText(product.description)}</div>
-        </Link>
+      <Link
+        className={`${cls.info} row-auto`}
+        href={`/products/${product.category}/${product._id}`}
+      >
+        <div className="mb-3 mt-4 text-custom-xl font-bold">{product.title}</div>
+        {product.description && (
+          <div className="my-3 line-clamp-2 font-light">{product.description}</div>
+        )}
+      </Link>
+
+      <div className={`${cls.buttons} row-span-1 self-end`}>
         {product.productColors.length > 1 && (
           <div className="flex flex-wrap gap-3">
             {product.productColors.map(color => (
@@ -67,6 +76,7 @@ export const ProductCard: FC<PropsType> = ({ defCurrency = ECost.USD, product })
             ))}
           </div>
         )}
+
         <div className="mt-3 cursor-default">
           <div className="flex gap-2 pb-3 text-custom-lg font-light">
             <div>{currentCurrencyPrice.title}</div>

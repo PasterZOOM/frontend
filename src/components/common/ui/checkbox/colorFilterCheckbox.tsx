@@ -12,7 +12,7 @@ type PropsType = {
 export const ColorFilterCheckbox: FC<PropsType> = ({ color, filterKey }) => {
   const checkboxRef = useRef<HTMLInputElement | null>(null)
 
-  const { setQueryParams, queryParams } = useChangeMultipleQueryParams(filterKey, color.value)
+  const { setQueryParams, removeQueryParams, queryParams } = useChangeMultipleQueryParams(filterKey)
   const checked = queryParams?.includes(color.value)
 
   const bg = useMemo(() => {
@@ -46,7 +46,9 @@ export const ColorFilterCheckbox: FC<PropsType> = ({ color, filterKey }) => {
         checked={checked}
         className="h-full w-full cursor-pointer opacity-0"
         type="checkbox"
-        onChange={e => setQueryParams(e.currentTarget.checked)}
+        onChange={e =>
+          e.currentTarget.checked ? setQueryParams(color.value) : removeQueryParams(color.value)
+        }
       />
     </div>
   )

@@ -50,9 +50,10 @@
     "eslint-plugin-sort-keys": "^2.3.5",
     "eslint-plugin-sort-keys-fix": "^1.1.2",
     "eslint-plugin-typescript-sort-keys": "^2.3.0",
+    "husky": "^8.0.0",
     "postcss": "^8.4.27",
     "prettier-plugin-tailwindcss": "^0.4.1",
-    "tailwindcss": "^3.3.3",
-    "husky": "^8.0.0"
+    "sass": "^1.64.1",
+    "tailwindcss": "^3.3.3"
   }
 }

@@ -14,7 +14,7 @@ export const MultipleFilter: FC<PropsType> = ({ filterKey, item }) => {
   const id = `checkbox_${item.value}`
   const { t } = useTranslation('common')
 
-  const { setQueryParams, queryParams } = useChangeMultipleQueryParams(filterKey, item.value)
+  const { setQueryParams, removeQueryParams, queryParams } = useChangeMultipleQueryParams(filterKey)
 
   return (
     <div className="flex gap-2">
@@ -23,7 +23,9 @@ export const MultipleFilter: FC<PropsType> = ({ filterKey, item }) => {
         className="cursor-pointer"
         id={id}
         type="checkbox"
-        onChange={e => setQueryParams(e.currentTarget.checked)}
+        onChange={e =>
+          e.currentTarget.checked ? setQueryParams(item.value) : removeQueryParams(item.value)
+        }
       />
       <label className="cursor-pointer" htmlFor={id}>
         {t(item.title)}

@@ -12,7 +12,7 @@ export const ProductSearch: FC = () => {
   const [value, setValue] = useState('')
   const { query } = useRouter()
   const { t } = useTranslation('common')
-  const { setQueryParams } = useChangeMultipleQueryParams(EFilterKeys.SEARCH, value)
+  const { setQueryParams } = useChangeMultipleQueryParams(EFilterKeys.SEARCH)
 
   const onChangeValue = (e: ChangeEvent<HTMLInputElement>): void => {
     setValue(e.currentTarget.value)
@@ -20,7 +20,7 @@ export const ProductSearch: FC = () => {
 
   const onButtonClick = (): void => {
     if (query.search !== value) {
-      setQueryParams()
+      setQueryParams(value)
     }
   }
 
