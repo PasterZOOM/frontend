@@ -1,10 +1,10 @@
 import { FC } from 'react'
 
-import { TableItem } from 'components/common/ui/tabel/tableItem'
 import { CreateFormAndListWrapper } from 'components/common/wrappers/createFormAndListWrapper'
 import { CreateLeatherColorForm } from 'features/leatherColors/forms/createLeatherColorForm'
 import { useGetAllLeatherColors } from 'features/leatherColors/hooks/useGetAllLeatherColors'
 import { LeatherColorModal } from 'features/leatherColors/modals/leatherColorModal'
+import { TableItem } from 'shared/ui/tabel/tableItem'
 
 type PropsType = {
   className?: string
@@ -12,8 +12,6 @@ type PropsType = {
 
 export const LeatherColors: FC<PropsType> = ({ className }) => {
   const { data: colors } = useGetAllLeatherColors()
-
-  // useRefetchAfterChangeLocale(refetch)
 
   return (
     <CreateFormAndListWrapper

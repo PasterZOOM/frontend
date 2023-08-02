@@ -2,11 +2,6 @@ import { FC } from 'react'
 
 import { useTranslation } from 'next-i18next'
 
-import { RemoveButton } from 'components/common/ui/buttons/removeButton'
-import { EditableSpanInput } from 'components/common/ui/editable/editableSpanInput'
-import { EditableSpanSelect } from 'components/common/ui/editable/editableSpanSelect'
-import { PropertyInOneRow } from 'components/common/ui/properties/propertyInOneRow'
-import { SelectItemType } from 'components/common/ui/selects/defaultSelectType'
 import { PropertyPreviewWrapper } from 'components/common/wrappers/propertyPreviewWrapper'
 import { BasicProductType } from 'features/basicProducts/api/types'
 import { useUpdateBasicProduct } from 'features/basicProducts/hooks/useUpdateBasicProduct'
@@ -17,6 +12,11 @@ import { currencies, currencyArray } from 'objects/currency/currency'
 import { punchPatches, punchPatchesArray } from 'objects/materials/punchPatch'
 import { productAssignmentsArray } from 'objects/products/productAssignments'
 import { productCategories, productCategoriesArray } from 'objects/products/productCategories'
+import { RemoveButton } from 'shared/ui/buttons/removeButton'
+import { EditableSpanInput } from 'shared/ui/editable/editableSpanInput'
+import { EditableSpanSelect } from 'shared/ui/editable/editableSpanSelect'
+import { PropertyInOneRow } from 'shared/ui/properties/propertyInOneRow'
+import { SelectItemType } from 'shared/ui/selects/defaultSelectType'
 
 type PropsType = {
   className?: string

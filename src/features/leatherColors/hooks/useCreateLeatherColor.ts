@@ -1,9 +1,9 @@
 import { useMutation, useQueryClient } from 'react-query'
 
 import { CreateType } from 'api/paramsTypes'
-import { QUERY_KEY } from 'enums/QUERY_KEY'
 import { LeatherColorsAPI } from 'features/leatherColors/api/leatherColorsAPI'
 import { CreateLeatherColorParamsType, LeatherColorType } from 'features/leatherColors/api/types'
+import { QUERY_KEY } from 'shared/enums/QUERY_KEY'
 import { UseMutationHook } from 'types/hooks/useMutationHook'
 
 export const useCreateLeatherColor: UseMutationHook<

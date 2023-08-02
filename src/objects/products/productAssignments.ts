@@ -1,7 +1,7 @@
 import { v1 } from 'uuid'
 
-import { SelectItemType } from 'components/common/ui/selects/defaultSelectType'
-import { EProductAssignment } from 'enums/product'
+import { EProductAssignment } from 'shared/enums/product'
+import { SelectItemType } from 'shared/ui/selects/defaultSelectType'
 import { ObjectForSelectType } from 'types/objectForSelectType'
 
 export const productAssignments: ObjectForSelectType<EProductAssignment> = {

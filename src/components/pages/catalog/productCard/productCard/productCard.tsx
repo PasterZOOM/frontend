@@ -5,13 +5,13 @@ import { useTranslation } from 'next-i18next'
 
 import cls from './productCard.module.scss'
 
-import { Button } from 'components/common/ui/buttons/button'
-import { LeatherColorButton } from 'components/common/ui/buttons/leatherColorButton'
-import { NoPhoto } from 'components/common/ui/noPhoto'
 import { ProductCardPhoto } from 'components/pages/catalog/productCard/productCardPhoto'
-import { ECost } from 'enums/cost'
 import { BasicProductType } from 'features/basicProducts/api/types'
-import { useGetPriceInCurrency } from 'hooks/useGetPriceInCurrency'
+import { ECost } from 'shared/enums/cost'
+import { useGetPriceInCurrency } from 'shared/lib/hooks/useGetPriceInCurrency'
+import { Button } from 'shared/ui/buttons/button'
+import { LeatherColorButton } from 'shared/ui/buttons/leatherColorButton'
+import { NoPhoto } from 'shared/ui/noPhoto'
 import { selectRate, useCurrencyRatesStore } from 'store/useCurrencyRatesStore'
 import { selectCurrentCurrency, useUserSettings } from 'store/useUserSettings'
 

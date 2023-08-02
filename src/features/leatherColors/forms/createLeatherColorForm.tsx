@@ -3,18 +3,18 @@ import { FC } from 'react'
 import { useTranslation } from 'next-i18next'
 import { UseFormReturn } from 'react-hook-form'
 
-import { SelectItemType } from 'components/common/ui/selects/defaultSelectType'
-import { TypographyHeader } from 'components/common/ui/typographyHeader/typographyHeader'
 import { CreateForm } from 'components/forms/createForm'
 import { FormInputWithWrapper } from 'components/forms/inputs/formInputWithWrapper'
 import { FormSelectWithWrapper } from 'components/forms/selects/formSelectWithWrapper'
-import { ELeatherColor } from 'enums/materials'
 import { useGetAllLeatherArticles } from 'features/leatherArticles/hooks/useGetAllLeatherArticles'
 import { CreateLeatherColorFormType } from 'features/leatherColors/forms/type'
 import { resolver } from 'features/leatherColors/forms/validation.sheme'
 import { useCreateLeatherColor } from 'features/leatherColors/hooks/useCreateLeatherColor'
 import { LeatherColorCreatConfirmModalBody } from 'features/leatherColors/modals/confirm/leatherColorCreatConfirmModalBody'
 import { leatherColorsArray } from 'objects/colors/leatherColorsValues'
+import { ELeatherColor } from 'shared/enums/materials'
+import { SelectItemType } from 'shared/ui/selects/defaultSelectType'
+import { TypographyHeader } from 'shared/ui/typographyHeader/typographyHeader'
 
 type FormValues = CreateLeatherColorFormType
 

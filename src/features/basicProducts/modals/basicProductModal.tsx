@@ -15,8 +15,6 @@ export const BasicProductModal: FC<PropsType> = ({ isOpen, closeModal, id }) => 
   const { data: product } = useGetBasicProduct(id, { enabled: isOpen })
   const { mutateAsync: removeProduct } = useRemoveBasicProduct()
 
-  // useRefetchAfterChangeLocale(refetch)
-
   const onDeleteConfirm = async (): Promise<void> => {
     try {
       await removeProduct(id)

@@ -1,10 +1,10 @@
 import { FC } from 'react'
 
-import { TableItem } from 'components/common/ui/tabel/tableItem'
 import { CreateFormAndListWrapper } from 'components/common/wrappers/createFormAndListWrapper'
 import { CreateLeatherArticleForm } from 'features/leatherArticles/forms/createLeatherArticleForm'
 import { useGetAllLeatherArticles } from 'features/leatherArticles/hooks/useGetAllLeatherArticles'
 import { LeatherArticleModal } from 'features/leatherArticles/modals/leatherArticleModal'
+import { TableItem } from 'shared/ui/tabel/tableItem'
 
 type PropsType = {
   className?: string
@@ -12,8 +12,6 @@ type PropsType = {
 
 export const LeatherArticles: FC<PropsType> = ({ className }) => {
   const { data: articles } = useGetAllLeatherArticles()
-
-  // useRefetchAfterChangeLocale(refetch)
 
   return (
     <CreateFormAndListWrapper

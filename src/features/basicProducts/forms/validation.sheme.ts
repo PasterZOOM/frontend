@@ -3,8 +3,8 @@ import * as yup from 'yup'
 import { Schema } from 'yup'
 
 import { MIN_TITLE_LENGTH, REQUIRED_MESSAGE } from 'constants/forms/validate'
-import { EProductAssignment } from 'enums/product'
 import { ECreateBasicProductParams } from 'features/basicProducts/enums/paramsKeys'
+import { EProductAssignment } from 'shared/enums/product'
 
 const validate: Record<ECreateBasicProductParams, Schema> = {
   leather: yup.string().required(REQUIRED_MESSAGE),

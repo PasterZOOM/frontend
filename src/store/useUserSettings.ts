@@ -1,16 +1,14 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 
-import { ECost } from 'enums/cost'
-import { ETheme } from 'enums/theme'
-import { UserStatus } from 'enums/userStatus'
-import { LOCALES } from 'types/localeType'
+import { ECost } from 'shared/enums/cost'
+import { ETheme } from 'shared/enums/theme'
+import { UserStatus } from 'shared/enums/userStatus'
 
 const initialState: UserSettingsStateType = {
   userStatus: UserStatus.NONE,
   currentCurrency: ECost.BYN,
   theme: ETheme.AUTO,
-  language: LOCALES.EN,
 }
 
 export const useUserSettings = create(
@@ -44,7 +42,6 @@ type UserSettingsActionsType = {
 }
 type UserSettingsStateType = {
   currentCurrency: ECost
-  language: LOCALES
   theme: ETheme
   userStatus: UserStatus
 }

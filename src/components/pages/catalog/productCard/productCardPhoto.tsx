@@ -3,7 +3,7 @@ import { FC } from 'react'
 import { ProductCardView } from 'components/pages/catalog/productCard/productCardView'
 import { ProductCardViewMobile } from 'components/pages/catalog/productCard/productCardViewMobile'
 import { DESKTOP } from 'constants/sizes/screenSizes'
-import { useWindowSize } from 'hooks/useWindowSize'
+import { useWindowSize } from 'shared/lib/hooks/useWindowSize'
 import { ProductPhotoType } from 'types/productType'
 
 type PropsType = {

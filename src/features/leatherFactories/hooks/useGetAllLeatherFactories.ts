@@ -1,9 +1,9 @@
 import { useQuery } from 'react-query'
 
-import { QUERY_KEY } from 'enums/QUERY_KEY'
 import { LeatherFactoriesAPI } from 'features/leatherFactories/api/leatherFactoriesAPI'
 import { LeatherFactoryType } from 'features/leatherFactories/api/types'
-import { useLocale } from 'hooks/useLocale'
+import { QUERY_KEY } from 'shared/enums/QUERY_KEY'
+import { useLocale } from 'shared/lib/hooks/useLocale'
 import { UseQueryAllHook } from 'types/hooks/useQueryHooks'
 import { LOCALES } from 'types/localeType'
 

@@ -1,7 +1,7 @@
 import { FC, ReactNode, useEffect } from 'react'
 
 import { DESKTOP } from 'constants/sizes/screenSizes'
-import { useWindowSize } from 'hooks/useWindowSize'
+import { useWindowSize } from 'shared/lib/hooks/useWindowSize'
 
 type PropsType = {
   children: ReactNode

@@ -2,13 +2,14 @@ import { useRouter } from 'next/router'
 import { useQuery } from 'react-query'
 
 import { EFilterKeys } from 'components/pages/catalog/filters/filters'
-import { QUERY_KEY } from 'enums/QUERY_KEY'
 import { BasicProductsAPI } from 'features/basicProducts/api/basicProductsAPI'
 import { BasicProductType } from 'features/basicProducts/api/types'
-import { useLocale } from 'hooks/useLocale'
+import { QUERY_KEY } from 'shared/enums/QUERY_KEY'
+import { useLocale } from 'shared/lib/hooks/useLocale'
 import {
   FiltersType,
   selectFilter,
+  selectFilters,
   useBasicProductsFilterStore,
 } from 'store/useBasicProductsFilterStore'
 import { UseQueryAllHook } from 'types/hooks/useQueryHooks'
@@ -23,9 +24,10 @@ export const useGetAllBasicProducts: UseQueryAllHook<
   const locale = useLocale()
 
   const pageSize = useBasicProductsFilterStore(selectFilter(EFilterKeys.PAGE_SIZE))
+  const filters = useBasicProductsFilterStore(selectFilters)
 
   return useQuery({
-    queryKey: [QUERY_KEY.GET_ALL_BASIC_PRODUCTS, query as FiltersType, locale],
+    queryKey: [QUERY_KEY.GET_ALL_BASIC_PRODUCTS, filters, locale],
     queryFn: () => BasicProductsAPI.getAll({ ...query, pageSize } as FiltersType),
     ...options,
   })

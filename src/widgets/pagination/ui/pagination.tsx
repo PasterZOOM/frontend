@@ -1,9 +1,9 @@
-import { ChangeEvent, FC, KeyboardEvent, useMemo, useState } from 'react'
+import { ChangeEvent, FC, KeyboardEvent, useEffect, useMemo, useState } from 'react'
 
 import { generatePaginationArray } from '../model/utils/generatePaginationArray'
 
-import { Button, ButtonVariant } from 'components/common/ui/buttons/button'
-import { Input } from 'components/common/ui/inputs/input'
+import { Button, ButtonVariant } from 'shared/ui/buttons/button'
+import { Input } from 'shared/ui/inputs/input'
 
 type PaginatorPropsType = {
   currentPage: number
@@ -27,7 +27,6 @@ export const Pagination: FC<PaginatorPropsType> = ({
 
   const onPageChanged = (pageNumber: number): void => {
     if (inputValue) {
-      setInputValue(pageNumber)
       setCurrentPage(pageNumber)
     }
   }
@@ -48,6 +47,10 @@ export const Pagination: FC<PaginatorPropsType> = ({
     () => generatePaginationArray(currentPage, pagesCount, nextButtonsCount),
     [currentPage, nextButtonsCount, pagesCount]
   )
+
+  useEffect(() => {
+    setInputValue(currentPage)
+  }, [currentPage])
 
   return (
     <div className="flex justify-center gap-1">

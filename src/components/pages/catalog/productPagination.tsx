@@ -1,9 +1,9 @@
-import { FC, useEffect, useState } from 'react'
+import { FC, useEffect } from 'react'
 
 import { EFilterKeys } from 'components/pages/catalog/filters/filters'
 import { useGetAllBasicProducts } from 'features/basicProducts/hooks/useGetAllBasicProducts'
-import { useChangeMultipleQueryParams } from 'hooks/queryParams/useChangeMultipleQueryParams'
-import { useWindowSize } from 'hooks/useWindowSize'
+import { useChangeQueryParams } from 'shared/lib/hooks/queryParams/useChangeQueryParams'
+import { useWindowSize } from 'shared/lib/hooks/useWindowSize'
 import {
   selectFilter,
   selectSetFilter,
@@ -13,8 +13,8 @@ import { Pagination } from 'widgets/pagination'
 
 export const ProductPagination: FC = () => {
   const { width } = useWindowSize()
-  const [currentPage, setCurrentPage] = useState(1)
-  const { setQueryParams } = useChangeMultipleQueryParams(EFilterKeys.PAGE)
+
+  const { changeParam, removeParam, queryParam } = useChangeQueryParams(EFilterKeys.PAGE)
   const { data: products, refetch } = useGetAllBasicProducts()
 
   const pageSize = useBasicProductsFilterStore(selectFilter(EFilterKeys.PAGE_SIZE))
@@ -32,8 +32,11 @@ export const ProductPagination: FC = () => {
   }, [pageSize, setFilter, width])
 
   const setCurrentPageHandler = (value: number): void => {
-    setCurrentPage(value)
-    setQueryParams(`${value}`)
+    if (value === 1) {
+      removeParam()
+    } else {
+      changeParam(`${value}`)
+    }
   }
 
   useEffect(() => {
@@ -42,7 +45,7 @@ export const ProductPagination: FC = () => {
 
   return products && +products.totalCount > +(pageSize as string) ? (
     <Pagination
-      currentPage={currentPage}
+      currentPage={Number(queryParam) || 1}
       pageSize={pageSize ? +pageSize : 1}
       setCurrentPage={setCurrentPageHandler}
       totalItemsCount={products?.totalCount || 1}

@@ -1,18 +1,16 @@
 import { FC } from 'react'
 
-import { TableItem } from 'components/common/ui/tabel/tableItem'
 import { CreateFormAndListWrapper } from 'components/common/wrappers/createFormAndListWrapper'
 import { CreateLeatherFactoryForm } from 'features/leatherFactories/forms/createLeatherFactoryForm'
 import { useGetAllLeatherFactories } from 'features/leatherFactories/hooks/useGetAllLeatherFactories'
 import { LeatherFactoryModal } from 'features/leatherFactories/modals/leatherFactoryModal'
+import { TableItem } from 'shared/ui/tabel/tableItem'
 
 type PropsType = {
   className?: string
 }
 export const LeatherFactories: FC<PropsType> = ({ className }) => {
   const { data: factories } = useGetAllLeatherFactories()
-
-  // useRefetchAfterChangeLocale(refetch)
 
   return (
     <CreateFormAndListWrapper

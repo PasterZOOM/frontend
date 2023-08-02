@@ -3,8 +3,6 @@ import { Dispatch, FC, SetStateAction, useEffect } from 'react'
 import { useTranslation } from 'next-i18next'
 
 import FilterContainer from 'components/common/containers/filterContainer'
-import AccordionWrapper from 'components/common/ui/accordion/accordionWrapper'
-import { ColorFilterCheckbox } from 'components/common/ui/checkbox/colorFilterCheckbox'
 import {
   EFilterKeys,
   leatherColorFilters,
@@ -13,7 +11,9 @@ import {
 } from 'components/pages/catalog/filters/filters'
 import { MultipleFilter } from 'components/pages/catalog/filters/multipleFilter'
 import { useGetAllLeatherArticles } from 'features/leatherArticles/hooks/useGetAllLeatherArticles'
-import { useLocale } from 'hooks/useLocale'
+import { useLocale } from 'shared/lib/hooks/useLocale'
+import AccordionWrapper from 'shared/ui/accordion/accordionWrapper'
+import { ColorFilterCheckbox } from 'shared/ui/checkbox/colorFilterCheckbox'
 
 type PropsType = {
   className?: string

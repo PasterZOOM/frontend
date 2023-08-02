@@ -3,16 +3,16 @@ import { FC } from 'react'
 import { useTranslation } from 'next-i18next'
 import { UseFormReturn } from 'react-hook-form'
 
-import { TypographyHeader } from 'components/common/ui/typographyHeader/typographyHeader'
 import { CreateForm } from 'components/forms/createForm'
 import { FormInputWithWrapper } from 'components/forms/inputs/formInputWithWrapper'
 import { FormSelectWithWrapper } from 'components/forms/selects/formSelectWithWrapper'
-import { ECountry } from 'enums/country'
 import { CreateLeatherFactoryFormType } from 'features/leatherFactories/forms/type'
 import { resolver } from 'features/leatherFactories/forms/validation.sheme'
 import { useCreateLeatherFactory } from 'features/leatherFactories/hooks/useCreateLeatherFactory'
 import { LeatherFactoryCreatConfirmModalBody } from 'features/leatherFactories/modals/confirm/leatherFactoryCreatConfirmModalBody'
 import { countriesArray } from 'objects/countries/countryValues'
+import { ECountry } from 'shared/enums/country'
+import { TypographyHeader } from 'shared/ui/typographyHeader/typographyHeader'
 
 type FormValues = CreateLeatherFactoryFormType
 

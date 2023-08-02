@@ -1,7 +1,7 @@
 import { v1 } from 'uuid'
 
-import { SelectItemType } from 'components/common/ui/selects/defaultSelectType'
-import { ETheme } from 'enums/theme'
+import { ETheme } from 'shared/enums/theme'
+import { SelectItemType } from 'shared/ui/selects/defaultSelectType'
 import { ObjectForSelectType } from 'types/objectForSelectType'
 
 export const themes: ObjectForSelectType<ETheme> = {

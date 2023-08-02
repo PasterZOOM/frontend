@@ -1,9 +1,9 @@
-import { SelectItemType } from 'components/common/ui/selects/defaultSelectType'
-import { ELeatherColor } from 'enums/materials'
-import { EProductAssignment, EProductCategory } from 'enums/product'
 import { leatherColorsArray } from 'objects/colors/leatherColorsValues'
 import { productAssignmentsArray } from 'objects/products/productAssignments'
 import { productCategoriesArray } from 'objects/products/productCategories'
+import { ELeatherColor } from 'shared/enums/materials'
+import { EProductAssignment, EProductCategory } from 'shared/enums/product'
+import { SelectItemType } from 'shared/ui/selects/defaultSelectType'
 
 const selectItemsToFiltersTransformer: SelectItemsToFiltersTransformerFnType = (items, filterKey) =>
   items.map(item => ({ ...item, filterKey }))

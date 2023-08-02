@@ -1,15 +1,15 @@
 import { FC } from 'react'
 
-import { RemoveButton } from 'components/common/ui/buttons/removeButton'
-import { EditableSpanInput } from 'components/common/ui/editable/editableSpanInput'
-import { PropertyInOneRow } from 'components/common/ui/properties/propertyInOneRow'
-import { TableItem } from 'components/common/ui/tabel/tableItem'
 import { PropertyPreviewWrapper } from 'components/common/wrappers/propertyPreviewWrapper'
 import { LeatherArticleType } from 'features/leatherArticles/api/types'
 import { useUpdateLeatherArticle } from 'features/leatherArticles/hooks/useUpdateLeatherArticle'
 import { LeatherArticleRemoveConfirmModalBody } from 'features/leatherArticles/modals/confirm/leatherArticleRemoveConfirmModalBody'
 import { LeatherColorModal } from 'features/leatherColors/modals/leatherColorModal'
 import { LeatherFactoryModal } from 'features/leatherFactories/modals/leatherFactoryModal'
+import { RemoveButton } from 'shared/ui/buttons/removeButton'
+import { EditableSpanInput } from 'shared/ui/editable/editableSpanInput'
+import { PropertyInOneRow } from 'shared/ui/properties/propertyInOneRow'
+import { TableItem } from 'shared/ui/tabel/tableItem'
 
 type PropsType = {
   article: LeatherArticleType

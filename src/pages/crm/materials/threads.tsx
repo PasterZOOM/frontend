@@ -2,10 +2,10 @@ import { GetStaticProps } from 'next'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
-import { TypographyHeader } from 'components/common/ui/typographyHeader/typographyHeader'
-import { useRedirect } from 'hooks/useRedirect'
 import { CrmLayout } from 'layouts/crmLayout'
 import { NextPageWithLayout } from 'pages/_app'
+import { useRedirect } from 'shared/lib/hooks/useRedirect'
+import { TypographyHeader } from 'shared/ui/typographyHeader/typographyHeader'
 
 const Threads: NextPageWithLayout = () => {
   useRedirect()

@@ -1,12 +1,12 @@
 import { useMutation, useQueryClient } from 'react-query'
 
 import { CreateType } from 'api/paramsTypes'
-import { QUERY_KEY } from 'enums/QUERY_KEY'
 import { LeatherArticlesAPI } from 'features/leatherArticles/api/leatherArticlesAPI'
 import {
   CreateLeatherArticleParamsType,
   LeatherArticleType,
 } from 'features/leatherArticles/api/types'
+import { QUERY_KEY } from 'shared/enums/QUERY_KEY'
 import { UseMutationHook } from 'types/hooks/useMutationHook'
 
 export const useCreateLeatherArticle: UseMutationHook<

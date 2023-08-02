@@ -2,17 +2,17 @@ import { FC } from 'react'
 
 import { useTranslation } from 'next-i18next'
 
-import { RemoveButton } from 'components/common/ui/buttons/removeButton'
-import { EditableSpanInput } from 'components/common/ui/editable/editableSpanInput'
-import { EditableSpanSelect } from 'components/common/ui/editable/editableSpanSelect'
-import { PropertyInOneRow } from 'components/common/ui/properties/propertyInOneRow'
-import { TableItem } from 'components/common/ui/tabel/tableItem'
 import { PropertyPreviewWrapper } from 'components/common/wrappers/propertyPreviewWrapper'
 import { LeatherArticleModal } from 'features/leatherArticles/modals/leatherArticleModal'
 import { LeatherColorType } from 'features/leatherColors/api/types'
 import { useUpdateLeatherColor } from 'features/leatherColors/hooks/useUpdateLeatherColor'
 import { LeatherColorRemoveConfirmModalBody } from 'features/leatherColors/modals/confirm/leatherColorRemoveConfirmModalBody'
 import { leatherColorsArray, leatherColorsValues } from 'objects/colors/leatherColorsValues'
+import { RemoveButton } from 'shared/ui/buttons/removeButton'
+import { EditableSpanInput } from 'shared/ui/editable/editableSpanInput'
+import { EditableSpanSelect } from 'shared/ui/editable/editableSpanSelect'
+import { PropertyInOneRow } from 'shared/ui/properties/propertyInOneRow'
+import { TableItem } from 'shared/ui/tabel/tableItem'
 
 type PropsType = {
   className?: string

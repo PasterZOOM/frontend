@@ -2,8 +2,8 @@ import { FC, ReactNode } from 'react'
 
 import { FieldValues, UseFormProps, UseFormReturn } from 'react-hook-form'
 
-import { CreateButton } from 'components/common/ui/buttons/createButton'
 import { HookForm } from 'components/forms/hookForm'
+import { CreateButton } from 'shared/ui/buttons/createButton'
 
 type PropsType<T extends FieldValues> = UseFormProps<T> & {
   children: ReactNode

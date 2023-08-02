@@ -3,7 +3,7 @@ import { FC } from 'react'
 import { useTranslation } from 'next-i18next'
 
 import { EFilterKeys, GeneralFilterType } from 'components/pages/catalog/filters/filters'
-import { useChangeMultipleQueryParams } from 'hooks/queryParams/useChangeMultipleQueryParams'
+import { useChangeMultipleQueryParams } from 'shared/lib/hooks/queryParams/useChangeMultipleQueryParams'
 
 type PropsType = {
   filterKey: EFilterKeys
@@ -14,12 +14,12 @@ export const MultipleFilter: FC<PropsType> = ({ filterKey, item }) => {
   const id = `checkbox_${item.value}`
   const { t } = useTranslation('common')
 
-  const { setQueryParams, removeQueryParams, queryParams } = useChangeMultipleQueryParams(filterKey)
+  const { setQueryParams, removeQueryParams, queryParam } = useChangeMultipleQueryParams(filterKey)
 
   return (
     <div className="flex gap-2">
       <input
-        checked={queryParams?.includes(item.value)}
+        checked={queryParam?.includes(item.value)}
         className="cursor-pointer"
         id={id}
         type="checkbox"

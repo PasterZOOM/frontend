@@ -1,33 +1,44 @@
-import { ChangeEvent, FC, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 
-import { Button } from 'components/common/ui/buttons/button'
-import { Search } from 'components/common/ui/inputs/search'
 import { EFilterKeys } from 'components/pages/catalog/filters/filters'
-import { useChangeMultipleQueryParams } from 'hooks/queryParams/useChangeMultipleQueryParams'
+import { useChangeQueryParams } from 'shared/lib/hooks/queryParams/useChangeQueryParams'
+import { Button } from 'shared/ui/buttons/button'
+import { selectFilter, useBasicProductsFilterStore } from 'store/useBasicProductsFilterStore'
+import { Search } from 'widgets/search'
 
 export const ProductSearch: FC = () => {
   const [value, setValue] = useState('')
   const { query } = useRouter()
   const { t } = useTranslation('common')
-  const { setQueryParams } = useChangeMultipleQueryParams(EFilterKeys.SEARCH)
+  const { changeParam, removeParam } = useChangeQueryParams(EFilterKeys.SEARCH)
 
-  const onChangeValue = (e: ChangeEvent<HTMLInputElement>): void => {
-    setValue(e.currentTarget.value)
-  }
+  const filter = useBasicProductsFilterStore(selectFilter(EFilterKeys.SEARCH))
 
-  const onButtonClick = (): void => {
+  const onSearch = (): void => {
     if (query.search !== value) {
-      setQueryParams(value)
+      changeParam(value || undefined)
     }
   }
 
+  const onClear = (): void => {
+    setValue('')
+    removeParam()
+  }
+
+  useEffect(() => {
+    if (filter !== value) {
+      setValue(filter as string)
+    }
+    // eslint-disable-next-line
+  }, [filter])
+
   return (
     <div className="flex gap-8">
-      <Search value={value} onChange={onChangeValue} />
-      <Button className="px-4 py-2" onClick={onButtonClick}>
+      <Search value={value} onChangeValue={setValue} onClear={onClear} onKeyEnter={onSearch} />
+      <Button className="px-4 py-2" onClick={onSearch}>
         {t('search')}
       </Button>
     </div>

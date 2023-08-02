@@ -6,12 +6,12 @@ import { dehydrate, QueryClient } from 'react-query'
 
 import { CurrencyAPI } from 'api/currency/currencyApi'
 import { Catalog } from 'components/pages/catalog/catalog'
-import { ECost } from 'enums/cost'
-import { QUERY_KEY } from 'enums/QUERY_KEY'
 import { BasicProductsAPI } from 'features/basicProducts/api/basicProductsAPI'
 import { LeatherArticlesAPI } from 'features/leatherArticles/api/leatherArticlesAPI'
 import { MainLayout } from 'layouts/mainLayout'
 import { NextPageWithLayout } from 'pages/_app'
+import { ECost } from 'shared/enums/cost'
+import { QUERY_KEY } from 'shared/enums/QUERY_KEY'
 import { FiltersType } from 'store/useBasicProductsFilterStore'
 import {
   initialCurrencyRatesState,

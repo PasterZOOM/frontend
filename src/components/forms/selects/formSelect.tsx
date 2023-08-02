@@ -3,11 +3,8 @@ import { FC } from 'react'
 import { useTranslation } from 'next-i18next'
 import { useFormContext } from 'react-hook-form'
 
-import {
-  DefaultSelectPropsType,
-  SelectItemType,
-} from 'components/common/ui/selects/defaultSelectType'
-import { ETheme } from 'enums/theme'
+import { ETheme } from 'shared/enums/theme'
+import { DefaultSelectPropsType, SelectItemType } from 'shared/ui/selects/defaultSelectType'
 
 type PropsType = DefaultSelectPropsType & {
   items: SelectItemType<ETheme | string[] | string>[]

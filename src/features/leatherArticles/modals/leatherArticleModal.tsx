@@ -15,8 +15,6 @@ export const LeatherArticleModal: FC<PropsType> = ({ isOpen, closeModal, id }) =
   const { data: article } = useGetLeatherArticle(id, { enabled: isOpen })
   const { mutateAsync: removeArticle } = useRemoveLeatherArticle()
 
-  // useRefetchAfterChangeLocale(refetch)
-
   const onDeleteConfirm = async (): Promise<void> => {
     try {
       await removeArticle(id)

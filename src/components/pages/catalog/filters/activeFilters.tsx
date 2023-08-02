@@ -3,15 +3,15 @@ import { FC, useEffect, useState } from 'react'
 import { useTranslation } from 'next-i18next'
 import { v1 } from 'uuid'
 
+import { ActiveFilterTag } from 'components/pages/catalog/filters/activeFilterTag'
 import { EFilterKeys, GeneralFilterType } from 'components/pages/catalog/filters/filters'
-import { ELeatherColor } from 'enums/materials'
-import { EProductAssignment, EProductCategory } from 'enums/product'
 import { useGetAllLeatherArticles } from 'features/leatherArticles/hooks/useGetAllLeatherArticles'
-import { useClearAllQueryParams } from 'hooks/queryParams/useClearAllQueryParams'
-import { useRemoveMultipleQueryParam } from 'hooks/queryParams/useRemoveMultipleQueryParam'
 import { leatherColorsValues } from 'objects/colors/leatherColorsValues'
 import { productAssignments } from 'objects/products/productAssignments'
 import { productCategories } from 'objects/products/productCategories'
+import { ELeatherColor } from 'shared/enums/materials'
+import { EProductAssignment, EProductCategory } from 'shared/enums/product'
+import { useClearAllQueryParams } from 'shared/lib/hooks/queryParams/useClearAllQueryParams'
 import { selectFilters, useBasicProductsFilterStore } from 'store/useBasicProductsFilterStore'
 import { ObjectForSelectType } from 'types/objectForSelectType'
 
@@ -19,13 +19,12 @@ type PropsType = {
   className?: string
 }
 const ActiveFilters: FC<PropsType> = ({ className = '' }) => {
-  const { t } = useTranslation(['catalog', 'common'])
+  const { t } = useTranslation('catalog')
   const [articles, setArticles] = useState<ObjectForSelectType<string>>({})
   const [activeFilters, setActiveFilters] = useState<GeneralFilterType[]>([])
 
   const { data: leatherArticles } = useGetAllLeatherArticles()
   const clearAll = useClearAllQueryParams()
-  const removeQueryParam = useRemoveMultipleQueryParam()
 
   const filtersInStore = useBasicProductsFilterStore(selectFilters)
 
@@ -43,8 +42,6 @@ const ActiveFilters: FC<PropsType> = ({ className = '' }) => {
     [EFilterKeys.PAGE]: { page: { _id: v1(), title: '', value: '' } },
     [EFilterKeys.PAGE_SIZE]: { pageSize: { _id: v1(), title: '', value: '' } },
   })
-
-  // useRefetchAfterChangeLocale(refetch)
 
   useEffect(() => {
     if (leatherArticles) {
@@ -102,14 +99,7 @@ const ActiveFilters: FC<PropsType> = ({ className = '' }) => {
   return (
     <div className={`flex flex-wrap gap-2 ${className} ${activeFilters.length ? '' : 'hidden'}`}>
       {activeFilters.map(activeFilter => (
-        <button
-          key={activeFilter._id}
-          className="h-fit rounded-full border border-anthracite-gray px-2 dark:border-light-gray"
-          type="button"
-          onClick={() => removeQueryParam(activeFilter.filterKey, activeFilter.value)}
-        >
-          {t(activeFilter.title, { ns: 'common' })}
-        </button>
+        <ActiveFilterTag key={activeFilter._id} filter={activeFilter} />
       ))}
       {activeFilters.length && (
         <button

@@ -1,10 +1,10 @@
 import { useQuery, UseQueryOptions } from 'react-query'
 import { UseQueryResult } from 'react-query/types/react/types'
 
-import { QUERY_KEY } from 'enums/QUERY_KEY'
 import { LeatherColorsAPI } from 'features/leatherColors/api/leatherColorsAPI'
 import { LeatherColorType } from 'features/leatherColors/api/types'
-import { useLocale } from 'hooks/useLocale'
+import { QUERY_KEY } from 'shared/enums/QUERY_KEY'
+import { useLocale } from 'shared/lib/hooks/useLocale'
 import { LOCALES } from 'types/localeType'
 
 export const useGetAllLeatherColors: UseGetAllLeatherColorsType = (filter, options) => {

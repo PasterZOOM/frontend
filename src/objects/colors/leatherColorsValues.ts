@@ -1,7 +1,7 @@
 import { v1 } from 'uuid'
 
-import { SelectItemType } from 'components/common/ui/selects/defaultSelectType'
-import { ELeatherColor } from 'enums/materials'
+import { ELeatherColor } from 'shared/enums/materials'
+import { SelectItemType } from 'shared/ui/selects/defaultSelectType'
 import { ObjectForSelectType } from 'types/objectForSelectType'
 
 export const leatherColorsValues: ObjectForSelectType<ELeatherColor> = {

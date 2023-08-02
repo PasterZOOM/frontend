@@ -3,8 +3,6 @@ import { FC } from 'react'
 import { useTranslation } from 'next-i18next'
 import { UseFormReturn } from 'react-hook-form'
 
-import { SelectItemType } from 'components/common/ui/selects/defaultSelectType'
-import { TypographyHeader } from 'components/common/ui/typographyHeader/typographyHeader'
 import { CreateForm } from 'components/forms/createForm'
 import { FormInputWithWrapper } from 'components/forms/inputs/formInputWithWrapper'
 import { FormSelectWithWrapper } from 'components/forms/selects/formSelectWithWrapper'
@@ -13,6 +11,8 @@ import { resolver } from 'features/leatherArticles/forms/validation.sheme'
 import { useCreateLeatherArticle } from 'features/leatherArticles/hooks/useCreateLeatherArticle'
 import { LeatherArticleCreateConfirmModalBody } from 'features/leatherArticles/modals/confirm/leatherArticleCreateConfirmModalBody'
 import { useGetAllLeatherFactories } from 'features/leatherFactories/hooks/useGetAllLeatherFactories'
+import { SelectItemType } from 'shared/ui/selects/defaultSelectType'
+import { TypographyHeader } from 'shared/ui/typographyHeader/typographyHeader'
 
 type FormValues = CreateLeatherArticleFormType
 const defaultValues: FormValues = {
