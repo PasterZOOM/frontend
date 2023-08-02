@@ -14,8 +14,8 @@
     "plugin:prettier/recommended",
     "plugin:react-hooks/recommended",
     "plugin:jsx-a11y/recommended",
-      "prettier",
-      "plugin:@typescript-eslint/recommended"
+    "prettier",
+    "plugin:@typescript-eslint/recommended"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -138,7 +138,7 @@
       }
     ],
     "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps":"warn",
+    "react-hooks/exhaustive-deps": "warn",
     "react/require-default-props": "off",
     "react/function-component-definition": [
       2,

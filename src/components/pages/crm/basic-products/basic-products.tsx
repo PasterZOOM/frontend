@@ -9,15 +9,14 @@ import { CreateBasicProductForm } from 'features/basicProducts/forms/createBasic
 import { useGetAllBasicProducts } from 'features/basicProducts/hooks/useGetAllBasicProducts'
 import { BasicProductModal } from 'features/basicProducts/modals/basicProductModal'
 import { useRedirect } from 'hooks/useRedirect'
-import { useRefetchAfterChangeLocale } from 'hooks/useRefetchAfterChangeLocale'
 
 export const BasicProducts: FC = () => {
   useRedirect()
   const { t } = useTranslation()
 
-  const { data: products, refetch } = useGetAllBasicProducts()
+  const { data: products } = useGetAllBasicProducts()
 
-  useRefetchAfterChangeLocale(refetch)
+  // useRefetchAfterChangeLocale(refetch)
 
   return (
     <>

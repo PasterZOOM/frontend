@@ -16,7 +16,7 @@ export const useAddBasicProductPhoto: UseMutationHook<
   return useMutation({
     mutationFn: BasicProductsAPI.addPhoto,
     onSuccess: async data => {
-      await queryClient.setQueryData([QUERY_KEY.GET_BASIC_PRODUCT, data._id], data)
+      queryClient.setQueryData([QUERY_KEY.GET_BASIC_PRODUCT, data._id], data)
     },
     ...options,
   })

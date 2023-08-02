@@ -13,24 +13,24 @@
   "dependencies": {
     "@hookform/resolvers": "3.1.1",
     "axios": "^1.4.0",
-    "i18next": "^23.3.0",
+    "i18next": "^23.4.1",
     "next": "^13.4.12",
     "next-i18next": "^14.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.45.2",
-    "react-i18next": "^13.0.2",
+    "react-i18next": "^13.0.3",
     "react-query": "^3.39.3",
-    "swiper": "^10.0.4",
+    "swiper": "^10.1.0",
     "typescript": "^5.1.6",
     "use-resize-observer": "^9.1.0",
     "uuid": "^9.0.0",
     "yup": "^1.2.0",
-    "zustand": "^4.3.9"
+    "zustand": "^4.4.0"
   },
   "devDependencies": {
     "@types/node": "^20.4.5",
-    "@types/react": "^18.2.16",
+    "@types/react": "^18.2.18",
     "@types/react-dom": "^18.2.7",
     "@types/uuid": "^9.0.2",
     "@typescript-eslint/eslint-plugin": "^6.2.0",
@@ -50,10 +50,10 @@
     "eslint-plugin-sort-keys": "^2.3.5",
     "eslint-plugin-sort-keys-fix": "^1.1.2",
     "eslint-plugin-typescript-sort-keys": "^2.3.0",
-    "husky": "^8.0.0",
+    "husky": "^8.0.3",
     "postcss": "^8.4.27",
     "prettier-plugin-tailwindcss": "^0.4.1",
-    "sass": "^1.64.1",
+    "sass": "^1.64.2",
     "tailwindcss": "^3.3.3"
   }
 }

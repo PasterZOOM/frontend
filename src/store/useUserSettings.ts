@@ -4,11 +4,13 @@ import { persist } from 'zustand/middleware'
 import { ECost } from 'enums/cost'
 import { ETheme } from 'enums/theme'
 import { UserStatus } from 'enums/userStatus'
+import { LOCALES } from 'types/localeType'
 
 const initialState: UserSettingsStateType = {
   userStatus: UserStatus.NONE,
   currentCurrency: ECost.BYN,
   theme: ETheme.AUTO,
+  language: LOCALES.EN,
 }
 
 export const useUserSettings = create(
@@ -42,6 +44,7 @@ type UserSettingsActionsType = {
 }
 type UserSettingsStateType = {
   currentCurrency: ECost
+  language: LOCALES
   theme: ETheme
   userStatus: UserStatus
 }

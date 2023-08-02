@@ -9,7 +9,6 @@ import { EProductAssignment, EProductCategory } from 'enums/product'
 import { useGetAllLeatherArticles } from 'features/leatherArticles/hooks/useGetAllLeatherArticles'
 import { useClearAllQueryParams } from 'hooks/queryParams/useClearAllQueryParams'
 import { useRemoveMultipleQueryParam } from 'hooks/queryParams/useRemoveMultipleQueryParam'
-import { useRefetchAfterChangeLocale } from 'hooks/useRefetchAfterChangeLocale'
 import { leatherColorsValues } from 'objects/colors/leatherColorsValues'
 import { productAssignments } from 'objects/products/productAssignments'
 import { productCategories } from 'objects/products/productCategories'
@@ -24,7 +23,7 @@ const ActiveFilters: FC<PropsType> = ({ className = '' }) => {
   const [articles, setArticles] = useState<ObjectForSelectType<string>>({})
   const [activeFilters, setActiveFilters] = useState<GeneralFilterType[]>([])
 
-  const { data: leatherArticles, refetch } = useGetAllLeatherArticles()
+  const { data: leatherArticles } = useGetAllLeatherArticles()
   const clearAll = useClearAllQueryParams()
   const removeQueryParam = useRemoveMultipleQueryParam()
 
@@ -45,7 +44,7 @@ const ActiveFilters: FC<PropsType> = ({ className = '' }) => {
     [EFilterKeys.PAGE_SIZE]: { pageSize: { _id: v1(), title: '', value: '' } },
   })
 
-  useRefetchAfterChangeLocale(refetch)
+  // useRefetchAfterChangeLocale(refetch)
 
   useEffect(() => {
     if (leatherArticles) {

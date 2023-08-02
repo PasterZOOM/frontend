@@ -4,7 +4,6 @@ import { ModalLayout } from 'components/modals/modalLayout'
 import { useGetBasicProduct } from 'features/basicProducts/hooks/useGetBasicProduct'
 import { useRemoveBasicProduct } from 'features/basicProducts/hooks/useRemoveBasicProduct'
 import { BasicProductInfo } from 'features/basicProducts/ui/basicProductInfo'
-import { useRefetchAfterChangeLocale } from 'hooks/useRefetchAfterChangeLocale'
 
 type PropsType = {
   closeModal: () => void
@@ -13,10 +12,10 @@ type PropsType = {
 }
 
 export const BasicProductModal: FC<PropsType> = ({ isOpen, closeModal, id }) => {
-  const { data: product, refetch } = useGetBasicProduct(id, { enabled: isOpen })
+  const { data: product } = useGetBasicProduct(id, { enabled: isOpen })
   const { mutateAsync: removeProduct } = useRemoveBasicProduct()
 
-  useRefetchAfterChangeLocale(refetch)
+  // useRefetchAfterChangeLocale(refetch)
 
   const onDeleteConfirm = async (): Promise<void> => {
     try {

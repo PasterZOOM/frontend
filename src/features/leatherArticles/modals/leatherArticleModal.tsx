@@ -4,7 +4,6 @@ import { ModalLayout } from 'components/modals/modalLayout'
 import { useGetLeatherArticle } from 'features/leatherArticles/hooks/useGetLeatherArticle'
 import { useRemoveLeatherArticle } from 'features/leatherArticles/hooks/useRemoveLeatherArticle'
 import { LeatherArticleInfo } from 'features/leatherArticles/ui/leatherArticleInfo'
-import { useRefetchAfterChangeLocale } from 'hooks/useRefetchAfterChangeLocale'
 
 type PropsType = {
   closeModal: () => void
@@ -13,10 +12,10 @@ type PropsType = {
 }
 
 export const LeatherArticleModal: FC<PropsType> = ({ isOpen, closeModal, id }) => {
-  const { data: article, refetch } = useGetLeatherArticle(id, { enabled: isOpen })
+  const { data: article } = useGetLeatherArticle(id, { enabled: isOpen })
   const { mutateAsync: removeArticle } = useRemoveLeatherArticle()
 
-  useRefetchAfterChangeLocale(refetch)
+  // useRefetchAfterChangeLocale(refetch)
 
   const onDeleteConfirm = async (): Promise<void> => {
     try {
