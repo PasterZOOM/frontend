@@ -15,7 +15,7 @@ export const ProductPagination: FC = () => {
   const { width } = useWindowSize()
 
   const { changeParam, removeParam, queryParam } = useChangeQueryParams(EFilterKeys.PAGE)
-  const { data: products, refetch } = useGetAllBasicProducts()
+  const { data: products } = useGetAllBasicProducts()
 
   const pageSize = useBasicProductsFilterStore(selectFilter(EFilterKeys.PAGE_SIZE))
   const setFilter = useBasicProductsFilterStore(selectSetFilter)
@@ -38,10 +38,6 @@ export const ProductPagination: FC = () => {
       changeParam(`${value}`)
     }
   }
-
-  useEffect(() => {
-    refetch().then()
-  }, [pageSize, refetch])
 
   return products && +products.totalCount > +(pageSize as string) ? (
     <Pagination

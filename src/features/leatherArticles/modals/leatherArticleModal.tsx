@@ -17,7 +17,7 @@ export const LeatherArticleModal: FC<PropsType> = ({ isOpen, closeModal, id }) =
 
   const onDeleteConfirm = async (): Promise<void> => {
     try {
-      await removeArticle(id)
+      await removeArticle({ factoryId: article?.factory._id || '', articleId: id })
       closeModal()
     } catch (e) {
       /* empty */

@@ -7,7 +7,8 @@ import { BasicProductType } from 'features/basicProducts/api/types'
 import { useUpdateBasicProduct } from 'features/basicProducts/hooks/useUpdateBasicProduct'
 import { BasicProductRemoveConfirmModalBody } from 'features/basicProducts/modals/confirm/basicProductRemoveConfirmModalBody'
 import { BasicProductInfoPhotoBlock } from 'features/basicProducts/ui/basicProductInfoPhotoBlock'
-import { useGetAllLeatherArticles } from 'features/leatherArticles/hooks/useGetAllLeatherArticles'
+import { LeatherArticleModal } from 'features/leatherArticles/modals/leatherArticleModal'
+import { LeatherFactoryModal } from 'features/leatherFactories/modals/leatherFactoryModal'
 import { currencies, currencyArray } from 'objects/currency/currency'
 import { punchPatches, punchPatchesArray } from 'objects/materials/punchPatch'
 import { productAssignmentsArray } from 'objects/products/productAssignments'
@@ -16,7 +17,7 @@ import { RemoveButton } from 'shared/ui/buttons/removeButton'
 import { EditableSpanInput } from 'shared/ui/editable/editableSpanInput'
 import { EditableSpanSelect } from 'shared/ui/editable/editableSpanSelect'
 import { PropertyInOneRow } from 'shared/ui/properties/propertyInOneRow'
-import { SelectItemType } from 'shared/ui/selects/defaultSelectType'
+import { TableItem } from 'shared/ui/tabel/tableItem'
 
 type PropsType = {
   className?: string
@@ -26,14 +27,7 @@ type PropsType = {
 
 export const BasicProductInfo: FC<PropsType> = ({ className, product, onDeleteConfirm }) => {
   const { t } = useTranslation()
-  const { data } = useGetAllLeatherArticles()
   const { mutate: updateBasicProduct } = useUpdateBasicProduct()
-
-  const articles: SelectItemType[] = (data ?? []).map(({ _id, title }) => ({
-    _id,
-    title,
-    value: _id,
-  }))
 
   return (
     <div className={`${className ?? ''} flex w-full flex-col justify-between`}>
@@ -49,18 +43,28 @@ export const BasicProductInfo: FC<PropsType> = ({ className, product, onDeleteCo
             </EditableSpanInput>
           </PropertyInOneRow>
 
-          <PropertyInOneRow title="Кожа:">
-            <EditableSpanSelect
-              initialValue={product.leather._id}
-              title={product.leather.title}
-              onChange={leather => updateBasicProduct({ _id: product._id, params: { leather } })}
-            >
-              {articles.map(article => (
-                <option key={article._id} value={article.value}>
-                  {article.title}
-                </option>
-              ))}
-            </EditableSpanSelect>
+          <PropertyInOneRow title="Фабрика кожи:">
+            <TableItem title={product.leather.factory.title}>
+              {({ closeModal, isOpen }) => (
+                <LeatherFactoryModal
+                  closeModal={closeModal}
+                  id={product.leather.factory._id}
+                  isOpen={isOpen}
+                />
+              )}
+            </TableItem>
+          </PropertyInOneRow>
+
+          <PropertyInOneRow title="Артикул кожи:">
+            <TableItem title={product.leather.article.title}>
+              {({ closeModal, isOpen }) => (
+                <LeatherArticleModal
+                  closeModal={closeModal}
+                  id={product.leather.article._id}
+                  isOpen={isOpen}
+                />
+              )}
+            </TableItem>
           </PropertyInOneRow>
 
           <PropertyInOneRow title="Стоимость:">

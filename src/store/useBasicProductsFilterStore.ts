@@ -4,13 +4,13 @@ import { EFilterKeys } from 'components/pages/catalog/filters/filters'
 
 const initialState: FilterStateType = {
   filters: {
-    assignments: undefined,
-    leathers: undefined,
-    leatherColors: undefined,
-    categories: undefined,
-    search: undefined,
-    page: '1',
-    pageSize: '9',
+    assignments: [],
+    leathers: [],
+    leatherColors: [],
+    categories: [],
+    search: [],
+    page: [],
+    pageSize: [],
   },
 }
 
@@ -32,7 +32,7 @@ export type FiltersType = Record<EFilterKeys, string[] | string | undefined>
 type FilterStateType = {
   filters: FiltersType
 }
-type SetFilterType = (filterKey: EFilterKeys, value: string) => void
+type SetFilterType = (filterKey: EFilterKeys, value: string[] | string | undefined) => void
 type StoreType = FilterStateType & {
   setFilter: SetFilterType
 }

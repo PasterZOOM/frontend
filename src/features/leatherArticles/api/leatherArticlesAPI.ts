@@ -33,8 +33,8 @@ export const LeatherArticlesAPI = {
     return res.data
   },
 
-  remove: async (id: string) => {
-    const res = await instance.delete<LeatherArticleType>(`${BASE_URL}/${id}`)
+  remove: async ({ factoryId, articleId }: { articleId: string; factoryId: string }) => {
+    const res = await instance.delete<LeatherArticleType>(`${BASE_URL}/${factoryId}/${articleId}`)
 
     return res.data
   },

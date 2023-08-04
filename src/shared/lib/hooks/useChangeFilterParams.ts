@@ -21,7 +21,7 @@ export const useChangeFilterParams: UseChangeFilterParamsType = filterKey => {
         setFilter(filterKey, query[filterKey] as string)
       }
       if (!query[filterKey]) {
-        setFilter(filterKey, '')
+        setFilter(filterKey, [])
       }
     }
   }, [filter, filterKey, query, setFilter])

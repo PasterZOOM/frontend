@@ -7,7 +7,7 @@ import { ECreateBasicProductParams } from 'features/basicProducts/enums/paramsKe
 import { EProductAssignment } from 'shared/enums/product'
 
 const validate: Record<ECreateBasicProductParams, Schema> = {
-  leather: yup.string().required(REQUIRED_MESSAGE),
+  leatherArticle: yup.string().required(REQUIRED_MESSAGE),
   title: yup
     .string()
     .required(REQUIRED_MESSAGE)

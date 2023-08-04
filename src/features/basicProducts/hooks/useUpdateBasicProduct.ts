@@ -4,6 +4,7 @@ import { UpdateParamsType } from 'api/paramsTypes'
 import { BasicProductsAPI } from 'features/basicProducts/api/basicProductsAPI'
 import { BasicProductType, UpdateBasicProductParamsType } from 'features/basicProducts/api/types'
 import { QUERY_KEY } from 'shared/enums/QUERY_KEY'
+import { useLocale } from 'shared/lib/hooks/useLocale'
 import { UseMutationHook } from 'types/hooks/useMutationHook'
 
 export const useUpdateBasicProduct: UseMutationHook<
@@ -11,12 +12,13 @@ export const useUpdateBasicProduct: UseMutationHook<
   unknown,
   UpdateParamsType<UpdateBasicProductParamsType>
 > = options => {
+  const locale = useLocale()
   const queryClient = useQueryClient()
 
   return useMutation({
     mutationFn: BasicProductsAPI.update,
     onSuccess: async (data, variables) => {
-      await queryClient.setQueryData([QUERY_KEY.GET_BASIC_PRODUCT, data._id], data)
+      queryClient.setQueryData([QUERY_KEY.GET_BASIC_PRODUCT, data._id, locale], data)
       if (variables.params.title) {
         await queryClient.invalidateQueries([QUERY_KEY.GET_ALL_BASIC_PRODUCTS])
       }

@@ -4,7 +4,7 @@ export enum ECreateBasicProductParams {
   COST = 'cost',
   COST_CURRENCY = 'costCurrency',
   DESCRIPTION = 'description',
-  LEATHER_ARTICLE = 'leather',
+  LEATHER_ARTICLE = 'leatherArticle',
   PUNCH_PITCH = 'punchPitch',
   SIZE = 'size',
   TITLE = 'title',

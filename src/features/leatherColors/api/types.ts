@@ -5,6 +5,7 @@ export type LeatherColorType = {
   article: { _id: string; title: string }
   code: string
   description: string
+  factory: { _id: string; title: string }
   photo: string
   title: string
   value: ELeatherColor
@@ -13,6 +14,7 @@ export type LeatherColorType = {
 export type CreateLeatherColorParamsType = {
   code: string
   description: string
+  factory: string
   photo: string
   title: string
   value: ELeatherColor

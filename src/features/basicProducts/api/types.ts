@@ -11,7 +11,10 @@ export type BasicProductType = {
   costCurrency: ECost
   description: string
   isPublished: boolean
-  leather: { _id: string; title: string }
+  leather: {
+    article: { _id: string; title: string }
+    factory: { _id: string; title: string }
+  }
   photos?: PhotosType
   productColors: { _id: string; photo: string; title: string }[]
   punchPitch: EPunchPitch
@@ -25,7 +28,10 @@ export type CreateBasicProductParamsType = {
   cost: number
   costCurrency: ECost
   description: string
-  leather: string
+  leather: {
+    article: string
+    factory: string
+  }
   punchPitch: EPunchPitch
   size: string
   title: string

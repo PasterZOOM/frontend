@@ -6,6 +6,7 @@ import {
   LeatherFactoryType,
 } from 'features/leatherFactories/api/types'
 import { QUERY_KEY } from 'shared/enums/QUERY_KEY'
+import { useLocale } from 'shared/lib/hooks/useLocale'
 import { UseMutationHook } from 'types/hooks/useMutationHook'
 
 export const useCreateLeatherFactory: UseMutationHook<
@@ -13,13 +14,17 @@ export const useCreateLeatherFactory: UseMutationHook<
   unknown,
   CreateLeatherFactoryParamsType
 > = options => {
+  const locale = useLocale()
   const queryClient = useQueryClient()
-  const factories = queryClient.getQueryData<LeatherFactoryType[]>(QUERY_KEY.GET_ALL_FACTORIES)
+  const factories = queryClient.getQueryData<LeatherFactoryType[]>([
+    QUERY_KEY.GET_ALL_FACTORIES,
+    locale,
+  ])
 
   return useMutation({
     mutationFn: LeatherFactoriesAPI.create,
     onSuccess: data => {
-      queryClient.setQueryData(QUERY_KEY.GET_ALL_FACTORIES, [...(factories ?? []), data])
+      queryClient.setQueryData([QUERY_KEY.GET_ALL_FACTORIES, locale], [...(factories ?? []), data])
     },
     ...options,
   })

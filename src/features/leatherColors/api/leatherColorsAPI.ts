@@ -35,8 +35,8 @@ export const LeatherColorsAPI = {
     return res.data
   },
 
-  remove: async (id: string) => {
-    const res = await instance.delete<LeatherColorType>(`${BASE_URL}/${id}`)
+  remove: async ({ articleId, colorId }: { articleId: string; colorId: string }) => {
+    const res = await instance.delete<LeatherColorType>(`${BASE_URL}/${articleId}/${colorId}`)
 
     return res.data
   },

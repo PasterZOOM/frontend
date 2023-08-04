@@ -29,7 +29,7 @@ const defaultValues: FormValues = {
   cost: 0,
   costCurrency: ECost.USD,
   description: '',
-  leather: '',
+  leatherArticle: '',
   punchPitch: EPunchPitch.LITTLE,
   size: '',
   title: '',
@@ -47,9 +47,15 @@ export const CreateBasicProductForm: FC = () => {
   }))
 
   const onSubmit = async (methods: UseFormReturn<FormValues>): Promise<void> => {
-    await methods.handleSubmit(async (formData): Promise<void> => {
+    await methods.handleSubmit(async ({ leatherArticle, ...formData }): Promise<void> => {
       try {
-        createBasicProduct(formData)
+        createBasicProduct({
+          ...formData,
+          leather: {
+            article: leatherArticle,
+            factory: data?.filter(article => article._id === leatherArticle)[0].factory._id ?? '',
+          },
+        })
         methods.reset()
       } catch (e) {
         /* empty */
@@ -71,7 +77,11 @@ export const CreateBasicProductForm: FC = () => {
       >
         <FormInputWithWrapper<FormValues> name="title" title="Название изделия:" />
 
-        <FormSelectWithWrapper<FormValues> items={articles} name="leather" title="Артикул:" />
+        <FormSelectWithWrapper<FormValues>
+          items={articles}
+          name="leatherArticle"
+          title="Артикул:"
+        />
 
         <FormInputWithWrapper<FormValues>
           inputProps={{ type: 'number', min: 0 }}

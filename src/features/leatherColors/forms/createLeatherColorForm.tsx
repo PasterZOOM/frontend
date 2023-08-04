@@ -41,7 +41,13 @@ export const CreateLeatherColorForm: FC = () => {
   const onSubmit = async (methods: UseFormReturn<FormValues>): Promise<void> => {
     await methods.handleSubmit(async ({ articleId: _id, ...params }): Promise<void> => {
       try {
-        await createColor({ _id, params })
+        await createColor({
+          _id,
+          params: {
+            ...params,
+            factory: data?.filter(article => article._id === _id)[0].factory._id ?? '',
+          },
+        })
         methods.reset()
       } catch (e) {
         /* empty */
