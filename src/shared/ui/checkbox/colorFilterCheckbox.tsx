@@ -1,4 +1,4 @@
-import { FC, useMemo, useRef } from 'react'
+import { FC, memo, useMemo, useRef } from 'react'
 
 import { EFilterKeys, FilterType } from 'components/pages/catalog/filters/filters'
 import { ELeatherColor } from 'shared/enums/materials'
@@ -9,11 +9,12 @@ type PropsType = {
   filterKey: EFilterKeys
 }
 
-export const ColorFilterCheckbox: FC<PropsType> = ({ color, filterKey }) => {
+const ColorFilterCheckbox: FC<PropsType> = ({ color, filterKey }: PropsType) => {
   const checkboxRef = useRef<HTMLInputElement | null>(null)
 
   const { setQueryParams, removeQueryParams, queryParam } = useChangeMultipleQueryParams(filterKey)
-  const checked = queryParam?.includes(color.value)
+
+  const checked = [queryParam].flat().includes(color.value)
 
   const bg = useMemo(() => {
     switch (color.value) {
@@ -53,3 +54,7 @@ export const ColorFilterCheckbox: FC<PropsType> = ({ color, filterKey }) => {
     </div>
   )
 }
+
+const Memo = memo(ColorFilterCheckbox)
+
+export { Memo as ColorFilterCheckbox }

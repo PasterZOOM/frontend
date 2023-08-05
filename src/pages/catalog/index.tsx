@@ -8,7 +8,6 @@ import { CurrencyAPI } from 'api/currency/currencyApi'
 import { Catalog } from 'components/pages/catalog/catalog'
 import { BasicProductsAPI } from 'features/basicProducts/api/basicProductsAPI'
 import { LeatherArticlesAPI } from 'features/leatherArticles/api/leatherArticlesAPI'
-import { MainLayout } from 'layouts/mainLayout'
 import { NextPageWithLayout } from 'pages/_app'
 import { ECost } from 'shared/enums/cost'
 import { QUERY_KEY } from 'shared/enums/QUERY_KEY'
@@ -19,6 +18,7 @@ import {
   useCurrencyRatesStore,
 } from 'store/useCurrencyRatesStore'
 import { CostType } from 'types/costType'
+import { MainLayout } from 'widgets/layouts/mainLayout'
 
 export const getServerSideProps: GetServerSideProps = async ({ query, locale }) => {
   const rates: CostType = initialCurrencyRatesState

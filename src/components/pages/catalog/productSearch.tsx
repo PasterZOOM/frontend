@@ -29,10 +29,7 @@ export const ProductSearch: FC = () => {
   }
 
   useEffect(() => {
-    if (filter !== value) {
-      setValue(filter as string)
-    }
-    // eslint-disable-next-line
+    setValue(typeof filter === 'string' ? filter : '')
   }, [filter])
 
   return (

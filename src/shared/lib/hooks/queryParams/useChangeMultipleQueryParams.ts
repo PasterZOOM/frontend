@@ -8,7 +8,7 @@ import { useChangeFilterParams } from 'shared/lib/hooks/useChangeFilterParams'
 export const useChangeMultipleQueryParams = (
   filterKey: EFilterKeys
 ): {
-  queryParam: string
+  queryParam: string[] | string | undefined
   removeQueryParams: (value: string) => void
   setQueryParams: (value: string) => void
 } => {
@@ -73,6 +73,6 @@ export const useChangeMultipleQueryParams = (
   return {
     removeQueryParams,
     setQueryParams,
-    queryParam: (query[filterKey] as string) ?? '',
+    queryParam: query[filterKey] ?? '',
   }
 }

@@ -16,10 +16,12 @@ export const MultipleFilter: FC<PropsType> = ({ filterKey, item }) => {
 
   const { setQueryParams, removeQueryParams, queryParam } = useChangeMultipleQueryParams(filterKey)
 
+  const checked = [queryParam].flat().includes(item.value)
+
   return (
     <div className="flex gap-2">
       <input
-        checked={queryParam?.includes(item.value)}
+        checked={checked}
         className="cursor-pointer"
         id={id}
         type="checkbox"

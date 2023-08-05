@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react'
+import { FC, useEffect, useMemo, useState } from 'react'
 
 import { useTranslation } from 'next-i18next'
 import { v1 } from 'uuid'
@@ -28,20 +28,21 @@ const ActiveFilters: FC<PropsType> = ({ className = '' }) => {
 
   const filtersInStore = useBasicProductsFilterStore(selectFilters)
 
-  const [filters] = useState<
-    Record<
-      EFilterKeys,
-      ObjectForSelectType<ELeatherColor | EProductAssignment | EProductCategory | string>
-    >
-  >({
-    [EFilterKeys.ASSIGNMENTS]: productAssignments,
-    [EFilterKeys.CATEGORIES]: productCategories,
-    [EFilterKeys.LEATHERS]: articles,
-    [EFilterKeys.LEATHER_COLORS]: leatherColorsValues,
-    [EFilterKeys.SEARCH]: { search: { _id: v1(), title: '', value: '' } },
-    [EFilterKeys.PAGE]: { page: { _id: v1(), title: '', value: '' } },
-    [EFilterKeys.PAGE_SIZE]: { pageSize: { _id: v1(), title: '', value: '' } },
-  })
+  const filters: Record<
+    EFilterKeys,
+    ObjectForSelectType<ELeatherColor | EProductAssignment | EProductCategory | string>
+  > = useMemo(
+    () => ({
+      [EFilterKeys.ASSIGNMENTS]: productAssignments,
+      [EFilterKeys.CATEGORIES]: productCategories,
+      [EFilterKeys.LEATHERS]: articles,
+      [EFilterKeys.LEATHER_COLORS]: leatherColorsValues,
+      [EFilterKeys.SEARCH]: { search: { _id: v1(), title: '', value: '' } },
+      [EFilterKeys.PAGE]: { page: { _id: v1(), title: '', value: '' } },
+      [EFilterKeys.PAGE_SIZE]: { pageSize: { _id: v1(), title: '', value: '' } },
+    }),
+    [articles]
+  )
 
   useEffect(() => {
     if (leatherArticles) {
@@ -76,7 +77,7 @@ const ActiveFilters: FC<PropsType> = ({ className = '' }) => {
             filterKey,
           },
         ]
-      } else if (filterKey === EFilterKeys.PAGE || filterKey === EFilterKeys.PAGE_SIZE) {
+      } else if (filterKey === EFilterKeys.PAGE) {
         temp = []
       } else if (typeof filterValue === 'string') {
         temp = [{ ...filters[filterKey][filterValue], filterKey }]

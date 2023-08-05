@@ -12,9 +12,10 @@ export const useCreateBasicProduct: UseMutationHook<
   unknown,
   CreateBasicProductParamsType
 > = options => {
-  const filters = useBasicProductsFilterStore(selectFilters)
   const locale = useLocale()
+  const filters = useBasicProductsFilterStore(selectFilters)
   const queryClient = useQueryClient()
+
   const products = queryClient.getQueryData<BasicProductType[]>([
     QUERY_KEY.GET_ALL_BASIC_PRODUCTS,
     filters,
