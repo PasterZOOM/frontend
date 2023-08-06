@@ -2,17 +2,20 @@ import { FC } from 'react'
 
 import { useTranslation } from 'next-i18next'
 
-import { PropertyPreviewWrapper } from 'components/common/wrappers/propertyPreviewWrapper'
 import { BasicProductType } from 'features/basicProducts/api/types'
 import { useUpdateBasicProduct } from 'features/basicProducts/hooks/useUpdateBasicProduct'
 import { BasicProductRemoveConfirmModalBody } from 'features/basicProducts/modals/confirm/basicProductRemoveConfirmModalBody'
 import { BasicProductInfoPhotoBlock } from 'features/basicProducts/ui/basicProductInfoPhotoBlock'
 import { LeatherArticleModal } from 'features/leatherArticles/modals/leatherArticleModal'
 import { LeatherFactoryModal } from 'features/leatherFactories/modals/leatherFactoryModal'
-import { currencies, currencyArray } from 'objects/currency/currency'
-import { punchPatches, punchPatchesArray } from 'objects/materials/punchPatch'
-import { productAssignmentsArray } from 'objects/products/productAssignments'
-import { productCategories, productCategoriesArray } from 'objects/products/productCategories'
+import { PropertyPreviewWrapper } from 'shared/components/common/wrappers/propertyPreviewWrapper'
+import { currencies, currencyArray } from 'shared/objects/currency/currency'
+import { punchPatches, punchPatchesArray } from 'shared/objects/materials/punchPatch'
+import { productAssignmentsArray } from 'shared/objects/products/productAssignments'
+import {
+  productCategories,
+  productCategoriesArray,
+} from 'shared/objects/products/productCategories'
 import { RemoveButton } from 'shared/ui/buttons/removeButton'
 import { EditableSpanInput } from 'shared/ui/editable/editableSpanInput'
 import { EditableSpanSelect } from 'shared/ui/editable/editableSpanSelect'
@@ -84,7 +87,7 @@ export const BasicProductInfo: FC<PropsType> = ({ className, product, onDeleteCo
                 updateBasicProduct({ _id: product._id, params: { costCurrency } })
               }
             >
-              {currencyArray().map(currency => (
+              {currencyArray.map(currency => (
                 <option key={currency._id} value={currency.value}>
                   {t(currency.title)}
                 </option>
@@ -98,7 +101,7 @@ export const BasicProductInfo: FC<PropsType> = ({ className, product, onDeleteCo
               title={t(productCategories[product.category].title)}
               onChange={category => updateBasicProduct({ _id: product._id, params: { category } })}
             >
-              {productCategoriesArray().map(category => (
+              {productCategoriesArray.map(category => (
                 <option key={category._id} value={category.value}>
                   {t(category.title)}
                 </option>
@@ -122,7 +125,7 @@ export const BasicProductInfo: FC<PropsType> = ({ className, product, onDeleteCo
                 updateBasicProduct({ _id: product._id, params: { punchPitch } })
               }
             >
-              {punchPatchesArray().map(punchPitch => (
+              {punchPatchesArray.map(punchPitch => (
                 <option key={punchPitch._id} value={punchPitch.value}>
                   {punchPitch.title}
                 </option>
@@ -157,7 +160,7 @@ export const BasicProductInfo: FC<PropsType> = ({ className, product, onDeleteCo
                 updateBasicProduct({ _id: product._id, params: { assignments } })
               }
             >
-              {productAssignmentsArray().map(assignment => (
+              {productAssignmentsArray.map(assignment => (
                 <option key={assignment._id} value={assignment.value}>
                   {t(assignment.title)}
                 </option>

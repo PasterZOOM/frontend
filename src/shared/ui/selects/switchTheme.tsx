@@ -2,8 +2,8 @@ import { FC } from 'react'
 
 import { useTranslation } from 'next-i18next'
 
-import { themesArray } from 'objects/theme/themes'
 import { useSwitchTheme } from 'shared/lib/hooks/useSwitchTheme'
+import { themesArray } from 'shared/objects/theme/themes'
 import { SelectItemType } from 'shared/ui/selects/defaultSelectType'
 import { Select } from 'shared/ui/selects/select'
 
@@ -20,7 +20,7 @@ const SwitchTheme: FC = () => {
     <Select
       activeItem={activeTheme}
       elementToLabel={ThemeElement}
-      items={themesArray()}
+      items={themesArray}
       setActiveItem={setActiveTheme}
     />
   )

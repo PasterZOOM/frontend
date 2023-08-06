@@ -1,7 +1,7 @@
 import { ECost } from 'shared/enums/cost'
 import { EPunchPitch } from 'shared/enums/materials'
 import { EProductAssignment, EProductCategory } from 'shared/enums/product'
-import { PhotosType } from 'types/productType'
+import { PhotosType } from 'shared/types/productType'
 
 export type BasicProductType = {
   _id: string

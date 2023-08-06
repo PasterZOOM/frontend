@@ -4,8 +4,8 @@ import { LeatherArticlesAPI } from 'features/leatherArticles/api/leatherArticles
 import { LeatherArticleType } from 'features/leatherArticles/api/types'
 import { QUERY_KEY } from 'shared/enums/QUERY_KEY'
 import { useLocale } from 'shared/lib/hooks/useLocale'
-import { UseQueryOneHook } from 'types/hooks/useQueryHooks'
-import { LOCALES } from 'types/localeType'
+import { UseQueryOneHook } from 'shared/types/hooks/useQueryHooks'
+import { LOCALES } from 'shared/types/localeType'
 
 export const useGetLeatherArticle: UseQueryOneHook<
   LeatherArticleType,

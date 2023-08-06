@@ -1,6 +1,6 @@
 import { FC, memo, useMemo, useRef } from 'react'
 
-import { EFilterKeys, FilterType } from 'components/pages/catalog/filters/filters'
+import { EFilterKeys, FilterType } from 'shared/components/pages/catalog/filters/filters'
 import { ELeatherColor } from 'shared/enums/materials'
 import { useChangeMultipleQueryParams } from 'shared/lib/hooks/queryParams/useChangeMultipleQueryParams'
 

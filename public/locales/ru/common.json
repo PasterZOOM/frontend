@@ -32,10 +32,14 @@
   "carDocHolder": "Авто-док холдер",
   "docHolder": "Док холдер",
   "watchStrap": "Часовой ремешок",
-  "systemColorScheme": "\uD83C\uDF13 Цветовая схема системы",
+  "\uD83C\uDF13 System color scheme": "\uD83C\uDF13 Цветовая схема системы",
   "light": "\uD83C\uDF15 Светлая",
   "dark": "\uD83C\uDF11 Темная",
   "search": "Искать",
   "searchPlaceholder": "Поиск",
-  "---пусто---": "---пусто---"
+  "---пусто---": "---пусто---",
+  "Expensive first": "Сначала дорогие",
+  "Cheap first": "Сначала дешевые",
+  "New firsts": "Сначала новые",
+  "Old firsts": "Сначала старые"
 }

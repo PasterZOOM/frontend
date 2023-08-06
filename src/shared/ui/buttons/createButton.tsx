@@ -3,7 +3,7 @@ import { ComponentPropsWithoutRef, FC, ReactNode } from 'react'
 import { useTranslation } from 'next-i18next'
 import { useFormContext } from 'react-hook-form'
 
-import { ConfirmModalLayout } from 'components/modals/confirmModalLayout'
+import { ConfirmModalLayout } from 'shared/components/modals/confirmModalLayout'
 import { useModal } from 'shared/lib/hooks/useModal'
 import { Button } from 'shared/ui/buttons/button'
 

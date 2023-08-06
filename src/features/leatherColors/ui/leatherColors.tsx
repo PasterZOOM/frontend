@@ -1,9 +1,9 @@
 import { FC } from 'react'
 
-import { CreateFormAndListWrapper } from 'components/common/wrappers/createFormAndListWrapper'
 import { CreateLeatherColorForm } from 'features/leatherColors/forms/createLeatherColorForm'
 import { useGetAllLeatherColors } from 'features/leatherColors/hooks/useGetAllLeatherColors'
 import { LeatherColorModal } from 'features/leatherColors/modals/leatherColorModal'
+import { CreateFormAndListWrapper } from 'shared/components/common/wrappers/createFormAndListWrapper'
 import { TableItem } from 'shared/ui/tabel/tableItem'
 
 type PropsType = {

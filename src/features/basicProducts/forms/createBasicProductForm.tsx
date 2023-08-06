@@ -3,21 +3,21 @@ import { FC } from 'react'
 import { useTranslation } from 'next-i18next'
 import { UseFormReturn } from 'react-hook-form'
 
-import { CreateForm } from 'components/forms/createForm'
-import { FormInputWithWrapper } from 'components/forms/inputs/formInputWithWrapper'
-import { FormSelectWithWrapper } from 'components/forms/selects/formSelectWithWrapper'
 import { CreateBasicProductFormType } from 'features/basicProducts/forms/type'
 import { resolver } from 'features/basicProducts/forms/validation.sheme'
 import { useCreateBasicProduct } from 'features/basicProducts/hooks/useCreateBasicProduct'
 import { BasicProductCreatConfirmModalBody } from 'features/basicProducts/modals/confirm/basicProductCreatConfirmModalBody'
 import { useGetAllLeatherArticles } from 'features/leatherArticles/hooks/useGetAllLeatherArticles'
-import { currencyArray } from 'objects/currency/currency'
-import { punchPatchesArray } from 'objects/materials/punchPatch'
-import { productAssignmentsArray } from 'objects/products/productAssignments'
-import { productCategoriesArray } from 'objects/products/productCategories'
+import { CreateForm } from 'shared/components/forms/createForm'
+import { FormInputWithWrapper } from 'shared/components/forms/inputs/formInputWithWrapper'
+import { FormSelectWithWrapper } from 'shared/components/forms/selects/formSelectWithWrapper'
 import { ECost } from 'shared/enums/cost'
 import { EPunchPitch } from 'shared/enums/materials'
 import { EProductCategory } from 'shared/enums/product'
+import { currencyArray } from 'shared/objects/currency/currency'
+import { punchPatchesArray } from 'shared/objects/materials/punchPatch'
+import { productAssignmentsArray } from 'shared/objects/products/productAssignments'
+import { productCategoriesArray } from 'shared/objects/products/productCategories'
 import { SelectItemType } from 'shared/ui/selects/defaultSelectType'
 import { TypographyHeader } from 'shared/ui/typographyHeader/typographyHeader'
 
@@ -90,26 +90,26 @@ export const CreateBasicProductForm: FC = () => {
         />
 
         <FormSelectWithWrapper<FormValues>
-          items={currencyArray()}
+          items={currencyArray}
           name="costCurrency"
           title="Валюта:"
         />
 
         <FormSelectWithWrapper<FormValues>
-          items={productCategoriesArray()}
+          items={productCategoriesArray}
           name="category"
           title="Категория:"
         />
 
         <FormSelectWithWrapper<FormValues>
-          items={productAssignmentsArray()}
+          items={productAssignmentsArray}
           name="assignments"
           selectProps={{ multiple: true }}
           title="Назначения:"
         />
 
         <FormSelectWithWrapper<FormValues>
-          items={punchPatchesArray()}
+          items={punchPatchesArray}
           name="punchPitch"
           title="Шаг пробойника:"
         />

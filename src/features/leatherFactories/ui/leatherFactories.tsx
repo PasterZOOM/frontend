@@ -1,9 +1,9 @@
 import { FC } from 'react'
 
-import { CreateFormAndListWrapper } from 'components/common/wrappers/createFormAndListWrapper'
 import { CreateLeatherFactoryForm } from 'features/leatherFactories/forms/createLeatherFactoryForm'
 import { useGetAllLeatherFactories } from 'features/leatherFactories/hooks/useGetAllLeatherFactories'
 import { LeatherFactoryModal } from 'features/leatherFactories/modals/leatherFactoryModal'
+import { CreateFormAndListWrapper } from 'shared/components/common/wrappers/createFormAndListWrapper'
 import { TableItem } from 'shared/ui/tabel/tableItem'
 
 type PropsType = {

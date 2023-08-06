@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 
 import { ECost } from 'shared/enums/cost'
-import { CostType } from 'types/costType'
+import { CostType } from 'shared/types/costType'
 
 export const initialCurrencyRatesState: CostType = {
   BYN: 0,

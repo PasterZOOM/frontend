@@ -73,7 +73,7 @@ export const Select = <T,>({
       <div
         className={`${classes.dropClassName} ${
           isOpen ? 'block' : 'hidden'
-        } absolute z-20 box-content w-full border border-anthracite-gray bg-white dark:border-white dark:bg-anthracite-gray`}
+        } absolute left-0 top-full z-20 box-content w-full border border-anthracite-gray bg-white dark:border-white dark:bg-anthracite-gray`}
       >
         {items.map(item => {
           return (

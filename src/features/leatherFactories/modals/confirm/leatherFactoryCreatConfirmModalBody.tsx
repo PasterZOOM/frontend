@@ -3,7 +3,7 @@ import { FC } from 'react'
 import { useTranslation } from 'next-i18next'
 
 import { CreateLeatherFactoryFormType } from 'features/leatherFactories/forms/type'
-import { countryValues } from 'objects/countries/countryValues'
+import { countryValues } from 'shared/objects/countries/countryValues'
 
 type PropsType = {
   values: CreateLeatherFactoryFormType

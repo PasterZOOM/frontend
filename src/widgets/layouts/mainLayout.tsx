@@ -1,6 +1,6 @@
 import { ReactElement } from 'react'
 
-import Header from 'components/common/header/header'
+import Header from 'shared/components/common/header/header'
 
 export const MainLayout = (page: ReactElement): ReactElement => {
   return (

@@ -2,12 +2,12 @@ import { FC } from 'react'
 
 import { useTranslation } from 'next-i18next'
 
-import { PropertyPreviewWrapper } from 'components/common/wrappers/propertyPreviewWrapper'
 import { LeatherArticleModal } from 'features/leatherArticles/modals/leatherArticleModal'
 import { LeatherFactoryType } from 'features/leatherFactories/api/types'
 import { useUpdateLeatherFactory } from 'features/leatherFactories/hooks/useUpdateLeatherFactory'
 import { LeatherFactoryRemoveConfirmModalBody } from 'features/leatherFactories/modals/confirm/leatherFactoryRemoveConfirmModalBody'
-import { countriesArray, countryValues } from 'objects/countries/countryValues'
+import { PropertyPreviewWrapper } from 'shared/components/common/wrappers/propertyPreviewWrapper'
+import { countriesArray, countryValues } from 'shared/objects/countries/countryValues'
 import { RemoveButton } from 'shared/ui/buttons/removeButton'
 import { EditableSpanInput } from 'shared/ui/editable/editableSpanInput'
 import { EditableSpanSelect } from 'shared/ui/editable/editableSpanSelect'
@@ -43,7 +43,7 @@ export const LeatherFactoryInfo: FC<PropsType> = ({ className, factory, onDelete
             title={t(countryValues[factory.country].title)}
             onChange={country => updateLeatherFactory({ _id: factory._id, params: { country } })}
           >
-            {countriesArray().map(country => (
+            {countriesArray.map(country => (
               <option key={country._id} value={country.value}>
                 {t(country.title)}
               </option>

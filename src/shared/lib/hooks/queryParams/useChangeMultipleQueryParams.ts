@@ -2,7 +2,7 @@ import { useCallback } from 'react'
 
 import { useRouter } from 'next/router'
 
-import { EFilterKeys } from 'components/pages/catalog/filters/filters'
+import { EFilterKeys } from 'shared/components/pages/catalog/filters/filters'
 import { useChangeFilterParams } from 'shared/lib/hooks/useChangeFilterParams'
 
 export const useChangeMultipleQueryParams = (

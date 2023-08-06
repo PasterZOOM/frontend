@@ -3,16 +3,16 @@ import { FC } from 'react'
 import { useTranslation } from 'next-i18next'
 import { UseFormReturn } from 'react-hook-form'
 
-import { CreateForm } from 'components/forms/createForm'
-import { FormInputWithWrapper } from 'components/forms/inputs/formInputWithWrapper'
-import { FormSelectWithWrapper } from 'components/forms/selects/formSelectWithWrapper'
 import { useGetAllLeatherArticles } from 'features/leatherArticles/hooks/useGetAllLeatherArticles'
 import { CreateLeatherColorFormType } from 'features/leatherColors/forms/type'
 import { resolver } from 'features/leatherColors/forms/validation.sheme'
 import { useCreateLeatherColor } from 'features/leatherColors/hooks/useCreateLeatherColor'
 import { LeatherColorCreatConfirmModalBody } from 'features/leatherColors/modals/confirm/leatherColorCreatConfirmModalBody'
-import { leatherColorsArray } from 'objects/colors/leatherColorsValues'
+import { CreateForm } from 'shared/components/forms/createForm'
+import { FormInputWithWrapper } from 'shared/components/forms/inputs/formInputWithWrapper'
+import { FormSelectWithWrapper } from 'shared/components/forms/selects/formSelectWithWrapper'
 import { ELeatherColor } from 'shared/enums/materials'
+import { leatherColorsArray } from 'shared/objects/colors/leatherColorsValues'
 import { SelectItemType } from 'shared/ui/selects/defaultSelectType'
 import { TypographyHeader } from 'shared/ui/typographyHeader/typographyHeader'
 
@@ -69,7 +69,7 @@ export const CreateLeatherColorForm: FC = () => {
         <FormSelectWithWrapper<FormValues> items={articles} name="articleId" title="Артикул:" />
 
         <FormSelectWithWrapper<FormValues>
-          items={leatherColorsArray()}
+          items={leatherColorsArray}
           name="value"
           title="Значение цвета:"
         />

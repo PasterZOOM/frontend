@@ -1,10 +1,10 @@
-import { instance } from 'api/instance/axios-instance'
-import { CreateType, UpdateParamsType } from 'api/paramsTypes'
 import {
   CreateLeatherArticleParamsType,
   LeatherArticleType,
   UpdateLeatherArticleParamsType,
 } from 'features/leatherArticles/api/types'
+import { instance } from 'shared/api/instance/axios-instance'
+import { CreateType, UpdateParamsType } from 'shared/api/paramsTypes'
 
 const BASE_URL = `/leather-articles`
 

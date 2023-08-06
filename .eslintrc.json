@@ -5,8 +5,8 @@
     "browser": true
   },
   "extends": [
-    "next/core-web-vitals",
     "airbnb",
+    "prettier",
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:react/jsx-runtime",
@@ -14,7 +14,6 @@
     "plugin:prettier/recommended",
     "plugin:react-hooks/recommended",
     "plugin:jsx-a11y/recommended",
-    "prettier",
     "plugin:@typescript-eslint/recommended"
   ],
   "parser": "@typescript-eslint/parser",
@@ -200,6 +199,14 @@
       "error",
       {
         "markupOnly": true
+      }
+    ],
+    "import/no-unresolved": [
+      "error",
+      {
+        "ignore": [
+          "swiper/*"
+        ]
       }
     ]
   },

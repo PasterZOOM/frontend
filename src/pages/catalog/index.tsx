@@ -4,20 +4,20 @@ import { GetServerSideProps } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { dehydrate, QueryClient } from 'react-query'
 
-import { CurrencyAPI } from 'api/currency/currencyApi'
-import { Catalog } from 'components/pages/catalog/catalog'
 import { BasicProductsAPI } from 'features/basicProducts/api/basicProductsAPI'
 import { LeatherArticlesAPI } from 'features/leatherArticles/api/leatherArticlesAPI'
 import { NextPageWithLayout } from 'pages/_app'
+import { CurrencyAPI } from 'shared/api/currency/currencyApi'
+import { Catalog } from 'shared/components/pages/catalog/catalog'
 import { ECost } from 'shared/enums/cost'
 import { QUERY_KEY } from 'shared/enums/QUERY_KEY'
+import { CostType } from 'shared/types/costType'
 import { FiltersType } from 'store/useBasicProductsFilterStore'
 import {
   initialCurrencyRatesState,
   selectSetActualRates,
   useCurrencyRatesStore,
 } from 'store/useCurrencyRatesStore'
-import { CostType } from 'types/costType'
 import { MainLayout } from 'widgets/layouts/mainLayout'
 
 export const getServerSideProps: GetServerSideProps = async ({ query, locale }) => {

@@ -4,7 +4,7 @@ import { LeatherArticlesAPI } from 'features/leatherArticles/api/leatherArticles
 import { LeatherArticleType } from 'features/leatherArticles/api/types'
 import { QUERY_KEY } from 'shared/enums/QUERY_KEY'
 import { useLocale } from 'shared/lib/hooks/useLocale'
-import { UseMutationHook } from 'types/hooks/useMutationHook'
+import { UseMutationHook } from 'shared/types/hooks/useMutationHook'
 
 export const useRemoveLeatherArticle: UseMutationHook<
   LeatherArticleType,

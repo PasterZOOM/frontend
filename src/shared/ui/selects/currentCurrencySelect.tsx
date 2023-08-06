@@ -1,9 +1,9 @@
 import { FC, useEffect, useState } from 'react'
 
-import { currencies, currencyArray } from 'objects/currency/currency'
 import { ECost } from 'shared/enums/cost'
 import { useCurrencyTitle } from 'shared/lib/hooks/useCurrencyTitle'
 import { useLocale } from 'shared/lib/hooks/useLocale'
+import { currencies, currencyArray } from 'shared/objects/currency/currency'
 import { SelectItemType } from 'shared/ui/selects/defaultSelectType'
 import { Select } from 'shared/ui/selects/select'
 import {
@@ -37,7 +37,7 @@ export const CurrentCurrencySelect: FC = () => {
     <Select
       activeItem={activeCurrency}
       elementToLabel={CurrencyElement}
-      items={currencyArray()}
+      items={currencyArray}
       setActiveItem={setActiveCurrency}
     />
   )

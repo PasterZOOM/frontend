@@ -1,6 +1,6 @@
 import { ChangeEvent, FC, KeyboardEvent, useEffect, useMemo, useState } from 'react'
 
-import { generatePaginationArray } from '../model/utils/generatePaginationArray'
+import { generatePaginationArray } from '../model/lib/generatePaginationArray'
 
 import { Button, ButtonVariant } from 'shared/ui/buttons/button'
 import { Input } from 'shared/ui/inputs/input'

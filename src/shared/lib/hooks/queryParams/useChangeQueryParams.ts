@@ -2,14 +2,14 @@ import { useCallback } from 'react'
 
 import { useRouter } from 'next/router'
 
-import { EFilterKeys } from 'components/pages/catalog/filters/filters'
+import { EFilterKeys } from 'shared/components/pages/catalog/filters/filters'
 import { useChangeFilterParams } from 'shared/lib/hooks/useChangeFilterParams'
 
 export const useChangeQueryParams = (
   filterKey: EFilterKeys
 ): {
   changeParam: (value?: string) => void
-  queryParam: string
+  queryParam: string[] | string | undefined
   removeParam: () => void
 } => {
   const { pathname, query, replace } = useRouter()
@@ -38,5 +38,5 @@ export const useChangeQueryParams = (
     await changeParam()
   }, [changeParam])
 
-  return { changeParam, removeParam, queryParam: (query[filterKey] as string) ?? '' }
+  return { changeParam, removeParam, queryParam: query[filterKey] ?? '' }
 }

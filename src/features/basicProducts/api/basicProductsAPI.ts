@@ -1,11 +1,11 @@
-import { instance } from 'api/instance/axios-instance'
-import { UpdateParamsType } from 'api/paramsTypes'
 import {
   BasicProductType,
   CreateBasicProductParamsType,
   RemoveBasicProductPhotoParamsType,
   UpdateBasicProductParamsType,
 } from 'features/basicProducts/api/types'
+import { instance } from 'shared/api/instance/axios-instance'
+import { UpdateParamsType } from 'shared/api/paramsTypes'
 import { FiltersType } from 'store/useBasicProductsFilterStore'
 
 const BASE_URL = `/basic-products`

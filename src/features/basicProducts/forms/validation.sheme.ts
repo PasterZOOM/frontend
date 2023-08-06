@@ -2,8 +2,8 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import { Schema } from 'yup'
 
-import { MIN_TITLE_LENGTH, REQUIRED_MESSAGE } from 'constants/forms/validate'
 import { ECreateBasicProductParams } from 'features/basicProducts/enums/paramsKeys'
+import { MIN_TITLE_LENGTH, REQUIRED_MESSAGE } from 'shared/constants/forms/validate'
 import { EProductAssignment } from 'shared/enums/product'
 
 const validate: Record<ECreateBasicProductParams, Schema> = {

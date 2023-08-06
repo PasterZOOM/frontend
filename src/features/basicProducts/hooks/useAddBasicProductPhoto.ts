@@ -1,11 +1,11 @@
 import { useMutation, useQueryClient } from 'react-query'
 
-import { UpdateParamsType } from 'api/paramsTypes'
 import { BasicProductsAPI } from 'features/basicProducts/api/basicProductsAPI'
 import { BasicProductType } from 'features/basicProducts/api/types'
+import { UpdateParamsType } from 'shared/api/paramsTypes'
 import { QUERY_KEY } from 'shared/enums/QUERY_KEY'
 import { useLocale } from 'shared/lib/hooks/useLocale'
-import { UseMutationHook } from 'types/hooks/useMutationHook'
+import { UseMutationHook } from 'shared/types/hooks/useMutationHook'
 
 export const useAddBasicProductPhoto: UseMutationHook<
   BasicProductType,

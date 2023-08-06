@@ -32,10 +32,14 @@
   "carDocHolder": "Car-doc holder",
   "docHolder": "Doc holder",
   "watchStrap": "Watch strap",
-  "systemColorScheme": "\uD83C\uDF13 System color scheme",
+  "\uD83C\uDF13 System color scheme": "\uD83C\uDF13 System color scheme",
   "light": "\uD83C\uDF15 Light",
   "dark": "\uD83C\uDF11 Dark",
   "search": "search",
   "searchPlaceholder": "Search",
-  "---пусто---": "---пусто---"
+  "---пусто---": "---пусто---",
+  "Expensive first": "Expensive first",
+  "Cheap first": "Cheap first",
+  "New firsts": "New firsts",
+  "Old firsts": "Old firsts"
 }

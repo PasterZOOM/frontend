@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 
-import { EFilterKeys } from 'components/pages/catalog/filters/filters'
+import { EFilterKeys } from 'shared/components/pages/catalog/filters/filters'
 
 const initialState: FilterStateType = {
   filters: {
@@ -11,6 +11,7 @@ const initialState: FilterStateType = {
     search: [],
     page: [],
     pageSize: [],
+    sort: [],
   },
 }
 

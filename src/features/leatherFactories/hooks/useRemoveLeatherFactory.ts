@@ -4,7 +4,7 @@ import { LeatherFactoriesAPI } from 'features/leatherFactories/api/leatherFactor
 import { LeatherFactoryType } from 'features/leatherFactories/api/types'
 import { QUERY_KEY } from 'shared/enums/QUERY_KEY'
 import { useLocale } from 'shared/lib/hooks/useLocale'
-import { UseMutationHook } from 'types/hooks/useMutationHook'
+import { UseMutationHook } from 'shared/types/hooks/useMutationHook'
 
 export const useRemoveLeatherFactory: UseMutationHook<
   LeatherFactoryType,

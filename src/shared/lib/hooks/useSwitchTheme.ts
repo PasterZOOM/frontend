@@ -1,8 +1,8 @@
 import { Dispatch, useEffect, useState } from 'react'
 
-import { themes } from 'objects/theme/themes'
 import { ETheme } from 'shared/enums/theme'
 import { useLocale } from 'shared/lib/hooks/useLocale'
+import { themes } from 'shared/objects/theme/themes'
 import { SelectItemType } from 'shared/ui/selects/defaultSelectType'
 import { selectSetTheme, selectTheme, useUserSettings } from 'store/useUserSettings'
 

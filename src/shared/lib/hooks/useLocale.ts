@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 
-import { LOCALES } from 'types/localeType'
+import { LOCALES } from 'shared/types/localeType'
 
 export const useLocale = (): LOCALES => {
   const { locale } = useRouter()

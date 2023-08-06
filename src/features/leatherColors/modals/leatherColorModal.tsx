@@ -1,9 +1,9 @@
 import { FC } from 'react'
 
-import { ModalLayout } from 'components/modals/modalLayout'
 import { useGetLeatherColor } from 'features/leatherColors/hooks/useGetLeatherColor'
 import { useRemoveLeatherColor } from 'features/leatherColors/hooks/useRemoveLeatherColor'
 import { LeatherColorInfo } from 'features/leatherColors/ui/leatherColorInfo'
+import { ModalLayout } from 'shared/components/modals/modalLayout'
 
 type PropsType = {
   closeModal: () => void
