@@ -10,12 +10,10 @@ import {
 export const useGetPriceInCurrency: UseGetPriceInCurrencyType = (price, targetCurrency) => {
   const rate = useCurrencyRatesStore(selectRate(DEFAULT_PRODUCT_CURRENCY))
 
-  const targetPrise = useCurrencyRatesStore(
-    selectGetCurrentPrice({ price, priceCurrency: DEFAULT_PRODUCT_CURRENCY, targetCurrency })
-  )
+  const targetPrise = useCurrencyRatesStore(selectGetCurrentPrice({ price, targetCurrency }))
 
   return {
-    price: targetPrise,
+    price: +targetPrise.toFixed(),
     currency: targetCurrency,
     title: rate
       ? `${CurrencySign[targetCurrency]}${targetPrise.toFixed()}`

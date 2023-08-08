@@ -6,5 +6,7 @@
   "leather": "Кожа",
   "more": "Подробнее",
   "no-photo": "нет фото",
-  "Failed to load exchange rates": "Не удалось загрузить курсы валют"
+  "Failed to load exchange rates": "Не удалось загрузить курсы валют",
+  "Min price": "Минимальная цена",
+  "Max price": "Максимальная цена"
 }

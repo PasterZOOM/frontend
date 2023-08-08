@@ -9,12 +9,14 @@ import { EFilterKeys, GeneralFilterType } from 'shared/components/pages/catalog/
 import { ELeatherColor } from 'shared/enums/materials'
 import { EProductAssignment, EProductCategory } from 'shared/enums/product'
 import { useClearAllQueryParams } from 'shared/lib/hooks/queryParams/useClearAllQueryParams'
+import { useGetPriceInCurrency } from 'shared/lib/hooks/useGetPriceInCurrency'
 import { leatherColorsValues } from 'shared/objects/colors/leatherColorsValues'
 import { productAssignments } from 'shared/objects/products/productAssignments'
 import { productCategories } from 'shared/objects/products/productCategories'
 import { productSort } from 'shared/objects/products/productSort'
 import { ObjectForSelectType } from 'shared/types/objectForSelectType'
 import { selectFilters, useBasicProductsFilterStore } from 'store/useBasicProductsFilterStore'
+import { selectCurrentCurrency, useUserSettings } from 'store/useUserSettings'
 
 type PropsType = {
   className?: string
@@ -47,6 +49,10 @@ const ActiveFilters: FC<PropsType> = ({ className = '' }) => {
     }),
     [articles]
   )
+
+  const currentCurrency = useUserSettings(selectCurrentCurrency)
+  const minPriceValue = useGetPriceInCurrency(Number(filtersInStore.minPrice), currentCurrency)
+  const maxPriceValue = useGetPriceInCurrency(Number(filtersInStore.maxPrice), currentCurrency)
 
   useEffect(() => {
     if (leatherArticles) {
@@ -86,7 +92,7 @@ const ActiveFilters: FC<PropsType> = ({ className = '' }) => {
           {
             ...filters[filterKey][filterKey],
             value: filterValue ?? '',
-            title: `max price: ${filterValue}` ?? '',
+            title: `${t('Max price')}: ${maxPriceValue.title}`,
             filterKey,
           },
         ]
@@ -95,7 +101,7 @@ const ActiveFilters: FC<PropsType> = ({ className = '' }) => {
           {
             ...filters[filterKey][filterKey],
             value: filterValue ?? '',
-            title: `min price: ${filterValue}` ?? '',
+            title: `${t('Min price')}: ${minPriceValue.title}`,
             filterKey,
           },
         ]
@@ -117,7 +123,7 @@ const ActiveFilters: FC<PropsType> = ({ className = '' }) => {
 
       return prevFilters
     })
-  }, [filtersInStore, articles, filters])
+  }, [filtersInStore, articles, filters, maxPriceValue.title, minPriceValue.title])
 
   return (
     <div className={`flex flex-wrap gap-2 ${className} ${activeFilters.length ? '' : 'hidden'}`}>

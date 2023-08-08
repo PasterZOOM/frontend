@@ -1,5 +1,6 @@
 import { create } from 'zustand'
 
+import { DEFAULT_PRODUCT_CURRENCY } from 'shared/constants/currancy/defaultProductCurrency'
 import { ECost } from 'shared/enums/cost'
 import { CostType } from 'shared/types/costType'
 
@@ -18,10 +19,10 @@ export const initialCurrencyRatesState: CostType = {
 export const useCurrencyRatesStore = create<StoreType>((set, get) => ({
   ...initialCurrencyRatesState,
   setActualRates: actualRates => set(actualRates),
-  getCurrentPrice: ({ price, priceCurrency, targetCurrency }) => {
+  getCurrentPrice: ({ price, targetCurrency }) => {
     const state = get()
 
-    return (price * (state[targetCurrency] || 1)) / (state[priceCurrency] || 1)
+    return (price * (state[targetCurrency] || 1)) / (state[DEFAULT_PRODUCT_CURRENCY] || 1)
   },
 }))
 
@@ -32,7 +33,6 @@ export const selectGetCurrentPrice: GetCurrentPriceSelectorType = params => stor
 
 type GetCurrentPriceParamsType = {
   price: number
-  priceCurrency: ECost
   targetCurrency: ECost
 }
 

@@ -14,6 +14,9 @@ import { SliderValueView } from '../numberOfCardsInput/sliderValueView'
 
 import cls from './doubleRange.module.scss'
 
+import { useGetPriceInCurrency } from 'shared/lib/hooks/useGetPriceInCurrency'
+import { selectCurrentCurrency, useUserSettings } from 'store/useUserSettings'
+
 const HUNDRED = 100
 
 type PropsType = {
@@ -112,14 +115,24 @@ const DoubleRange: FC<PropsType> = ({
     }
   }, [getRangeValue, value1, value0])
 
+  // ----------------------------- вынести выше ---------------------------
+  const currentCurrency = useUserSettings(selectCurrentCurrency)
+
+  const currentCurrencyValue0 = useGetPriceInCurrency(value0, currentCurrency)
+  const currentCurrencyValue1 = useGetPriceInCurrency(value1, currentCurrency)
+
+  // -----------------------------------------------------------------------
   return (
     <div className={classnames(className, cls.container)}>
-      <SliderValueView
-        max={Math.min(maxRangeValue, value1)}
-        min={minRangeValue}
-        value={value0}
-        onChangeValue={onSliderValueViewChangeFirstValue}
-      />
+      <div className="flex flex-col items-center">
+        <SliderValueView
+          max={Math.min(maxRangeValue, value1)}
+          min={minRangeValue}
+          value={value0}
+          onChangeValue={onSliderValueViewChangeFirstValue}
+        />
+        <div>{currentCurrencyValue0.title}</div>
+      </div>
 
       <div className={classnames(cls.slider)}>
         <input
@@ -139,13 +152,15 @@ const DoubleRange: FC<PropsType> = ({
         <div className={classnames(cls['slider-track'])} />
         <div ref={range} className={classnames(cls['slider-range'])} />
       </div>
-
-      <SliderValueView
-        max={maxRangeValue}
-        min={Math.max(minRangeValue, value0)}
-        value={value1}
-        onChangeValue={onSliderValueViewChangeSecondValue}
-      />
+      <div className="flex flex-col items-center">
+        <SliderValueView
+          max={maxRangeValue}
+          min={Math.max(minRangeValue, value0)}
+          value={value1}
+          onChangeValue={onSliderValueViewChangeSecondValue}
+        />
+        <div>{currentCurrencyValue1.title}</div>
+      </div>
     </div>
   )
 }
