@@ -45,13 +45,15 @@ const Sort: FC<PropsType> = ({ className }) => {
   }, [queryParam])
 
   return (
-    <Select
-      activeItem={activeSort}
-      className={classnames(cls.sort, className)}
-      elementToLabel={SortElement}
-      items={productSortArray}
-      setActiveItem={setActiveItemHandler}
-    />
+    <div className={classnames(className)}>
+      <Select
+        activeItem={activeSort}
+        className={classnames(cls.sort)}
+        elementToLabel={SortElement}
+        items={productSortArray}
+        setActiveItem={setActiveItemHandler}
+      />
+    </div>
   )
 }
 

@@ -12,7 +12,7 @@ type PaginatorPropsType = {
   setCurrentPage: (page: number) => void
   totalItemsCount: number
 }
-const DEFAULT_NEXT_BUTTONS_COUNT = 2
+const DEFAULT_NEXT_BUTTONS_COUNT = 4
 
 export const Pagination: FC<PaginatorPropsType> = ({
   pageSize,

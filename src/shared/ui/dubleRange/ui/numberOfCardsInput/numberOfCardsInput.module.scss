@@ -1,0 +1,26 @@
+.slider-value-view {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+
+  text-align: center;
+
+  background: #5b5b5b;
+  border: 1px solid #D9D9D9;
+  border-radius: 2px;
+  outline: none;
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    appearance: none;
+  }
+
+  &:disabled{
+    background: #FFF;
+  }
+}

@@ -26,7 +26,6 @@ const validate: Record<ECreateBasicProductParams, Schema> = {
   cost: yup.number().required(REQUIRED_MESSAGE).moreThan(0, 'Цена должна быть больше 0'),
   description: yup.string(),
   category: yup.string(),
-  costCurrency: yup.string(),
   punchPitch: yup.string(),
   size: yup.string(),
 }

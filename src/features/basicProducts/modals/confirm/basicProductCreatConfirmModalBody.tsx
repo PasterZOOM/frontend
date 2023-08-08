@@ -30,19 +30,16 @@ export const BasicProductCreatConfirmModalBody: FC<PropsType> = ({ values }) => 
         {t('Стоимость')}:{values[ECreateBasicProductParams.COST]}
       </div>
       <div>
-        {t('Валюта')}:{values[ECreateBasicProductParams.COST_CURRENCY]}
-      </div>
-      <div>
         {t('Категория')}:{values[ECreateBasicProductParams.CATEGORY]}
       </div>
       <div>
         {t('Шаг пробойника')}:{values[ECreateBasicProductParams.PUNCH_PITCH]}
       </div>
       <div>
-        {t('Размер')}:{values.size}
+        {t('Размер')}:{values[ECreateBasicProductParams.SIZE]}
       </div>
       <div>
-        {t('Описание')}:{values.description}
+        {t('Описание')}:{values[ECreateBasicProductParams.DESCRIPTION]}
       </div>
     </div>
   )

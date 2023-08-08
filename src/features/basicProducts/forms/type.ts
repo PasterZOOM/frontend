@@ -1,5 +1,4 @@
 import { ECreateBasicProductParams } from 'features/basicProducts/enums/paramsKeys'
-import { ECost } from 'shared/enums/cost'
 import { EPunchPitch } from 'shared/enums/materials'
 import { EProductAssignment, EProductCategory } from 'shared/enums/product'
 
@@ -10,7 +9,6 @@ export type CreateBasicProductFormType = {
   [ECreateBasicProductParams.SIZE]: string
   [ECreateBasicProductParams.COST]: number
   [ECreateBasicProductParams.CATEGORY]: EProductCategory
-  [ECreateBasicProductParams.COST_CURRENCY]: ECost
   [ECreateBasicProductParams.PUNCH_PITCH]: EPunchPitch
   [ECreateBasicProductParams.ASSIGNMENTS]: EProductAssignment[]
 }

@@ -13,7 +13,7 @@ const AccordionWrapper: FC<AccordionWrapperProps> = ({
   title,
   classes = { title: '', wrapper: '' },
 }) => {
-  const [open, setOpen] = useState(true)
+  const [open, setOpen] = useState(false)
 
   return (
     <div className={`border-b border-light-gray dark:border-gray-500 ${classes.wrapper}`}>

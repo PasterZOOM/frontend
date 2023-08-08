@@ -1,4 +1,3 @@
-import { ECost } from 'shared/enums/cost'
 import { EPunchPitch } from 'shared/enums/materials'
 import { EProductAssignment, EProductCategory } from 'shared/enums/product'
 import { PhotosType } from 'shared/types/productType'
@@ -8,7 +7,6 @@ export type BasicProductType = {
   assignments: EProductAssignment[]
   category: EProductCategory
   cost: number
-  costCurrency: ECost
   description: string
   isPublished: boolean
   leather: {
@@ -22,11 +20,17 @@ export type BasicProductType = {
   title: string
 }
 
+export type BasicProductResponseType = {
+  data: BasicProductType[]
+  maxPrice: number
+  minPrice: number
+  totalCount: number
+}
+
 export type CreateBasicProductParamsType = {
   assignments: EProductAssignment[]
   category: EProductCategory
   cost: number
-  costCurrency: ECost
   description: string
   leather: {
     article: string

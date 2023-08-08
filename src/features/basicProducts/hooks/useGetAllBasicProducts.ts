@@ -1,7 +1,7 @@
 import { useQuery } from 'react-query'
 
 import { BasicProductsAPI } from 'features/basicProducts/api/basicProductsAPI'
-import { BasicProductType } from 'features/basicProducts/api/types'
+import { BasicProductResponseType } from 'features/basicProducts/api/types'
 import { EFilterKeys } from 'shared/components/pages/catalog/filters/filters'
 import { QUERY_KEY } from 'shared/enums/QUERY_KEY'
 import { useLocale } from 'shared/lib/hooks/useLocale'
@@ -15,7 +15,7 @@ import {
 } from 'store/useBasicProductsFilterStore'
 
 export const useGetAllBasicProducts: UseQueryAllHook<
-  { data: BasicProductType[]; totalCount: number },
+  BasicProductResponseType,
   unknown,
   [QUERY_KEY.GET_ALL_BASIC_PRODUCTS, FiltersType, LOCALES]
 > = options => {

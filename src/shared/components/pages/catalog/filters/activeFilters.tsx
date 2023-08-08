@@ -42,6 +42,8 @@ const ActiveFilters: FC<PropsType> = ({ className = '' }) => {
       [EFilterKeys.SEARCH]: { search: { _id: v1(), title: '', value: '' } },
       [EFilterKeys.PAGE]: { page: { _id: v1(), title: '', value: '' } },
       [EFilterKeys.PAGE_SIZE]: { pageSize: { _id: v1(), title: '', value: '' } },
+      [EFilterKeys.MIN_PRICE]: { minPrice: { _id: v1(), title: '', value: '' } },
+      [EFilterKeys.MAX_PRICE]: { maxPrice: { _id: v1(), title: '', value: '' } },
     }),
     [articles]
   )
@@ -76,6 +78,24 @@ const ActiveFilters: FC<PropsType> = ({ className = '' }) => {
             ...filters[filterKey][filterKey],
             value: filterValue ?? '',
             title: filterValue ?? '',
+            filterKey,
+          },
+        ]
+      } else if (filterKey === EFilterKeys.MAX_PRICE) {
+        temp = [
+          {
+            ...filters[filterKey][filterKey],
+            value: filterValue ?? '',
+            title: `max price: ${filterValue}` ?? '',
+            filterKey,
+          },
+        ]
+      } else if (filterKey === EFilterKeys.MIN_PRICE) {
+        temp = [
+          {
+            ...filters[filterKey][filterKey],
+            value: filterValue ?? '',
+            title: `min price: ${filterValue}` ?? '',
             filterKey,
           },
         ]

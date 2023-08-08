@@ -9,7 +9,6 @@ import { BasicProductInfoPhotoBlock } from 'features/basicProducts/ui/basicProdu
 import { LeatherArticleModal } from 'features/leatherArticles/modals/leatherArticleModal'
 import { LeatherFactoryModal } from 'features/leatherFactories/modals/leatherFactoryModal'
 import { PropertyPreviewWrapper } from 'shared/components/common/wrappers/propertyPreviewWrapper'
-import { currencies, currencyArray } from 'shared/objects/currency/currency'
 import { punchPatches, punchPatchesArray } from 'shared/objects/materials/punchPatch'
 import { productAssignmentsArray } from 'shared/objects/products/productAssignments'
 import {
@@ -77,22 +76,6 @@ export const BasicProductInfo: FC<PropsType> = ({ className, product, onDeleteCo
             >
               {product.cost.toString()}
             </EditableSpanInput>
-          </PropertyInOneRow>
-
-          <PropertyInOneRow title="Валюта:">
-            <EditableSpanSelect
-              initialValue={product.costCurrency}
-              title={t(currencies[product.costCurrency].title)}
-              onChange={costCurrency =>
-                updateBasicProduct({ _id: product._id, params: { costCurrency } })
-              }
-            >
-              {currencyArray.map(currency => (
-                <option key={currency._id} value={currency.value}>
-                  {t(currency.title)}
-                </option>
-              ))}
-            </EditableSpanSelect>
           </PropertyInOneRow>
 
           <PropertyInOneRow title="Категория:">

@@ -1,4 +1,5 @@
 import {
+  BasicProductResponseType,
   BasicProductType,
   CreateBasicProductParamsType,
   RemoveBasicProductPhotoParamsType,
@@ -18,12 +19,9 @@ export const BasicProductsAPI = {
   },
 
   getAll: async (filters?: FiltersType) => {
-    const res = await instance.get<{ data: BasicProductType[]; totalCount: number }>(
-      `${BASE_URL}`,
-      {
-        params: { ...filters },
-      }
-    )
+    const res = await instance.get<BasicProductResponseType>(`${BASE_URL}`, {
+      params: { ...filters },
+    })
 
     return res.data
   },

@@ -11,10 +11,8 @@ import { useGetAllLeatherArticles } from 'features/leatherArticles/hooks/useGetA
 import { CreateForm } from 'shared/components/forms/createForm'
 import { FormInputWithWrapper } from 'shared/components/forms/inputs/formInputWithWrapper'
 import { FormSelectWithWrapper } from 'shared/components/forms/selects/formSelectWithWrapper'
-import { ECost } from 'shared/enums/cost'
 import { EPunchPitch } from 'shared/enums/materials'
 import { EProductCategory } from 'shared/enums/product'
-import { currencyArray } from 'shared/objects/currency/currency'
 import { punchPatchesArray } from 'shared/objects/materials/punchPatch'
 import { productAssignmentsArray } from 'shared/objects/products/productAssignments'
 import { productCategoriesArray } from 'shared/objects/products/productCategories'
@@ -27,7 +25,6 @@ const defaultValues: FormValues = {
   assignments: [],
   category: EProductCategory.CARD_HOLDER,
   cost: 0,
-  costCurrency: ECost.USD,
   description: '',
   leatherArticle: '',
   punchPitch: EPunchPitch.LITTLE,
@@ -87,12 +84,6 @@ export const CreateBasicProductForm: FC = () => {
           inputProps={{ type: 'number', min: 0 }}
           name="cost"
           title="Стоимость:"
-        />
-
-        <FormSelectWithWrapper<FormValues>
-          items={currencyArray}
-          name="costCurrency"
-          title="Валюта:"
         />
 
         <FormSelectWithWrapper<FormValues>

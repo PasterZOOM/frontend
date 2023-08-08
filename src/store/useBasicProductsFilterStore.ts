@@ -12,6 +12,8 @@ const initialState: FilterStateType = {
     page: [],
     pageSize: [],
     sort: [],
+    maxPrice: [],
+    minPrice: [],
   },
 }
 

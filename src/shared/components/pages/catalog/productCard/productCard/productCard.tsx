@@ -6,7 +6,7 @@ import { useTranslation } from 'next-i18next'
 import { BasicProductType } from 'features/basicProducts/api/types'
 import cls from 'shared/components/pages/catalog/productCard/productCard/productCard.module.scss'
 import { ProductCardPhoto } from 'shared/components/pages/catalog/productCard/productCardPhoto'
-import { ECost } from 'shared/enums/cost'
+import { DEFAULT_PRODUCT_CURRENCY } from 'shared/constants/currancy/defaultProductCurrency'
 import { useGetPriceInCurrency } from 'shared/lib/hooks/useGetPriceInCurrency'
 import { Button } from 'shared/ui/buttons/button'
 import { LeatherColorButton } from 'shared/ui/buttons/leatherColorButton'
@@ -15,11 +15,10 @@ import { selectRate, useCurrencyRatesStore } from 'store/useCurrencyRatesStore'
 import { selectCurrentCurrency, useUserSettings } from 'store/useUserSettings'
 
 type PropsType = {
-  defCurrency?: ECost
   product: BasicProductType
 }
 
-export const ProductCard: FC<PropsType> = ({ defCurrency = ECost.USD, product }) => {
+export const ProductCard: FC<PropsType> = ({ product }) => {
   const { t } = useTranslation('catalog')
 
   const [activeColor, setActiveColor] = useState(product.productColors[0]?._id ?? '')
@@ -27,16 +26,8 @@ export const ProductCard: FC<PropsType> = ({ defCurrency = ECost.USD, product })
   const currentCurrency = useUserSettings(selectCurrentCurrency)
   const rate = useCurrencyRatesStore(selectRate(currentCurrency))
 
-  const currentCurrencyPrice = useGetPriceInCurrency(
-    product.cost,
-    product.costCurrency,
-    currentCurrency
-  )
-  const defaultCurrencyPrice = useGetPriceInCurrency(
-    product.cost,
-    product.costCurrency,
-    defCurrency
-  )
+  const currentCurrencyPrice = useGetPriceInCurrency(product.cost, currentCurrency)
+  const defaultCurrencyPrice = useGetPriceInCurrency(product.cost, DEFAULT_PRODUCT_CURRENCY)
 
   useEffect(() => {
     setActiveColor(product.productColors[0]?._id ?? '')
@@ -79,7 +70,7 @@ export const ProductCard: FC<PropsType> = ({ defCurrency = ECost.USD, product })
         <div className="mt-3 cursor-default">
           <div className="flex gap-2 pb-3 text-custom-lg font-light">
             <div>{currentCurrencyPrice.title}</div>
-            {defCurrency !== currentCurrency && !!rate && (
+            {DEFAULT_PRODUCT_CURRENCY !== currentCurrency && !!rate && (
               <div className="opacity-60">{defaultCurrencyPrice.title}</div>
             )}
             {!rate && (

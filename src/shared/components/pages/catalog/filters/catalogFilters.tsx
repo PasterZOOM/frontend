@@ -14,6 +14,7 @@ import { MultipleFilter } from 'shared/components/pages/catalog/filters/multiple
 import { useLocale } from 'shared/lib/hooks/useLocale'
 import AccordionWrapper from 'shared/ui/accordion/accordionWrapper'
 import { ColorFilterCheckbox } from 'shared/ui/checkbox/colorFilterCheckbox'
+import { PriceRange } from 'widgets/priceRange'
 import { Sort } from 'widgets/sort'
 
 type PropsType = {
@@ -89,7 +90,8 @@ export const CatalogFilters: FC<PropsType> = ({
           </div>
         </AccordionWrapper>
 
-        <Sort />
+        <Sort className="pb-4" />
+        <PriceRange className="pb-4" />
       </FilterContainer>
     </div>
   )
