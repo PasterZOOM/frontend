@@ -1,5 +1,4 @@
 import { DEFAULT_PRODUCT_CURRENCY } from 'shared/constants/currancy/defaultProductCurrency'
-import { ECost } from 'shared/enums/cost'
 import { CurrencySign } from 'shared/enums/currencySign'
 import {
   selectGetCurrentPrice,
@@ -7,6 +6,7 @@ import {
   useCurrencyRatesStore,
 } from 'store/useCurrencyRatesStore'
 import { selectCurrentCurrency, useUserSettings } from 'store/useUserSettings'
+import { ECost } from 'widgets/switchers/currencySwitcher/module/enum'
 
 export const useGetPriceInCurrency: UseGetPriceInCurrencyType = price => {
   const currentCurrency = useUserSettings(selectCurrentCurrency)

@@ -4,10 +4,12 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 
-import { LanguageSwitch } from 'shared/components/common/header/languageSwitch'
-import { SwitchUserStatus } from 'shared/ui/checkbox/switchUserStatus'
-import { CurrentCurrencySelect } from 'shared/ui/selects/currentCurrencySelect'
-import SwitchTheme from 'shared/ui/selects/switchTheme'
+import {
+  CurrencySwitcher,
+  LanguageSwitcher,
+  ThemeSwitcher,
+  UserStatusSwitcher,
+} from 'widgets/switchers'
 
 const Header: FC = () => {
   const router = useRouter()
@@ -37,15 +39,15 @@ const Header: FC = () => {
         isVisible ? 'top-0' : '-top-20'
       } sticky z-30 flex transform items-center justify-around bg-white px-3 py-5 shadow-line-bottom duration-300 dark:bg-anthracite-gray dark:shadow-line-bottom-dark`}
     >
-      <SwitchUserStatus />
+      <UserStatusSwitcher />
       {router.pathname.includes('catalog') ? (
         <Link href="/crm">CRM</Link>
       ) : (
         <Link href="/catalog">{t('Каталог')}</Link>
       )}
-      <CurrentCurrencySelect />
-      <SwitchTheme />
-      <LanguageSwitch />
+      <CurrencySwitcher />
+      <ThemeSwitcher />
+      <LanguageSwitcher />
     </div>
   )
 }

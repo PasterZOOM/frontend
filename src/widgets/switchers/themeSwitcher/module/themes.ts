@@ -1,6 +1,7 @@
 import { v1 } from 'uuid'
 
-import { ETheme } from 'shared/enums/theme'
+import { ETheme } from './enum'
+
 import { ObjectForSelectType } from 'shared/types/objectForSelectType'
 import { SelectItemType } from 'shared/ui/selects/defaultSelectType'
 

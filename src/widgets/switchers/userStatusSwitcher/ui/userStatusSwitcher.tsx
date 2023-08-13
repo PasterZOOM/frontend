@@ -2,10 +2,11 @@ import { FC, useEffect, useState } from 'react'
 
 import { useTranslation } from 'next-i18next'
 
-import { UserStatus } from 'shared/enums/userStatus'
+import { UserStatus } from '../module/enum'
+
 import { selectSetUserStatus, selectUserStatus, useUserSettings } from 'store/useUserSettings'
 
-export const SwitchUserStatus: FC = () => {
+export const UserStatusSwitcher: FC = () => {
   const userStatus = useUserSettings(selectUserStatus)
   const setUserStatus = useUserSettings(selectSetUserStatus)
   const { t } = useTranslation()

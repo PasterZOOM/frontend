@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 
 import { LOCALES } from 'shared/types/localeType'
 
-export const LanguageSwitch: FC = () => {
+export const LanguageSwitcher: FC = () => {
   const { pathname, query, locale } = useRouter()
 
   return (

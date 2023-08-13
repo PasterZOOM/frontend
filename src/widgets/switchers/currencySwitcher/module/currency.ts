@@ -1,6 +1,7 @@
 import { v1 } from 'uuid'
 
-import { ECost } from 'shared/enums/cost'
+import { ECost } from './enum'
+
 import { ObjectForSelectType } from 'shared/types/objectForSelectType'
 import { SelectItemType } from 'shared/ui/selects/defaultSelectType'
 

@@ -9,7 +9,6 @@ import { LeatherArticlesAPI } from 'features/leatherArticles/api/leatherArticles
 import { NextPageWithLayout } from 'pages/_app'
 import { CurrencyAPI } from 'shared/api/currency/currencyApi'
 import { Catalog } from 'shared/components/pages/catalog/catalog'
-import { ECost } from 'shared/enums/cost'
 import { QUERY_KEY } from 'shared/enums/QUERY_KEY'
 import { CostType } from 'shared/types/costType'
 import { FiltersType } from 'store/useBasicProductsFilterStore'
@@ -19,6 +18,7 @@ import {
   useCurrencyRatesStore,
 } from 'store/useCurrencyRatesStore'
 import { MainLayout } from 'widgets/layouts/mainLayout'
+import { ECost } from 'widgets/switchers/currencySwitcher/module/enum'
 
 export const getServerSideProps: GetServerSideProps = async ({ query, locale }) => {
   const rates: CostType = initialCurrencyRatesState

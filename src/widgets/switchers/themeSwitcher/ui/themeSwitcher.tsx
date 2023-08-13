@@ -2,8 +2,9 @@ import { FC } from 'react'
 
 import { useTranslation } from 'next-i18next'
 
-import { useSwitchTheme } from 'shared/lib/hooks/useSwitchTheme'
-import { themesArray } from 'shared/objects/theme/themes'
+import { useSwitchTheme } from '../module/lib/hooks/useSwitchTheme'
+import { themesArray } from '../module/themes'
+
 import { SelectItemType } from 'shared/ui/selects/defaultSelectType'
 import { Select } from 'shared/ui/selects/select'
 
@@ -13,7 +14,7 @@ const ThemeElement: FC<Pick<SelectItemType, 'title'>> = ({ title }) => {
   return <span>{t(title)}</span>
 }
 
-const SwitchTheme: FC = () => {
+export const ThemeSwitcher: FC = () => {
   const { activeTheme, setActiveTheme } = useSwitchTheme()
 
   return (
@@ -25,5 +26,3 @@ const SwitchTheme: FC = () => {
     />
   )
 }
-
-export default SwitchTheme
