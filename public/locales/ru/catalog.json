@@ -8,5 +8,8 @@
   "no-photo": "нет фото",
   "Failed to load exchange rates": "Не удалось загрузить курсы валют",
   "Min price": "Минимальная цена",
-  "Max price": "Максимальная цена"
+  "Max price": "Максимальная цена",
+  "Search button": "Искать",
+  "Search placeholder": "Поиск...",
+  "Search tag": "Поиск"
 }

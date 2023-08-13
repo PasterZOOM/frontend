@@ -10,7 +10,7 @@ import { ELeatherColor } from 'shared/enums/materials'
 import { EProductAssignment, EProductCategory } from 'shared/enums/product'
 import { useClearAllQueryParams } from 'shared/lib/hooks/queryParams/useClearAllQueryParams'
 import { useGetPriceInCurrency } from 'shared/lib/hooks/useGetPriceInCurrency'
-import { leatherColorsValues } from 'shared/objects/colors/leatherColorsValues'
+import { leatherColors } from 'shared/objects/colors/leatherColors'
 import { productAssignments } from 'shared/objects/products/productAssignments'
 import { productCategories } from 'shared/objects/products/productCategories'
 import { productSort } from 'shared/objects/products/productSort'
@@ -38,15 +38,26 @@ const ActiveFilters: FC<PropsType> = ({ className = '' }) => {
       [EFilterKeys.ASSIGNMENTS]: productAssignments,
       [EFilterKeys.CATEGORIES]: productCategories,
       [EFilterKeys.LEATHERS]: articles,
-      [EFilterKeys.LEATHER_COLORS]: leatherColorsValues,
+      [EFilterKeys.LEATHER_COLORS]: leatherColors,
       [EFilterKeys.SORT]: productSort,
-      [EFilterKeys.SEARCH]: { search: { _id: v1(), title: '', value: '' } },
+      [EFilterKeys.SEARCH]: {
+        search: {
+          _id: v1(),
+          title: '',
+          value: '',
+          component: <>{t('Search tag')}: </>,
+        },
+      },
       [EFilterKeys.PAGE]: { page: { _id: v1(), title: '', value: '' } },
       [EFilterKeys.PAGE_SIZE]: { pageSize: { _id: v1(), title: '', value: '' } },
-      [EFilterKeys.MIN_PRICE]: { minPrice: { _id: v1(), title: '', value: '' } },
-      [EFilterKeys.MAX_PRICE]: { maxPrice: { _id: v1(), title: '', value: '' } },
+      [EFilterKeys.MIN_PRICE]: {
+        minPrice: { _id: v1(), title: '', value: '', component: <>{t('Max price')}: </> },
+      },
+      [EFilterKeys.MAX_PRICE]: {
+        maxPrice: { _id: v1(), title: '', value: '', component: <>{t('Max price')}: </> },
+      },
     }),
-    [articles]
+    [articles, t]
   )
 
   const minPriceValue = useGetPriceInCurrency(Number(filtersInStore.minPrice))
@@ -90,7 +101,7 @@ const ActiveFilters: FC<PropsType> = ({ className = '' }) => {
           {
             ...filters[filterKey][filterKey],
             value: filterValue ?? '',
-            title: `${t('Max price')}: ${maxPriceValue.title}`,
+            title: maxPriceValue.title || '',
             filterKey,
           },
         ]
@@ -99,7 +110,7 @@ const ActiveFilters: FC<PropsType> = ({ className = '' }) => {
           {
             ...filters[filterKey][filterKey],
             value: filterValue ?? '',
-            title: `${t('Min price')}: ${minPriceValue.title}`,
+            title: minPriceValue.title || '',
             filterKey,
           },
         ]

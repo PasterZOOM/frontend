@@ -13,6 +13,7 @@ import {
   selectGetDefaultPrice,
   useCurrencyRatesStore,
 } from 'store/useCurrencyRatesStore'
+import { selectCurrentCurrency, useUserSettings } from 'store/useUserSettings'
 
 type PropsType = {
   className?: string
@@ -20,6 +21,9 @@ type PropsType = {
 
 const PriceRange: FC<PropsType> = ({ className }) => {
   const { data } = useGetAllBasicProducts()
+
+  const currentCurrency = useUserSettings(selectCurrentCurrency)
+
   const getCurrentPrice = useCurrencyRatesStore(selectGetCurrentPrice)
   const getDefaultPrice = useCurrencyRatesStore(selectGetDefaultPrice)
 
@@ -49,37 +53,37 @@ const PriceRange: FC<PropsType> = ({ className }) => {
     if (value === minRangeValue) {
       removeMinPrice()
     } else {
-      changeMinPrice(`${getDefaultPrice(value)}`)
+      changeMinPrice(`${getDefaultPrice(value, currentCurrency)}`)
     }
   }
   const onChangeCommittedMaxValueHandler = (value: number): void => {
     if (value === maxRangeValue) {
       removeMaxPrice()
     } else {
-      changeMaxPrice(`${getDefaultPrice(value)}`)
+      changeMaxPrice(`${getDefaultPrice(value, currentCurrency)}`)
     }
   }
 
   useEffect(() => {
     const newValue = minPriceQueryParam
-      ? Math.round(getCurrentPrice(+minPriceQueryParam || 0))
+      ? Math.round(getCurrentPrice(+minPriceQueryParam || 0, currentCurrency))
       : minRangeValue
 
     setValue0(newValue)
-  }, [getCurrentPrice, minPriceQueryParam, minRangeValue, setValue0])
+  }, [currentCurrency, getCurrentPrice, minPriceQueryParam, minRangeValue, setValue0])
 
   useEffect(() => {
     const newValue = maxPriceQueryParam
-      ? Math.round(getCurrentPrice(+maxPriceQueryParam || 0))
+      ? Math.round(getCurrentPrice(+maxPriceQueryParam || 0, currentCurrency))
       : maxRangeValue
 
     setValue1(newValue)
-  }, [getCurrentPrice, maxPriceQueryParam, maxRangeValue, setValue1])
+  }, [currentCurrency, getCurrentPrice, maxPriceQueryParam, maxRangeValue, setValue1])
 
   useEffect(() => {
     if (!isSetMinMaxValue.current) {
-      const initValue0 = Math.round(getCurrentPrice(data?.minPrice || 0))
-      const initValue1 = Math.round(getCurrentPrice(data?.maxPrice || 0))
+      const initValue0 = Math.round(getCurrentPrice(data?.minPrice || 0, currentCurrency))
+      const initValue1 = Math.round(getCurrentPrice(data?.maxPrice || 0, currentCurrency))
 
       setMinRangeValue(initValue0)
       setMaxRangeValue(initValue1)
@@ -89,7 +93,16 @@ const PriceRange: FC<PropsType> = ({ className }) => {
         isSetMinMaxValue.current = true
       }
     }
-  }, [data, getCurrentPrice, setValue0, setValue1])
+  }, [currentCurrency, data, getCurrentPrice, setValue0, setValue1])
+
+  useEffect(() => {
+    const initValue0 = Math.round(getCurrentPrice(data?.minPrice || 0, currentCurrency))
+    const initValue1 = Math.round(getCurrentPrice(data?.maxPrice || 0, currentCurrency))
+
+    setMinRangeValue(initValue0)
+    setMaxRangeValue(initValue1)
+    // eslint-disable-next-line
+  }, [currentCurrency, getCurrentPrice])
 
   return (
     <div className={classnames(cls.priceRange, className)}>

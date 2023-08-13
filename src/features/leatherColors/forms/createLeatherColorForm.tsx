@@ -12,7 +12,7 @@ import { CreateForm } from 'shared/components/forms/createForm'
 import { FormInputWithWrapper } from 'shared/components/forms/inputs/formInputWithWrapper'
 import { FormSelectWithWrapper } from 'shared/components/forms/selects/formSelectWithWrapper'
 import { ELeatherColor } from 'shared/enums/materials'
-import { leatherColorsArray } from 'shared/objects/colors/leatherColorsValues'
+import { leatherColorsArray } from 'shared/objects/colors/leatherColors'
 import { SelectItemType } from 'shared/ui/selects/defaultSelectType'
 import { TypographyHeader } from 'shared/ui/typographyHeader/typographyHeader'
 

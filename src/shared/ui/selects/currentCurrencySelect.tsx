@@ -2,6 +2,7 @@ import { FC, useEffect, useState } from 'react'
 
 import { ECost } from 'shared/enums/cost'
 import { useCurrencyTitle } from 'shared/lib/hooks/useCurrencyTitle'
+import { useIsFirstRender } from 'shared/lib/hooks/useFirstRender'
 import { useLocale } from 'shared/lib/hooks/useLocale'
 import { currencies, currencyArray } from 'shared/objects/currency/currency'
 import { SelectItemType } from 'shared/ui/selects/defaultSelectType'
@@ -20,14 +21,17 @@ const CurrencyElement: FC<SelectItemType<ECost>> = currency => {
 
 export const CurrentCurrencySelect: FC = () => {
   const locale = useLocale()
+  const isFirst = useIsFirstRender()
   const currentCurrency = useUserSettings(selectCurrentCurrency)
   const setCurrentCurrency = useUserSettings(selectSetCurrentCurrency)
 
   const [activeCurrency, setActiveCurrency] = useState<SelectItemType<ECost>>(currencies[ECost.BYN])
 
   useEffect(() => {
-    setCurrentCurrency(activeCurrency.value)
-  }, [activeCurrency, setCurrentCurrency])
+    if (!isFirst) {
+      setCurrentCurrency(activeCurrency.value)
+    }
+  }, [activeCurrency, isFirst, setCurrentCurrency])
 
   useEffect(() => {
     setActiveCurrency(currencies[currentCurrency])

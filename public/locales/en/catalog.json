@@ -8,5 +8,8 @@
   "no-photo": "no photo",
   "Failed to load exchange rates": "Failed to load exchange rates",
   "Min price": "Min price",
-  "Max price": "Max price"
+  "Max price": "Max price",
+  "Search button": "Search",
+  "Search placeholder": "Search...",
+  "Search tag": "Search"
 }

@@ -18,7 +18,7 @@ type PropsType = Omit<ComponentPropsWithoutRef<'input'>, 'type'> & {
   value: string
 }
 
-export const Search: FC<PropsType> = ({
+export const CatalogSearch: FC<PropsType> = ({
   value,
   className = '',
   placeholder = 'Search',
@@ -30,7 +30,7 @@ export const Search: FC<PropsType> = ({
   onClear,
   ...rest
 }) => {
-  const { t } = useTranslation('common')
+  const { t } = useTranslation('catalog')
   const ref = useRef<HTMLInputElement | null>(null)
 
   const onKeyHandler: KeyboardEventHandler<HTMLInputElement> = e => {
@@ -52,11 +52,11 @@ export const Search: FC<PropsType> = ({
   }
 
   return (
-    <div className={classnames(cls.search, className)}>
+    <div className={classnames(cls.catalogSearch, className)}>
       <input
         ref={ref}
         className={classnames(cls.input, 'dark:border-gray-200 dark:bg-anthracite-gray')}
-        placeholder={t('searchPlaceholder') || placeholder}
+        placeholder={t('Search placeholder') || placeholder}
         type="text"
         value={value}
         onChange={onChangeHandler}

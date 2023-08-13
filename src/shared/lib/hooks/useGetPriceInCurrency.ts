@@ -12,7 +12,10 @@ export const useGetPriceInCurrency: UseGetPriceInCurrencyType = price => {
   const currentCurrency = useUserSettings(selectCurrentCurrency)
   const rate = useCurrencyRatesStore(selectRate(DEFAULT_PRODUCT_CURRENCY))
 
-  const targetPrice = +useCurrencyRatesStore(selectGetCurrentPrice)(price).toFixed()
+  const targetPrice = +useCurrencyRatesStore(selectGetCurrentPrice)(
+    price,
+    currentCurrency
+  ).toFixed()
 
   return {
     price: targetPrice,

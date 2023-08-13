@@ -21,7 +21,10 @@ export const ActiveFilterTag: FC<PropsType> = ({ filter }) => {
       type="button"
       onClick={() => removeQueryParams(filter.value)}
     >
-      {t(filter.title)}
+      <div className="flex gap-1">
+        {filter.component && <div>{filter.component}</div>}
+        <div>{t(filter.title)}</div>
+      </div>
     </button>
   )
 }

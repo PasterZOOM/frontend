@@ -4,7 +4,7 @@ import { ELeatherColor } from 'shared/enums/materials'
 import { ObjectForSelectType } from 'shared/types/objectForSelectType'
 import { SelectItemType } from 'shared/ui/selects/defaultSelectType'
 
-export const leatherColorsValues: ObjectForSelectType<ELeatherColor> = {
+export const leatherColors: ObjectForSelectType<ELeatherColor> = {
   [ELeatherColor.BLACK]: {
     _id: v1(),
     value: ELeatherColor.BLACK,
@@ -27,5 +27,4 @@ export const leatherColorsValues: ObjectForSelectType<ELeatherColor> = {
   },
 }
 
-export const leatherColorsArray: SelectItemType<ELeatherColor>[] =
-  Object.values(leatherColorsValues)
+export const leatherColorsArray: SelectItemType<ELeatherColor>[] = Object.values(leatherColors)

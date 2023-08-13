@@ -7,7 +7,7 @@ import { LeatherColorType } from 'features/leatherColors/api/types'
 import { useUpdateLeatherColor } from 'features/leatherColors/hooks/useUpdateLeatherColor'
 import { LeatherColorRemoveConfirmModalBody } from 'features/leatherColors/modals/confirm/leatherColorRemoveConfirmModalBody'
 import { PropertyPreviewWrapper } from 'shared/components/common/wrappers/propertyPreviewWrapper'
-import { leatherColorsArray, leatherColorsValues } from 'shared/objects/colors/leatherColorsValues'
+import { leatherColorsArray, leatherColors } from 'shared/objects/colors/leatherColors'
 import { RemoveButton } from 'shared/ui/buttons/removeButton'
 import { EditableSpanInput } from 'shared/ui/editable/editableSpanInput'
 import { EditableSpanSelect } from 'shared/ui/editable/editableSpanSelect'
@@ -50,7 +50,7 @@ export const LeatherColorInfo: FC<PropsType> = ({ className, color, onDeleteConf
           <PropertyInOneRow title="Значение цвета:">
             <EditableSpanSelect
               initialValue={color.value}
-              title={t(leatherColorsValues[color.value].title)}
+              title={t(leatherColors[color.value].title)}
               onChange={value => updateLeatherColor({ _id: color._id, params: { value } })}
             >
               {leatherColorsArray.map(leatherColor => (
