@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { persist } from 'zustand/middleware'
+import { devtools, persist } from 'zustand/middleware'
 
 import { ECost } from 'shared/enums/cost'
 import { ETheme } from 'shared/enums/theme'
@@ -12,14 +12,16 @@ const initialState: UserSettingsStateType = {
 }
 
 export const useUserSettings = create(
-  persist<StoreType>(
-    set => ({
-      ...initialState,
-      setCurrentCurrency: currentCurrency => set({ currentCurrency }),
-      setTheme: theme => set({ theme }),
-      setUserStatus: userStatus => set({ userStatus }),
-    }),
-    { name: 'userSettings' }
+  devtools(
+    persist<StoreType>(
+      set => ({
+        ...initialState,
+        setCurrentCurrency: currentCurrency => set({ currentCurrency }),
+        setTheme: theme => set({ theme }),
+        setUserStatus: userStatus => set({ userStatus }),
+      }),
+      { name: 'userSettings' }
+    )
   )
 )
 

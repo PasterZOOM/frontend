@@ -64,10 +64,10 @@ export const Search: FC<PropsType> = ({
         onKeyUp={onKeyHandler}
         {...rest}
       />
-      <div className={cls['right-part']}>
+      <div className={cls.rightPart}>
         {value && (
           <button
-            className={classnames(cls['clear-button'])}
+            className={classnames(cls.clearButton)}
             type="button"
             onClick={onCLickClearButtonHandler}
           >

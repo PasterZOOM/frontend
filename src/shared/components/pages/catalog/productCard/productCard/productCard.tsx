@@ -7,6 +7,7 @@ import { BasicProductType } from 'features/basicProducts/api/types'
 import cls from 'shared/components/pages/catalog/productCard/productCard/productCard.module.scss'
 import { ProductCardPhoto } from 'shared/components/pages/catalog/productCard/productCardPhoto'
 import { DEFAULT_PRODUCT_CURRENCY } from 'shared/constants/currancy/defaultProductCurrency'
+import { CurrencySign } from 'shared/enums/currencySign'
 import { useGetPriceInCurrency } from 'shared/lib/hooks/useGetPriceInCurrency'
 import { Button } from 'shared/ui/buttons/button'
 import { LeatherColorButton } from 'shared/ui/buttons/leatherColorButton'
@@ -26,8 +27,7 @@ export const ProductCard: FC<PropsType> = ({ product }) => {
   const currentCurrency = useUserSettings(selectCurrentCurrency)
   const rate = useCurrencyRatesStore(selectRate(currentCurrency))
 
-  const currentCurrencyPrice = useGetPriceInCurrency(product.cost, currentCurrency)
-  const defaultCurrencyPrice = useGetPriceInCurrency(product.cost, DEFAULT_PRODUCT_CURRENCY)
+  const currentCurrencyPrice = useGetPriceInCurrency(product.cost)
 
   useEffect(() => {
     setActiveColor(product.productColors[0]?._id ?? '')
@@ -71,7 +71,7 @@ export const ProductCard: FC<PropsType> = ({ product }) => {
           <div className="flex gap-2 pb-3 text-custom-lg font-light">
             <div>{currentCurrencyPrice.title}</div>
             {DEFAULT_PRODUCT_CURRENCY !== currentCurrency && !!rate && (
-              <div className="opacity-60">{defaultCurrencyPrice.title}</div>
+              <div className="opacity-60">{`${CurrencySign[DEFAULT_PRODUCT_CURRENCY]}${product.cost}`}</div>
             )}
             {!rate && (
               <div className="text-sm text-red-500">{t('Failed to load exchange rates')}</div>

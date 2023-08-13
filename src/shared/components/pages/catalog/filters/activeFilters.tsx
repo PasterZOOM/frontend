@@ -16,7 +16,6 @@ import { productCategories } from 'shared/objects/products/productCategories'
 import { productSort } from 'shared/objects/products/productSort'
 import { ObjectForSelectType } from 'shared/types/objectForSelectType'
 import { selectFilters, useBasicProductsFilterStore } from 'store/useBasicProductsFilterStore'
-import { selectCurrentCurrency, useUserSettings } from 'store/useUserSettings'
 
 type PropsType = {
   className?: string
@@ -50,9 +49,8 @@ const ActiveFilters: FC<PropsType> = ({ className = '' }) => {
     [articles]
   )
 
-  const currentCurrency = useUserSettings(selectCurrentCurrency)
-  const minPriceValue = useGetPriceInCurrency(Number(filtersInStore.minPrice), currentCurrency)
-  const maxPriceValue = useGetPriceInCurrency(Number(filtersInStore.maxPrice), currentCurrency)
+  const minPriceValue = useGetPriceInCurrency(Number(filtersInStore.minPrice))
+  const maxPriceValue = useGetPriceInCurrency(Number(filtersInStore.maxPrice))
 
   useEffect(() => {
     if (leatherArticles) {
@@ -123,7 +121,7 @@ const ActiveFilters: FC<PropsType> = ({ className = '' }) => {
 
       return prevFilters
     })
-  }, [filtersInStore, articles, filters, maxPriceValue.title, minPriceValue.title])
+  }, [filtersInStore, articles, filters, maxPriceValue.title, minPriceValue.title, t])
 
   return (
     <div className={`flex flex-wrap gap-2 ${className} ${activeFilters.length ? '' : 'hidden'}`}>

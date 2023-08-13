@@ -59,7 +59,7 @@ const SliderValueView: FC<PropsType> = ({ className, onChangeValue, max, min, va
 
   return (
     <input
-      className={classnames(cls['slider-value-view'], className)}
+      className={classnames(cls.sliderValueView, className)}
       max={max}
       min={min}
       type="number"
