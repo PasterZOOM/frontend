@@ -6,36 +6,40 @@ import { useClearAllQueryParams } from 'shared/lib/hooks/queryParams/useClearAll
 import { Button, ButtonVariant } from 'shared/ui/buttons/button'
 
 interface FilterButtonsProps {
-  open: boolean
-  setOpen: (value: boolean) => void
+  closeFilters: () => void
+  isOpen: boolean
+  openFilters: () => void
 }
 
-const FilterButtons: FC<FilterButtonsProps> = ({ open, setOpen }) => {
+export const FilterButtons: FC<FilterButtonsProps> = ({ isOpen, openFilters, closeFilters }) => {
   const clearAll = useClearAllQueryParams()
   const { t } = useTranslation()
 
   return (
     <div
       className={`sticky bottom-0 left-0 right-0 z-50 flex w-full gap-3 bg-white p-4 dark:bg-anthracite-gray md:p-6 xl:hidden ${
-        open ? '' : 'shadow-line-top dark:shadow-line-top-dark'
+        isOpen ? '' : 'shadow-line-top dark:shadow-line-top-dark'
       }`}
     >
-      {open ? (
+      {isOpen ? (
         <>
-          <Button className="w-full" variant={ButtonVariant.SECONDARY} onClick={clearAll}>
+          <Button
+            key="clearButton"
+            className="w-full"
+            variant={ButtonVariant.SECONDARY}
+            onClick={clearAll}
+          >
             {t('Очистить')}
           </Button>
-          <Button className="w-full" onClick={() => setOpen(false)}>
+          <Button key="applyButton" className="w-full" onClick={closeFilters}>
             {t('Применить')}
           </Button>
         </>
       ) : (
-        <Button className="w-full" onClick={() => setOpen(true)}>
+        <Button key="filtersButton" className="w-full" onClick={openFilters}>
           {t('Фильтра')}
         </Button>
       )}
     </div>
   )
 }
-
-export default FilterButtons

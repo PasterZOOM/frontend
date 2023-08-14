@@ -10,7 +10,7 @@ const initialState: FilterStateType = {
     categories: [],
     search: [],
     page: [],
-    pageSize: [],
+    pageSize: '12',
     sort: [],
     maxPrice: [],
     minPrice: [],

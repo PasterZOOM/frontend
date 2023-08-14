@@ -10,6 +10,7 @@ import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 
 import '../styles/globals.css'
+import { useVisible } from 'shared/lib/hooks/useVisible'
 
 export type NextPageWithLayout<P = unknown, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactElement
@@ -27,6 +28,8 @@ const App = ({ Component, pageProps }: AppPropsWithLayout): ReactElement => {
       })
   )
   const getLayout = Component.getLayout ?? (page => page)
+
+  useVisible()
 
   return getLayout(
     <QueryClientProvider client={queryClient}>

@@ -3,8 +3,9 @@ import {
   Dispatch,
   FC,
   memo,
-  MouseEventHandler,
+  MouseEvent,
   SetStateAction,
+  TouchEvent,
   useCallback,
   useEffect,
   useRef,
@@ -75,14 +76,14 @@ const DoubleRange: FC<PropsType> = ({
   )
 
   // Срабатывают при фиксации range
-  const onChangeCommittedFirst: MouseEventHandler<HTMLInputElement> = useCallback(
-    e => {
+  const onChangeCommittedFirst = useCallback(
+    (e: MouseEvent<HTMLInputElement> | TouchEvent<HTMLInputElement>) => {
       onChangeCommitted0(getValue(Math.min(e.currentTarget.valueAsNumber, getRangeValue(value1))))
     },
     [getRangeValue, getValue, onChangeCommitted0, value1]
   )
-  const onChangeCommittedSecond: MouseEventHandler<HTMLInputElement> = useCallback(
-    e => {
+  const onChangeCommittedSecond = useCallback(
+    (e: MouseEvent<HTMLInputElement> | TouchEvent<HTMLInputElement>) => {
       onChangeCommitted1(getValue(Math.max(e.currentTarget.valueAsNumber, getRangeValue(value0))))
     },
     [getRangeValue, getValue, onChangeCommitted1, value0]
@@ -127,6 +128,7 @@ const DoubleRange: FC<PropsType> = ({
           value={getRangeValue(value0)}
           onChange={onChangeThumb0}
           onMouseUp={onChangeCommittedFirst}
+          onTouchEnd={onChangeCommittedFirst}
         />
         <input
           className={classnames(cls.thumb, cls.thumbRight)}
@@ -134,6 +136,7 @@ const DoubleRange: FC<PropsType> = ({
           value={getRangeValue(value1)}
           onChange={onChangeThumb1}
           onMouseUp={onChangeCommittedSecond}
+          onTouchEnd={onChangeCommittedSecond}
         />
         <div className={classnames(cls.sliderTrack)} />
         <div ref={range} className={classnames(cls.sliderRange)} />

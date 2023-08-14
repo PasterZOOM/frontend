@@ -1,9 +1,10 @@
-import { Dispatch, FC, SetStateAction, useEffect } from 'react'
+import { FC } from 'react'
 
+import classnames from 'classnames'
 import { useTranslation } from 'next-i18next'
 
 import { useGetAllLeatherArticles } from 'features/leatherArticles/hooks/useGetAllLeatherArticles'
-import FilterContainer from 'shared/components/common/containers/filterContainer'
+import { SubWrapper } from 'shared/components/common/containers/subWrapper'
 import {
   EFilterKeys,
   leatherColorFilters,
@@ -11,31 +12,23 @@ import {
   productCategoriesFilters,
 } from 'shared/components/pages/catalog/filters/filters'
 import { MultipleFilter } from 'shared/components/pages/catalog/filters/multipleFilter'
-import { useLocale } from 'shared/lib/hooks/useLocale'
 import AccordionWrapper from 'shared/ui/accordion/accordionWrapper'
 import { ColorFilterCheckbox } from 'shared/ui/checkbox/colorFilterCheckbox'
+import { selectIsVisible, useAppStore } from 'store/useAppStore'
 import { PriceRange } from 'widgets/priceRange'
 import { Sort } from 'widgets/sort'
 
 type PropsType = {
   className?: string
+  closeFilters: () => void
   isOpenFilters: boolean
-  setIsOpenFilters: Dispatch<SetStateAction<boolean>>
 }
 
-export const CatalogFilters: FC<PropsType> = ({
-  isOpenFilters,
-  setIsOpenFilters,
-  className = '',
-}) => {
-  const locale = useLocale()
+export const CatalogFilters: FC<PropsType> = ({ isOpenFilters, closeFilters, className = '' }) => {
   const { t } = useTranslation('catalog')
 
-  const { data, refetch } = useGetAllLeatherArticles()
-
-  useEffect(() => {
-    refetch().then()
-  }, [locale, refetch])
+  const { data } = useGetAllLeatherArticles()
+  const isVisible = useAppStore(selectIsVisible)
 
   if (!data) return null
 
@@ -47,8 +40,21 @@ export const CatalogFilters: FC<PropsType> = ({
   }))
 
   return (
-    <div className={className}>
-      <FilterContainer className="xl:top-18" open={isOpenFilters} setOpen={setIsOpenFilters}>
+    <div
+      className={classnames(
+        className,
+        {
+          'top-22': isVisible,
+          'top-5': !isVisible,
+        },
+        'h-fit duration-300 xl:sticky'
+      )}
+    >
+      <SubWrapper
+        bias={isOpenFilters ? 'bottom-20 md:bottom-24' : '-bottom-full'}
+        close={closeFilters}
+        isOpen={isOpenFilters}
+      >
         <AccordionWrapper classes={{ wrapper: 'xl:-mt-5' }} title={t('assignments')}>
           <div className="px-4 pb-4 md:px-6 xl:px-0">
             {productAssignmentsFilters().map(assignment => (
@@ -60,6 +66,7 @@ export const CatalogFilters: FC<PropsType> = ({
             ))}
           </div>
         </AccordionWrapper>
+
         <AccordionWrapper title={t('category')}>
           <div className="px-4 pb-4 md:px-6 xl:px-0">
             {productCategoriesFilters().map(category => (
@@ -71,6 +78,7 @@ export const CatalogFilters: FC<PropsType> = ({
             ))}
           </div>
         </AccordionWrapper>
+
         <AccordionWrapper title={t('leather')}>
           <div className="px-4 pb-4 md:px-6 xl:px-0">
             {leathers.map(leather => (
@@ -78,6 +86,7 @@ export const CatalogFilters: FC<PropsType> = ({
             ))}
           </div>
         </AccordionWrapper>
+
         <AccordionWrapper title={t('color')}>
           <div className="flex flex-wrap gap-3 px-4 pb-4 md:px-6 xl:px-0">
             {leatherColorFilters().map(color => (
@@ -91,8 +100,9 @@ export const CatalogFilters: FC<PropsType> = ({
         </AccordionWrapper>
 
         <Sort className="pb-4" />
+
         <PriceRange className="pb-4" />
-      </FilterContainer>
+      </SubWrapper>
     </div>
   )
 }

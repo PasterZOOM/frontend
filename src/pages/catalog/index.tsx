@@ -27,8 +27,10 @@ export const getServerSideProps: GetServerSideProps = async ({ query, locale }) 
     (Object.keys(ECost) as ECost[]).map(async costKey => {
       const rate = await CurrencyAPI.getRate(costKey)
 
-      if (costKey !== ECost.BYN) {
-        rates[costKey] = rate.Cur_Scale / rate.Cur_OfficialRate
+      if (costKey === ECost.RUB) {
+        rates[costKey] = rate.Cur_Scale / rate.Cur_OfficialRate // * 1.1 коэффициент разницы курса нацбанка и курса в банках для росс.рубля
+      } else if (costKey !== ECost.BYN) {
+        rates[costKey] = rate.Cur_Scale / rate.Cur_OfficialRate //  / 1.012 коэффициент разницы курса нацбанка и курса в банках
       } else {
         rates[costKey] = rate.Cur_OfficialRate
       }
