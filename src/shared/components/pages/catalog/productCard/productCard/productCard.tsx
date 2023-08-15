@@ -34,8 +34,8 @@ export const ProductCard: FC<PropsType> = ({ product }) => {
   }, [product])
 
   return (
-    <div className={`${cls.card} grid-rows-product-card grid`}>
-      <div className={`${cls.photo} row-auto`}>
+    <div className={`${cls.card}`}>
+      <div className={`${cls.photo}`}>
         {product.photos?.[activeColor] ? (
           <ProductCardPhoto photos={product.photos[activeColor]} />
         ) : (

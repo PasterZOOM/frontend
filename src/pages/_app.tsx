@@ -5,9 +5,10 @@ import type { AppProps } from 'next/app'
 import { appWithTranslation } from 'next-i18next'
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
-import 'swiper/css'
-import 'swiper/css/navigation'
-import 'swiper/css/pagination'
+
+import 'swiper/scss'
+import 'swiper/scss/navigation'
+import 'swiper/scss/pagination'
 
 import '../styles/globals.css'
 import { useVisible } from 'shared/lib/hooks/useVisible'

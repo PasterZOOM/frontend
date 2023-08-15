@@ -19,10 +19,10 @@ const Header: FC = () => {
   const isVisible = useAppStore(selectIsVisible)
 
   return (
-    <div
+    <div //! скрыт на мобилках
       className={`${
         isVisible ? 'top-0' : '-top-20'
-      } sticky z-30 flex items-center justify-around bg-white px-3 py-5 shadow-line-bottom duration-300 dark:bg-anthracite-gray dark:shadow-line-bottom-dark`}
+      } sticky z-30 hidden items-center justify-around bg-white px-3 py-5 shadow-line-bottom duration-300 dark:bg-anthracite-gray dark:shadow-line-bottom-dark xl:flex`}
     >
       <UserStatusSwitcher />
       {router.pathname.includes('catalog') ? (

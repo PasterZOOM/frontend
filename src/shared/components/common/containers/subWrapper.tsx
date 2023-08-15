@@ -34,7 +34,7 @@ export const SubWrapper: FC<PropsType> = ({ children, close, isOpen, bias }) => 
       <div
         aria-hidden
         className={`inset-0 bg-black bg-opacity-30 transition-all xl:hidden ${
-          isOpen ? 'fixed z-40' : ''
+          isOpen ? 'fixed z-30' : ''
         }`}
         onClick={close}
       />
@@ -45,8 +45,8 @@ export const SubWrapper: FC<PropsType> = ({ children, close, isOpen, bias }) => 
             ? node.removeAttribute('inert')
             : node.setAttribute('inert', ''))
         }
-        className={`fixed left-0 right-0 max-h-[70vh] max-w-full overflow-auto bg-white transition-all dark:bg-anthracite-gray xl:static xl:z-auto xl:max-h-none ${
-          isOpen ? 'z-40' : ''
+        className={`fixed left-0 right-0 max-h-[70vh] max-w-full overflow-auto bg-white transition-all dark:bg-anthracite-gray xl:static xl:z-auto xl:max-h-none xl:overflow-visible ${
+          isOpen ? 'z-30' : ''
         } ${bias}`}
       >
         {children}

@@ -55,6 +55,8 @@ export const CatalogFilters: FC<PropsType> = ({ isOpenFilters, closeFilters, cla
         close={closeFilters}
         isOpen={isOpenFilters}
       >
+        <Sort className="pb-4" />
+
         <AccordionWrapper classes={{ wrapper: 'xl:-mt-5' }} title={t('assignments')}>
           <div className="px-4 pb-4 md:px-6 xl:px-0">
             {productAssignmentsFilters().map(assignment => (
@@ -98,8 +100,6 @@ export const CatalogFilters: FC<PropsType> = ({ isOpenFilters, closeFilters, cla
             ))}
           </div>
         </AccordionWrapper>
-
-        <Sort className="pb-4" />
 
         <PriceRange className="pb-4" />
       </SubWrapper>

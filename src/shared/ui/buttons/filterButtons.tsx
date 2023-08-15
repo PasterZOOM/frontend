@@ -17,7 +17,7 @@ export const FilterButtons: FC<FilterButtonsProps> = ({ isOpen, openFilters, clo
 
   return (
     <div
-      className={`sticky bottom-0 left-0 right-0 z-50 flex w-full gap-3 bg-white p-4 dark:bg-anthracite-gray md:p-6 xl:hidden ${
+      className={`sticky bottom-0 left-0 right-0 z-40 flex w-full gap-3 bg-white p-4 dark:bg-anthracite-gray md:p-6 xl:hidden ${
         isOpen ? '' : 'shadow-line-top dark:shadow-line-top-dark'
       }`}
     >
