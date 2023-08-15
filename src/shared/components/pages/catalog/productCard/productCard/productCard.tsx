@@ -78,7 +78,8 @@ export const ProductCard: FC<PropsType> = ({ product }) => {
             )}
           </div>
           <Link href={`/products/${product.category}/${product._id}`}>
-            <Button>{t('more')}</Button>
+            {/* TODO кнопка не должна быть в линке, сделать переделать кнопку */}
+            <Button className="w-full sm:w-auto">{t('more')}</Button>
           </Link>
         </div>
       </div>
