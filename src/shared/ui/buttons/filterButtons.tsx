@@ -23,20 +23,15 @@ export const FilterButtons: FC<FilterButtonsProps> = ({ isOpen, openFilters, clo
     >
       {isOpen ? (
         <>
-          <Button
-            key="clearButton"
-            className="w-full"
-            variant={ButtonVariant.SECONDARY}
-            onClick={clearAll}
-          >
+          <Button key="clearButton" fullWidth variant={ButtonVariant.SECONDARY} onClick={clearAll}>
             {t('Очистить')}
           </Button>
-          <Button key="applyButton" className="w-full" onClick={closeFilters}>
+          <Button key="applyButton" fullWidth onClick={closeFilters}>
             {t('Применить')}
           </Button>
         </>
       ) : (
-        <Button key="filtersButton" className="w-full" onClick={openFilters}>
+        <Button key="filtersButton" fullWidth onClick={openFilters}>
           {t('Фильтра')}
         </Button>
       )}

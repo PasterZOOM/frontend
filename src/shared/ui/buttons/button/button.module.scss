@@ -1,0 +1,68 @@
+.button {
+  display: flex;
+  gap: 0.625rem;
+  align-items: center;
+  justify-content: center;
+
+  width: fit-content;
+  padding: 1rem 2rem;
+
+  line-height: 1rem;
+  text-align: center;
+  text-transform: uppercase;
+
+  box-shadow: 0 0 0 2px var(--main-color) inset;
+
+  transition: 0.3s;
+  transition-duration: 300ms;
+
+  &:disabled {
+    pointer-events: none;
+    opacity: 0.5;
+  }
+}
+
+.primary {
+  color: var(--main-color);
+  background: var(--inversion-main-color);
+  box-shadow: 0 0 0 2px var(--inversion-main-color) inset;
+
+  &:hover {
+    color: var(--inversion-main-color);
+    background: transparent;
+    box-shadow: 0 0 0 2px var(--inversion-main-color) inset;
+  }
+}
+
+.secondary {
+  color: var(--inversion-main-color);
+  background: transparent;
+  box-shadow: 0 0 0 2px var(--inversion-main-color) inset;
+
+  &:hover {
+    color: var(--main-color);
+    background: var(--inversion-main-color);
+    box-shadow: 0 0 0 2px var(--inversion-main-color) inset;
+  }
+}
+
+.delete {
+  color: var(--main-color);
+  background: var(--red-500);
+  box-shadow: 0 0 0 2px var(--red-500) inset;
+
+  &:hover {
+    color: var(--inversion-main-color);
+    background: transparent;
+    box-shadow: 0 0 0 2px var(--inversion-main-color) inset;
+  }
+}
+
+.link {
+  padding: 0.375rem 0.75rem;
+  color: var(--main-color);
+}
+
+.full-width {
+  width: 100%;
+}

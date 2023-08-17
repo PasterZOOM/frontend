@@ -37,10 +37,10 @@ export const ConfirmModalLayout: FC<PropsType> = ({
         <div>{children}</div>
 
         <div className="flex flex-col justify-between gap-4 md:flex-row" role="button">
-          <Button className="w-full" variant={ButtonVariant.SECONDARY} onClick={closeModal}>
+          <Button fullWidth variant={ButtonVariant.SECONDARY} onClick={closeModal}>
             {t('Отменить')}
           </Button>
-          <Button {...confirmButton} className="w-full" />
+          <Button fullWidth {...confirmButton} />
         </div>
       </div>
     </ModalOverlay>

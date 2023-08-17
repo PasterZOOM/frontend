@@ -8,3 +8,13 @@
     padding: 0;
 }
 
+:root {
+    --main-color: #fff;
+    --inversion-main-color: #2f3132;
+    --red-500: #ef4444;
+}
+
+:root.dark {
+    --main-color: #2f3132;
+    --inversion-main-color: #fff;
+}

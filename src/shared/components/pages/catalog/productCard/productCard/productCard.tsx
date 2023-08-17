@@ -77,10 +77,9 @@ export const ProductCard: FC<PropsType> = ({ product }) => {
               <div className="text-sm text-red-500">{t('Failed to load exchange rates')}</div>
             )}
           </div>
-          <Link href={`/products/${product.category}/${product._id}`}>
-            {/* TODO кнопка не должна быть в линке, сделать переделать кнопку */}
-            <Button className="w-full sm:w-auto">{t('more')}</Button>
-          </Link>
+          <Button as="a" href={`/products/${product.category}/${product._id}`}>
+            {t('more')}
+          </Button>
         </div>
       </div>
     </div>

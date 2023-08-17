@@ -21,7 +21,7 @@ export const RemoveButton: FC<PropsType> = ({
   const { t } = useTranslation()
 
   const onConfirm = async (): Promise<void> => {
-    await onDeleteConfirm()
+    onDeleteConfirm()
     closeModal()
   }
 
