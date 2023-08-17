@@ -10,12 +10,15 @@ type PropsType = {
 }
 
 export const ProductCardViewMobile: FC<PropsType> = ({ photos }) => {
-  // TODO: сбрасывать на первый слайд при смене цвета изделия
   return (
     <Swiper
+      loop
       pagination
       className="mySwiper flex aspect-square w-full justify-between"
       modules={[Pagination, Keyboard]}
+      onUpdate={swiper => {
+        swiper.slideTo(0)
+      }}
     >
       {photos.map(photo => {
         return (
