@@ -6,6 +6,8 @@ export enum EPunchPitch {
 
 export enum ELeatherColor {
   BLACK = 'black',
+  BLUE = 'blue',
+  BROWN = 'brown',
   GREEN = 'green',
   RED = 'red',
   YELLOW = 'yellow',

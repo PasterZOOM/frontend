@@ -1,0 +1,15 @@
+.thumb {
+  position: absolute;
+  bottom: 0.25rem;
+
+  width: 90%;
+  height: 0.25rem;
+
+  opacity: 0.5;
+  background: var(--main-color);
+  border-radius: 9999px;
+}
+
+.is-active {
+  opacity: 1;
+}

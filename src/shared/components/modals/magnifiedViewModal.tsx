@@ -35,7 +35,14 @@ export const MagnifiedViewModal: FC<PropsType> = ({ closeModal, isOpen, photos, 
         >
           {photos.map(photo => (
             <SwiperSlide key={photo._id} className="w-fit">
-              <div className={`${photo.url} h-full w-full`} />
+              <div
+                className="h-full w-full"
+                style={{
+                  backgroundImage: `url(${photo.url})`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                }}
+              />
             </SwiperSlide>
           ))}
         </Swiper>

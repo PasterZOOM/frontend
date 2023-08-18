@@ -1,7 +1,8 @@
 import { FC } from 'react'
 
-import { ProductCardView } from 'shared/components/pages/catalog/productCard/productCardView'
-import { ProductCardViewMobile } from 'shared/components/pages/catalog/productCard/productCardViewMobile'
+import { ProductCardView } from './productCardView'
+import { ProductCardViewMobile } from './productCardViewMobile'
+
 import { DESKTOP } from 'shared/constants/sizes/screenSizes'
 import { useWindowSize } from 'shared/lib/hooks/useWindowSize'
 import { ProductPhotoType } from 'shared/types/productType'

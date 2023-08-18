@@ -25,6 +25,16 @@ export const leatherColors: ObjectForSelectType<ELeatherColor> = {
     value: ELeatherColor.YELLOW,
     title: 'yellow',
   },
+  [ELeatherColor.BLUE]: {
+    _id: v1(),
+    value: ELeatherColor.BLUE,
+    title: 'blue',
+  },
+  [ELeatherColor.BROWN]: {
+    _id: v1(),
+    value: ELeatherColor.BROWN,
+    title: 'brown',
+  },
 }
 
 export const leatherColorsArray: SelectItemType<ELeatherColor>[] = Object.values(leatherColors)

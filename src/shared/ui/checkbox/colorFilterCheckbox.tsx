@@ -1,4 +1,4 @@
-import { FC, memo, useMemo, useRef } from 'react'
+import { FC, memo, useRef } from 'react'
 
 import { EFilterKeys, FilterType } from 'shared/components/pages/catalog/filters/filters'
 import { ELeatherColor } from 'shared/enums/materials'
@@ -9,6 +9,15 @@ type PropsType = {
   filterKey: EFilterKeys
 }
 
+const bgColors: Record<ELeatherColor, string> = {
+  [ELeatherColor.RED]: 'bg-red-700',
+  [ELeatherColor.BLACK]: 'bg-black',
+  [ELeatherColor.GREEN]: 'bg-green-700',
+  [ELeatherColor.YELLOW]: 'bg-yellow-500',
+  [ELeatherColor.BLUE]: 'bg-blue-800',
+  [ELeatherColor.BROWN]: 'bg-yellow-900',
+}
+
 const ColorFilterCheckbox: FC<PropsType> = ({ color, filterKey }: PropsType) => {
   const checkboxRef = useRef<HTMLInputElement | null>(null)
 
@@ -16,31 +25,11 @@ const ColorFilterCheckbox: FC<PropsType> = ({ color, filterKey }: PropsType) => 
 
   const checked = [queryParam].flat().includes(color.value)
 
-  const bg = useMemo(() => {
-    switch (color.value) {
-      case ELeatherColor.RED: {
-        return 'bg-red-700'
-      }
-      case ELeatherColor.BLACK: {
-        return 'bg-black'
-      }
-      case ELeatherColor.GREEN: {
-        return 'bg-green-700'
-      }
-      case ELeatherColor.YELLOW: {
-        return 'bg-yellow-500'
-      }
-      default: {
-        return ''
-      }
-    }
-  }, [color.value])
-
   return (
     <div
-      className={` aspect-square h-6 rounded-full  border-anthracite-gray dark:border-white ${bg} ${
-        checked ? 'border-4' : 'border'
-      }`}
+      className={`aspect-square h-6 rounded-full  border-anthracite-gray dark:border-white ${
+        bgColors[color.value]
+      } ${checked ? 'border-4' : 'border'}`}
     >
       <input
         ref={checkboxRef}
