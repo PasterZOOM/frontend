@@ -1,0 +1,1 @@
+export { ProductCardViewMobile } from './productCardViewMobile'

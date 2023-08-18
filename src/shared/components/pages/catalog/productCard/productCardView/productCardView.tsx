@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react'
+import { FC } from 'react'
 
 import classnames from 'classnames'
 
@@ -11,17 +11,13 @@ import { ProductPhotoType } from 'shared/types/productType'
 import { PhotoSlider } from 'shared/ui/photoSlider'
 
 type PropsType = {
+  activePhoto: ProductPhotoType
   photos: ProductPhotoType[]
+  setActivePhoto: (activeItem: ProductPhotoType) => void
 }
 
-export const ProductCardView: FC<PropsType> = ({ photos }) => {
-  const [activePhoto, setActivePhoto] = useState<ProductPhotoType>(photos[0])
-
+export const ProductCardView: FC<PropsType> = ({ photos, activePhoto, setActivePhoto }) => {
   const { openModal, closeModal, isOpen } = useModal()
-
-  useEffect(() => {
-    setActivePhoto(photos[0])
-  }, [photos])
 
   return (
     <div

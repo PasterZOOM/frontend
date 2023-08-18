@@ -1,8 +1,11 @@
-import { FC } from 'react'
+import { FC, memo } from 'react'
 
+import classnames from 'classnames'
 import { useTranslation } from 'next-i18next'
 import { Keyboard, Mousewheel, Navigation, Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
+
+import cls from './magnifiedViewModal.module.scss'
 
 import { ModalOverlay } from 'shared/components/modals/modalOverlay'
 import { EPhotoExtension, EPhotoSize } from 'shared/enums/photo'
@@ -10,19 +13,27 @@ import { ProductPhotoType } from 'shared/types/productType'
 
 type PropsType = {
   activePhoto: ProductPhotoType
+  className?: string
   closeModal: () => void
   isOpen: boolean
   photos: ProductPhotoType[]
 }
 
-export const MagnifiedViewModal: FC<PropsType> = ({ closeModal, isOpen, photos, activePhoto }) => {
+const MagnifiedViewModal: FC<PropsType> = ({
+  className,
+  closeModal,
+  photos,
+  activePhoto,
+  isOpen,
+}) => {
   const initSlide = photos.findIndex(photo => photo._id === activePhoto._id)
+
   const { t } = useTranslation()
 
   return (
     <ModalOverlay isOpen={isOpen} onClose={closeModal}>
-      <div className="relative h-[95%] w-[95%] bg-white dark:bg-anthracite-gray">
-        <button className="absolute right-4 top-4 z-10 text-lg" type="button" onClick={closeModal}>
+      <div className={classnames(cls.magnifiedViewModal, className)}>
+        <button className={cls.closeButton} type="button" onClick={closeModal}>
           {t('закрыть')}
         </button>
         <Swiper
@@ -30,24 +41,25 @@ export const MagnifiedViewModal: FC<PropsType> = ({ closeModal, isOpen, photos, 
           mousewheel
           navigation
           pagination
-          className="mySwiper h-full w-full"
+          className={cls.mySwiper}
           initialSlide={initSlide}
           modules={[Navigation, Pagination, Mousewheel, Keyboard]}
         >
           {photos.map(photo => (
-            <SwiperSlide key={photo._id} className="w-fit">
-              <div
-                className="h-full w-full"
-                style={{
-                  backgroundImage: `url(${activePhoto.path}${EPhotoSize.L}.${EPhotoExtension.WEBP})`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                }}
-              />
-            </SwiperSlide>
+            <SwiperSlide
+              key={photo._id}
+              className={cls.slide}
+              style={{
+                backgroundImage: `url(${photo.path}${EPhotoSize.L}.${EPhotoExtension.WEBP})`,
+              }}
+            />
           ))}
         </Swiper>
       </div>
     </ModalOverlay>
   )
 }
+
+const Memo = memo(MagnifiedViewModal)
+
+export { Memo as MagnifiedViewModal }

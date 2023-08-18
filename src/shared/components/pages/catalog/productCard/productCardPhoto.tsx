@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, memo } from 'react'
 
 import { ProductCardView } from './productCardView'
 import { ProductCardViewMobile } from './productCardViewMobile'
@@ -8,15 +8,21 @@ import { useWindowSize } from 'shared/lib/hooks/useWindowSize'
 import { ProductPhotoType } from 'shared/types/productType'
 
 type PropsType = {
+  activePhoto: ProductPhotoType
   photos: ProductPhotoType[]
+  setActivePhoto: (activeItem: ProductPhotoType) => void
 }
 
-export const ProductCardPhoto: FC<PropsType> = ({ photos }) => {
+const ProductCardPhoto: FC<PropsType> = ({ photos, activePhoto, setActivePhoto }) => {
   const { width } = useWindowSize()
 
   return width > DESKTOP ? (
-    <ProductCardView photos={photos} />
+    <ProductCardView activePhoto={activePhoto} photos={photos} setActivePhoto={setActivePhoto} />
   ) : (
     <ProductCardViewMobile photos={photos} />
   )
 }
+
+const Memo = memo(ProductCardPhoto)
+
+export { Memo as ProductCardPhoto }

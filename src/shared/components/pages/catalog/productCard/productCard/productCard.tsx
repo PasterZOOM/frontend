@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react'
+import { FC, useEffect, useMemo, useState } from 'react'
 
 import Link from 'next/link'
 import { useTranslation } from 'next-i18next'
@@ -9,6 +9,7 @@ import { ProductCardPhoto } from 'shared/components/pages/catalog/productCard/pr
 import { DEFAULT_PRODUCT_CURRENCY } from 'shared/constants/currancy/defaultProductCurrency'
 import { CurrencySign } from 'shared/enums/currencySign'
 import { useGetPriceInCurrency } from 'shared/lib/hooks/useGetPriceInCurrency'
+import { ProductPhotoType } from 'shared/types/productType'
 import { Button } from 'shared/ui/buttons/button'
 import { LeatherColorButton } from 'shared/ui/buttons/leatherColorButton'
 import { NoPhoto } from 'shared/ui/noPhoto'
@@ -19,10 +20,18 @@ type PropsType = {
   product: BasicProductType
 }
 
+const defaultActivePhoto = {
+  _id: '',
+  path: '',
+}
+
 export const ProductCard: FC<PropsType> = ({ product }) => {
   const { t } = useTranslation('catalog')
 
   const [activeColor, setActiveColor] = useState(product.productColors[0]?._id ?? '')
+  const [activePhoto, setActivePhoto] = useState<ProductPhotoType>(
+    product.photos?.[activeColor][0] || defaultActivePhoto
+  )
 
   const currentCurrency = useUserSettings(selectCurrentCurrency)
   const rate = useCurrencyRatesStore(selectRate(currentCurrency))
@@ -33,11 +42,25 @@ export const ProductCard: FC<PropsType> = ({ product }) => {
     setActiveColor(product.productColors[0]?._id ?? '')
   }, [product])
 
+  const activeColorsPhotos = useMemo(
+    () => product.photos?.[activeColor],
+    [activeColor, product.photos]
+  )
+
+  const chaneActiveColor = (id: string): void => {
+    setActiveColor(id)
+    setActivePhoto(product.photos?.[id][0] || defaultActivePhoto)
+  }
+
   return (
     <div className={`${cls.card}`}>
       <div className={`${cls.photo}`}>
-        {product.photos?.[activeColor] ? (
-          <ProductCardPhoto photos={product.photos[activeColor]} />
+        {activeColorsPhotos ? (
+          <ProductCardPhoto
+            activePhoto={activePhoto}
+            photos={activeColorsPhotos}
+            setActivePhoto={setActivePhoto}
+          />
         ) : (
           <NoPhoto />
         )}
@@ -56,14 +79,16 @@ export const ProductCard: FC<PropsType> = ({ product }) => {
       <div className={`${cls.buttons} row-span-1 self-end`}>
         {product.productColors.length > 1 && (
           <div className="flex flex-wrap gap-3">
-            {product.productColors.map(color => (
-              <LeatherColorButton
-                key={color._id}
-                isActive={color._id === activeColor}
-                photo={color.photo}
-                onClick={() => setActiveColor(color._id)}
-              />
-            ))}
+            {product.productColors.map(color => {
+              return (
+                <LeatherColorButton
+                  key={color._id}
+                  isActive={color._id === activeColor}
+                  photo={color.photo}
+                  onClick={() => chaneActiveColor(color._id)}
+                />
+              )
+            })}
           </div>
         )}
 

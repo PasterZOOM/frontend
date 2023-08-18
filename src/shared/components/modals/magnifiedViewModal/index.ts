@@ -1,0 +1,1 @@
+export { MagnifiedViewModal } from './magnifiedViewModal'
