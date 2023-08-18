@@ -5,6 +5,7 @@ import classnames from 'classnames'
 import cls from './productCardView.module.scss'
 
 import { MagnifiedViewModal } from 'shared/components/modals/magnifiedViewModal'
+import { EPhotoExtension, EPhotoSize } from 'shared/enums/photo'
 import { useModal } from 'shared/lib/hooks/useModal'
 import { ProductPhotoType } from 'shared/types/productType'
 import { PhotoSlider } from 'shared/ui/photoSlider'
@@ -28,7 +29,7 @@ export const ProductCardView: FC<PropsType> = ({ photos }) => {
       role="button"
       tabIndex={0}
       style={{
-        backgroundImage: `url(${activePhoto.url})`,
+        backgroundImage: `url(${activePhoto.path}${EPhotoSize.XS}.${EPhotoExtension.WEBP})`,
       }}
       onClick={openModal}
       onKeyDown={e => e.key === 'Enter' && openModal()}

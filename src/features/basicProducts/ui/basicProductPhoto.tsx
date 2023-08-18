@@ -21,7 +21,7 @@ const Component: FC<PropsType> = ({ productId, photo, removeBasicProductPhoto })
 
   return (
     <div key={photo._id} className="ml-5">
-      <span className="mr-2">{photo.url}</span>
+      <span className="mr-2">{photo.path}</span>
       <button className="border px-1" type="button" onClick={onButtonClick}>
         X
       </button>

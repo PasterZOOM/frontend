@@ -5,6 +5,7 @@ import { Keyboard, Mousewheel, Navigation, Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 import { ModalOverlay } from 'shared/components/modals/modalOverlay'
+import { EPhotoExtension, EPhotoSize } from 'shared/enums/photo'
 import { ProductPhotoType } from 'shared/types/productType'
 
 type PropsType = {
@@ -38,7 +39,7 @@ export const MagnifiedViewModal: FC<PropsType> = ({ closeModal, isOpen, photos, 
               <div
                 className="h-full w-full"
                 style={{
-                  backgroundImage: `url(${photo.url})`,
+                  backgroundImage: `url(${activePhoto.path}${EPhotoSize.L}.${EPhotoExtension.WEBP})`,
                   backgroundSize: 'cover',
                   backgroundPosition: 'center',
                 }}

@@ -23,7 +23,7 @@ export const ProductCardViewMobile: FC<PropsType> = ({ photos }) => {
       {photos.map(photo => {
         return (
           <SwiperSlide key={photo._id} className="w-fit">
-            <div className={`${photo.url} h-full w-full`} />
+            <div className={`${photo.path} h-full w-full`} />
           </SwiperSlide>
         )
       })}
