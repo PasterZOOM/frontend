@@ -3,14 +3,14 @@ import { FC, useEffect, useState } from 'react'
 import { useTranslation } from 'next-i18next'
 
 import { EFilterKeys } from 'shared/components/pages/catalog/filters/filters'
-import { useChangeQueryParams } from 'shared/lib/hooks/queryParams/useChangeQueryParams'
+import { useChangeQueryFiltersParams } from 'shared/lib/hooks/queryParams/useChangeQueryFiltersParams'
 import { Button } from 'shared/ui/buttons/button'
 import { CatalogSearch } from 'widgets/catalogSearch'
 
 export const ProductSearch: FC = () => {
   const [value, setValue] = useState('')
   const { t } = useTranslation('catalog')
-  const { changeParam, removeParam, queryParam } = useChangeQueryParams(EFilterKeys.SEARCH)
+  const { changeParam, removeParam, queryParam } = useChangeQueryFiltersParams(EFilterKeys.SEARCH)
 
   const onSearch = (): void => {
     if (queryParam !== value) {

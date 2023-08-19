@@ -14,7 +14,6 @@ import {
 import { MultipleFilter } from 'shared/components/pages/catalog/filters/multipleFilter'
 import AccordionWrapper from 'shared/ui/accordion/accordionWrapper'
 import { ColorFilterCheckbox } from 'shared/ui/checkbox/colorFilterCheckbox'
-import { selectIsVisible, useAppStore } from 'store/useAppStore'
 import { PriceRange } from 'widgets/priceRange'
 import { Sort } from 'widgets/sort'
 
@@ -28,7 +27,6 @@ export const CatalogFilters: FC<PropsType> = ({ isOpenFilters, closeFilters, cla
   const { t } = useTranslation('catalog')
 
   const { data } = useGetAllLeatherArticles()
-  const isVisible = useAppStore(selectIsVisible)
 
   if (!data) return null
 
@@ -40,16 +38,7 @@ export const CatalogFilters: FC<PropsType> = ({ isOpenFilters, closeFilters, cla
   }))
 
   return (
-    <div
-      className={classnames(
-        className,
-        {
-          'top-22': isVisible,
-          'top-5': !isVisible,
-        },
-        'h-fit duration-300 xl:sticky'
-      )}
-    >
+    <div className={classnames(className, 'h-fit')}>
       <SubWrapper
         bias={isOpenFilters ? 'bottom-20 md:bottom-24' : '-bottom-full'}
         close={closeFilters}

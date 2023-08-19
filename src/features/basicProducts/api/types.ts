@@ -2,6 +2,8 @@ import { EPunchPitch } from 'shared/enums/materials'
 import { EProductAssignment, EProductCategory } from 'shared/enums/product'
 import { PhotosType } from 'shared/types/productType'
 
+export type ProductColorType = { _id: string; photo: string; title: string }
+
 export type BasicProductType = {
   _id: string
   assignments: EProductAssignment[]
@@ -14,7 +16,7 @@ export type BasicProductType = {
     factory: { _id: string; title: string }
   }
   photos?: PhotosType
-  productColors: { _id: string; photo: string; title: string }[]
+  productColors: ProductColorType[]
   punchPitch: EPunchPitch
   size: string
   title: string

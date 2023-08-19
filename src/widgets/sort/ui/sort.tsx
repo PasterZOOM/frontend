@@ -7,7 +7,7 @@ import cls from './sort.module.scss'
 
 import { EFilterKeys } from 'shared/components/pages/catalog/filters/filters'
 import { ESort } from 'shared/enums/sort'
-import { useChangeQueryParams } from 'shared/lib/hooks/queryParams/useChangeQueryParams'
+import { useChangeQueryFiltersParams } from 'shared/lib/hooks/queryParams/useChangeQueryFiltersParams'
 import { productSort, productSortArray } from 'shared/objects/products/productSort'
 import { SelectItemType } from 'shared/ui/selects/defaultSelectType'
 import { Select } from 'shared/ui/selects/select'
@@ -25,7 +25,7 @@ const defaultSort = ESort.NEW_FIRSTS
 const Sort: FC<PropsType> = ({ className }) => {
   const [activeSort, setActiveSort] = useState<SelectItemType<ESort>>(productSort[defaultSort])
 
-  const { changeParam, removeParam, queryParam } = useChangeQueryParams(EFilterKeys.SORT)
+  const { changeParam, removeParam, queryParam } = useChangeQueryFiltersParams(EFilterKeys.SORT)
 
   const setActiveItemHandler = useCallback(
     (newActiveItem: SelectItemType<ESort>): void => {

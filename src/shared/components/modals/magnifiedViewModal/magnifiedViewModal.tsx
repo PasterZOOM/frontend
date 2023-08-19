@@ -1,6 +1,7 @@
 import { FC, memo } from 'react'
 
 import classnames from 'classnames'
+import Image from 'next/image'
 import { useTranslation } from 'next-i18next'
 import { Keyboard, Mousewheel, Navigation, Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -46,13 +47,15 @@ const MagnifiedViewModal: FC<PropsType> = ({
           modules={[Navigation, Pagination, Mousewheel, Keyboard]}
         >
           {photos.map(photo => (
-            <SwiperSlide
-              key={photo._id}
-              className={cls.slide}
-              style={{
-                backgroundImage: `url(${photo.path}${EPhotoSize.L}.${EPhotoExtension.WEBP})`,
-              }}
-            />
+            <SwiperSlide key={photo._id} className={cls.slide}>
+              <Image
+                fill
+                alt={activePhoto.path}
+                className="h-full w-full object-cover"
+                quality={100}
+                src={`${photo.path}${EPhotoSize.L}.${EPhotoExtension.WEBP}`}
+              />
+            </SwiperSlide>
           ))}
         </Swiper>
       </div>

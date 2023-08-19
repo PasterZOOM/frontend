@@ -7,6 +7,7 @@ import { Hydrate, QueryClient, QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
 
 import { useGetActualRates } from 'features/currancy/hooks/useGetActualRates'
+import { useVisible } from 'shared/lib/hooks/useVisible'
 
 import 'swiper/scss'
 import 'swiper/scss/navigation'
@@ -30,6 +31,7 @@ const App = ({ Component, pageProps }: AppPropsWithLayout): ReactElement => {
   )
 
   useGetActualRates()
+  useVisible()
 
   const getLayout = Component.getLayout ?? (page => page)
 

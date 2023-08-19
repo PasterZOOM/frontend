@@ -1,4 +1,4 @@
-import { ReactElement, useState } from 'react'
+import { ReactElement } from 'react'
 
 import classnames from 'classnames'
 
@@ -9,6 +9,7 @@ import cls from './photoSlider.module.scss'
 type PropsType<T extends { _id: string }> = {
   activeItem: T
   className?: string
+  isHover: boolean
   items: T[]
   setActiveItem: (activeItem: T) => void
 }
@@ -18,22 +19,10 @@ export const PhotoSlider = <T extends { _id: string }>({
   items,
   activeItem,
   setActiveItem,
+  isHover,
 }: PropsType<T>): ReactElement => {
-  const [isHover, setIsHover] = useState(false)
-  const mouseMoveHandler = (): void => {
-    setIsHover(true)
-  }
-
-  const leaveMouseHandler = (): void => {
-    setIsHover(false)
-  }
-
   return (
-    <div
-      className={classnames(cls.photoSlider, className)}
-      onMouseLeave={leaveMouseHandler}
-      onMouseMove={mouseMoveHandler}
-    >
+    <div className={classnames(cls.photoSlider, className)}>
       {isHover &&
         items.map(item => (
           <PhotoSlide<T>

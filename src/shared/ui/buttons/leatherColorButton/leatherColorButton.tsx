@@ -1,5 +1,9 @@
 import { ComponentPropsWithoutRef, FC } from 'react'
 
+import classnames from 'classnames'
+
+import cls from './leatherColorButton.module.scss'
+
 type PropsType = ComponentPropsWithoutRef<'button'> & {
   isActive: boolean
   photo: string
@@ -8,9 +12,13 @@ type PropsType = ComponentPropsWithoutRef<'button'> & {
 export const LeatherColorButton: FC<PropsType> = ({ isActive, onClick, photo }) => {
   return (
     <div
-      className={`relative aspect-square h-6 before:rounded-full before:bg-anthracite-gray hover:before:absolute hover:before:-inset-0.5 dark:before:bg-white ${
-        isActive ? 'before:absolute before:-inset-0.5' : 'before:hover:animate-hover-button'
-      }`}
+      className={classnames(
+        cls.leatherColorButton,
+        {
+          [cls.isActive]: isActive,
+        },
+        `relative aspect-square h-8 before:bg-anthracite-gray dark:before:bg-white`
+      )}
     >
       <button
         type="button"

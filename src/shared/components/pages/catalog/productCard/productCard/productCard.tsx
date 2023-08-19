@@ -8,9 +8,9 @@ import cls from 'shared/components/pages/catalog/productCard/productCard/product
 import { ProductCardPhoto } from 'shared/components/pages/catalog/productCard/productCardPhoto'
 import { ProductPhotoType } from 'shared/types/productType'
 import { Button } from 'shared/ui/buttons/button'
-import { LeatherColorButton } from 'shared/ui/buttons/leatherColorButton'
 import { NoPhoto } from 'shared/ui/noPhoto'
 import { Price } from 'shared/ui/price/price'
+import { ProductColorsButtons } from 'widgets/productColorsButtons'
 
 type PropsType = {
   product: BasicProductType
@@ -42,6 +42,7 @@ export const ProductCard: FC<PropsType> = ({ product }) => {
     setActiveColor(id)
     setActivePhoto(product.photos?.[id][0] || defaultActivePhoto)
   }
+  const href = `/products/${product.category}/${product._id}?active_color=${activeColor}`
 
   return (
     <div className={`${cls.card}`}>
@@ -57,10 +58,7 @@ export const ProductCard: FC<PropsType> = ({ product }) => {
         )}
       </div>
 
-      <Link
-        className={`${cls.info} row-auto`}
-        href={`/products/${product.category}/${product._id}`}
-      >
+      <Link className={`${cls.info} row-auto`} href={href}>
         <div className="mb-3 mt-4 text-custom-xl font-bold">{product.title}</div>
         {product.description && (
           <div className="my-3 line-clamp-2 font-light">{product.description}</div>
@@ -68,24 +66,15 @@ export const ProductCard: FC<PropsType> = ({ product }) => {
       </Link>
 
       <div className={`${cls.buttons} row-span-1 self-end`}>
-        {product.productColors.length > 1 && (
-          <div className="flex flex-wrap gap-3">
-            {product.productColors.map(color => {
-              return (
-                <LeatherColorButton
-                  key={color._id}
-                  isActive={color._id === activeColor}
-                  photo={color.photo}
-                  onClick={() => chaneActiveColor(color._id)}
-                />
-              )
-            })}
-          </div>
-        )}
+        <ProductColorsButtons
+          activeColor={activeColor}
+          chaneActiveColor={chaneActiveColor}
+          colors={product.productColors}
+        />
 
         <div className="mt-3 cursor-default">
           <Price className="text-custom-lg" cost={product.cost} />
-          <Button as="a" href={`/products/${product.category}/${product._id}`}>
+          <Button as="a" href={href}>
             {t('more')}
           </Button>
         </div>

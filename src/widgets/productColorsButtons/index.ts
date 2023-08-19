@@ -1,0 +1,1 @@
+export { ProductColorsButtons } from './productColorsButtons'

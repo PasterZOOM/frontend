@@ -11,7 +11,7 @@ import {
   useCurrencyRatesStore,
 } from 'features/currancy/store/useCurrencyRatesStore'
 import { EFilterKeys } from 'shared/components/pages/catalog/filters/filters'
-import { useChangeQueryParams } from 'shared/lib/hooks/queryParams/useChangeQueryParams'
+import { useChangeQueryFiltersParams } from 'shared/lib/hooks/queryParams/useChangeQueryFiltersParams'
 import { DoubleRange } from 'shared/ui/dubleRange'
 import { selectCurrentCurrency, useUserSettings } from 'store/useUserSettings'
 
@@ -42,12 +42,12 @@ const PriceRange: FC<PropsType> = ({ className }) => {
     changeParam: changeMinPrice,
     removeParam: removeMinPrice,
     queryParam: minPriceQueryParam,
-  } = useChangeQueryParams(EFilterKeys.MIN_PRICE)
+  } = useChangeQueryFiltersParams(EFilterKeys.MIN_PRICE)
   const {
     changeParam: changeMaxPrice,
     removeParam: removeMaxPrice,
     queryParam: maxPriceQueryParam,
-  } = useChangeQueryParams(EFilterKeys.MAX_PRICE)
+  } = useChangeQueryFiltersParams(EFilterKeys.MAX_PRICE)
 
   const onChangeCommittedMinValueHandler = (value: number): void => {
     if (value === minRangeValue) {

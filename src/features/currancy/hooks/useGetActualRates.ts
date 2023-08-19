@@ -24,7 +24,7 @@ export const useGetActualRates = (): void => {
             if (costKey === ECost.RUB) {
               rates[costKey] = rate.Cur_Scale / rate.Cur_OfficialRate // * 1.1 коэффициент разницы курса нацбанка и курса в банках для росс.рубля
             } else {
-              rates[costKey] = rate.Cur_OfficialRate
+              rates[costKey] = rate.Cur_Scale / rate.Cur_OfficialRate
             }
           } else {
             rates[costKey] = 1 //  / 1.012 коэффициент разницы курса нацбанка и курса в банках
