@@ -2,10 +2,10 @@ import { FC } from 'react'
 
 import { useTranslation } from 'next-i18next'
 
+import { selectRate, useCurrencyRatesStore } from 'features/currancy/store/useCurrencyRatesStore'
 import { DEFAULT_PRODUCT_CURRENCY } from 'shared/constants/currancy/defaultProductCurrency'
 import { CurrencySign } from 'shared/enums/currencySign'
 import { useGetPriceInCurrency } from 'shared/lib/hooks/useGetPriceInCurrency'
-import { selectRate, useCurrencyRatesStore } from 'store/useCurrencyRatesStore'
 import { selectCurrentCurrency, useUserSettings } from 'store/useUserSettings'
 
 type PropsType = {

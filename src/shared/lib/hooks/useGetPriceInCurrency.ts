@@ -1,10 +1,10 @@
-import { DEFAULT_PRODUCT_CURRENCY } from 'shared/constants/currancy/defaultProductCurrency'
-import { CurrencySign } from 'shared/enums/currencySign'
 import {
   selectGetCurrentPrice,
   selectRate,
   useCurrencyRatesStore,
-} from 'store/useCurrencyRatesStore'
+} from 'features/currancy/store/useCurrencyRatesStore'
+import { DEFAULT_PRODUCT_CURRENCY } from 'shared/constants/currancy/defaultProductCurrency'
+import { CurrencySign } from 'shared/enums/currencySign'
 import { selectCurrentCurrency, useUserSettings } from 'store/useUserSettings'
 import { ECost } from 'widgets/switchers/currencySwitcher/module/enum'
 

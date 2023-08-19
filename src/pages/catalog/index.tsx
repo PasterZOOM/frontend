@@ -27,6 +27,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query, locale }) 
     props: {
       ...(await serverSideTranslations(locale ?? 'ru', ['catalog', 'common'])),
       dehydratedState: dehydrate(queryClient),
+      // rates,
     },
   }
 }

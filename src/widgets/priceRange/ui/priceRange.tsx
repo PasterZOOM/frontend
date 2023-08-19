@@ -5,14 +5,14 @@ import classnames from 'classnames'
 import cls from './priceRange.module.scss'
 
 import { useGetAllBasicProducts } from 'features/basicProducts/hooks/useGetAllBasicProducts'
-import { EFilterKeys } from 'shared/components/pages/catalog/filters/filters'
-import { useChangeQueryParams } from 'shared/lib/hooks/queryParams/useChangeQueryParams'
-import { DoubleRange } from 'shared/ui/dubleRange'
 import {
   selectGetCurrentPrice,
   selectGetDefaultPrice,
   useCurrencyRatesStore,
-} from 'store/useCurrencyRatesStore'
+} from 'features/currancy/store/useCurrencyRatesStore'
+import { EFilterKeys } from 'shared/components/pages/catalog/filters/filters'
+import { useChangeQueryParams } from 'shared/lib/hooks/queryParams/useChangeQueryParams'
+import { DoubleRange } from 'shared/ui/dubleRange'
 import { selectCurrentCurrency, useUserSettings } from 'store/useUserSettings'
 
 type PropsType = {

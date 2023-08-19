@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-import { GetRateResponseType } from 'shared/api/currency/getRateResponseType'
+import { GetRateResponseType } from 'features/currancy/api/getRateResponseType'
 import { StatusCode } from 'shared/enums/statusCode'
 import { ECost } from 'widgets/switchers/currencySwitcher/module/enum'
 

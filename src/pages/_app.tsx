@@ -6,6 +6,8 @@ import { appWithTranslation } from 'next-i18next'
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
 
+import { useGetActualRates } from 'features/currancy/hooks/useGetActualRates'
+
 import 'swiper/scss'
 import 'swiper/scss/navigation'
 import 'swiper/scss/pagination'
@@ -19,7 +21,6 @@ export type NextPageWithLayout<P = unknown, IP = P> = NextPage<P, IP> & {
 type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout
 }
-
 const App = ({ Component, pageProps }: AppPropsWithLayout): ReactElement => {
   const [queryClient] = useState(
     () =>
@@ -27,6 +28,8 @@ const App = ({ Component, pageProps }: AppPropsWithLayout): ReactElement => {
         defaultOptions: { queries: { refetchOnWindowFocus: false } },
       })
   )
+
+  useGetActualRates()
 
   const getLayout = Component.getLayout ?? (page => page)
 
