@@ -11,7 +11,6 @@ import 'swiper/scss/navigation'
 import 'swiper/scss/pagination'
 
 import '../styles/globals.css'
-import { useVisible } from 'shared/lib/hooks/useVisible'
 
 export type NextPageWithLayout<P = unknown, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactElement
@@ -28,9 +27,8 @@ const App = ({ Component, pageProps }: AppPropsWithLayout): ReactElement => {
         defaultOptions: { queries: { refetchOnWindowFocus: false } },
       })
   )
-  const getLayout = Component.getLayout ?? (page => page)
 
-  useVisible()
+  const getLayout = Component.getLayout ?? (page => page)
 
   return getLayout(
     <QueryClientProvider client={queryClient}>

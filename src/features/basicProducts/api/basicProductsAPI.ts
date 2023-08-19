@@ -7,6 +7,7 @@ import {
 } from 'features/basicProducts/api/types'
 import { instance } from 'shared/api/instance/axios-instance'
 import { UpdateParamsType } from 'shared/api/paramsTypes'
+import { LOCALES } from 'shared/types/localeType'
 import { FiltersType } from 'store/useBasicProductsFilterStore'
 
 const BASE_URL = `/basic-products`
@@ -26,8 +27,10 @@ export const BasicProductsAPI = {
     return res.data
   },
 
-  getOne: async (id: string) => {
-    const res = await instance.get<BasicProductType>(`${BASE_URL}/${id}`)
+  getOne: async (id: string, locale: string = LOCALES.RU) => {
+    const res = await instance.get<BasicProductType>(`${BASE_URL}/${id}`, {
+      headers: { 'x-accept-language': locale },
+    })
 
     return res.data
   },
