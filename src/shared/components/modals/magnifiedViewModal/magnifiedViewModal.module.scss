@@ -10,13 +10,25 @@
   top: 1rem;
   right: 1rem;
 
-  font-size: 1.125rem/* 18px */;
-  line-height: 1.75rem/* 28px */;
+  font-size: 1.125rem /* 18px */
+;
+  line-height: 1.75rem /* 28px */
+;
 }
 
 .my-swiper {
+  cursor: zoom-in;
   width: 100%;
   height: 100%;
+}
+
+.swiper-zoom-container {
+  height: 100%;
+}
+
+.swiper-slide-zoomed {
+  touch-action: none;
+  cursor: move;
 }
 
 .slide {
@@ -24,4 +36,6 @@
   width: 100%;
   height: 100%;
   background: var(--main-color);
+
 }
+

@@ -1,4 +1,4 @@
-import { FC, KeyboardEventHandler, useRef, useState } from 'react'
+import { FC, FocusEvent, KeyboardEventHandler, MouseEvent, useState } from 'react'
 
 import classnames from 'classnames'
 import Image from 'next/image'
@@ -19,15 +19,14 @@ type PropsType = {
 
 export const ProductCardView: FC<PropsType> = ({ photos, activePhoto, setActivePhoto }) => {
   const [isHover, setIsHover] = useState(false)
-  const ref = useRef<HTMLInputElement>(null)
   const { openModal, closeModal, isOpen } = useModal()
 
   const onFocusHandler = (): void => {
     setIsHover(true)
   }
 
-  const onBlurHandler = (): void => {
-    if (ref.current !== document.activeElement) {
+  const onBlurHandler = (e: FocusEvent | MouseEvent): void => {
+    if (e.currentTarget !== document.activeElement) {
       setIsHover(false)
     }
   }
@@ -54,7 +53,6 @@ export const ProductCardView: FC<PropsType> = ({ photos, activePhoto, setActiveP
 
   return (
     <div
-      ref={ref}
       className={classnames(cls.productCardView)}
       role="button"
       tabIndex={0}

@@ -12,6 +12,7 @@ import { useVisible } from 'shared/lib/hooks/useVisible'
 import 'swiper/scss'
 import 'swiper/scss/navigation'
 import 'swiper/scss/pagination'
+import 'swiper/css/free-mode'
 
 import '../styles/globals.css'
 
