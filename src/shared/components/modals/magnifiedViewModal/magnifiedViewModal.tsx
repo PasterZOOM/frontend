@@ -9,7 +9,6 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import cls from './magnifiedViewModal.module.scss'
 
 import { ModalOverlay } from 'shared/components/modals/modalOverlay'
-import { EPhotoExtension, EPhotoSize } from 'shared/enums/photo'
 import { ProductPhotoType } from 'shared/types/productType'
 
 type PropsType = {
@@ -57,8 +56,8 @@ const MagnifiedViewModal: FC<PropsType> = ({
                   fill
                   alt={activePhoto.path}
                   className="h-full w-full object-cover"
-                  quality={100}
-                  src={`${photo.path}${EPhotoSize.XL}.${EPhotoExtension.WEBP}`}
+                  sizes="400px"
+                  src={photo.path}
                 />
               </div>
             </SwiperSlide>

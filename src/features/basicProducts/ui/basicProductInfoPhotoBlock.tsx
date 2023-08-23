@@ -56,14 +56,16 @@ export const BasicProductInfoPhotoBlock: FC<PropsType> = ({ product }) => {
               <span className="font-bold">
                 {leatherArticle?.colors.find(color => color._id === _id)?.title}
               </span>
-              {product.photos[_id].map(photo => (
-                <BasicProductPhoto
-                  key={photo._id}
-                  photo={photo}
-                  productId={product._id}
-                  removeBasicProductPhoto={removeBasicProductPhoto}
-                />
-              ))}
+              <div className="flex flex-wrap gap-4">
+                {product.photos[_id].map(photo => (
+                  <BasicProductPhoto
+                    key={photo._id}
+                    photo={photo}
+                    productId={product._id}
+                    removeBasicProductPhoto={removeBasicProductPhoto}
+                  />
+                ))}
+              </div>
             </div>
           )}
         </div>

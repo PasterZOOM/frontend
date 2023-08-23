@@ -3,7 +3,7 @@ import { FC, memo } from 'react'
 import { ProductCardView } from './productCardView'
 import { ProductCardViewMobile } from './productCardViewMobile'
 
-import { DESKTOP } from 'shared/constants/sizes/screenSizes'
+import { SCREEN } from 'features/basicProducts/enums/screen'
 import { useWindowSize } from 'shared/lib/hooks/useWindowSize'
 import { ProductPhotoType } from 'shared/types/productType'
 
@@ -16,7 +16,7 @@ type PropsType = {
 const ProductCardPhoto: FC<PropsType> = ({ photos, activePhoto, setActivePhoto }) => {
   const { width } = useWindowSize()
 
-  return width > DESKTOP ? (
+  return width > SCREEN.LAPTOP_S ? (
     <ProductCardView activePhoto={activePhoto} photos={photos} setActivePhoto={setActivePhoto} />
   ) : (
     <ProductCardViewMobile photos={photos} />

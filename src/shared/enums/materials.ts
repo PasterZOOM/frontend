@@ -8,7 +8,7 @@ export enum ELeatherColor {
   BLACK = 'black',
   BLUE = 'blue',
   BROWN = 'brown',
+  CAMOUFLAGE = 'camouflage',
   GREEN = 'green',
   RED = 'red',
-  YELLOW = 'yellow',
 }

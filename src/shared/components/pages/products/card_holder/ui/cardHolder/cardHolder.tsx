@@ -3,7 +3,7 @@ import { FC, memo, useState } from 'react'
 import classnames from 'classnames'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { FreeMode, Keyboard, Thumbs, Zoom } from 'swiper/modules'
+import { FreeMode, Keyboard, Navigation, Thumbs, Zoom } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Swiper as SwiperClass } from 'swiper/types'
 
@@ -13,7 +13,6 @@ import { useGetBasicProduct } from 'features/basicProducts/hooks/useGetBasicProd
 import { useGetLeatherArticle } from 'features/leatherArticles/hooks/useGetLeatherArticle'
 import { useGetLeatherFactory } from 'features/leatherFactories/hooks/useGetLeatherFactory'
 import { MainContainer } from 'shared/components/common/containers/mainContainer'
-import { EPhotoExtension, EPhotoSize } from 'shared/enums/photo'
 import { useChangeQueryParams } from 'shared/lib/hooks/queryParams/useChangeQueryParams'
 import { Price } from 'shared/ui/price/price'
 import { TypographyHeader } from 'shared/ui/typographyHeader/typographyHeader'
@@ -51,11 +50,13 @@ const CardHolder: FC<PropsType> = ({ className }) => {
           <>
             <Swiper
               keyboard
+              navigation
               className={cls.mySwiper}
-              modules={[FreeMode, Thumbs, Zoom, Keyboard]}
+              modules={[FreeMode, Navigation, Thumbs, Zoom, Keyboard]}
               thumbs={{
                 swiper: thumbsSwiper,
                 slideThumbActiveClass: cls.activeThumb,
+                thumbsContainerClass: cls.thumbs,
               }}
               zoom={{
                 zoomedSlideClass: cls.swiperSlideZoomed,
@@ -69,8 +70,7 @@ const CardHolder: FC<PropsType> = ({ className }) => {
                       fill
                       alt={photo.path}
                       className="h-full w-full object-cover"
-                      quality={100}
-                      src={`${photo.path}${EPhotoSize.XL}.${EPhotoExtension.WEBP}`}
+                      src={photo.path}
                     />
                   </div>
                 </SwiperSlide>
@@ -92,8 +92,7 @@ const CardHolder: FC<PropsType> = ({ className }) => {
                     fill
                     alt={photo.path}
                     className="h-full w-full object-cover"
-                    quality={100}
-                    src={`${photo.path}${EPhotoSize.XS}.${EPhotoExtension.WEBP}`}
+                    src={photo.path}
                   />
                 </SwiperSlide>
               ))}

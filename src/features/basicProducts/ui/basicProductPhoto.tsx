@@ -1,5 +1,7 @@
 import { FC, memo, useCallback } from 'react'
 
+import Image from 'next/image'
+
 import { RemoveBasicProductPhotoParamsType } from 'features/basicProducts/api/types'
 import { ProductPhotoType } from 'shared/types/productType'
 
@@ -20,11 +22,24 @@ const Component: FC<PropsType> = ({ productId, photo, removeBasicProductPhoto })
   )
 
   return (
-    <div key={photo._id} className="ml-5">
-      <span className="mr-2">{photo.path}</span>
-      <button className="border px-1" type="button" onClick={onButtonClick}>
-        X
-      </button>
+    <div>
+      <div className="relative h-40 w-40">
+        <Image
+          fill
+          alt={photo.path}
+          className="h-full w-full object-cover"
+          quality={100}
+          sizes="400px"
+          src={photo.path}
+        />
+        <button
+          className="absolute right-0 z-10 px-2 text-red-500"
+          type="button"
+          onClick={onButtonClick}
+        >
+          X
+        </button>
+      </div>
     </div>
   )
 }

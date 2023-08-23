@@ -20,11 +20,6 @@ export const leatherColors: ObjectForSelectType<ELeatherColor> = {
     value: ELeatherColor.GREEN,
     title: 'green',
   },
-  [ELeatherColor.YELLOW]: {
-    _id: v1(),
-    value: ELeatherColor.YELLOW,
-    title: 'yellow',
-  },
   [ELeatherColor.BLUE]: {
     _id: v1(),
     value: ELeatherColor.BLUE,
@@ -34,6 +29,11 @@ export const leatherColors: ObjectForSelectType<ELeatherColor> = {
     _id: v1(),
     value: ELeatherColor.BROWN,
     title: 'brown',
+  },
+  [ELeatherColor.CAMOUFLAGE]: {
+    _id: v1(),
+    value: ELeatherColor.CAMOUFLAGE,
+    title: 'camouflage',
   },
 }
 

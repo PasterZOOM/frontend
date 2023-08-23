@@ -1,6 +1,6 @@
 import { FC, ReactNode, useEffect } from 'react'
 
-import { DESKTOP } from 'shared/constants/sizes/screenSizes'
+import { SCREEN } from 'features/basicProducts/enums/screen'
 import { useWindowSize } from 'shared/lib/hooks/useWindowSize'
 
 type PropsType = {
@@ -14,7 +14,7 @@ const FilterContainer: FC<PropsType> = ({ children, className = '', isOpen, clos
   const { width } = useWindowSize()
 
   useEffect(() => {
-    if (width > DESKTOP) closeFilters()
+    if (width > SCREEN.LAPTOP_S) closeFilters() // TODO: написать хук для определения ширину экрана
   }, [closeFilters, width])
 
   return (

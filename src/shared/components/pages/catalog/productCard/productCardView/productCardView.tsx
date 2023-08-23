@@ -5,8 +5,9 @@ import Image from 'next/image'
 
 import cls from './productCardView.module.scss'
 
+import { IMAGE_SIZE } from 'features/basicProducts/enums/imageSize'
+import { SCREEN } from 'features/basicProducts/enums/screen'
 import { MagnifiedViewModal } from 'shared/components/modals/magnifiedViewModal'
-import { EPhotoExtension, EPhotoSize } from 'shared/enums/photo'
 import { useModal } from 'shared/lib/hooks/useModal'
 import { ProductPhotoType } from 'shared/types/productType'
 import { PhotoSlider } from 'shared/ui/photoSlider'
@@ -65,10 +66,11 @@ export const ProductCardView: FC<PropsType> = ({ photos, activePhoto, setActiveP
     >
       <Image
         fill
+        priority
         alt={activePhoto.path}
         className="h-full w-full object-cover"
-        quality={100}
-        src={`${activePhoto.path}${EPhotoSize.XS}.${EPhotoExtension.WEBP}`}
+        sizes={`(max-width: ${SCREEN.TABLET_M}px) 100vw, (max-width: ${SCREEN.LAPTOP_S}px) 50vw,(max-width: ${SCREEN.LAPTOP_M}px) 33vw, ${IMAGE_SIZE.SL}`} // TODO: написать функцию генератор
+        src={activePhoto.path}
       />
       <PhotoSlider<ProductPhotoType>
         activeItem={activePhoto}

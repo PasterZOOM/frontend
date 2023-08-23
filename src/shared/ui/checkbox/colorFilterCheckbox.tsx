@@ -13,9 +13,9 @@ const bgColors: Record<ELeatherColor, string> = {
   [ELeatherColor.RED]: 'bg-red-700',
   [ELeatherColor.BLACK]: 'bg-black',
   [ELeatherColor.GREEN]: 'bg-green-700',
-  [ELeatherColor.YELLOW]: 'bg-yellow-500',
   [ELeatherColor.BLUE]: 'bg-blue-800',
   [ELeatherColor.BROWN]: 'bg-yellow-900',
+  [ELeatherColor.CAMOUFLAGE]: 'bg-yellow-500',
 }
 
 const ColorFilterCheckbox: FC<PropsType> = ({ color, filterKey }: PropsType) => {

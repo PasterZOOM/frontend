@@ -1,6 +1,6 @@
 import { FC, ReactNode, useEffect } from 'react'
 
-import { DESKTOP } from 'shared/constants/sizes/screenSizes'
+import { SCREEN } from 'features/basicProducts/enums/screen'
 import { useWindowSize } from 'shared/lib/hooks/useWindowSize'
 
 type PropsType = {
@@ -15,7 +15,7 @@ export const SubWrapper: FC<PropsType> = ({ children, close, isOpen, bias, class
   const { width } = useWindowSize()
 
   useEffect(() => {
-    if (width > DESKTOP) {
+    if (width > SCREEN.LAPTOP_S) {
       close()
     }
   }, [close, width])
@@ -42,7 +42,7 @@ export const SubWrapper: FC<PropsType> = ({ children, close, isOpen, bias, class
       <div
         ref={node =>
           node &&
-          (isOpen || width >= DESKTOP
+          (isOpen || width >= SCREEN.LAPTOP_S
             ? node.removeAttribute('inert')
             : node.setAttribute('inert', ''))
         }

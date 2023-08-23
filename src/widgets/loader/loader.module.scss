@@ -1,0 +1,45 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loader {
+  position: relative;
+  display: inline-block;
+  width: 48px;
+  height: 48px;
+
+  &::after,
+  &::before {
+    content: '';
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    box-sizing: border-box;
+    width: 48px;
+    height: 48px;
+
+    border: 2px solid #FFF;
+
+    animation: rotation 2s ease-in-out infinite;
+  }
+
+  &::after {
+    border-color: var(--primary-color);
+    animation-delay: 1s;
+  }
+}
+
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

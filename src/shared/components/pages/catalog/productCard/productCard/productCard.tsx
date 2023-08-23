@@ -16,7 +16,7 @@ type PropsType = {
   product: BasicProductType
 }
 
-const defaultActivePhoto = {
+const defaultActivePhoto: ProductPhotoType = {
   _id: '',
   path: '',
 }
@@ -26,11 +26,12 @@ export const ProductCard: FC<PropsType> = ({ product }) => {
 
   const [activeColor, setActiveColor] = useState(product.productColors[0]?._id ?? '')
   const [activePhoto, setActivePhoto] = useState<ProductPhotoType>(
-    product.photos?.[activeColor][0] || defaultActivePhoto
+    product.photos?.[activeColor]?.[0] || defaultActivePhoto
   )
 
   useEffect(() => {
     setActiveColor(product.productColors[0]?._id ?? '')
+    setActivePhoto(product.photos?.[product.productColors[0]?._id || ''][0] || defaultActivePhoto)
   }, [product])
 
   const activeColorsPhotos = useMemo(
@@ -42,6 +43,7 @@ export const ProductCard: FC<PropsType> = ({ product }) => {
     setActiveColor(id)
     setActivePhoto(product.photos?.[id][0] || defaultActivePhoto)
   }
+
   const href = `/products/${product.category}/${product._id}?active_color=${activeColor}`
 
   return (
