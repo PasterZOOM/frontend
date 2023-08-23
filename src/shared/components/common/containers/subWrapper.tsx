@@ -1,7 +1,6 @@
 import { FC, ReactNode, useEffect } from 'react'
 
-import { SCREEN } from 'features/basicProducts/enums/screen'
-import { useWindowSize } from 'shared/lib/hooks/useWindowSize'
+import { useDevice } from 'shared/lib/hooks/windowSize/useDevise'
 
 type PropsType = {
   bias: string
@@ -12,13 +11,13 @@ type PropsType = {
 }
 
 export const SubWrapper: FC<PropsType> = ({ children, close, isOpen, bias, className = '' }) => {
-  const { width } = useWindowSize()
+  const { widerLaptopS } = useDevice()
 
   useEffect(() => {
-    if (width > SCREEN.LAPTOP_S) {
+    if (widerLaptopS) {
       close()
     }
-  }, [close, width])
+  }, [close, widerLaptopS])
 
   useEffect(() => {
     if (isOpen) {
@@ -42,9 +41,7 @@ export const SubWrapper: FC<PropsType> = ({ children, close, isOpen, bias, class
       <div
         ref={node =>
           node &&
-          (isOpen || width >= SCREEN.LAPTOP_S
-            ? node.removeAttribute('inert')
-            : node.setAttribute('inert', ''))
+          (isOpen || widerLaptopS ? node.removeAttribute('inert') : node.setAttribute('inert', ''))
         }
         className={`fixed left-0 right-0 max-h-[70vh] max-w-full overflow-auto bg-white transition-all duration-300 dark:bg-anthracite-gray xl:static xl:z-auto xl:max-h-none xl:overflow-visible ${
           isOpen ? 'z-30' : ''

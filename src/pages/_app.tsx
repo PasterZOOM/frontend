@@ -8,11 +8,11 @@ import { ReactQueryDevtools } from 'react-query/devtools'
 
 import { useGetActualRates } from 'features/currancy/hooks/useGetActualRates'
 import { useVisible } from 'shared/lib/hooks/useVisible'
+import 'swiper/css/free-mode'
 
 import 'swiper/scss'
 import 'swiper/scss/navigation'
 import 'swiper/scss/pagination'
-import 'swiper/css/free-mode'
 
 import '../styles/globals.css'
 

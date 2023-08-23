@@ -5,9 +5,9 @@ import Image from 'next/image'
 
 import cls from './productCardView.module.scss'
 
-import { IMAGE_SIZE } from 'features/basicProducts/enums/imageSize'
-import { SCREEN } from 'features/basicProducts/enums/screen'
 import { MagnifiedViewModal } from 'shared/components/modals/magnifiedViewModal'
+import { IMAGE_SIZE } from 'shared/enums/imageSize'
+import { SCREEN } from 'shared/enums/screen'
 import { useModal } from 'shared/lib/hooks/useModal'
 import { ProductPhotoType } from 'shared/types/productType'
 import { PhotoSlider } from 'shared/ui/photoSlider'
