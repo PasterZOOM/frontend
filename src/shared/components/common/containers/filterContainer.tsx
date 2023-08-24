@@ -1,6 +1,6 @@
 import { FC, ReactNode, useEffect } from 'react'
 
-import { useDevice } from 'shared/lib/hooks/windowSize/useDevise'
+import { useDevice } from 'shared/lib/hooks/windowSize/useDevice'
 
 type PropsType = {
   children: ReactNode

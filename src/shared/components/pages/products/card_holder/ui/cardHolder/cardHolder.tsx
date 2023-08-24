@@ -3,7 +3,7 @@ import { FC, memo, useState } from 'react'
 import classnames from 'classnames'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { FreeMode, Keyboard, Navigation, Thumbs, Zoom } from 'swiper/modules'
+import { FreeMode, Keyboard, Mousewheel, Navigation, Thumbs, Zoom } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Swiper as SwiperClass } from 'swiper/types'
 
@@ -47,16 +47,31 @@ const CardHolder: FC<PropsType> = ({ className }) => {
     <MainContainer className="relative min-h-[calc(100vh-9.625rem)] grid-cols-12 gap-6 py-5 md:min-h-[calc(100vh-10.625rem)] xl:grid xl:min-h-fit">
       <div className={`col-span-8 h-fit duration-300 xl:sticky ${isVisible ? 'top-22' : 'top-5'}`}>
         {product.photos && (
-          <>
+          <div className={classnames(cls.swiperWrapper)}>
+            <Swiper
+              freeMode
+              mousewheel
+              watchSlidesProgress
+              className={classnames(cls.mySwiperThumps, 'mySwiper')}
+              direction="vertical"
+              modules={[FreeMode, Thumbs, Mousewheel]}
+              slidesPerView={4.5}
+              onSwiper={setThumbsSwiper}
+            >
+              {product.photos[activeColor].map(photo => (
+                <SwiperSlide key={photo._id} className={cls.slide}>
+                  <Image fill alt={photo.path} className=" object-cover" src={photo.path} />
+                </SwiperSlide>
+              ))}
+            </Swiper>
             <Swiper
               keyboard
+              mousewheel
               navigation
               className={cls.mySwiper}
-              modules={[FreeMode, Navigation, Thumbs, Zoom, Keyboard]}
+              modules={[FreeMode, Navigation, Thumbs, Zoom, Keyboard, Mousewheel]}
               thumbs={{
                 swiper: thumbsSwiper,
-                slideThumbActiveClass: cls.activeThumb,
-                thumbsContainerClass: cls.thumbs,
               }}
               zoom={{
                 zoomedSlideClass: cls.swiperSlideZoomed,
@@ -76,28 +91,7 @@ const CardHolder: FC<PropsType> = ({ className }) => {
                 </SwiperSlide>
               ))}
             </Swiper>
-            <Swiper
-              freeMode
-              watchSlidesProgress
-              className={cls.mySwiperThumps}
-              modules={[FreeMode, Thumbs]}
-              slidesPerView={5}
-              spaceBetween={8}
-              thumbs={{ slideThumbActiveClass: cls.activeThumb }}
-              onSwiper={setThumbsSwiper}
-            >
-              {product.photos[activeColor].map(photo => (
-                <SwiperSlide key={photo._id} className={cls.slide}>
-                  <Image
-                    fill
-                    alt={photo.path}
-                    className="h-full w-full object-cover"
-                    src={photo.path}
-                  />
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          </>
+          </div>
         )}
         <div>{product.description}</div>
       </div>

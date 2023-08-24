@@ -9,6 +9,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import cls from './magnifiedViewModal.module.scss'
 
 import { ModalOverlay } from 'shared/components/modals/modalOverlay'
+import { getImageSizes } from 'shared/lib/images/getImageSizes'
 import { ProductPhotoType } from 'shared/types/productType'
 
 type PropsType = {
@@ -18,6 +19,9 @@ type PropsType = {
   isOpen: boolean
   photos: ProductPhotoType[]
 }
+const imageSizes = getImageSizes({
+  DEFAULT: '100vw',
+})
 
 const MagnifiedViewModal: FC<PropsType> = ({
   className,
@@ -56,7 +60,8 @@ const MagnifiedViewModal: FC<PropsType> = ({
                   fill
                   alt={activePhoto.path}
                   className="h-full w-full object-cover"
-                  sizes="400px"
+                  quality={100}
+                  sizes={imageSizes}
                   src={photo.path}
                 />
               </div>

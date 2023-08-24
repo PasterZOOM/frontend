@@ -3,7 +3,7 @@ import { FC, memo } from 'react'
 import { ProductCardView } from './productCardView'
 import { ProductCardViewMobile } from './productCardViewMobile'
 
-import { useDevice } from 'shared/lib/hooks/windowSize/useDevise'
+import { useDevice } from 'shared/lib/hooks/windowSize/useDevice'
 import { ProductPhotoType } from 'shared/types/productType'
 
 type PropsType = {
@@ -13,9 +13,9 @@ type PropsType = {
 }
 
 const ProductCardPhoto: FC<PropsType> = ({ photos, activePhoto, setActivePhoto }) => {
-  const { widerLaptopS } = useDevice()
+  const { isTouched } = useDevice()
 
-  return widerLaptopS ? (
+  return !isTouched ? (
     <ProductCardView activePhoto={activePhoto} photos={photos} setActivePhoto={setActivePhoto} />
   ) : (
     <ProductCardViewMobile photos={photos} />

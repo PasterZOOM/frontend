@@ -2,10 +2,15 @@
   position: static;
 }
 
+.swiper-wrapper {
+  display: flex;
+  aspect-ratio: 11/9;
+}
+
 .my-swiper {
   cursor: zoom-in;
   position: relative;
-  aspect-ratio: 16/9;
+  aspect-ratio: 1/1;
 }
 
 .swiper-zoom-container {
@@ -17,16 +22,16 @@
   cursor: move;
 }
 
+
 .my-swiper-thumps {
   cursor: pointer;
-  aspect-ratio: 24/4;
-  margin-top: 0.5rem;
+  aspect-ratio: 2/9;
 
   .slide {
     opacity: 0.4;
   }
 
-  .active-thumb {
+  :global(.swiper-slide-thumb-active) {
     opacity: 1;
   }
 }
