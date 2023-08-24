@@ -1,39 +1,3 @@
 .card-holder {
   position: static;
 }
-
-.swiper-wrapper {
-  display: flex;
-  aspect-ratio: 11/9;
-}
-
-.my-swiper {
-  cursor: zoom-in;
-  position: relative;
-  aspect-ratio: 1/1;
-}
-
-.swiper-zoom-container {
-  height: 100%;
-}
-
-.swiper-slide-zoomed {
-  touch-action: none;
-  cursor: move;
-}
-
-
-.my-swiper-thumps {
-  cursor: pointer;
-  aspect-ratio: 2/9;
-
-  .slide {
-    opacity: 0.4;
-  }
-
-  :global(.swiper-slide-thumb-active) {
-    opacity: 1;
-  }
-}
-
-

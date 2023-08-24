@@ -24,7 +24,7 @@ export const getServerSideProps: GetServerSideProps<NonNullable<unknown>, { id: 
 
   return {
     props: {
-      ...(await serverSideTranslations(locale ?? LOCALES.RU, ['common'])),
+      ...(await serverSideTranslations(locale ?? LOCALES.RU, ['common', 'translation'])),
       dehydratedState: dehydrate(queryClient),
     },
   }

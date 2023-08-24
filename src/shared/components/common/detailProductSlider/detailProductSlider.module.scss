@@ -1,0 +1,42 @@
+.detail-product-slider {
+  user-select: none;
+  display: flex;
+  aspect-ratio: 11/9;
+}
+
+.my-swiper {
+  cursor: zoom-in;
+  position: relative;
+  aspect-ratio: 1/1;
+
+  &:active {
+    cursor: ew-resize;
+  }
+}
+
+.swiper-zoom-container {
+  height: 100%;
+}
+
+.swiper-slide-zoomed {
+  cursor: move;
+}
+
+
+.my-swiper-thumps {
+  aspect-ratio: 2/9;
+
+  &:active {
+    cursor: ns-resize;
+  }
+}
+
+.slide-mini {
+  opacity: 0.4;
+}
+
+.my-swiper-thumps :global(.swiper-slide-thumb-active) {
+  opacity: 1;
+}
+
+
