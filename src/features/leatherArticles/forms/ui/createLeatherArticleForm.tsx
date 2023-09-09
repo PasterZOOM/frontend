@@ -3,10 +3,10 @@ import { FC } from 'react'
 import { useTranslation } from 'next-i18next'
 import { UseFormReturn } from 'react-hook-form'
 
-import { CreateLeatherArticleFormType } from 'features/leatherArticles/forms/type'
-import { resolver } from 'features/leatherArticles/forms/validation.sheme'
+import { CreateLeatherArticleFormType } from 'features/leatherArticles/forms/model/type'
+import { resolver } from 'features/leatherArticles/forms/model/validation.sheme'
+import { LeatherArticleCreateConfirmModalBody } from 'features/leatherArticles/forms/ui/leatherArticleCreateConfirmModalBody'
 import { useCreateLeatherArticle } from 'features/leatherArticles/hooks/useCreateLeatherArticle'
-import { LeatherArticleCreateConfirmModalBody } from 'features/leatherArticles/modals/confirm/leatherArticleCreateConfirmModalBody'
 import { useGetAllLeatherFactories } from 'features/leatherFactories/hooks/useGetAllLeatherFactories'
 import { CreateForm } from 'shared/components/forms/createForm'
 import { FormInputWithWrapper } from 'shared/components/forms/inputs/formInputWithWrapper'
@@ -15,6 +15,7 @@ import { SelectItemType } from 'shared/ui/selects/defaultSelectType'
 import { TypographyHeader } from 'shared/ui/typographyHeader/typographyHeader'
 
 type FormValues = CreateLeatherArticleFormType
+
 const defaultValues: FormValues = {
   factoryId: '',
   description: '',
@@ -55,13 +56,13 @@ export const CreateLeatherArticleForm: FC = () => {
         resolver={resolver}
         onSubmit={onSubmit}
       >
-        <FormInputWithWrapper<FormValues> name="title" title="Название артикула:" />
+        <FormInputWithWrapper<FormValues> label="Название артикула:" name="title" />
 
-        <FormInputWithWrapper<FormValues> name="value" title="Значение:" />
+        <FormInputWithWrapper<FormValues> label="Значение:" name="value" />
 
-        <FormSelectWithWrapper<FormValues> items={factories} name="factoryId" title="Фабрика:" />
+        <FormSelectWithWrapper<FormValues> items={factories} label="Фабрика:" name="factoryId" />
 
-        <FormInputWithWrapper<FormValues> name="description" title="Описание:" />
+        <FormInputWithWrapper<FormValues> label="Описание:" name="description" />
       </CreateForm>
     </>
   )

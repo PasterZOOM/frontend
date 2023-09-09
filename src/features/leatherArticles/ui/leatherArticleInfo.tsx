@@ -2,7 +2,7 @@ import { FC } from 'react'
 
 import { LeatherArticleType } from 'features/leatherArticles/api/types'
 import { useUpdateLeatherArticle } from 'features/leatherArticles/hooks/useUpdateLeatherArticle'
-import { LeatherArticleRemoveConfirmModalBody } from 'features/leatherArticles/modals/confirm/leatherArticleRemoveConfirmModalBody'
+import { LeatherArticleRemoveConfirmModalBody } from 'features/leatherArticles/modals/leatherArticleRemoveConfirmModalBody'
 import { LeatherColorModal } from 'features/leatherColors/modals/leatherColorModal'
 import { LeatherFactoryModal } from 'features/leatherFactories/modals/leatherFactoryModal'
 import { PropertyPreviewWrapper } from 'shared/components/common/wrappers/propertyPreviewWrapper'

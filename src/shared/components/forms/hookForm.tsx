@@ -10,7 +10,7 @@ export const HookForm = <T extends FieldValues>({
   children,
   ...option
 }: PropsType<T>): ReactElement => {
-  const methods = useForm(option)
+  const methods = useForm<T>(option)
 
   return (
     <FormProvider {...methods}>

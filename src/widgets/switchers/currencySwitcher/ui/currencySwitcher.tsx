@@ -1,9 +1,9 @@
 import { FC, useEffect, useState } from 'react'
 
-import { currencies, currencyArray } from '../module/currency'
-import { ECost } from '../module/enum'
 import { useCurrencyTitle } from '../module/lib/hooks/useCurrencyTitle'
 
+import { currencies, currencyArray } from 'features/currancy/lib/consts/currency'
+import { ECost } from 'features/currancy/lib/enum/eCost'
 import { useIsFirstRender } from 'shared/lib/hooks/useFirstRender'
 import { SelectItemType } from 'shared/ui/selects/defaultSelectType'
 import { Select } from 'shared/ui/selects/select'

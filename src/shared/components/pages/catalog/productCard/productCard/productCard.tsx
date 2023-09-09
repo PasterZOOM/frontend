@@ -1,4 +1,4 @@
-import { FC, useEffect, useMemo, useState } from 'react'
+import { FC, memo, useEffect, useMemo, useState } from 'react'
 
 import Link from 'next/link'
 import { useTranslation } from 'next-i18next'
@@ -21,7 +21,7 @@ const defaultActivePhoto: ProductPhotoType = {
   path: '',
 }
 
-export const ProductCard: FC<PropsType> = ({ product }) => {
+const ProductCard: FC<PropsType> = ({ product }) => {
   const { t } = useTranslation('catalog')
 
   const [activeColor, setActiveColor] = useState(product.productColors[0]?._id ?? '')
@@ -84,3 +84,7 @@ export const ProductCard: FC<PropsType> = ({ product }) => {
     </div>
   )
 }
+
+const Memo = memo(ProductCard)
+
+export { Memo as ProductCard }

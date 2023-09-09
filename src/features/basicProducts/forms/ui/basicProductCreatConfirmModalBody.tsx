@@ -2,8 +2,7 @@ import { FC } from 'react'
 
 import { useTranslation } from 'next-i18next'
 
-import { ECreateBasicProductParams } from 'features/basicProducts/enums/paramsKeys'
-import { CreateBasicProductFormType } from 'features/basicProducts/forms/type'
+import { CreateBasicProductFormType } from 'features/basicProducts/forms/module/type'
 import { useGetAllLeatherArticles } from 'features/leatherArticles/hooks/useGetAllLeatherArticles'
 
 type PropsType = {
@@ -23,23 +22,22 @@ export const BasicProductCreatConfirmModalBody: FC<PropsType> = ({ values }) => 
         {values.title}?
       </div>
       <div>
-        {t('Артикул кожи')}:
-        {articles.find(f => f._id === values[ECreateBasicProductParams.LEATHER_ARTICLE])?.title}
+        {t('Артикул кожи')}:{articles.find(f => f._id === values.leatherArticle)?.title}
       </div>
       <div>
-        {t('Стоимость')}:{values[ECreateBasicProductParams.COST]}
+        {t('Стоимость')}:{values.cost}
       </div>
       <div>
-        {t('Категория')}:{values[ECreateBasicProductParams.CATEGORY]}
+        {t('Категория')}:{values.category}
       </div>
       <div>
-        {t('Шаг пробойника')}:{values[ECreateBasicProductParams.PUNCH_PITCH]}
+        {t('Шаг пробойника')}:{values.punchPitch}
       </div>
       <div>
-        {t('Размер')}:{values[ECreateBasicProductParams.SIZE]}
+        {t('Размер')}:{values.size}
       </div>
       <div>
-        {t('Описание')}:{values[ECreateBasicProductParams.DESCRIPTION]}
+        {t('Описание')}:{values.description}
       </div>
     </div>
   )

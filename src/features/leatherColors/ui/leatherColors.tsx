@@ -1,6 +1,6 @@
 import { FC } from 'react'
 
-import { CreateLeatherColorForm } from 'features/leatherColors/forms/createLeatherColorForm'
+import { CreateLeatherColorForm } from 'features/leatherColors/forms/ui/createLeatherColorForm'
 import { useGetAllLeatherColors } from 'features/leatherColors/hooks/useGetAllLeatherColors'
 import { LeatherColorModal } from 'features/leatherColors/modals/leatherColorModal'
 import { CreateFormAndListWrapper } from 'shared/components/common/wrappers/createFormAndListWrapper'

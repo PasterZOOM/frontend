@@ -6,6 +6,7 @@ export type LeatherArticleType = {
   title: string
   value: string
 }
+
 export type CreateLeatherArticleParamsType = {
   description: string
   title: string

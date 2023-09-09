@@ -29,7 +29,7 @@ export type BasicProductResponseType = {
   totalCount: number
 }
 
-export type CreateBasicProductParamsType = {
+export type CreateBasicProductParamsType = Partial<{
   assignments: EProductAssignment[]
   category: EProductCategory
   cost: number
@@ -41,7 +41,7 @@ export type CreateBasicProductParamsType = {
   punchPitch: EPunchPitch
   size: string
   title: string
-}
+}>
 
 export type UpdateBasicProductParamsType = Partial<
   CreateBasicProductParamsType & { isPublished: boolean }

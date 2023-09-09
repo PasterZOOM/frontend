@@ -1,8 +1,9 @@
 import { create } from 'zustand'
 
-import { DEFAULT_PRODUCT_CURRENCY } from 'shared/constants/currancy/defaultProductCurrency'
-import { CostType } from 'shared/types/costType'
-import { ECost } from 'widgets/switchers/currencySwitcher/module/enum'
+import { DEFAULT_PRODUCT_CURRENCY } from '../lib/consts'
+
+import { ECost } from 'features/currancy/lib/enum/eCost'
+import { CostType } from 'features/currancy/lib/types/costType'
 
 export const initialCurrencyRatesState: CostType = {
   BYN: 0,

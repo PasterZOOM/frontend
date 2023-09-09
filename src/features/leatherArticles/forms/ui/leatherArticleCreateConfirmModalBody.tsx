@@ -2,8 +2,7 @@ import { FC } from 'react'
 
 import { useTranslation } from 'next-i18next'
 
-import { ECreateLeatherArticleParams } from 'features/leatherArticles/enums/paramsKeys'
-import { CreateLeatherArticleFormType } from 'features/leatherArticles/forms/type'
+import { CreateLeatherArticleFormType } from 'features/leatherArticles/forms/model/type'
 import { useGetAllLeatherFactories } from 'features/leatherFactories/hooks/useGetAllLeatherFactories'
 
 type PropsType = {
@@ -18,7 +17,7 @@ export const LeatherArticleCreateConfirmModalBody: FC<PropsType> = ({ values }) 
     <div className="space-y-2">
       <div>
         {t('Вы уверены что хотите создать артикул для фабрики')}{' '}
-        {factories?.find(f => f._id === values[ECreateLeatherArticleParams.FACTORY_ID])?.title} ?
+        {factories?.find(f => f._id === values.factoryId)?.title} ?
       </div>
       <div>
         {t('Название артикула')}: {values.title}

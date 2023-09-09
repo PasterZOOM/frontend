@@ -1,13 +1,13 @@
 import { useEffect } from 'react'
 
-import { CurrencyAPI } from 'features/currancy/api/currencyApi'
+import { CurrencyAPI } from '../api/currencyApi'
+import { ECost } from '../lib/enum'
+import { CostType } from '../lib/types'
 import {
   initialCurrencyRatesState,
   selectSetActualRates,
   useCurrencyRatesStore,
-} from 'features/currancy/store/useCurrencyRatesStore'
-import { CostType } from 'shared/types/costType'
-import { ECost } from 'widgets/switchers/currencySwitcher/module/enum'
+} from '../store/useCurrencyRatesStore'
 
 export const useGetActualRates = (): void => {
   const setActualRates = useCurrencyRatesStore(selectSetActualRates)

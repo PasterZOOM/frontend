@@ -17,6 +17,6 @@ export type CreateLeatherColorParamsType = {
   factory: string
   photo: string
   title: string
-  value: ELeatherColor
+  value: string
 }
 export type UpdateLeatherColorParamsType = Partial<CreateLeatherColorParamsType>

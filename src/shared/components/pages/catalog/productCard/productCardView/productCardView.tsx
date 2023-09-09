@@ -16,18 +16,6 @@ type PropsType = {
   photos: ProductPhotoType[]
   setActivePhoto: (activeItem: ProductPhotoType) => void
 }
-// const imageSizes = getImageSizes({
-//   $1_MOBILE_S: '296px',
-//   $2_MOBILE_M: '351px',
-//   $3_MOBILE_L: '400px',
-//   $4_TABLET_M: '300px',
-//   $5_TABLET_L: '378px',
-//   $6_LAPTOP_S: '310px',
-//   $7_LAPTOP_M: '316px',
-//   $8_LAPTOP_L: '360px',
-//   $9_4K: '396px',
-//   DEFAULT: '25vw',
-// })
 
 const imageSizes = getImageSizes({
   DEFAULT: '300px',

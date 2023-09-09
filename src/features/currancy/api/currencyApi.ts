@@ -1,8 +1,10 @@
 import axios from 'axios'
 
-import { GetRateResponseType } from 'features/currancy/api/getRateResponseType'
+import { ECost } from '../lib/enum'
+
+import { GetRateResponseType } from './getRateResponseType'
+
 import { StatusCode } from 'shared/enums/statusCode'
-import { ECost } from 'widgets/switchers/currencySwitcher/module/enum'
 
 export const CurrencyAPI = {
   getRate: async (curAbbreviation: ECost): Promise<GetRateResponseType> => {

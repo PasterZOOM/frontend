@@ -4,18 +4,18 @@ import { useFormContext } from 'react-hook-form'
 
 type PropsType = {
   children: ReactNode
+  label: string
   name: string
-  title: string
 }
 
-export const FieldWrapper: FC<PropsType> = ({ title, children, name }) => {
+export const FieldWrapper: FC<PropsType> = ({ label, children, name }) => {
   const {
     formState: { errors },
   } = useFormContext()
 
   return (
     <label className="block" htmlFor={name}>
-      {title}
+      {label}
       {children}
       {errors[name] && <div className="text-red-500">{errors[name]?.message?.toString()}</div>}
     </label>

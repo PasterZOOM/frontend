@@ -2,7 +2,7 @@ import { FC } from 'react'
 
 import { useTranslation } from 'next-i18next'
 
-import { CreateBasicProductForm } from 'features/basicProducts/forms/createBasicProductForm'
+import { CreateBasicProductForm } from 'features/basicProducts/forms/ui/createBasicProductForm'
 import { useGetAllBasicProducts } from 'features/basicProducts/hooks/useGetAllBasicProducts'
 import { BasicProductModal } from 'features/basicProducts/modals/basicProductModal'
 import { CreateFormAndListWrapper } from 'shared/components/common/wrappers/createFormAndListWrapper'

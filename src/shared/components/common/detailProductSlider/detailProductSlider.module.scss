@@ -24,6 +24,7 @@
 
 
 .my-swiper-thumps {
+  gap: 0.5rem;
   aspect-ratio: 2/9;
 
   &:active {
@@ -31,12 +32,21 @@
   }
 }
 
-.slide-mini {
+.slide-mini-wrapper {
   opacity: 0.4;
+}
+
+.slide-mini {
+  cursor: pointer;
+  position: relative;
+  height: 100%;
+  margin-right: 8px;
+
+  &:active {
+    cursor: ns-resize;
+  }
 }
 
 .my-swiper-thumps :global(.swiper-slide-thumb-active) {
   opacity: 1;
 }
-
-

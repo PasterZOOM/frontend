@@ -2,7 +2,8 @@ import { FC } from 'react'
 
 import { useTranslation } from 'next-i18next'
 
-import { CreateLeatherFactoryFormType } from 'features/leatherFactories/forms/type'
+import { CreateLeatherFactoryFormType } from 'features/leatherFactories/forms/module/type'
+import { ECountry } from 'shared/enums/country'
 import { countryValues } from 'shared/objects/countries/countryValues'
 
 type PropsType = {
@@ -18,7 +19,7 @@ export const LeatherFactoryCreatConfirmModalBody: FC<PropsType> = ({ values }) =
         {t('Вы уверены что хотите создать фабрику')} {values.title}?
       </div>
       <div>
-        {t('Страна')}: {t(countryValues[values.country].title)}
+        {t('Страна')}: {t(countryValues[values.country as ECountry].title)}
       </div>
       <div>
         {t('Описание')}: {values.description}

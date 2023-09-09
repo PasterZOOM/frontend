@@ -31,11 +31,14 @@ const DetailProductSlider: FC<PropsType> = ({ className, photos, activeColor }) 
         direction="vertical"
         modules={[FreeMode, Thumbs, Mousewheel]}
         slidesPerView={4.5}
+        spaceBetween={8}
         onSwiper={setThumbsSwiper}
       >
         {photos[activeColor].map(photo => (
-          <SwiperSlide key={photo._id} className={cls.slideMini}>
-            <Image fill alt={photo.path} className=" object-cover" src={photo.path} />
+          <SwiperSlide key={photo._id} className={cls.slideMiniWrapper}>
+            <div className={cls.slideMini}>
+              <Image fill alt={photo.path} className=" object-cover" src={photo.path} />
+            </div>
           </SwiperSlide>
         ))}
       </Swiper>

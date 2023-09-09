@@ -4,10 +4,10 @@ import { useTranslation } from 'next-i18next'
 import { UseFormReturn } from 'react-hook-form'
 
 import { useGetAllLeatherArticles } from 'features/leatherArticles/hooks/useGetAllLeatherArticles'
-import { CreateLeatherColorFormType } from 'features/leatherColors/forms/type'
-import { resolver } from 'features/leatherColors/forms/validation.sheme'
+import { CreateLeatherColorFormType } from 'features/leatherColors/forms/module/type'
+import { resolver } from 'features/leatherColors/forms/module/validation.sheme'
+import { LeatherColorCreatConfirmModalBody } from 'features/leatherColors/forms/ui/leatherColorCreatConfirmModalBody'
 import { useCreateLeatherColor } from 'features/leatherColors/hooks/useCreateLeatherColor'
-import { LeatherColorCreatConfirmModalBody } from 'features/leatherColors/modals/confirm/leatherColorCreatConfirmModalBody'
 import { CreateForm } from 'shared/components/forms/createForm'
 import { FormInputWithWrapper } from 'shared/components/forms/inputs/formInputWithWrapper'
 import { FormSelectWithWrapper } from 'shared/components/forms/selects/formSelectWithWrapper'
@@ -66,21 +66,21 @@ export const CreateLeatherColorForm: FC = () => {
         resolver={resolver}
         onSubmit={onSubmit}
       >
-        <FormSelectWithWrapper<FormValues> items={articles} name="articleId" title="Артикул:" />
+        <FormSelectWithWrapper<FormValues> items={articles} label="Артикул:" name="articleId" />
 
         <FormSelectWithWrapper<FormValues>
           items={leatherColorsArray}
+          label="Значение цвета:"
           name="value"
-          title="Значение цвета:"
         />
 
-        <FormInputWithWrapper<FormValues> name="title" title="Название цвета:" />
+        <FormInputWithWrapper<FormValues> label="Название цвета:" name="title" />
 
-        <FormInputWithWrapper<FormValues> name="code" title="Код цвета:" />
+        <FormInputWithWrapper<FormValues> label="Код цвета:" name="code" />
 
-        <FormInputWithWrapper<FormValues> name="photo" title="Фото цвета:" />
+        <FormInputWithWrapper<FormValues> label="Фото цвета:" name="photo" />
 
-        <FormInputWithWrapper<FormValues> name="description" title="Описание:" />
+        <FormInputWithWrapper<FormValues> label="Описание:" name="description" />
       </CreateForm>
     </>
   )

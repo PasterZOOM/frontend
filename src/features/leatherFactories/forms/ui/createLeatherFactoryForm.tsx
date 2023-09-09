@@ -3,10 +3,10 @@ import { FC } from 'react'
 import { useTranslation } from 'next-i18next'
 import { UseFormReturn } from 'react-hook-form'
 
-import { CreateLeatherFactoryFormType } from 'features/leatherFactories/forms/type'
-import { resolver } from 'features/leatherFactories/forms/validation.sheme'
+import { CreateLeatherFactoryFormType } from 'features/leatherFactories/forms/module/type'
+import { resolver } from 'features/leatherFactories/forms/module/validation.sheme'
+import { LeatherFactoryCreatConfirmModalBody } from 'features/leatherFactories/forms/ui/leatherFactoryCreatConfirmModalBody'
 import { useCreateLeatherFactory } from 'features/leatherFactories/hooks/useCreateLeatherFactory'
-import { LeatherFactoryCreatConfirmModalBody } from 'features/leatherFactories/modals/confirm/leatherFactoryCreatConfirmModalBody'
 import { CreateForm } from 'shared/components/forms/createForm'
 import { FormInputWithWrapper } from 'shared/components/forms/inputs/formInputWithWrapper'
 import { FormSelectWithWrapper } from 'shared/components/forms/selects/formSelectWithWrapper'
@@ -48,15 +48,15 @@ export const CreateLeatherFactoryForm: FC = () => {
         resolver={resolver}
         onSubmit={onSubmit}
       >
-        <FormInputWithWrapper<FormValues> name="title" title="Название фабрики:" />
+        <FormInputWithWrapper<FormValues> label="Название фабрики:" name="title" />
 
         <FormSelectWithWrapper<FormValues>
           items={countriesArray}
+          label="Страна в которой расположена фабрика:"
           name="country"
-          title="Страна в которой расположена фабрика:"
         />
 
-        <FormInputWithWrapper<FormValues> name="description" title="Описание:" />
+        <FormInputWithWrapper<FormValues> label="Описание:" name="description" />
       </CreateForm>
     </>
   )

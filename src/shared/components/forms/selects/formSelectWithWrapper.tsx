@@ -9,19 +9,19 @@ import { ETheme } from 'widgets/switchers/themeSwitcher/module/enum'
 
 type PropsType<T> = {
   items: SelectItemType<ETheme | string[] | string>[]
+  label: string
   name: Path<T>
   selectProps?: DefaultSelectPropsType
-  title: string
 }
 
 export const FormSelectWithWrapper = <T,>({
   selectProps,
-  title,
+  label,
   name,
   items,
 }: PropsType<T>): ReactElement => {
   return (
-    <FieldWrapper name={name} title={title}>
+    <FieldWrapper label={label} name={name}>
       <FormSelect {...selectProps} items={items} name={name} />
     </FieldWrapper>
   )

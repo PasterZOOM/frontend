@@ -22,7 +22,7 @@
     width: 48px;
     height: 48px;
 
-    border: 2px solid #FFF;
+    border: 2px solid var(--inversion-main-color);
 
     animation: rotation 2s ease-in-out infinite;
   }

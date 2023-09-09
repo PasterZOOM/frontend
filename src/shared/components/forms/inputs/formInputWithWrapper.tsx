@@ -7,16 +7,16 @@ import { FormInput } from 'shared/components/forms/inputs/formInput'
 
 type PropsType<T> = {
   inputProps?: ComponentPropsWithoutRef<'input'>
+  label: string
   name: Path<T>
-  title: string
 }
 export const FormInputWithWrapper = <T,>({
   inputProps,
-  title,
+  label,
   name,
 }: PropsType<T>): ReactElement => {
   return (
-    <FieldWrapper name={name} title={title}>
+    <FieldWrapper label={label} name={name}>
       <FormInput<T> {...inputProps} name={name} />
     </FieldWrapper>
   )
