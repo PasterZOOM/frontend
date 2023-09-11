@@ -1,13 +1,14 @@
 import { yupResolver } from '@hookform/resolvers/yup'
 import { array, number, object, Schema, string } from 'yup'
 
-import { ECreateBasicProductParams } from 'features/basicProducts/forms/module/paramsKeys'
-import { MIN_TITLE_LENGTH, REQUIRED_MESSAGE } from 'shared/constants/forms/validate'
+import { ECreateBasicProductParams } from './paramsKeys'
+
+import { MIN_TITLE_LENGTH, REQUIRED_MESSAGE } from 'shared/consts/forms/validate'
 import { EProductAssignment } from 'shared/enums/product'
 
 type FormData = Record<ECreateBasicProductParams, Schema>
 
-const data: FormData = {
+const formData: FormData = {
   leatherArticle: string().required(REQUIRED_MESSAGE),
   title: string().required(REQUIRED_MESSAGE).min(MIN_TITLE_LENGTH, 'Должно быть более 6 символов'),
   assignments: array()
@@ -27,5 +28,5 @@ const data: FormData = {
   size: string(),
 }
 
-export const schema = object(data).required()
+export const schema = object(formData).required()
 export const resolver = yupResolver(schema)

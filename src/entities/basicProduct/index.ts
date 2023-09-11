@@ -1,0 +1,1 @@
+export { BasicProductsController } from './module'

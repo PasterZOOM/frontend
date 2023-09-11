@@ -2,11 +2,13 @@ import { useCallback } from 'react'
 
 import { useRouter } from 'next/router'
 
+import { QueryParam } from 'shared/types/queryParam'
+
 export const useChangeQueryParams = (
   queryKey: string
 ): {
   changeParam: (value?: string) => void
-  queryParam: string[] | string | undefined
+  queryParam: QueryParam
   removeParam: () => void
 } => {
   const { pathname, query, replace } = useRouter()

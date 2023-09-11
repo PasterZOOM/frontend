@@ -17,6 +17,7 @@
     "axios": "^1.5.0",
     "classnames": "^2.3.2",
     "i18next": "^23.4.6",
+    "mongoose": "^7.5.0",
     "next": "^13.4.19",
     "next-i18next": "^14.0.0",
     "react": "^18.2.0",
@@ -59,7 +60,6 @@
     "postcss-scss": "^4.0.7",
     "prettier": "^3.0.3",
     "prettier-plugin-tailwindcss": "^0.5.3",
-
     "stylelint": "^15.10.3",
     "stylelint-config-clean-order": "^5.2.0",
     "stylelint-config-standard-scss": "^10.0.0",

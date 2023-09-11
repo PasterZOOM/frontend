@@ -3,7 +3,10 @@ import { EProductAssignment, EProductCategory } from 'shared/enums/product'
 import { PhotosType } from 'shared/types/productType'
 
 export type ProductColorType = { _id: string; photo: string; title: string }
-
+export type ProductLeatherType = {
+  article: { _id: string; title: string }
+  factory: { _id: string; title: string }
+}
 export type BasicProductType = {
   _id: string
   assignments: EProductAssignment[]
@@ -11,10 +14,7 @@ export type BasicProductType = {
   cost: number
   description: string
   isPublished: boolean
-  leather: {
-    article: { _id: string; title: string }
-    factory: { _id: string; title: string }
-  }
+  leather: ProductLeatherType
   photos?: PhotosType
   productColors: ProductColorType[]
   punchPitch: EPunchPitch

@@ -3,11 +3,11 @@ import { object, string, StringSchema } from 'yup'
 
 import { ECreateLeatherArticleParams } from './paramsKeys'
 
-import { MIN_TITLE_LENGTH, REQUIRED_MESSAGE } from 'shared/constants/forms/validate'
+import { MIN_TITLE_LENGTH, REQUIRED_MESSAGE } from 'shared/consts/forms/validate'
 
 type FormData = Record<ECreateLeatherArticleParams, StringSchema>
 
-const data: FormData = {
+const formData: FormData = {
   title: string().required(REQUIRED_MESSAGE).min(MIN_TITLE_LENGTH, 'Должно быть более 6 символов'),
   factoryId: string().required(REQUIRED_MESSAGE),
   value: string()
@@ -16,5 +16,5 @@ const data: FormData = {
   description: string(),
 }
 
-export const schema = object(data).required()
+export const schema = object(formData).required()
 export const resolver = yupResolver(schema)

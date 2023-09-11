@@ -4,11 +4,12 @@ import { useRouter } from 'next/router'
 
 import { EFilterKeys } from 'shared/components/pages/catalog/filters/filters'
 import { useChangeFilterParams } from 'shared/lib/hooks/useChangeFilterParams'
+import { QueryParam } from 'shared/types/queryParam'
 
 export const useChangeMultipleQueryParams = (
   filterKey: EFilterKeys
 ): {
-  queryParam: string[] | string | undefined
+  queryParam: QueryParam
   removeQueryParams: (value: string) => void
   setQueryParams: (value: string) => void
 } => {
@@ -36,7 +37,7 @@ export const useChangeMultipleQueryParams = (
 
   const setQueryParams = useCallback(
     (value: string): void => {
-      let queryValues: string[] | string | undefined = query[filterKey]
+      let queryValues: QueryParam = query[filterKey]
 
       if (Array.isArray(queryValues)) {
         queryValues = [...queryValues, value].sort()
@@ -57,7 +58,7 @@ export const useChangeMultipleQueryParams = (
 
   const removeQueryParams = useCallback(
     (value: string) => {
-      let oldValue: string[] | string | undefined = query[filterKey]
+      let oldValue: QueryParam = query[filterKey]
 
       if (Array.isArray(oldValue)) {
         oldValue = oldValue.filter(el => el !== value)

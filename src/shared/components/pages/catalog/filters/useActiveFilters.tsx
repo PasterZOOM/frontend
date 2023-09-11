@@ -13,6 +13,7 @@ import { productAssignments } from 'shared/objects/products/productAssignments'
 import { productCategories } from 'shared/objects/products/productCategories'
 import { productSort } from 'shared/objects/products/productSort'
 import { ObjectForSelectType } from 'shared/types/objectForSelectType'
+import { QueryParam } from 'shared/types/queryParam'
 import { selectFilters, useBasicProductsFilterStore } from 'store/useBasicProductsFilterStore'
 
 export const useActiveFilters = (): { activeFilters: GeneralFilterType[] } => {
@@ -71,10 +72,7 @@ export const useActiveFilters = (): { activeFilters: GeneralFilterType[] } => {
   useEffect(() => {
     let newFilters: GeneralFilterType[] = []
 
-    const filtersArray = Object.entries(filtersInStore) as [
-      EFilterKeys,
-      string[] | string | undefined,
-    ][]
+    const filtersArray = Object.entries(filtersInStore) as [EFilterKeys, QueryParam][]
 
     filtersArray.forEach(([filterKey, filterValue]) => {
       let temp: GeneralFilterType[] = []
