@@ -1,7 +1,7 @@
-import mongoose, { Document } from 'mongoose'
+import { Document, Schema } from 'mongoose'
 
 import { BasicProductEntity } from './interfaces/basicProduct.entity'
 
-export const BasicProductSchema = new mongoose.Schema<BasicProductEntity>()
+export interface BasicProductDocument extends Omit<Document, '_id'>, BasicProductEntity {}
 
-export type BasicProductDocument = BasicProductEntity & Document
+export const BasicProductSchema = new Schema<BasicProductDocument>()

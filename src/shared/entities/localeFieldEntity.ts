@@ -1,7 +1,6 @@
 import { LOCALES } from 'shared/types/localeType'
 
-export class LocaleFieldEntity {
-  [LOCALES.EN]?: string = '';
-
-  [LOCALES.RU]?: string = ''
+export interface LocaleFieldEntity {
+  [LOCALES.EN]: string
+  [LOCALES.RU]: string
 }

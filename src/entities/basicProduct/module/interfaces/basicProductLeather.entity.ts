@@ -1,4 +1,6 @@
+import { Types } from 'mongoose'
+
 export interface BasicProductLeatherEntity {
-  article: { _id: string; title: string }
-  factory: { _id: string; title: string }
+  article: Types.ObjectId
+  factory: Types.ObjectId
 }

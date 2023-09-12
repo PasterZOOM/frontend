@@ -7,6 +7,7 @@ import {
 } from 'features/basicProducts/api/types'
 import { instance } from 'shared/api/instance/axios-instance'
 import { UpdateParamsType } from 'shared/api/paramsTypes'
+import { paramsSerializer } from 'shared/lib/queryParams'
 import { LOCALES } from 'shared/types/localeType'
 import { FiltersType } from 'store/useBasicProductsFilterStore'
 
@@ -19,9 +20,10 @@ export const BasicProductsAPI = {
     return res.data
   },
 
-  getAll: async (filters?: FiltersType) => {
+  getAll: async (params?: FiltersType) => {
     const res = await instance.get<BasicProductResponseType>(`${BASE_URL}`, {
-      params: { ...filters },
+      params,
+      paramsSerializer: param => paramsSerializer(param),
     })
 
     return res.data

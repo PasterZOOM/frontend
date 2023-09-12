@@ -6,24 +6,21 @@ import { NextRequest } from 'next/server'
 import { BasicProductService } from './basicProduct.service'
 import { BasicProductEntity } from './interfaces/basicProduct.entity'
 
+import { LeatherArticleService } from 'entities/leatherArticle'
 import { BasicProductResponseType, BasicProductType } from 'features/basicProducts/api/types'
-import { LeatherArticleType } from 'features/leatherArticles/api/types'
 import { LeatherColorType } from 'features/leatherColors/api/types'
 import { LeatherFactoryType } from 'features/leatherFactories/api/types'
+import { LocaleFieldEntity } from 'shared/entities/localeFieldEntity'
 import { LOCALES } from 'shared/types/localeType'
 
-const LeatherColorSchema = new mongoose.Schema<LeatherColorType>()
-const LeatherArticleSchema = new mongoose.Schema<LeatherArticleType>()
-const LeatherFactorySchema = new mongoose.Schema<LeatherFactoryType>()
+export const LeatherColorSchema = new mongoose.Schema<LeatherColorType>()
+export const LeatherFactorySchema = new mongoose.Schema<LeatherFactoryType>()
 
-const LeatherColorModel =
+export const LeatherColorModel =
   mongoose.models.leathercolors ||
   mongoose.model<LeatherColorType>('LeatherColor', LeatherColorSchema)
-const LeatherArticleModel =
-  mongoose.models.leatherarticles ||
-  mongoose.model<LeatherArticleType>('LeatherArticle', LeatherArticleSchema)
-const LeatherFactoryModel =
-  mongoose.models.LeatherFactory ||
+export const LeatherFactoryModel =
+  mongoose.models.leatherfactory ||
   mongoose.model<LeatherFactoryType>('LeatherFactory', LeatherFactorySchema)
 
 export class BasicProductsController {
@@ -38,26 +35,27 @@ export class BasicProductsController {
   constructor() {
     this.basicProductService = new BasicProductService()
     this.leatherColorService = LeatherColorModel
-    this.leatherArticleService = LeatherArticleModel
+    this.leatherArticleService = new LeatherArticleService()
     this.leatherFactoryService = LeatherFactoryModel
   }
 
   async findAll(req: NextRequest): Promise<BasicProductResponseType> {
     const { query } = url.parse(req.url, true)
 
-    const locale = (req.headers.get('x-accept-language') || LOCALES.RU) as string
+    const locale = (req.headers.get('x-accept-language') || LOCALES.RU) as keyof LocaleFieldEntity
 
     const colorIds = query.leatherColors
-      ? await this.leatherColorService
-          .find({ value: { $in: query.leatherColors } }, { _id: true })
-          .sort()
-          .exec()
+      ? (
+          await this.leatherColorService
+            .find({ value: { $in: [query.leatherColors].flat() } }, { _id: true })
+            .exec()
+        ).map(color => color.toJSON())
       : undefined
 
     const minPriceInDB = await this.basicProductService.getMinCost()
     const maxPriceInDB = await this.basicProductService.getMaxCost()
 
-    if (query.leatherColors && colorIds?.length) {
+    if (query.leatherColors && !colorIds?.length) {
       return {
         data: [],
         maxPrice: maxPriceInDB,
@@ -67,7 +65,10 @@ export class BasicProductsController {
     }
 
     const leathersId = query.leathers
-      ? await this.leatherArticleService.find({ value: { $in: query.leathers } }, { _id: true })
+      ? await this.leatherArticleService.findAll(
+          { value: { $in: [query.leathers].flat() } },
+          { _id: true }
+        )
       : undefined
 
     const regex = new RegExp(query.search as string, 'i')
@@ -121,7 +122,7 @@ export class BasicProductsController {
           const productColors = prod.productColors.filter(color => {
             const colorId = color._id.toString()
 
-            if (photos && colorIds?.some(el => el._id.toString() === colorId)) {
+            if (photos && !colorIds?.some(el => el._id.toString() === colorId)) {
               delete photos[colorId]
 
               return false
@@ -147,10 +148,8 @@ export class BasicProductsController {
 
   async generateResponseProduct({
     locale = LOCALES.RU,
-    product: productDoc,
+    product,
   }: GenerateResponseProductParams): Promise<BasicProductType> {
-    const product = productDoc.toJSON()
-
     const productColors = (
       await this.leatherColorService
         .find({ _id: { $in: Object.keys(product.photos!) } })
@@ -164,11 +163,9 @@ export class BasicProductsController {
       })
       .sort((a, b) => (a.title > b.title ? 1 : -1))
 
-    const leatherArticle = (
-      await this.leatherArticleService.findById(product.leather.article, {
-        title: true,
-      })
-    ).toJSON()
+    const leatherArticle = await this.leatherArticleService.findOne(product.leather.article, {
+      title: true,
+    })
 
     const leatherFactory = (
       await this.leatherFactoryService.findById(product.leather.factory, {
@@ -177,15 +174,18 @@ export class BasicProductsController {
     ).toJSON()
 
     const leather = {
-      article: { _id: leatherArticle._id, title: leatherArticle.title[locale] },
+      article: {
+        _id: leatherArticle!._id.toString(),
+        title: leatherArticle!.title[locale],
+      },
       factory: { _id: leatherFactory._id, title: leatherFactory.title[locale] },
     }
 
     return {
-      ...productDoc.toJSON(),
+      ...product,
       leather,
       productColors,
-      _id: product._id,
+      _id: product._id.toString(),
       size: product.size[locale],
       title: product.title[locale],
       description: product.description[locale],
@@ -194,6 +194,6 @@ export class BasicProductsController {
 }
 
 type GenerateResponseProductParams = {
-  locale: string | undefined
+  locale: keyof LocaleFieldEntity
   product: BasicProductEntity
 }

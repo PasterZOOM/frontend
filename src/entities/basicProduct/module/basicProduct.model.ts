@@ -1,8 +1,6 @@
-import mongoose, { Model } from 'mongoose'
+import { model, Model, models } from 'mongoose'
 
-import { BasicProductSchema } from './basicProduct.schema'
-import { BasicProductEntity } from './interfaces/basicProduct.entity'
+import { BasicProductDocument, BasicProductSchema } from './basicProduct.schema'
 
-export const BasicProductModel: Model<BasicProductEntity> =
-  mongoose.models.basicproducts ||
-  mongoose.model<BasicProductEntity>('BasicProduct', BasicProductSchema)
+export const BasicProductModel: Model<BasicProductDocument> =
+  models.basicproducts || model<BasicProductDocument>('BasicProduct', BasicProductSchema)
