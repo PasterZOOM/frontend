@@ -28,11 +28,6 @@ const Accordion: FC<AccordionProps> = ({ open, children, className = '' }) => {
 
     accordionRef.current?.addEventListener('animationend', removeOverflow)
     accordionRef.current?.addEventListener('animationstart', addOverflow)
-
-    return () => {
-      accordionRef.current?.removeEventListener('animationend', removeOverflow)
-      accordionRef.current?.removeEventListener('animationstart', addOverflow)
-    }
   }, [])
 
   useEffect(() => {

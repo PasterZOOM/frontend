@@ -16,11 +16,7 @@ const ProductsItems: FC<PropsType> = props => {
   const { className } = props
 
   const { t } = useTranslation()
-  const {
-    data: products,
-    isLoading,
-    isRefetching,
-  } = useGetAllBasicProducts({ keepPreviousData: true })
+  const { data: products, isLoading } = useGetAllBasicProducts({ keepPreviousData: true })
 
   if (isLoading) {
     return <Loader className={classnames(className, 'col-span-full h-96 w-full')} />

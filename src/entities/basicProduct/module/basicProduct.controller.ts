@@ -1,5 +1,7 @@
+import * as url from 'url'
+
 import mongoose from 'mongoose'
-import { NextApiRequest } from 'next'
+import { NextRequest } from 'next/server'
 
 import { BasicProductService } from './basicProduct.service'
 import { BasicProductEntity } from './interfaces/basicProduct.entity'
@@ -40,10 +42,10 @@ export class BasicProductsController {
     this.leatherFactoryService = LeatherFactoryModel
   }
 
-  async findAll(req: NextApiRequest): Promise<BasicProductResponseType> {
-    const { query, headers } = req
+  async findAll(req: NextRequest): Promise<BasicProductResponseType> {
+    const { query } = url.parse(req.url, true)
 
-    const locale = (headers['x-accept-language'] || LOCALES.RU) as string
+    const locale = (req.headers.get('x-accept-language') || LOCALES.RU) as string
 
     const colorIds = query.leatherColors
       ? await this.leatherColorService
