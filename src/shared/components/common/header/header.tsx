@@ -6,6 +6,7 @@ import { useTranslation } from 'next-i18next'
 
 import { SubWrapper } from 'shared/components/common/containers/subWrapper'
 import { useDisclosure } from 'shared/lib/hooks/useDisclosure'
+import { BurgerButton } from 'shared/ui/buttons/burgerButton'
 import { selectIsVisible, useAppStore } from 'store/useAppStore'
 import {
   CurrencySwitcher,
@@ -25,11 +26,11 @@ const Header: FC = () => {
     <div
       className={`${
         isVisible ? 'top-0' : '-top-20'
-      } sticky z-20 flex items-center justify-end bg-white px-3 py-5 shadow-line-bottom duration-300 dark:bg-anthracite-gray dark:shadow-line-bottom-dark xl:p-0`}
+      } sticky z-20 flex items-center justify-end bg-white px-3 py-5 shadow-line-bottom transition duration-300 dark:bg-anthracite-gray dark:shadow-line-bottom-dark xl:p-0`}
     >
       <SubWrapper
         bias={isOpenFilters ? 'top-0' : '-top-56'}
-        className="flex w-full flex-col items-center justify-around gap-2 overflow-visible px-3 py-5 xl:flex-row"
+        className="flex w-full  flex-col items-center justify-around gap-2 overflow-visible px-3 py-5 transition duration-300 xl:flex-row"
         close={close}
         isOpen={isOpenFilters}
       >
@@ -40,7 +41,7 @@ const Header: FC = () => {
           <Link href="/catalog">{t('Каталог')}</Link>
         )}
         <CurrencySwitcher />
-        <ThemeSwitcher />
+        <ThemeSwitcher className="relative -top-3 max-h-6" />
         <LanguageSwitcher />
         {isOpenFilters && (
           <button className="relative -bottom-4 xl:hidden" type="button" onClick={close}>
@@ -49,10 +50,7 @@ const Header: FC = () => {
         )}
       </SubWrapper>
 
-      {/* eslint-disable-next-line i18next/no-literal-string */}
-      <button className="xl:hidden" type="button" onClick={open}>
-        ☰
-      </button>
+      <BurgerButton className="xl:hidden" onClick={open} />
     </div>
   )
 }

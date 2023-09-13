@@ -22,7 +22,7 @@
 .switch:checked {
   background-color: rgb(4 52 73);
   background-size: cover;
-  transition: background-image .7s ease-in-out;
+  transition: background-image 1s ease-in-out;
 }
 
 .switch::after {
