@@ -1,23 +1,23 @@
 import { NextRequest, NextResponse } from 'next/server'
 
-import { BasicProductsController } from 'entities/basicProduct'
-import { BasicProductType } from 'features/basicProducts/api/types'
+import { LeatherArticleController } from 'entities/leatherArticle'
+import { LeatherArticleType } from 'features/leatherArticles/api/types'
 import { LocaleFieldEntity } from 'shared/entities/localeFieldEntity'
 import { StatusCode } from 'shared/enums/statusCode'
 import dbConnect from 'shared/lib/db/dbConnect'
 import { LOCALES } from 'shared/types/localeType'
 
-const basicProductsController = new BasicProductsController()
+const leatherArticleController = new LeatherArticleController()
 
 export async function GET(
   request: NextRequest,
   { params }: { params: { id: string } }
-): Promise<NextResponse<BasicProductType | { success: boolean } | null>> {
+): Promise<NextResponse<LeatherArticleType | { success: boolean } | null>> {
   const locale = (request.headers.get('x-accept-language') || LOCALES.RU) as keyof LocaleFieldEntity
 
   try {
     await dbConnect()
-    const data = await basicProductsController.findOne({ id: params.id, locale })
+    const data = await leatherArticleController.findOne({ id: params.id, locale })
 
     return NextResponse.json(data)
   } catch (e) {

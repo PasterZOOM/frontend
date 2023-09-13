@@ -25,6 +25,22 @@ export class LeatherArticleController {
     return Promise.all(articles.map(article => this.generateResponseArticle({ locale, article })))
   }
 
+  async findOne({
+    locale,
+    id,
+  }: {
+    id: string
+    locale: keyof LocaleFieldEntity
+  }): Promise<LeatherArticleType> {
+    const article = await this.leatherArticleService.findOne(id)
+
+    if (!article) {
+      throw new Error('not found')
+    }
+
+    return this.generateResponseArticle({ locale, article })
+  }
+
   async generateResponseArticle({
     locale,
     article,
