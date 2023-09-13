@@ -21,7 +21,7 @@ export class LeatherFactoryService {
   }
 
   async findOne(
-    id: Types.ObjectId,
+    id: Types.ObjectId | string,
     projection: ProjectionType<LeatherFactoryDocument> | null = null
   ): Promise<LeatherFactoryEntity | null> {
     const factory = await this.leatherFactoryModel.findById(id, projection)
