@@ -26,11 +26,11 @@ const Header: FC = () => {
     <div
       className={`${
         isVisible ? 'top-0' : '-top-20'
-      } sticky z-20 flex items-center justify-end bg-white px-3 py-5 shadow-line-bottom transition duration-300 dark:bg-anthracite-gray dark:shadow-line-bottom-dark xl:p-0`}
+      } sticky z-20 flex items-center justify-end bg-white px-3 py-5 shadow-line-bottom duration-300 dark:bg-anthracite-gray dark:shadow-line-bottom-dark xl:p-0`}
     >
       <SubWrapper
         bias={isOpenFilters ? 'top-0' : '-top-56'}
-        className="flex w-full  flex-col items-center justify-around gap-2 overflow-visible px-3 py-5 transition duration-300 xl:flex-row"
+        className="flex w-full  flex-col items-center justify-around gap-2 overflow-visible px-3 py-5 xl:flex-row"
         close={close}
         isOpen={isOpenFilters}
       >
