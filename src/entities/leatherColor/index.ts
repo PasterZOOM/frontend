@@ -1,0 +1,1 @@
+export { LeatherColorService } from './module'

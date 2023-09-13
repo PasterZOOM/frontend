@@ -3,7 +3,7 @@ import { NextRequest } from 'next/server'
 import { LeatherArticleEntity } from './interfaces/leatherArticle.entity'
 import { LeatherArticleService } from './leatherArticle.service'
 
-import { LeatherColorModel } from 'entities/basicProduct/module/basicProduct.controller'
+import { LeatherColorService } from 'entities/leatherColor'
 import { LeatherFactoryService } from 'entities/leatherFactory'
 import { LeatherArticleType } from 'features/leatherArticles/api/types'
 import { LocaleFieldEntity } from 'shared/entities/localeFieldEntity'
@@ -17,7 +17,7 @@ export class LeatherArticleController {
   private readonly leatherFactoryService
 
   constructor() {
-    this.leatherColorService = LeatherColorModel
+    this.leatherColorService = new LeatherColorService()
     this.leatherArticleService = new LeatherArticleService()
     this.leatherFactoryService = new LeatherFactoryService()
   }
@@ -37,11 +37,9 @@ export class LeatherArticleController {
     const factory = await this.leatherFactoryService.findOne(article.factory)
 
     const colors = (
-      await this.leatherColorService.find({ article: article._id }, { title: true }).sort().exec()
-    ).map(color => {
-      const { _id, title } = color.toJSON()
-
-      return { _id, title: title[locale] }
+      await this.leatherColorService.findAll({ article: article._id }, { title: true })
+    ).map(({ _id, title }) => {
+      return { _id: _id.toString(), title: title[locale] }
     })
 
     return {

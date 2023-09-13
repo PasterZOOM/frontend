@@ -1,23 +1,16 @@
 import * as url from 'url'
 
-import mongoose from 'mongoose'
 import { NextRequest } from 'next/server'
 
 import { BasicProductService } from './basicProduct.service'
 import { BasicProductEntity } from './interfaces/basicProduct.entity'
 
 import { LeatherArticleService } from 'entities/leatherArticle'
+import { LeatherColorService } from 'entities/leatherColor'
 import { LeatherFactoryService } from 'entities/leatherFactory'
 import { BasicProductResponseType, BasicProductType } from 'features/basicProducts/api/types'
-import { LeatherColorType } from 'features/leatherColors/api/types'
 import { LocaleFieldEntity } from 'shared/entities/localeFieldEntity'
 import { LOCALES } from 'shared/types/localeType'
-
-export const LeatherColorSchema = new mongoose.Schema<LeatherColorType>()
-
-export const LeatherColorModel =
-  mongoose.models.leathercolors ||
-  mongoose.model<LeatherColorType>('LeatherColor', LeatherColorSchema)
 
 export class BasicProductsController {
   private readonly basicProductService
@@ -30,7 +23,7 @@ export class BasicProductsController {
 
   constructor() {
     this.basicProductService = new BasicProductService()
-    this.leatherColorService = LeatherColorModel
+    this.leatherColorService = new LeatherColorService()
     this.leatherArticleService = new LeatherArticleService()
     this.leatherFactoryService = new LeatherFactoryService()
   }
@@ -41,11 +34,10 @@ export class BasicProductsController {
     const locale = (req.headers.get('x-accept-language') || LOCALES.RU) as keyof LocaleFieldEntity
 
     const colorIds = query.leatherColors
-      ? (
-          await this.leatherColorService
-            .find({ value: { $in: [query.leatherColors].flat() } }, { _id: true })
-            .exec()
-        ).map(color => color.toJSON())
+      ? await this.leatherColorService.findAll(
+          { value: { $in: [query.leatherColors].flat() } },
+          { _id: true }
+        )
       : undefined
 
     const minPriceInDB = await this.basicProductService.getMinCost()
@@ -147,15 +139,10 @@ export class BasicProductsController {
     product,
   }: GenerateResponseProductParams): Promise<BasicProductType> {
     const productColors = (
-      await this.leatherColorService
-        .find({ _id: { $in: Object.keys(product.photos!) } })
-        .sort()
-        .exec()
+      await this.leatherColorService.findAll({ _id: { $in: Object.keys(product.photos!) } })
     )
-      .map(color => {
-        const { _id, photo, title } = color.toJSON()
-
-        return { _id, photo, title: title[locale] }
+      .map(({ _id, photo, title }) => {
+        return { _id: _id.toString(), photo, title: title[locale] }
       })
       .sort((a, b) => (a.title > b.title ? 1 : -1))
 
