@@ -139,14 +139,14 @@ export class BasicProductsController {
   }: {
     id: string
     locale: keyof LocaleFieldEntity
-  }): Promise<BasicProductType | null> {
+  }): Promise<BasicProductType> {
     const product = await this.basicProductService.findOne(id)
 
-    if (product) {
-      return this.generateResponseProduct({ locale, product })
+    if (!product) {
+      throw new Error('not found')
     }
 
-    return null
+    return this.generateResponseProduct({ locale, product })
   }
 
   async generateResponseProduct({
