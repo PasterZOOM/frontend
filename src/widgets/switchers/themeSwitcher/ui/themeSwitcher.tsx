@@ -1,28 +1,24 @@
-import { FC } from 'react'
+import { FC, memo } from 'react'
 
-import { useTranslation } from 'next-i18next'
+import classnames from 'classnames'
 
 import { useSwitchTheme } from '../module/lib/hooks/useSwitchTheme'
-import { themesArray } from '../module/themes'
 
-import { SelectItemType } from 'shared/ui/selects/defaultSelectType'
-import { Select } from 'shared/ui/selects/select'
+import cls from './themeSwitcher.module.scss'
 
-const ThemeElement: FC<Pick<SelectItemType, 'title'>> = ({ title }) => {
-  const { t } = useTranslation('common')
-
-  return <span>{t(title)}</span>
+type PropsType = {
+  className?: string
 }
-
-export const ThemeSwitcher: FC = () => {
-  const { activeTheme, setActiveTheme } = useSwitchTheme()
+const ThemeSwitcher: FC<PropsType> = ({ className }) => {
+  const { isDark, changeTheme } = useSwitchTheme()
 
   return (
-    <Select
-      activeItem={activeTheme}
-      elementToLabel={ThemeElement}
-      items={themesArray}
-      setActiveItem={setActiveTheme}
-    />
+    <div className={classnames(cls.themeSwitcher, className)}>
+      <input checked={isDark} className={cls.switch} type="checkbox" onChange={changeTheme} />
+    </div>
   )
 }
+
+const Memo = memo(ThemeSwitcher)
+
+export { Memo as ThemeSwitcher }

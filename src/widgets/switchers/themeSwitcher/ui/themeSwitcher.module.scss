@@ -1,0 +1,174 @@
+.switch {
+  cursor: pointer;
+
+  position: relative;
+
+  overflow: hidden;
+
+  width: 130px;
+  height: 50px;
+  margin: 0;
+
+  appearance: none;
+  background-color: rgb(0 195 255);
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 25px;
+  outline: none;
+
+  transition: background-image 1s ease-in-out;
+}
+
+.switch:checked {
+  background-color: rgb(4 52 73);
+  background-size: cover;
+  transition: background-image .7s ease-in-out;
+}
+
+.switch::after {
+  content: '';
+
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transform: translateX(0);
+
+  width: 46px;
+  height: 46px;
+
+  background-color: #fff;
+  border-radius: 50%;
+  box-shadow: inset 5px -5px 4px rgb(53 53 53 / 30%);
+
+  animation: off .7s forwards cubic-bezier(.8, .5, .2, 1.4);
+}
+
+.switch:checked::after {
+  box-shadow: inset -5px -5px 4px rgb(53 53 53 / 30%);
+  animation: on .7s forwards cubic-bezier(.8, .5, .2, 1.4);
+}
+
+@keyframes off {
+  0% {
+    transform: translateX(80px);
+    width: 46px;
+  }
+
+  50% {
+    width: 75px;
+    border-radius: 25px;
+  }
+
+  100% {
+    transform: translateX(0);
+    width: 46px;
+  }
+}
+
+@keyframes on {
+  0% {
+    transform: translateX(0);
+    width: 46px;
+  }
+
+  50% {
+    width: 75px;
+    border-radius: 25px;
+  }
+
+  100% {
+    transform: translateX(80px);
+    width: 46px;
+  }
+}
+
+.switch::before {
+  content: '';
+
+  position: absolute;
+  top: 15px;
+  left: 5px;
+  transform-origin: 53px 10px;
+
+  width: 15px;
+  height: 15px;
+
+  background-color: #f5daaa;
+  filter: blur(1px);
+  border-radius: 50%;
+  box-shadow: 0 0 10px #f5deb4,
+  0 0 20px #f5deb4,
+  0 0 30px #f5deb4,
+  inset 0 0 2px #efd3a3;
+
+  animation: sun .7s forwards ease;
+}
+
+.switch:checked::before {
+  top: 10px;
+  left: 20px;
+
+  background-color: transparent;
+  filter: blur(0);
+  box-shadow: -5px 1px 0 #fff;
+
+  animation: moon .7s forwards ease;
+}
+
+@keyframes sun {
+  0% {
+    top: 10px;
+    left: 20px;
+    transform: rotate(0deg);
+
+    background-color: transparent;
+    filter: blur(0);
+    box-shadow: -5px 1px 0 #fff;
+  }
+
+  50% {
+    top: 15px;
+    left: 5px;
+
+    background-color: #f5daaa;
+    filter: blur(1px);
+    box-shadow: 0 0 10px #f5deb4,
+    0 0 20px #f5deb4,
+    0 0 30px #f5deb4,
+    inset 0 0 2px #efd3a3;
+  }
+
+  100% {
+    transform: rotate(170deg);
+  }
+}
+
+
+@keyframes moon {
+  0% {
+    top: 15px;
+    left: 5px;
+    transform: rotate(170deg);
+
+    background-color: #f5daaa;
+    filter: blur(1px);
+    box-shadow: 0 0 10px #f5deb4,
+    0 0 20px #f5deb4,
+    0 0 30px #f5deb4,
+    inset 0 0 2px #efd3a3;
+  }
+
+
+  50% {
+    top: 10px;
+    left: 20px;
+
+    background-color: transparent;
+    filter: blur(0);
+    box-shadow: -5px 1px 0 #fff;
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}

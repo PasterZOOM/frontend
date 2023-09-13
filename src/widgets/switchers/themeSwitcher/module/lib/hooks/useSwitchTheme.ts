@@ -1,11 +1,8 @@
-import { useEffect, useState } from 'react'
+import { ChangeEventHandler, useCallback, useEffect, useState } from 'react'
 
 import { ETheme } from '../../enum'
-import { themes } from '../../themes'
-import { changeThemeClass } from '../utils/changeThemeClass'
 
 import { useIsFirstRender } from 'shared/lib/hooks/useFirstRender'
-import { SelectItemType } from 'shared/ui/selects/defaultSelectType'
 import { selectSetTheme, selectTheme, useUserSettings } from 'store/useUserSettings'
 
 export const useSwitchTheme: UseSwitchThemeType = () => {
@@ -14,25 +11,37 @@ export const useSwitchTheme: UseSwitchThemeType = () => {
   const currentTheme = useUserSettings(selectTheme)
   const setTheme = useUserSettings(selectSetTheme)
 
-  const [activeTheme, setActiveTheme] = useState<SelectItemType<ETheme>>(themes[ETheme.AUTO])
+  const [isDark, setIsDark] = useState(false)
+
+  const changeIsDark = useCallback((dark: boolean) => {
+    if (dark) {
+      document.documentElement.classList.add('dark')
+      setIsDark(true)
+    } else {
+      document.documentElement.classList.remove('dark')
+      setIsDark(false)
+    }
+  }, [])
 
   useEffect(() => {
     if (isFirst) {
-      changeThemeClass(currentTheme)
-      setActiveTheme(themes[currentTheme])
+      changeIsDark(
+        currentTheme === ETheme.DARK ||
+          (currentTheme === ETheme.AUTO &&
+            window.matchMedia('(prefers-color-scheme: dark)').matches)
+      )
     }
-  }, [currentTheme, isFirst])
+  }, [changeIsDark, currentTheme, isFirst])
 
-  const setActiveThemeHandler = (newActiveTheme: SelectItemType<ETheme>): void => {
-    changeThemeClass(newActiveTheme.value)
-    setActiveTheme(newActiveTheme)
-    setTheme(newActiveTheme.value)
+  const changeTheme: ChangeEventHandler<HTMLInputElement> = (e): void => {
+    changeIsDark(e.currentTarget.checked)
+    setTheme(e.currentTarget.checked ? ETheme.DARK : ETheme.LIGHT)
   }
 
-  return { activeTheme, setActiveTheme: setActiveThemeHandler }
+  return { isDark, changeTheme }
 }
 
 type UseSwitchThemeType = () => {
-  activeTheme: SelectItemType<ETheme>
-  setActiveTheme: (newActiveTheme: SelectItemType<ETheme>) => void
+  changeTheme: ChangeEventHandler<HTMLInputElement>
+  isDark: boolean
 }
