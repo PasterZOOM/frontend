@@ -9,7 +9,7 @@ const MONGODB_URI = `mongodb+srv://${process.env.DB_USER_NAME}:${process.env.DB_
 
 if (!MONGODB_URI) {
   throw new Error(
-    'Please define the DB_USER_NAME, DB_PASSWORD, DB_CLUSTER environment variable inside .env.local'
+    'Please define the DB_USER_NAME, DB_PASSWORD, DB_CLUSTER environment variable inside .env'
   )
 }
 
@@ -24,6 +24,7 @@ async function dbConnect(): Promise<typeof mongoose> {
   if (cached.conn) {
     return cached.conn
   }
+
   if (!cached.promise) {
     const opts = {
       bufferCommands: false,
@@ -34,6 +35,7 @@ async function dbConnect(): Promise<typeof mongoose> {
       return mongo
     })
   }
+
   try {
     cached.conn = await cached.promise
   } catch (e) {

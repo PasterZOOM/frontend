@@ -1,1 +1,1 @@
-export { LeatherFactoryService } from './module'
+export { LeatherFactoryService, LeatherFactoryController } from './module'
