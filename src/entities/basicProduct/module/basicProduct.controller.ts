@@ -1,7 +1,3 @@
-import * as url from 'url'
-
-import { NextRequest } from 'next/server'
-
 import { BasicProductService } from './basicProduct.service'
 import { BasicProductEntity } from './interfaces/basicProduct.entity'
 
@@ -11,6 +7,7 @@ import { LeatherFactoryService } from 'entities/leatherFactory'
 import { BasicProductResponseType, BasicProductType } from 'features/basicProducts/api/types'
 import { LocaleFieldEntity } from 'shared/entities/localeFieldEntity'
 import { LOCALES } from 'shared/types/localeType'
+import { FiltersType } from 'store/useBasicProductsFilterStore'
 
 export class BasicProductsController {
   private readonly basicProductService
@@ -28,11 +25,13 @@ export class BasicProductsController {
     this.leatherFactoryService = new LeatherFactoryService()
   }
 
-  async findAll(req: NextRequest): Promise<BasicProductResponseType> {
-    const { query } = url.parse(req.url, true)
-
-    const locale = (req.headers.get('x-accept-language') || LOCALES.RU) as keyof LocaleFieldEntity
-
+  async findAll({
+    locale,
+    query,
+  }: {
+    locale: keyof LocaleFieldEntity
+    query: FiltersType
+  }): Promise<BasicProductResponseType> {
     const colorIds = query.leatherColors
       ? await this.leatherColorService.findAll(
           { value: { $in: [query.leatherColors].flat() } },
@@ -132,6 +131,22 @@ export class BasicProductsController {
       minPrice: minPriceInDB,
       totalCount,
     }
+  }
+
+  async findOne({
+    locale,
+    id,
+  }: {
+    id: string
+    locale: keyof LocaleFieldEntity
+  }): Promise<BasicProductType | null> {
+    const product = await this.basicProductService.findOne(id)
+
+    if (product) {
+      return this.generateResponseProduct({ locale, product })
+    }
+
+    return null
   }
 
   async generateResponseProduct({

@@ -1,5 +1,3 @@
-import { NextRequest } from 'next/server'
-
 import { LeatherArticleEntity } from './interfaces/leatherArticle.entity'
 import { LeatherArticleService } from './leatherArticle.service'
 
@@ -7,7 +5,6 @@ import { LeatherColorService } from 'entities/leatherColor'
 import { LeatherFactoryService } from 'entities/leatherFactory'
 import { LeatherArticleType } from 'features/leatherArticles/api/types'
 import { LocaleFieldEntity } from 'shared/entities/localeFieldEntity'
-import { LOCALES } from 'shared/types/localeType'
 
 export class LeatherArticleController {
   private readonly leatherColorService
@@ -22,9 +19,7 @@ export class LeatherArticleController {
     this.leatherFactoryService = new LeatherFactoryService()
   }
 
-  async findAll(req: NextRequest): Promise<LeatherArticleType[]> {
-    const locale = (req.headers.get('x-accept-language') || LOCALES.RU) as keyof LocaleFieldEntity
-
+  async findAll({ locale }: { locale: keyof LocaleFieldEntity }): Promise<LeatherArticleType[]> {
     const articles = await this.leatherArticleService.findAll()
 
     return Promise.all(articles.map(article => this.generateResponseArticle({ locale, article })))

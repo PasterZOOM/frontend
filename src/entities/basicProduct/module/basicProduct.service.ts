@@ -1,4 +1,4 @@
-import { FilterQuery, SortOrder } from 'mongoose'
+import { FilterQuery, SortOrder, Types } from 'mongoose'
 
 import { BasicProductModel } from './basicProduct.model'
 import { BasicProductDocument } from './basicProduct.schema'
@@ -30,6 +30,12 @@ export class BasicProductService {
         .skip(skip)
         .sort({ [key === 'date' ? '_id' : key]: value })
     ).map(product => product.toJSON())
+  }
+
+  async findOne(id: Types.ObjectId | string): Promise<BasicProductEntity | null> {
+    const product = await this.basicProductModel.findById(id)
+
+    return product ? product.toJSON() : null
   }
 
   async countDocuments(filters?: FilterQuery<BasicProductDocument>): Promise<number> {
