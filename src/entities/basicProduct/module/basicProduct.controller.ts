@@ -7,21 +7,17 @@ import { BasicProductService } from './basicProduct.service'
 import { BasicProductEntity } from './interfaces/basicProduct.entity'
 
 import { LeatherArticleService } from 'entities/leatherArticle'
+import { LeatherFactoryService } from 'entities/leatherFactory'
 import { BasicProductResponseType, BasicProductType } from 'features/basicProducts/api/types'
 import { LeatherColorType } from 'features/leatherColors/api/types'
-import { LeatherFactoryType } from 'features/leatherFactories/api/types'
 import { LocaleFieldEntity } from 'shared/entities/localeFieldEntity'
 import { LOCALES } from 'shared/types/localeType'
 
 export const LeatherColorSchema = new mongoose.Schema<LeatherColorType>()
-export const LeatherFactorySchema = new mongoose.Schema<LeatherFactoryType>()
 
 export const LeatherColorModel =
   mongoose.models.leathercolors ||
   mongoose.model<LeatherColorType>('LeatherColor', LeatherColorSchema)
-export const LeatherFactoryModel =
-  mongoose.models.leatherfactory ||
-  mongoose.model<LeatherFactoryType>('LeatherFactory', LeatherFactorySchema)
 
 export class BasicProductsController {
   private readonly basicProductService
@@ -36,7 +32,7 @@ export class BasicProductsController {
     this.basicProductService = new BasicProductService()
     this.leatherColorService = LeatherColorModel
     this.leatherArticleService = new LeatherArticleService()
-    this.leatherFactoryService = LeatherFactoryModel
+    this.leatherFactoryService = new LeatherFactoryService()
   }
 
   async findAll(req: NextRequest): Promise<BasicProductResponseType> {
@@ -167,18 +163,16 @@ export class BasicProductsController {
       title: true,
     })
 
-    const leatherFactory = (
-      await this.leatherFactoryService.findById(product.leather.factory, {
-        title: true,
-      })
-    ).toJSON()
+    const leatherFactory = await this.leatherFactoryService.findOne(product.leather.factory, {
+      title: true,
+    })
 
     const leather = {
       article: {
         _id: leatherArticle!._id.toString(),
         title: leatherArticle!.title[locale],
       },
-      factory: { _id: leatherFactory._id, title: leatherFactory.title[locale] },
+      factory: { _id: leatherFactory!._id.toString(), title: leatherFactory!.title[locale] },
     }
 
     return {

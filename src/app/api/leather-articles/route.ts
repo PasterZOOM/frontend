@@ -7,18 +7,6 @@ import dbConnect from 'shared/lib/db/dbConnect'
 
 const leatherArticleController = new LeatherArticleController()
 
-/**
- * @swagger
- * /api/basic-product:
- *   get:
- *     summary: method of obtaining products for the catalog
- *     tags: [Basic product]
- *     operationId: getAllBasicProducts
- *     description: Returned basic products array
- *     responses:
- *       200:
- *         description: BasicProductResponseType
- */
 export async function GET(
   request: NextRequest
 ): Promise<NextResponse<LeatherArticleType[] | { success: boolean }>> {

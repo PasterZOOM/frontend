@@ -1,0 +1,1 @@
+export { LeatherFactoryService } from './module'

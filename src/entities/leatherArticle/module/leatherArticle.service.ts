@@ -22,7 +22,7 @@ export class LeatherArticleService {
 
   async findOne(
     id: Types.ObjectId,
-    projection: ProjectionType<LeatherArticleDocument> | undefined = undefined
+    projection: ProjectionType<LeatherArticleDocument> | null = null
   ): Promise<LeatherArticleEntity | null> {
     const article = await this.leatherArticleModel.findById(id, projection)
 

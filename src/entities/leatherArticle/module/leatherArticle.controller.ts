@@ -3,10 +3,8 @@ import { NextRequest } from 'next/server'
 import { LeatherArticleEntity } from './interfaces/leatherArticle.entity'
 import { LeatherArticleService } from './leatherArticle.service'
 
-import {
-  LeatherColorModel,
-  LeatherFactoryModel,
-} from 'entities/basicProduct/module/basicProduct.controller'
+import { LeatherColorModel } from 'entities/basicProduct/module/basicProduct.controller'
+import { LeatherFactoryService } from 'entities/leatherFactory'
 import { LeatherArticleType } from 'features/leatherArticles/api/types'
 import { LocaleFieldEntity } from 'shared/entities/localeFieldEntity'
 import { LOCALES } from 'shared/types/localeType'
@@ -21,7 +19,7 @@ export class LeatherArticleController {
   constructor() {
     this.leatherColorService = LeatherColorModel
     this.leatherArticleService = new LeatherArticleService()
-    this.leatherFactoryService = LeatherFactoryModel
+    this.leatherFactoryService = new LeatherFactoryService()
   }
 
   async findAll(req: NextRequest): Promise<LeatherArticleType[]> {
@@ -36,7 +34,7 @@ export class LeatherArticleController {
     locale,
     article,
   }: GenerateResponseArticleParams): Promise<LeatherArticleType> {
-    const factory = (await this.leatherFactoryService.findOne(article.factory)).toJSON()
+    const factory = await this.leatherFactoryService.findOne(article.factory)
 
     const colors = (
       await this.leatherColorService.find({ article: article._id }, { title: true }).sort().exec()
@@ -52,7 +50,7 @@ export class LeatherArticleController {
       _id: article._id.toString(),
       title: article.title[locale],
       description: article.description[locale],
-      factory: { _id: factory._id, title: factory.title[locale] },
+      factory: { _id: factory!._id.toString(), title: factory!.title[locale] },
     }
   }
 }
