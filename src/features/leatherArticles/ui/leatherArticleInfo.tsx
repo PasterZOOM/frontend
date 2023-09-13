@@ -28,7 +28,7 @@ export const LeatherArticleInfo: FC<PropsType> = ({ className, article, onDelete
 
           <PropertyInOneRow title="Название артикула:">
             <EditableSpanInput
-              onChange={title => updateLeatherArticle({ _id: article._id, params: { title } })}
+              onChange={title => updateLeatherArticle({ _id: article._id, data: { title } })}
             >
               {article.title}
             </EditableSpanInput>
@@ -36,7 +36,7 @@ export const LeatherArticleInfo: FC<PropsType> = ({ className, article, onDelete
 
           <PropertyInOneRow title="Значение:">
             <EditableSpanInput
-              onChange={value => updateLeatherArticle({ _id: article._id, params: { value } })}
+              onChange={value => updateLeatherArticle({ _id: article._id, data: { value } })}
             >
               {article.value}
             </EditableSpanInput>
@@ -58,7 +58,7 @@ export const LeatherArticleInfo: FC<PropsType> = ({ className, article, onDelete
             <EditableSpanInput
               className="ml-5"
               onChange={description =>
-                updateLeatherArticle({ _id: article._id, params: { description } })
+                updateLeatherArticle({ _id: article._id, data: { description } })
               }
             >
               {article.description}
@@ -71,7 +71,7 @@ export const LeatherArticleInfo: FC<PropsType> = ({ className, article, onDelete
             {article.colors.map(color => (
               <TableItem key={color._id} title={color.title}>
                 {({ closeModal, isOpen }) => (
-                  <LeatherColorModal closeModal={closeModal} id={color._id} isOpen={isOpen} />
+                  <LeatherColorModal closeModal={closeModal} colorId={color._id} isOpen={isOpen} />
                 )}
               </TableItem>
             ))}

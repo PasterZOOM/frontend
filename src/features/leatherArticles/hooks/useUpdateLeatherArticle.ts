@@ -22,7 +22,7 @@ export const useUpdateLeatherArticle: UseMutationHook<
     mutationFn: LeatherArticlesAPI.update,
     onSuccess: async (data, variables) => {
       queryClient.setQueryData([QUERY_KEY.GET_ARTICLE, data._id, locale], data)
-      if (variables.params.title) {
+      if (variables.data.title) {
         await queryClient.invalidateQueries([QUERY_KEY.GET_ALL_ARTICLES, locale])
       }
     },

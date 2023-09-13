@@ -9,8 +9,8 @@ import { UpdateParamsType } from 'shared/api/paramsTypes'
 const BASE_URL = 'leather-factories'
 
 export const LeatherFactoriesAPI = {
-  create: async (params: CreateLeatherFactoryParamsType) => {
-    const res = await instance.post<LeatherFactoryType>(BASE_URL, params)
+  create: async (data: CreateLeatherFactoryParamsType) => {
+    const res = await instance.post<LeatherFactoryType>(BASE_URL, data)
 
     return res.data
   },
@@ -27,8 +27,8 @@ export const LeatherFactoriesAPI = {
     return res.data
   },
 
-  update: async ({ _id, params }: UpdateParamsType<UpdateLeatherFactoryParamsType>) => {
-    const res = await instance.patch<LeatherFactoryType>(`${BASE_URL}/${_id}`, params)
+  update: async ({ _id, data }: UpdateParamsType<UpdateLeatherFactoryParamsType>) => {
+    const res = await instance.patch<LeatherFactoryType>(`${BASE_URL}/${_id}`, data)
 
     return res.data
   },

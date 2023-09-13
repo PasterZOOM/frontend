@@ -8,7 +8,7 @@ import { ProductPhotoType } from 'shared/types/productType'
 type PropsType = {
   photo: ProductPhotoType
   productId: string
-  removeBasicProductPhoto: (params: RemoveBasicProductPhotoParamsType) => void
+  removeBasicProductPhoto: (data: RemoveBasicProductPhotoParamsType) => void
 }
 
 const Component: FC<PropsType> = ({ productId, photo, removeBasicProductPhoto }) => {

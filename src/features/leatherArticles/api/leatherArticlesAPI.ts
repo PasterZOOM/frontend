@@ -9,8 +9,8 @@ import { CreateType, UpdateParamsType } from 'shared/api/paramsTypes'
 const BASE_URL = `/leather-articles`
 
 export const LeatherArticlesAPI = {
-  create: async ({ _id, params }: CreateType<CreateLeatherArticleParamsType>) => {
-    const res = await instance.post<LeatherArticleType>(`${BASE_URL}/${_id}`, params)
+  create: async ({ _id, data }: CreateType<CreateLeatherArticleParamsType>) => {
+    const res = await instance.post<LeatherArticleType>(`${BASE_URL}/${_id}`, data)
 
     return res.data
   },
@@ -27,8 +27,8 @@ export const LeatherArticlesAPI = {
     return res.data
   },
 
-  update: async ({ _id, params }: UpdateParamsType<UpdateLeatherArticleParamsType>) => {
-    const res = await instance.patch<LeatherArticleType>(`${BASE_URL}/${_id}`, params)
+  update: async ({ _id, data }: UpdateParamsType<UpdateLeatherArticleParamsType>) => {
+    const res = await instance.patch<LeatherArticleType>(`${BASE_URL}/${_id}`, data)
 
     return res.data
   },

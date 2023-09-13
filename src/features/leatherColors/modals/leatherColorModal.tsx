@@ -7,17 +7,17 @@ import { ModalLayout } from 'shared/components/modals/modalLayout'
 
 type PropsType = {
   closeModal: () => void
-  id: string
+  colorId: string
   isOpen: boolean
 }
 
-export const LeatherColorModal: FC<PropsType> = ({ isOpen, closeModal, id }) => {
-  const { data: color } = useGetLeatherColor(id, { enabled: isOpen })
+export const LeatherColorModal: FC<PropsType> = ({ isOpen, closeModal, colorId }) => {
+  const { data: color } = useGetLeatherColor(colorId, { enabled: isOpen })
   const { mutateAsync: removeColor } = useRemoveLeatherColor()
 
   const onDeleteConfirm = async (): Promise<void> => {
     try {
-      await removeColor({ colorId: id, articleId: color?.article._id ?? '' })
+      await removeColor({ colorId, articleId: color?.article._id ?? '' })
       closeModal()
     } catch (e) {
       /* empty */

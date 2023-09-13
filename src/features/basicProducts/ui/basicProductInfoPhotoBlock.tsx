@@ -25,7 +25,7 @@ export const BasicProductInfoPhotoBlock: FC<PropsType> = ({ product }) => {
   const onEnter: KeyboardEventHandler = useCallback(
     e => {
       if (e.key === 'Enter') {
-        addBasicProductPhoto({ _id: product._id, params: { [selectValue]: [inputValue] } })
+        addBasicProductPhoto({ _id: product._id, data: { [selectValue]: [inputValue] } })
       }
     },
     [addBasicProductPhoto, product._id, selectValue, inputValue]

@@ -9,16 +9,14 @@ import { CreateType, UpdateParamsType } from 'shared/api/paramsTypes'
 const BASE_URL = '/leather-colors'
 
 export const LeatherColorsAPI = {
-  create: async ({ _id, params }: CreateType<CreateLeatherColorParamsType>) => {
-    const res = await instance.post<LeatherColorType>(`${BASE_URL}/${_id}`, params)
+  create: async ({ _id, data }: CreateType<CreateLeatherColorParamsType>) => {
+    const res = await instance.post<LeatherColorType>(`${BASE_URL}/${_id}`, data)
 
     return res.data
   },
 
-  getAll: async (filters?: string[]) => {
-    const res = await instance.get<LeatherColorType[]>(BASE_URL, {
-      params: { _id: filters },
-    })
+  getAll: async () => {
+    const res = await instance.get<LeatherColorType[]>(BASE_URL)
 
     return res.data
   },
@@ -29,8 +27,8 @@ export const LeatherColorsAPI = {
     return res.data
   },
 
-  update: async ({ _id, params }: UpdateParamsType<UpdateLeatherColorParamsType>) => {
-    const res = await instance.patch<LeatherColorType>(`${BASE_URL}/${_id}`, params)
+  update: async ({ _id, data }: UpdateParamsType<UpdateLeatherColorParamsType>) => {
+    const res = await instance.patch<LeatherColorType>(`${BASE_URL}/${_id}`, data)
 
     return res.data
   },

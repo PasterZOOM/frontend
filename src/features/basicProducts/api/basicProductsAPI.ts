@@ -4,17 +4,17 @@ import {
   CreateBasicProductParamsType,
   RemoveBasicProductPhotoParamsType,
   UpdateBasicProductParamsType,
-} from 'features/basicProducts/api/types'
+} from './types'
+
 import { instance } from 'shared/api/instance/axios-instance'
 import { UpdateParamsType } from 'shared/api/paramsTypes'
-import { LOCALES } from 'shared/types/localeType'
 import { FiltersType } from 'store/useBasicProductsFilterStore'
 
 const BASE_URL = `/basic-products`
 
 export const BasicProductsAPI = {
-  create: async (params: CreateBasicProductParamsType) => {
-    const res = await instance.post<BasicProductType>(`${BASE_URL}`, { ...params })
+  create: async (data: CreateBasicProductParamsType) => {
+    const res = await instance.post<BasicProductType>(`${BASE_URL}`, data)
 
     return res.data
   },
@@ -28,16 +28,14 @@ export const BasicProductsAPI = {
     return res.data
   },
 
-  getOne: async (id: string, locale: string = LOCALES.RU) => {
-    const res = await instance.get<BasicProductType>(`${BASE_URL}/${id}`, {
-      headers: { 'x-accept-language': locale },
-    })
+  getOne: async (id: string) => {
+    const res = await instance.get<BasicProductType>(`${BASE_URL}/${id}`)
 
     return res.data
   },
 
-  update: async ({ _id, params }: UpdateParamsType<UpdateBasicProductParamsType>) => {
-    const res = await instance.patch<BasicProductType>(`${BASE_URL}/${_id}`, params)
+  update: async ({ _id, data }: UpdateParamsType<UpdateBasicProductParamsType>) => {
+    const res = await instance.patch<BasicProductType>(`${BASE_URL}/${_id}`, data)
 
     return res.data
   },
@@ -48,8 +46,8 @@ export const BasicProductsAPI = {
     return res.data
   },
 
-  addPhoto: async ({ _id, params }: UpdateParamsType<Record<string, string[]>>) => {
-    const res = await instance.put<BasicProductType>(`${BASE_URL}/${_id}/photo`, params)
+  addPhoto: async ({ _id, data }: UpdateParamsType<Record<string, string[]>>) => {
+    const res = await instance.put<BasicProductType>(`${BASE_URL}/${_id}/photo`, data)
 
     return res.data
   },

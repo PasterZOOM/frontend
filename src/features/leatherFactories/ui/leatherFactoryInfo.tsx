@@ -26,7 +26,7 @@ export const LeatherFactoryInfo: FC<PropsType> = ({ className, factory, onDelete
   const { mutate: updateLeatherFactory } = useUpdateLeatherFactory()
 
   const onChangeTitle = (title: string): void =>
-    updateLeatherFactory({ _id: factory._id, params: { title } })
+    updateLeatherFactory({ _id: factory._id, data: { title } })
 
   return (
     <div className={`${className ?? ''} flex w-full flex-col justify-between`}>
@@ -41,7 +41,7 @@ export const LeatherFactoryInfo: FC<PropsType> = ({ className, factory, onDelete
           <EditableSpanSelect
             initialValue={factory.country}
             title={t(countryValues[factory.country].title)}
-            onChange={country => updateLeatherFactory({ _id: factory._id, params: { country } })}
+            onChange={country => updateLeatherFactory({ _id: factory._id, data: { country } })}
           >
             {countriesArray.map(country => (
               <option key={country._id} value={country.value}>
@@ -55,7 +55,7 @@ export const LeatherFactoryInfo: FC<PropsType> = ({ className, factory, onDelete
           <EditableSpanInput
             className="ml-5"
             onChange={description =>
-              updateLeatherFactory({ _id: factory._id, params: { description } })
+              updateLeatherFactory({ _id: factory._id, data: { description } })
             }
           >
             {factory.description}

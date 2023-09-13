@@ -39,7 +39,7 @@ export const BasicProductInfo: FC<PropsType> = ({ className, product, onDeleteCo
 
           <PropertyInOneRow title="Название изделия:">
             <EditableSpanInput
-              onChange={title => updateBasicProduct({ _id: product._id, params: { title } })}
+              onChange={title => updateBasicProduct({ _id: product._id, data: { title } })}
             >
               {product.title}
             </EditableSpanInput>
@@ -72,7 +72,7 @@ export const BasicProductInfo: FC<PropsType> = ({ className, product, onDeleteCo
           <PropertyInOneRow title="Стоимость:">
             <EditableSpanInput
               inputProps={{ type: 'number' }}
-              onChange={cost => updateBasicProduct({ _id: product._id, params: { cost: +cost } })}
+              onChange={cost => updateBasicProduct({ _id: product._id, data: { cost: +cost } })}
             >
               {product.cost.toString()}
             </EditableSpanInput>
@@ -82,7 +82,7 @@ export const BasicProductInfo: FC<PropsType> = ({ className, product, onDeleteCo
             <EditableSpanSelect
               initialValue={product.category}
               title={t(productCategories[product.category].title)}
-              onChange={category => updateBasicProduct({ _id: product._id, params: { category } })}
+              onChange={category => updateBasicProduct({ _id: product._id, data: { category } })}
             >
               {productCategoriesArray.map(category => (
                 <option key={category._id} value={category.value}>
@@ -94,7 +94,7 @@ export const BasicProductInfo: FC<PropsType> = ({ className, product, onDeleteCo
 
           <PropertyInOneRow title="Размер:">
             <EditableSpanInput
-              onChange={size => updateBasicProduct({ _id: product._id, params: { size } })}
+              onChange={size => updateBasicProduct({ _id: product._id, data: { size } })}
             >
               {product.size}
             </EditableSpanInput>
@@ -105,7 +105,7 @@ export const BasicProductInfo: FC<PropsType> = ({ className, product, onDeleteCo
               initialValue={product.punchPitch}
               title={punchPatches[product.punchPitch].title}
               onChange={punchPitch =>
-                updateBasicProduct({ _id: product._id, params: { punchPitch } })
+                updateBasicProduct({ _id: product._id, data: { punchPitch } })
               }
             >
               {punchPatchesArray.map(punchPitch => (
@@ -123,7 +123,7 @@ export const BasicProductInfo: FC<PropsType> = ({ className, product, onDeleteCo
               onChange={({ currentTarget }) =>
                 updateBasicProduct({
                   _id: product._id,
-                  params: { isPublished: currentTarget.checked },
+                  data: { isPublished: currentTarget.checked },
                 })
               }
             />
@@ -140,7 +140,7 @@ export const BasicProductInfo: FC<PropsType> = ({ className, product, onDeleteCo
                 </div>
               ))}
               onChange={assignments =>
-                updateBasicProduct({ _id: product._id, params: { assignments } })
+                updateBasicProduct({ _id: product._id, data: { assignments } })
               }
             >
               {productAssignmentsArray.map(assignment => (
@@ -155,7 +155,7 @@ export const BasicProductInfo: FC<PropsType> = ({ className, product, onDeleteCo
             <EditableSpanInput
               className="ml-5"
               onChange={description =>
-                updateBasicProduct({ _id: product._id, params: { description } })
+                updateBasicProduct({ _id: product._id, data: { description } })
               }
             >
               {product.description}

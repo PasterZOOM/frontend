@@ -19,7 +19,7 @@ export const useUpdateLeatherColor: UseMutationHook<
     mutationFn: LeatherColorsAPI.update,
     onSuccess: async (data, variables) => {
       queryClient.setQueryData([QUERY_KEY.GET_COLOR, data._id, locale], data)
-      if (variables.params.title) {
+      if (variables.data.title) {
         await queryClient.invalidateQueries([QUERY_KEY.GET_ALL_COLORS, locale])
       }
     },

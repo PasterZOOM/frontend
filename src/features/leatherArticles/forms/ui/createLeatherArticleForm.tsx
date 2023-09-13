@@ -37,7 +37,7 @@ export const CreateLeatherArticleForm: FC = () => {
   const onSubmit = async (methods: UseFormReturn<FormValues>): Promise<void> => {
     await methods.handleSubmit(async ({ factoryId: _id, ...params }): Promise<void> => {
       try {
-        await createArticle({ _id, params })
+        await createArticle({ _id, data: params })
         methods.reset()
       } catch (e) {
         /* empty */

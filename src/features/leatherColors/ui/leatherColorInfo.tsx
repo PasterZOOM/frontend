@@ -33,7 +33,7 @@ export const LeatherColorInfo: FC<PropsType> = ({ className, color, onDeleteConf
 
           <PropertyInOneRow title="Название цвета:">
             <EditableSpanInput
-              onChange={title => updateLeatherColor({ _id: color._id, params: { title } })}
+              onChange={title => updateLeatherColor({ _id: color._id, data: { title } })}
             >
               {t(color.title)}
             </EditableSpanInput>
@@ -41,7 +41,7 @@ export const LeatherColorInfo: FC<PropsType> = ({ className, color, onDeleteConf
 
           <PropertyInOneRow title="Код цвета:">
             <EditableSpanInput
-              onChange={code => updateLeatherColor({ _id: color._id, params: { code } })}
+              onChange={code => updateLeatherColor({ _id: color._id, data: { code } })}
             >
               {color.code}
             </EditableSpanInput>
@@ -51,7 +51,7 @@ export const LeatherColorInfo: FC<PropsType> = ({ className, color, onDeleteConf
             <EditableSpanSelect
               initialValue={color.value}
               title={t(leatherColors[color.value].title)}
-              onChange={value => updateLeatherColor({ _id: color._id, params: { value } })}
+              onChange={value => updateLeatherColor({ _id: color._id, data: { value } })}
             >
               {leatherColorsArray.map(leatherColor => (
                 <option key={leatherColor._id} value={leatherColor.value}>
@@ -75,7 +75,7 @@ export const LeatherColorInfo: FC<PropsType> = ({ className, color, onDeleteConf
 
           <PropertyInOneRow title="Фото:">
             <EditableSpanInput
-              onChange={photo => updateLeatherColor({ _id: color._id, params: { photo } })}
+              onChange={photo => updateLeatherColor({ _id: color._id, data: { photo } })}
             >
               {color.photo}
             </EditableSpanInput>
@@ -85,7 +85,7 @@ export const LeatherColorInfo: FC<PropsType> = ({ className, color, onDeleteConf
             <EditableSpanInput
               className="ml-5"
               onChange={description =>
-                updateLeatherColor({ _id: color._id, params: { description } })
+                updateLeatherColor({ _id: color._id, data: { description } })
               }
             >
               {color.description}

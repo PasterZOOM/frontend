@@ -19,7 +19,7 @@ export const useUpdateBasicProduct: UseMutationHook<
     mutationFn: BasicProductsAPI.update,
     onSuccess: async (data, variables) => {
       queryClient.setQueryData([QUERY_KEY.GET_BASIC_PRODUCT, data._id, locale], data)
-      if (variables.params.title) {
+      if (variables.data.title) {
         await queryClient.invalidateQueries([QUERY_KEY.GET_ALL_BASIC_PRODUCTS])
       }
     },

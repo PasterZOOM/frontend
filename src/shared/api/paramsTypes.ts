@@ -1,8 +1,8 @@
 export type UpdateParamsType<T> = {
   _id?: string
-  params: Partial<T>
+  data: Partial<T>
 }
 export type CreateType<T> = {
   _id?: string
-  params: Partial<T>
+  data: Partial<T>
 }
