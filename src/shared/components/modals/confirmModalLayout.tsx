@@ -2,8 +2,8 @@ import { ComponentPropsWithoutRef, FC, ReactNode } from 'react'
 
 import { useTranslation } from 'next-i18next'
 
-import { ModalOverlay } from 'shared/components/modals/modalOverlay'
-import { Button, ButtonVariant } from 'shared/ui/buttons/button'
+import { ModalOverlay } from '@/shared/components/modals/modalOverlay'
+import { Button, ButtonVariant } from '@/shared/ui/buttons/button'
 
 type PropsType = {
   children: ReactNode

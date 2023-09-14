@@ -1,8 +1,8 @@
 import { v1 } from 'uuid'
 
-import { ESort } from 'shared/enums/sort'
-import { ObjectForSelectType } from 'shared/types/objectForSelectType'
-import { SelectItemType } from 'shared/ui/selects/defaultSelectType'
+import { ESort } from '@/shared/enums/sort'
+import { ObjectForSelectType } from '@/shared/types/objectForSelectType'
+import { SelectItemType } from '@/shared/ui/selects/defaultSelectType'
 
 export const productSort: ObjectForSelectType<ESort> = {
   [ESort.EXPENSIVE_FIRST]: {

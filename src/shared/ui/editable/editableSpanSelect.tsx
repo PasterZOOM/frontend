@@ -1,8 +1,8 @@
 import { ReactElement, ReactNode } from 'react'
 
-import { EditButton } from 'shared/ui/editable/editButton'
-import { useEditableSpan } from 'shared/ui/editable/useEditableSpan'
-import { DefaultSelectPropsType } from 'shared/ui/selects/defaultSelectType'
+import { EditButton } from '@/shared/ui/editable/editButton'
+import { useEditableSpan } from '@/shared/ui/editable/useEditableSpan'
+import { DefaultSelectPropsType } from '@/shared/ui/selects/defaultSelectType'
 
 type PropsType<T> = {
   children: ReactNode[]

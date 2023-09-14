@@ -3,10 +3,10 @@ import { FC, memo } from 'react'
 import classnames from 'classnames'
 import { useTranslation } from 'next-i18next'
 
-import { useGetAllBasicProducts } from 'features/basicProducts/hooks/useGetAllBasicProducts'
-import { ProductCard } from 'shared/components/pages/catalog/productCard/productCard/productCard'
-import { TypographyHeader } from 'shared/ui/typographyHeader/typographyHeader'
-import { Loader } from 'widgets/loader'
+import { useGetAllBasicProducts } from '@/features/basicProducts/hooks/useGetAllBasicProducts'
+import { ProductCard } from '@/shared/components/pages/catalog/productCard/productCard/productCard'
+import { TypographyHeader } from '@/shared/ui/typographyHeader/typographyHeader'
+import { Loader } from '@/widgets/loader'
 
 type PropsType = {
   className?: string

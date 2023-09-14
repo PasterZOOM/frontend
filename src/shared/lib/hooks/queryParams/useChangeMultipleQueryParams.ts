@@ -2,9 +2,9 @@ import { useCallback } from 'react'
 
 import { useRouter } from 'next/router'
 
-import { EFilterKeys } from 'shared/components/pages/catalog/filters/filters'
-import { useChangeFilterParams } from 'shared/lib/hooks/useChangeFilterParams'
-import { QueryParam } from 'shared/types/queryParam'
+import { EFilterKeys } from '@/shared/components/pages/catalog/filters/filters'
+import { useChangeFilterParams } from '@/shared/lib/hooks/useChangeFilterParams'
+import { QueryParam } from '@/shared/types/queryParam'
 
 export const useChangeMultipleQueryParams = (
   filterKey: EFilterKeys

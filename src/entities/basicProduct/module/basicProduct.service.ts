@@ -3,10 +3,10 @@ import { FilterQuery, SortOrder, Types } from 'mongoose'
 import { BasicProductModel } from './basicProduct.model'
 import { BasicProductDocument } from './basicProduct.schema'
 
-import { BasicProductEntity } from 'entities/basicProduct/module/interfaces/basicProduct.entity'
-import { DEFAULT_PAGE_SIZE } from 'shared/consts/defaultPageSize'
-import { ESort } from 'shared/enums/sort'
-import { QueryParam } from 'shared/types/queryParam'
+import { BasicProductEntity } from '@/entities/basicProduct/module/interfaces/basicProduct.entity'
+import { DEFAULT_PAGE_SIZE } from '@/shared/consts/defaultPageSize'
+import { ESort } from '@/shared/enums/sort'
+import { QueryParam } from '@/shared/types/queryParam'
 
 export class BasicProductService {
   private basicProductModel

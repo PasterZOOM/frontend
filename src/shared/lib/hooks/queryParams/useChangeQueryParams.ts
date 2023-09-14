@@ -2,7 +2,7 @@ import { useCallback } from 'react'
 
 import { useRouter } from 'next/router'
 
-import { QueryParam } from 'shared/types/queryParam'
+import { QueryParam } from '@/shared/types/queryParam'
 
 export const useChangeQueryParams = (
   queryKey: string

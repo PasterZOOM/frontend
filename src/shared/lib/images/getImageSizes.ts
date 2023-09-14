@@ -1,4 +1,4 @@
-import { SCREEN } from 'shared/enums/screen'
+import { SCREEN } from '@/shared/enums/screen'
 
 export const getImageSizes = (
   sizes: Partial<Record<keyof typeof SCREEN, string>> & { DEFAULT: string }

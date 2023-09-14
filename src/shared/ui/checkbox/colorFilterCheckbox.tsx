@@ -1,8 +1,8 @@
 import { FC, memo, useRef } from 'react'
 
-import { EFilterKeys, FilterType } from 'shared/components/pages/catalog/filters/filters'
-import { ELeatherColor } from 'shared/enums/materials'
-import { useChangeMultipleQueryParams } from 'shared/lib/hooks/queryParams/useChangeMultipleQueryParams'
+import { EFilterKeys, FilterType } from '@/shared/components/pages/catalog/filters/filters'
+import { ELeatherColor } from '@/shared/enums/materials'
+import { useChangeMultipleQueryParams } from '@/shared/lib/hooks/queryParams/useChangeMultipleQueryParams'
 
 type PropsType = {
   color: FilterType<EFilterKeys, ELeatherColor>

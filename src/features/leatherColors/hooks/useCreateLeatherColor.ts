@@ -1,11 +1,11 @@
 import { useMutation, useQueryClient } from 'react-query'
 
-import { LeatherColorsAPI } from 'features/leatherColors/api/leatherColorsAPI'
-import { CreateLeatherColorParamsType, LeatherColorType } from 'features/leatherColors/api/types'
-import { CreateType } from 'shared/api/paramsTypes'
-import { QUERY_KEY } from 'shared/enums/QUERY_KEY'
-import { useLocale } from 'shared/lib/hooks/useLocale'
-import { UseMutationHook } from 'shared/types/hooks/useMutationHook'
+import { LeatherColorsAPI } from '@/features/leatherColors/api/leatherColorsAPI'
+import { CreateLeatherColorParamsType, LeatherColorType } from '@/features/leatherColors/api/types'
+import { CreateType } from '@/shared/api/paramsTypes'
+import { QUERY_KEY } from '@/shared/enums/QUERY_KEY'
+import { useLocale } from '@/shared/lib/hooks/useLocale'
+import { UseMutationHook } from '@/shared/types/hooks/useMutationHook'
 
 export const useCreateLeatherColor: UseMutationHook<
   LeatherColorType,

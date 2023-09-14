@@ -5,6 +5,7 @@
     "browser": true
   },
   "extends": [
+    "next/core-web-vitals",
     "airbnb",
     "prettier",
     "eslint:recommended",
@@ -31,10 +32,10 @@
     "prettier",
     "react-hooks",
     "jsx-a11y",
+    "@typescript-eslint",
     "i18next",
     "sort-destructure-keys",
     "sort-keys-fix",
-    "@typescript-eslint",
     "typescript-sort-keys"
   ],
   "overrides": [
@@ -52,13 +53,13 @@
     }
   ],
   "rules": {
-    "import/extensions": "off",
-    "import/prefer-default-export": "off",
     "no-debugger": "warn",
     "no-shadow": "off",
     "class-methods-use-this": "off",
     "no-unused-vars": "off",
     "no-underscore-dangle": "off",
+    "import/extensions": "off",
+    "import/prefer-default-export": "off",
     "import/order": [
       "error",
       {
@@ -200,14 +201,6 @@
       "error",
       {
         "markupOnly": true
-      }
-    ],
-    "import/no-unresolved": [
-      "error",
-      {
-        "ignore": [
-          "swiper/*"
-        ]
       }
     ]
   },

@@ -2,8 +2,8 @@ import { ChangeEventHandler, useCallback, useEffect, useState } from 'react'
 
 import { ETheme } from '../../enum'
 
-import { useIsFirstRender } from 'shared/lib/hooks/useFirstRender'
-import { selectSetTheme, selectTheme, useUserSettings } from 'store/useUserSettings'
+import { useIsFirstRender } from '@/shared/lib/hooks/useFirstRender'
+import { selectSetTheme, selectTheme, useUserSettings } from '@/store/useUserSettings'
 
 export const useSwitchTheme: UseSwitchThemeType = () => {
   const isFirst = useIsFirstRender()

@@ -6,8 +6,8 @@ import { appWithTranslation } from 'next-i18next'
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
 
-import { useGetActualRates } from 'features/currancy/hooks/useGetActualRates'
-import { useVisible } from 'shared/lib/hooks/useVisible'
+import { useGetActualRates } from '@/features/currancy/hooks/useGetActualRates'
+import { useVisible } from '@/shared/lib/hooks/useVisible'
 import 'swiper/css/free-mode'
 
 import 'swiper/scss'

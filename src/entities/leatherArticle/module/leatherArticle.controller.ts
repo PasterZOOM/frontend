@@ -1,10 +1,10 @@
 import { LeatherArticleEntity } from './interfaces/leatherArticle.entity'
 import { LeatherArticleService } from './leatherArticle.service'
 
-import { LeatherColorService } from 'entities/leatherColor'
-import { LeatherFactoryService } from 'entities/leatherFactory'
-import { LeatherArticleType } from 'features/leatherArticles/api/types'
-import { LocaleFieldEntity } from 'shared/entities/localeFieldEntity'
+import { LeatherColorService } from '@/entities/leatherColor'
+import { LeatherFactoryService } from '@/entities/leatherFactory'
+import { LeatherArticleType } from '@/features/leatherArticles/api/types'
+import { LocaleFieldEntity } from '@/shared/entities/localeFieldEntity'
 
 export class LeatherArticleController {
   private readonly leatherColorService

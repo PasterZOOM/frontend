@@ -1,9 +1,9 @@
 import { create } from 'zustand'
 import { devtools, persist } from 'zustand/middleware'
 
-import { ECost } from 'features/currancy/lib/enum/eCost'
-import { ETheme } from 'widgets/switchers/themeSwitcher'
-import { UserStatus } from 'widgets/switchers/userStatusSwitcher'
+import { ECost } from '@/features/currancy/lib/enum/eCost'
+import { ETheme } from '@/widgets/switchers/themeSwitcher'
+import { UserStatus } from '@/widgets/switchers/userStatusSwitcher'
 
 const initialState: UserSettingsStateType = {
   userStatus: UserStatus.NONE,

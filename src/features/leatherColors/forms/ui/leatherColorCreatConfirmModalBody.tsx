@@ -2,8 +2,8 @@ import { FC } from 'react'
 
 import { useTranslation } from 'next-i18next'
 
-import { useGetAllLeatherArticles } from 'features/leatherArticles/hooks/useGetAllLeatherArticles'
-import { CreateLeatherColorFormType } from 'features/leatherColors/forms/module/type'
+import { useGetAllLeatherArticles } from '@/features/leatherArticles/hooks/useGetAllLeatherArticles'
+import { CreateLeatherColorFormType } from '@/features/leatherColors/forms/module/type'
 
 type PropsType = {
   values: CreateLeatherColorFormType

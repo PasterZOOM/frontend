@@ -1,6 +1,6 @@
 import { ECost } from '../lib/enum'
 
-import { useLocale } from 'shared/lib/hooks/useLocale'
+import { useLocale } from '@/shared/lib/hooks/useLocale'
 
 export const useGetFormattedPrice = (): ((price: number, currency: ECost) => string) => {
   const locale = useLocale()

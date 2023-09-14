@@ -2,8 +2,8 @@ import { FC } from 'react'
 
 import { useTranslation } from 'next-i18next'
 
-import { CreateBasicProductFormType } from 'features/basicProducts/forms/module/type'
-import { useGetAllLeatherArticles } from 'features/leatherArticles/hooks/useGetAllLeatherArticles'
+import { CreateBasicProductFormType } from '@/features/basicProducts/forms/module/type'
+import { useGetAllLeatherArticles } from '@/features/leatherArticles/hooks/useGetAllLeatherArticles'
 
 type PropsType = {
   values: CreateBasicProductFormType

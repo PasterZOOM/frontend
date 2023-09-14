@@ -8,9 +8,9 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 
 import cls from './magnifiedViewModal.module.scss'
 
-import { ModalOverlay } from 'shared/components/modals/modalOverlay'
-import { getImageSizes } from 'shared/lib/images/getImageSizes'
-import { ProductPhotoType } from 'shared/types/productType'
+import { ModalOverlay } from '@/shared/components/modals/modalOverlay'
+import { getImageSizes } from '@/shared/lib/images/getImageSizes'
+import { ProductPhotoType } from '@/shared/types/productType'
 
 type PropsType = {
   activePhoto: ProductPhotoType

@@ -2,11 +2,11 @@ import { FC } from 'react'
 
 import { useTranslation } from 'next-i18next'
 
-import { useGetFormattedPrice } from 'features/currancy/hooks/useGetFormattedPrice'
-import { DEFAULT_PRODUCT_CURRENCY } from 'features/currancy/lib/consts/defaultProductCurrency'
-import { selectRate, useCurrencyRatesStore } from 'features/currancy/store/useCurrencyRatesStore'
-import { useGetPriceInCurrency } from 'shared/lib/hooks/useGetPriceInCurrency'
-import { selectCurrentCurrency, useUserSettings } from 'store/useUserSettings'
+import { useGetFormattedPrice } from '@/features/currancy/hooks/useGetFormattedPrice'
+import { DEFAULT_PRODUCT_CURRENCY } from '@/features/currancy/lib/consts/defaultProductCurrency'
+import { selectRate, useCurrencyRatesStore } from '@/features/currancy/store/useCurrencyRatesStore'
+import { useGetPriceInCurrency } from '@/shared/lib/hooks/useGetPriceInCurrency'
+import { selectCurrentCurrency, useUserSettings } from '@/store/useUserSettings'
 
 type PropsType = {
   className?: string

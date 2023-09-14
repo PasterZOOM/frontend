@@ -2,7 +2,7 @@ import { FC } from 'react'
 
 import { useTranslation } from 'next-i18next'
 
-import { LeatherFactoryType } from 'features/leatherFactories/api/types'
+import { LeatherFactoryType } from '@/features/leatherFactories/api/types'
 
 type PropsType = {
   factory: LeatherFactoryType

@@ -4,16 +4,16 @@ import classnames from 'classnames'
 
 import cls from './priceRange.module.scss'
 
-import { useGetAllBasicProducts } from 'features/basicProducts/hooks/useGetAllBasicProducts'
+import { useGetAllBasicProducts } from '@/features/basicProducts/hooks/useGetAllBasicProducts'
 import {
   selectGetCurrentPrice,
   selectGetDefaultPrice,
   useCurrencyRatesStore,
-} from 'features/currancy/store/useCurrencyRatesStore'
-import { EFilterKeys } from 'shared/components/pages/catalog/filters/filters'
-import { useChangeQueryFiltersParams } from 'shared/lib/hooks/queryParams/useChangeQueryFiltersParams'
-import { DoubleRange } from 'shared/ui/dubleRange'
-import { selectCurrentCurrency, useUserSettings } from 'store/useUserSettings'
+} from '@/features/currancy/store/useCurrencyRatesStore'
+import { EFilterKeys } from '@/shared/components/pages/catalog/filters/filters'
+import { useChangeQueryFiltersParams } from '@/shared/lib/hooks/queryParams/useChangeQueryFiltersParams'
+import { DoubleRange } from '@/shared/ui/dubleRange'
+import { selectCurrentCurrency, useUserSettings } from '@/store/useUserSettings'
 
 type PropsType = {
   className?: string

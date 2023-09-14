@@ -1,6 +1,6 @@
 import { FC, ReactElement, useEffect, useRef, useState } from 'react'
 
-import { SelectItemType } from 'shared/ui/selects/defaultSelectType'
+import { SelectItemType } from '@/shared/ui/selects/defaultSelectType'
 
 type ClassesType = {
   activeItemClassName?: string

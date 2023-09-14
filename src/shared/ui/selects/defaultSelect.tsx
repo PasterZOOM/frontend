@@ -1,6 +1,6 @@
 import { FC } from 'react'
 
-import { DefaultSelectPropsType } from 'shared/ui/selects/defaultSelectType'
+import { DefaultSelectPropsType } from '@/shared/ui/selects/defaultSelectType'
 
 type PropsType = DefaultSelectPropsType
 

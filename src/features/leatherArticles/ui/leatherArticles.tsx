@@ -1,10 +1,10 @@
 import { FC } from 'react'
 
-import { CreateLeatherArticleForm } from 'features/leatherArticles/forms/ui/createLeatherArticleForm'
-import { useGetAllLeatherArticles } from 'features/leatherArticles/hooks/useGetAllLeatherArticles'
-import { LeatherArticleModal } from 'features/leatherArticles/modals/leatherArticleModal'
-import { CreateFormAndListWrapper } from 'shared/components/common/wrappers/createFormAndListWrapper'
-import { TableItem } from 'shared/ui/tabel/tableItem'
+import { CreateLeatherArticleForm } from '@/features/leatherArticles/forms/ui/createLeatherArticleForm'
+import { useGetAllLeatherArticles } from '@/features/leatherArticles/hooks/useGetAllLeatherArticles'
+import { LeatherArticleModal } from '@/features/leatherArticles/modals/leatherArticleModal'
+import { CreateFormAndListWrapper } from '@/shared/components/common/wrappers/createFormAndListWrapper'
+import { TableItem } from '@/shared/ui/tabel/tableItem'
 
 type PropsType = {
   className?: string

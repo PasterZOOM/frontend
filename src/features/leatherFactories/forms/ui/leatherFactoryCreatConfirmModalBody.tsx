@@ -2,9 +2,9 @@ import { FC } from 'react'
 
 import { useTranslation } from 'next-i18next'
 
-import { CreateLeatherFactoryFormType } from 'features/leatherFactories/forms/module/type'
-import { ECountry } from 'shared/enums/country'
-import { countryValues } from 'shared/objects/countries/countryValues'
+import { CreateLeatherFactoryFormType } from '@/features/leatherFactories/forms/module/type'
+import { ECountry } from '@/shared/enums/country'
+import { countryValues } from '@/shared/objects/countries/countryValues'
 
 type PropsType = {
   values: CreateLeatherFactoryFormType

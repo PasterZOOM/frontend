@@ -1,7 +1,7 @@
 import { ComponentPropsWithoutRef, ReactElement } from 'react'
 
-import { EditButton } from 'shared/ui/editable/editButton'
-import { useEditableSpan } from 'shared/ui/editable/useEditableSpan'
+import { EditButton } from '@/shared/ui/editable/editButton'
+import { useEditableSpan } from '@/shared/ui/editable/useEditableSpan'
 
 type PropsType<T> = {
   children: T

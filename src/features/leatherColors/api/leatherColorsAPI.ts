@@ -2,9 +2,9 @@ import {
   CreateLeatherColorParamsType,
   LeatherColorType,
   UpdateLeatherColorParamsType,
-} from 'features/leatherColors/api/types'
-import { instance } from 'shared/api/instance/axios-instance'
-import { CreateType, UpdateParamsType } from 'shared/api/paramsTypes'
+} from '@/features/leatherColors/api/types'
+import { instance } from '@/shared/api/instance/axios-instance'
+import { CreateType, UpdateParamsType } from '@/shared/api/paramsTypes'
 
 const BASE_URL = '/leather-colors'
 

@@ -1,1 +1,1 @@
-export { CatalogSearch } from 'widgets/catalogSearch/ui/catalogSearch'
+export { CatalogSearch } from '@/widgets/catalogSearch/ui/catalogSearch'

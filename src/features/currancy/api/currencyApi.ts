@@ -4,7 +4,7 @@ import { ECost } from '../lib/enum'
 
 import { GetRateResponseType } from './getRateResponseType'
 
-import { StatusCode } from 'shared/enums/statusCode'
+import { StatusCode } from '@/shared/enums/statusCode'
 
 export const CurrencyAPI = {
   getRate: async (curAbbreviation: ECost): Promise<GetRateResponseType> => {

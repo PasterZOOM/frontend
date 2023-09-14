@@ -3,14 +3,14 @@ import { FC, memo, useEffect, useMemo, useState } from 'react'
 import Link from 'next/link'
 import { useTranslation } from 'next-i18next'
 
-import { BasicProductType } from 'features/basicProducts/api/types'
-import cls from 'shared/components/pages/catalog/productCard/productCard/productCard.module.scss'
-import { ProductCardPhoto } from 'shared/components/pages/catalog/productCard/productCardPhoto'
-import { ProductPhotoType } from 'shared/types/productType'
-import { Button } from 'shared/ui/buttons/button'
-import { NoPhoto } from 'shared/ui/noPhoto'
-import { Price } from 'shared/ui/price/price'
-import { ProductColorsButtons } from 'widgets/productColorsButtons'
+import { BasicProductType } from '@/features/basicProducts/api/types'
+import cls from '@/shared/components/pages/catalog/productCard/productCard/productCard.module.scss'
+import { ProductCardPhoto } from '@/shared/components/pages/catalog/productCard/productCardPhoto'
+import { ProductPhotoType } from '@/shared/types/productType'
+import { Button } from '@/shared/ui/buttons/button'
+import { NoPhoto } from '@/shared/ui/noPhoto'
+import { Price } from '@/shared/ui/price/price'
+import { ProductColorsButtons } from '@/widgets/productColorsButtons'
 
 type PropsType = {
   product: BasicProductType

@@ -3,7 +3,7 @@ import { ReactElement } from 'react'
 import Link from 'next/link'
 import { useTranslation } from 'next-i18next'
 
-import Header from 'shared/components/common/header/header'
+import Header from '@/shared/components/common/header/header'
 
 export const CrmLayout = (page: ReactElement): ReactElement => {
   const { t } = useTranslation()

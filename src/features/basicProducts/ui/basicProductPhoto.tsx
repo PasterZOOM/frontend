@@ -2,8 +2,8 @@ import { FC, memo, useCallback } from 'react'
 
 import Image from 'next/image'
 
-import { RemoveBasicProductPhotoParamsType } from 'features/basicProducts/api/types'
-import { ProductPhotoType } from 'shared/types/productType'
+import { RemoveBasicProductPhotoParamsType } from '@/features/basicProducts/api/types'
+import { ProductPhotoType } from '@/shared/types/productType'
 
 type PropsType = {
   photo: ProductPhotoType

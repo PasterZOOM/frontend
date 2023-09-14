@@ -2,8 +2,8 @@ import { ComponentPropsWithoutRef, ReactElement } from 'react'
 
 import { Path } from 'react-hook-form'
 
-import { FieldWrapper } from 'shared/components/forms/fieldWrapper'
-import { FormInput } from 'shared/components/forms/inputs/formInput'
+import { FieldWrapper } from '@/shared/components/forms/fieldWrapper'
+import { FormInput } from '@/shared/components/forms/inputs/formInput'
 
 type PropsType<T> = {
   inputProps?: ComponentPropsWithoutRef<'input'>

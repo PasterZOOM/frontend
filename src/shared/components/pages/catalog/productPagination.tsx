@@ -1,10 +1,10 @@
 import { FC } from 'react'
 
-import { useGetAllBasicProducts } from 'features/basicProducts/hooks/useGetAllBasicProducts'
-import { EFilterKeys } from 'shared/components/pages/catalog/filters/filters'
-import { useChangeQueryFiltersParams } from 'shared/lib/hooks/queryParams/useChangeQueryFiltersParams'
-import { selectFilter, useBasicProductsFilterStore } from 'store/useBasicProductsFilterStore'
-import { Pagination } from 'widgets/pagination'
+import { useGetAllBasicProducts } from '@/features/basicProducts/hooks/useGetAllBasicProducts'
+import { EFilterKeys } from '@/shared/components/pages/catalog/filters/filters'
+import { useChangeQueryFiltersParams } from '@/shared/lib/hooks/queryParams/useChangeQueryFiltersParams'
+import { selectFilter, useBasicProductsFilterStore } from '@/store/useBasicProductsFilterStore'
+import { Pagination } from '@/widgets/pagination'
 
 export const ProductPagination: FC = () => {
   const { changeParam, removeParam, queryParam } = useChangeQueryFiltersParams(EFilterKeys.PAGE)

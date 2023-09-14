@@ -2,17 +2,17 @@ import { FC } from 'react'
 
 import { useTranslation } from 'next-i18next'
 
-import { LeatherArticleModal } from 'features/leatherArticles/modals/leatherArticleModal'
-import { LeatherColorType } from 'features/leatherColors/api/types'
-import { useUpdateLeatherColor } from 'features/leatherColors/hooks/useUpdateLeatherColor'
-import { LeatherColorRemoveConfirmModalBody } from 'features/leatherColors/modals/leatherColorRemoveConfirmModalBody'
-import { PropertyPreviewWrapper } from 'shared/components/common/wrappers/propertyPreviewWrapper'
-import { leatherColorsArray, leatherColors } from 'shared/objects/colors/leatherColors'
-import { RemoveButton } from 'shared/ui/buttons/removeButton'
-import { EditableSpanInput } from 'shared/ui/editable/editableSpanInput'
-import { EditableSpanSelect } from 'shared/ui/editable/editableSpanSelect'
-import { PropertyInOneRow } from 'shared/ui/properties/propertyInOneRow'
-import { TableItem } from 'shared/ui/tabel/tableItem'
+import { LeatherArticleModal } from '@/features/leatherArticles/modals/leatherArticleModal'
+import { LeatherColorType } from '@/features/leatherColors/api/types'
+import { useUpdateLeatherColor } from '@/features/leatherColors/hooks/useUpdateLeatherColor'
+import { LeatherColorRemoveConfirmModalBody } from '@/features/leatherColors/modals/leatherColorRemoveConfirmModalBody'
+import { PropertyPreviewWrapper } from '@/shared/components/common/wrappers/propertyPreviewWrapper'
+import { leatherColorsArray, leatherColors } from '@/shared/objects/colors/leatherColors'
+import { RemoveButton } from '@/shared/ui/buttons/removeButton'
+import { EditableSpanInput } from '@/shared/ui/editable/editableSpanInput'
+import { EditableSpanSelect } from '@/shared/ui/editable/editableSpanSelect'
+import { PropertyInOneRow } from '@/shared/ui/properties/propertyInOneRow'
+import { TableItem } from '@/shared/ui/tabel/tableItem'
 
 type PropsType = {
   className?: string

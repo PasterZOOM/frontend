@@ -1,8 +1,8 @@
 import { create } from 'zustand'
 
-import { EFilterKeys } from 'shared/components/pages/catalog/filters/filters'
-import { DEFAULT_PAGE_SIZE } from 'shared/consts/defaultPageSize'
-import { QueryParam } from 'shared/types/queryParam'
+import { EFilterKeys } from '@/shared/components/pages/catalog/filters/filters'
+import { DEFAULT_PAGE_SIZE } from '@/shared/consts/defaultPageSize'
+import { QueryParam } from '@/shared/types/queryParam'
 
 const initialState: FilterStateType = {
   filters: {

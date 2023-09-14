@@ -1,15 +1,15 @@
 import { FC } from 'react'
 
-import { LeatherArticleType } from 'features/leatherArticles/api/types'
-import { useUpdateLeatherArticle } from 'features/leatherArticles/hooks/useUpdateLeatherArticle'
-import { LeatherArticleRemoveConfirmModalBody } from 'features/leatherArticles/modals/leatherArticleRemoveConfirmModalBody'
-import { LeatherColorModal } from 'features/leatherColors/modals/leatherColorModal'
-import { LeatherFactoryModal } from 'features/leatherFactories/modals/leatherFactoryModal'
-import { PropertyPreviewWrapper } from 'shared/components/common/wrappers/propertyPreviewWrapper'
-import { RemoveButton } from 'shared/ui/buttons/removeButton'
-import { EditableSpanInput } from 'shared/ui/editable/editableSpanInput'
-import { PropertyInOneRow } from 'shared/ui/properties/propertyInOneRow'
-import { TableItem } from 'shared/ui/tabel/tableItem'
+import { LeatherArticleType } from '@/features/leatherArticles/api/types'
+import { useUpdateLeatherArticle } from '@/features/leatherArticles/hooks/useUpdateLeatherArticle'
+import { LeatherArticleRemoveConfirmModalBody } from '@/features/leatherArticles/modals/leatherArticleRemoveConfirmModalBody'
+import { LeatherColorModal } from '@/features/leatherColors/modals/leatherColorModal'
+import { LeatherFactoryModal } from '@/features/leatherFactories/modals/leatherFactoryModal'
+import { PropertyPreviewWrapper } from '@/shared/components/common/wrappers/propertyPreviewWrapper'
+import { RemoveButton } from '@/shared/ui/buttons/removeButton'
+import { EditableSpanInput } from '@/shared/ui/editable/editableSpanInput'
+import { PropertyInOneRow } from '@/shared/ui/properties/propertyInOneRow'
+import { TableItem } from '@/shared/ui/tabel/tableItem'
 
 type PropsType = {
   article: LeatherArticleType

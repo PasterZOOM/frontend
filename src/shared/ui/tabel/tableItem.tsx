@@ -1,6 +1,6 @@
 import { FC, KeyboardEventHandler, ReactNode } from 'react'
 
-import { useModal } from 'shared/lib/hooks/useModal'
+import { useModal } from '@/shared/lib/hooks/useModal'
 
 type PropsType = {
   children: ({ closeModal, isOpen }: { closeModal: () => void; isOpen: boolean }) => ReactNode

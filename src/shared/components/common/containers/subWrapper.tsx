@@ -1,6 +1,6 @@
 import { FC, ReactNode, useEffect } from 'react'
 
-import { useDevice } from 'shared/lib/hooks/windowSize/useDevice'
+import { useDevice } from '@/shared/lib/hooks/windowSize/useDevice'
 
 type PropsType = {
   bias: string

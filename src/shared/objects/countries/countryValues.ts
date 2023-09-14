@@ -1,8 +1,8 @@
 import { v1 } from 'uuid'
 
-import { ECountry } from 'shared/enums/country'
-import { ObjectForSelectType } from 'shared/types/objectForSelectType'
-import { SelectItemType } from 'shared/ui/selects/defaultSelectType'
+import { ECountry } from '@/shared/enums/country'
+import { ObjectForSelectType } from '@/shared/types/objectForSelectType'
+import { SelectItemType } from '@/shared/ui/selects/defaultSelectType'
 
 export const countryValues: ObjectForSelectType<ECountry> = {
   [ECountry.ITALY]: {

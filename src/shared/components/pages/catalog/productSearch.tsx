@@ -2,10 +2,10 @@ import { FC, useEffect, useState } from 'react'
 
 import { useTranslation } from 'next-i18next'
 
-import { EFilterKeys } from 'shared/components/pages/catalog/filters/filters'
-import { useChangeQueryFiltersParams } from 'shared/lib/hooks/queryParams/useChangeQueryFiltersParams'
-import { Button } from 'shared/ui/buttons/button'
-import { CatalogSearch } from 'widgets/catalogSearch'
+import { EFilterKeys } from '@/shared/components/pages/catalog/filters/filters'
+import { useChangeQueryFiltersParams } from '@/shared/lib/hooks/queryParams/useChangeQueryFiltersParams'
+import { Button } from '@/shared/ui/buttons/button'
+import { CatalogSearch } from '@/widgets/catalogSearch'
 
 export const ProductSearch: FC = () => {
   const [value, setValue] = useState('')

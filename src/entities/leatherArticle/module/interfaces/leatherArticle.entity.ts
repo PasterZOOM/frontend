@@ -1,6 +1,6 @@
 import { Types } from 'mongoose'
 
-import { LocaleFieldEntity } from 'shared/entities/localeFieldEntity'
+import { LocaleFieldEntity } from '@/shared/entities/localeFieldEntity'
 
 export interface LeatherArticleEntity {
   _id: Types.ObjectId

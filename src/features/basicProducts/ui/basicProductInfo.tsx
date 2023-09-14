@@ -2,24 +2,24 @@ import { FC } from 'react'
 
 import { useTranslation } from 'next-i18next'
 
-import { BasicProductType } from 'features/basicProducts/api/types'
-import { useUpdateBasicProduct } from 'features/basicProducts/hooks/useUpdateBasicProduct'
-import { BasicProductRemoveConfirmModalBody } from 'features/basicProducts/modals/confirm/basicProductRemoveConfirmModalBody'
-import { BasicProductInfoPhotoBlock } from 'features/basicProducts/ui/basicProductInfoPhotoBlock'
-import { LeatherArticleModal } from 'features/leatherArticles/modals/leatherArticleModal'
-import { LeatherFactoryModal } from 'features/leatherFactories/modals/leatherFactoryModal'
-import { PropertyPreviewWrapper } from 'shared/components/common/wrappers/propertyPreviewWrapper'
-import { punchPatches, punchPatchesArray } from 'shared/objects/materials/punchPatch'
-import { productAssignmentsArray } from 'shared/objects/products/productAssignments'
+import { BasicProductType } from '@/features/basicProducts/api/types'
+import { useUpdateBasicProduct } from '@/features/basicProducts/hooks/useUpdateBasicProduct'
+import { BasicProductRemoveConfirmModalBody } from '@/features/basicProducts/modals/confirm/basicProductRemoveConfirmModalBody'
+import { BasicProductInfoPhotoBlock } from '@/features/basicProducts/ui/basicProductInfoPhotoBlock'
+import { LeatherArticleModal } from '@/features/leatherArticles/modals/leatherArticleModal'
+import { LeatherFactoryModal } from '@/features/leatherFactories/modals/leatherFactoryModal'
+import { PropertyPreviewWrapper } from '@/shared/components/common/wrappers/propertyPreviewWrapper'
+import { punchPatches, punchPatchesArray } from '@/shared/objects/materials/punchPatch'
+import { productAssignmentsArray } from '@/shared/objects/products/productAssignments'
 import {
   productCategories,
   productCategoriesArray,
-} from 'shared/objects/products/productCategories'
-import { RemoveButton } from 'shared/ui/buttons/removeButton'
-import { EditableSpanInput } from 'shared/ui/editable/editableSpanInput'
-import { EditableSpanSelect } from 'shared/ui/editable/editableSpanSelect'
-import { PropertyInOneRow } from 'shared/ui/properties/propertyInOneRow'
-import { TableItem } from 'shared/ui/tabel/tableItem'
+} from '@/shared/objects/products/productCategories'
+import { RemoveButton } from '@/shared/ui/buttons/removeButton'
+import { EditableSpanInput } from '@/shared/ui/editable/editableSpanInput'
+import { EditableSpanSelect } from '@/shared/ui/editable/editableSpanSelect'
+import { PropertyInOneRow } from '@/shared/ui/properties/propertyInOneRow'
+import { TableItem } from '@/shared/ui/tabel/tableItem'
 
 type PropsType = {
   className?: string

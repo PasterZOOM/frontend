@@ -1,6 +1,6 @@
 import { FC, ReactNode } from 'react'
 
-import { TypographyHeader } from 'shared/ui/typographyHeader/typographyHeader'
+import { TypographyHeader } from '@/shared/ui/typographyHeader/typographyHeader'
 
 type PropsType = {
   children: ReactNode

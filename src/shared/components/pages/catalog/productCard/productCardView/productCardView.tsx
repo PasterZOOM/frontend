@@ -5,11 +5,11 @@ import Image from 'next/image'
 
 import cls from './productCardView.module.scss'
 
-import { MagnifiedViewModal } from 'shared/components/modals/magnifiedViewModal'
-import { useModal } from 'shared/lib/hooks/useModal'
-import { getImageSizes } from 'shared/lib/images/getImageSizes'
-import { ProductPhotoType } from 'shared/types/productType'
-import { PhotoSlider } from 'shared/ui/photoSlider'
+import { MagnifiedViewModal } from '@/shared/components/modals/magnifiedViewModal'
+import { useModal } from '@/shared/lib/hooks/useModal'
+import { getImageSizes } from '@/shared/lib/images/getImageSizes'
+import { ProductPhotoType } from '@/shared/types/productType'
+import { PhotoSlider } from '@/shared/ui/photoSlider'
 
 type PropsType = {
   activePhoto: ProductPhotoType

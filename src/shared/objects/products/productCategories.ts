@@ -1,8 +1,8 @@
 import { v1 } from 'uuid'
 
-import { EProductCategory } from 'shared/enums/product'
-import { ObjectForSelectType } from 'shared/types/objectForSelectType'
-import { SelectItemType } from 'shared/ui/selects/defaultSelectType'
+import { EProductCategory } from '@/shared/enums/product'
+import { ObjectForSelectType } from '@/shared/types/objectForSelectType'
+import { SelectItemType } from '@/shared/ui/selects/defaultSelectType'
 
 export const productCategories: ObjectForSelectType<EProductCategory> = {
   [EProductCategory.CARD_HOLDER]: {

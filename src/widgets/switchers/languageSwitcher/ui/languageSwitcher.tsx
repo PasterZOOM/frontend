@@ -3,7 +3,7 @@ import { FC } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
-import { LOCALES } from 'shared/types/localeType'
+import { LOCALES } from '@/shared/types/localeType'
 
 export const LanguageSwitcher: FC = () => {
   const { pathname, query, locale } = useRouter()

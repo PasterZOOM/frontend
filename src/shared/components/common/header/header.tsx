@@ -4,16 +4,16 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 
-import { SubWrapper } from 'shared/components/common/containers/subWrapper'
-import { useDisclosure } from 'shared/lib/hooks/useDisclosure'
-import { BurgerButton } from 'shared/ui/buttons/burgerButton'
-import { selectIsVisible, useAppStore } from 'store/useAppStore'
+import { SubWrapper } from '@/shared/components/common/containers/subWrapper'
+import { useDisclosure } from '@/shared/lib/hooks/useDisclosure'
+import { BurgerButton } from '@/shared/ui/buttons/burgerButton'
+import { selectIsVisible, useAppStore } from '@/store/useAppStore'
 import {
   CurrencySwitcher,
   LanguageSwitcher,
   ThemeSwitcher,
   UserStatusSwitcher,
-} from 'widgets/switchers'
+} from '@/widgets/switchers'
 
 const Header: FC = () => {
   const router = useRouter()

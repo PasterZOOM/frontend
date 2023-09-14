@@ -12,7 +12,7 @@ import {
 
 import ReactDOM from 'react-dom'
 
-import { getNumberOfPenultimateElement } from 'shared/lib/arrays/getNumberOfPenultimateElement'
+import { getNumberOfPenultimateElement } from '@/shared/lib/arrays/getNumberOfPenultimateElement'
 
 type PropsType = {
   children: ReactNode

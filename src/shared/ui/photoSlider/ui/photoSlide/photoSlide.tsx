@@ -4,7 +4,7 @@ import classnames from 'classnames'
 
 import cls from './photoSlide.module.scss'
 
-import { Thumb } from 'shared/ui/thumb'
+import { Thumb } from '@/shared/ui/thumb'
 
 type PropsType<T extends { _id: string }> = {
   activeItem: T

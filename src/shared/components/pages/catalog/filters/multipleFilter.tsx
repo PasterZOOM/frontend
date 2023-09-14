@@ -2,8 +2,8 @@ import { FC } from 'react'
 
 import { useTranslation } from 'next-i18next'
 
-import { EFilterKeys, GeneralFilterType } from 'shared/components/pages/catalog/filters/filters'
-import { useChangeMultipleQueryParams } from 'shared/lib/hooks/queryParams/useChangeMultipleQueryParams'
+import { EFilterKeys, GeneralFilterType } from '@/shared/components/pages/catalog/filters/filters'
+import { useChangeMultipleQueryParams } from '@/shared/lib/hooks/queryParams/useChangeMultipleQueryParams'
 
 type PropsType = {
   filterKey: EFilterKeys

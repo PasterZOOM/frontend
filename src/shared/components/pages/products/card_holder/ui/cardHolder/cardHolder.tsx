@@ -5,16 +5,16 @@ import { useRouter } from 'next/router'
 
 import cls from './cardHolder.module.scss'
 
-import { useGetBasicProduct } from 'features/basicProducts/hooks/useGetBasicProduct'
-import { useGetLeatherArticle } from 'features/leatherArticles/hooks/useGetLeatherArticle'
-import { useGetLeatherFactory } from 'features/leatherFactories/hooks/useGetLeatherFactory'
-import { MainContainer } from 'shared/components/common/containers/mainContainer'
-import { DetailProductSlider } from 'shared/components/common/detailProductSlider/detailProductSlider'
-import { useChangeQueryParams } from 'shared/lib/hooks/queryParams/useChangeQueryParams'
-import { Price } from 'shared/ui/price/price'
-import { TypographyHeader } from 'shared/ui/typographyHeader/typographyHeader'
-import { selectIsVisible, useAppStore } from 'store/useAppStore'
-import { ProductColorsButtons } from 'widgets/productColorsButtons'
+import { useGetBasicProduct } from '@/features/basicProducts/hooks/useGetBasicProduct'
+import { useGetLeatherArticle } from '@/features/leatherArticles/hooks/useGetLeatherArticle'
+import { useGetLeatherFactory } from '@/features/leatherFactories/hooks/useGetLeatherFactory'
+import { MainContainer } from '@/shared/components/common/containers/mainContainer'
+import { DetailProductSlider } from '@/shared/components/common/detailProductSlider/detailProductSlider'
+import { useChangeQueryParams } from '@/shared/lib/hooks/queryParams/useChangeQueryParams'
+import { Price } from '@/shared/ui/price/price'
+import { TypographyHeader } from '@/shared/ui/typographyHeader/typographyHeader'
+import { selectIsVisible, useAppStore } from '@/store/useAppStore'
+import { ProductColorsButtons } from '@/widgets/productColorsButtons'
 
 type PropsType = {
   className?: string

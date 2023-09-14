@@ -2,16 +2,16 @@ import { FC, useEffect, useState } from 'react'
 
 import { useCurrencyTitle } from '../module/lib/hooks/useCurrencyTitle'
 
-import { currencies, currencyArray } from 'features/currancy/lib/consts/currency'
-import { ECost } from 'features/currancy/lib/enum/eCost'
-import { useIsFirstRender } from 'shared/lib/hooks/useFirstRender'
-import { SelectItemType } from 'shared/ui/selects/defaultSelectType'
-import { Select } from 'shared/ui/selects/select'
+import { currencies, currencyArray } from '@/features/currancy/lib/consts/currency'
+import { ECost } from '@/features/currancy/lib/enum/eCost'
+import { useIsFirstRender } from '@/shared/lib/hooks/useFirstRender'
+import { SelectItemType } from '@/shared/ui/selects/defaultSelectType'
+import { Select } from '@/shared/ui/selects/select'
 import {
   selectCurrentCurrency,
   selectSetCurrentCurrency,
   useUserSettings,
-} from 'store/useUserSettings'
+} from '@/store/useUserSettings'
 
 const CurrencyElement: FC<SelectItemType<ECost>> = currency => {
   const title = useCurrencyTitle(currency)

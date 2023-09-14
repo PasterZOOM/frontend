@@ -1,6 +1,6 @@
-import { EPunchPitch } from 'shared/enums/materials'
-import { EProductAssignment, EProductCategory } from 'shared/enums/product'
-import { PhotosType } from 'shared/types/productType'
+import { EPunchPitch } from '@/shared/enums/materials'
+import { EProductAssignment, EProductCategory } from '@/shared/enums/product'
+import { PhotosType } from '@/shared/types/productType'
 
 export type ProductColorType = { _id: string; photo: string; title: string }
 export type ProductLeatherType = {

@@ -4,7 +4,7 @@ import { useTranslation } from 'next-i18next'
 
 import { UserStatus } from '../module/enum'
 
-import { selectSetUserStatus, selectUserStatus, useUserSettings } from 'store/useUserSettings'
+import { selectSetUserStatus, selectUserStatus, useUserSettings } from '@/store/useUserSettings'
 
 export const UserStatusSwitcher: FC = () => {
   const userStatus = useUserSettings(selectUserStatus)

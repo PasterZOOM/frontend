@@ -1,7 +1,7 @@
 import { FC } from 'react'
 
-import ActiveFilters from 'shared/components/pages/catalog/filters/activeFilters'
-import { ProductsItems } from 'shared/components/pages/catalog/productsItems'
+import ActiveFilters from '@/shared/components/pages/catalog/filters/activeFilters'
+import { ProductsItems } from '@/shared/components/pages/catalog/productsItems'
 
 type PropsType = {
   className?: string

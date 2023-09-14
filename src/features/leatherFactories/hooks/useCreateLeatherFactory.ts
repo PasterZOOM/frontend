@@ -1,13 +1,13 @@
 import { useMutation, useQueryClient } from 'react-query'
 
-import { LeatherFactoriesAPI } from 'features/leatherFactories/api/leatherFactoriesAPI'
+import { LeatherFactoriesAPI } from '@/features/leatherFactories/api/leatherFactoriesAPI'
 import {
   CreateLeatherFactoryParamsType,
   LeatherFactoryType,
-} from 'features/leatherFactories/api/types'
-import { QUERY_KEY } from 'shared/enums/QUERY_KEY'
-import { useLocale } from 'shared/lib/hooks/useLocale'
-import { UseMutationHook } from 'shared/types/hooks/useMutationHook'
+} from '@/features/leatherFactories/api/types'
+import { QUERY_KEY } from '@/shared/enums/QUERY_KEY'
+import { useLocale } from '@/shared/lib/hooks/useLocale'
+import { UseMutationHook } from '@/shared/types/hooks/useMutationHook'
 
 export const useCreateLeatherFactory: UseMutationHook<
   LeatherFactoryType,

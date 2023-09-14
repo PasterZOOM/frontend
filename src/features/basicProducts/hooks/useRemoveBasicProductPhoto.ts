@@ -1,13 +1,13 @@
 import { useMutation, useQueryClient } from 'react-query'
 
-import { BasicProductsAPI } from 'features/basicProducts/api/basicProductsAPI'
+import { BasicProductsAPI } from '@/features/basicProducts/api/basicProductsAPI'
 import {
   BasicProductType,
   RemoveBasicProductPhotoParamsType,
-} from 'features/basicProducts/api/types'
-import { QUERY_KEY } from 'shared/enums/QUERY_KEY'
-import { useLocale } from 'shared/lib/hooks/useLocale'
-import { UseMutationHook } from 'shared/types/hooks/useMutationHook'
+} from '@/features/basicProducts/api/types'
+import { QUERY_KEY } from '@/shared/enums/QUERY_KEY'
+import { useLocale } from '@/shared/lib/hooks/useLocale'
+import { UseMutationHook } from '@/shared/types/hooks/useMutationHook'
 
 export const useRemoveBasicProductPhoto: UseMutationHook<
   BasicProductType,

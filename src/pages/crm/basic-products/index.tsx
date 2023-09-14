@@ -1,9 +1,9 @@
 import { GetStaticProps } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
-import { NextPageWithLayout } from 'pages/_app'
-import { BasicProducts } from 'shared/components/pages/crm/basic-products/basic-products'
-import { CrmLayout } from 'widgets/layouts/crmLayout'
+import { NextPageWithLayout } from '@/pages/_app'
+import { BasicProducts } from '@/shared/components/pages/crm/basic-products/basic-products'
+import { CrmLayout } from '@/widgets/layouts/crmLayout'
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   return {

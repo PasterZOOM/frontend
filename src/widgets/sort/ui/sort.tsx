@@ -5,12 +5,12 @@ import { useTranslation } from 'next-i18next'
 
 import cls from './sort.module.scss'
 
-import { EFilterKeys } from 'shared/components/pages/catalog/filters/filters'
-import { ESort } from 'shared/enums/sort'
-import { useChangeQueryFiltersParams } from 'shared/lib/hooks/queryParams/useChangeQueryFiltersParams'
-import { productSort, productSortArray } from 'shared/objects/products/productSort'
-import { SelectItemType } from 'shared/ui/selects/defaultSelectType'
-import { Select } from 'shared/ui/selects/select'
+import { EFilterKeys } from '@/shared/components/pages/catalog/filters/filters'
+import { ESort } from '@/shared/enums/sort'
+import { useChangeQueryFiltersParams } from '@/shared/lib/hooks/queryParams/useChangeQueryFiltersParams'
+import { productSort, productSortArray } from '@/shared/objects/products/productSort'
+import { SelectItemType } from '@/shared/ui/selects/defaultSelectType'
+import { Select } from '@/shared/ui/selects/select'
 
 type PropsType = {
   className?: string

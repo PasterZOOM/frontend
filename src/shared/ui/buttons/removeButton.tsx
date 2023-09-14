@@ -2,9 +2,9 @@ import { FC, ReactNode } from 'react'
 
 import { useTranslation } from 'next-i18next'
 
-import { ConfirmModalLayout } from 'shared/components/modals/confirmModalLayout'
-import { useModal } from 'shared/lib/hooks/useModal'
-import { Button, ButtonVariant } from 'shared/ui/buttons/button'
+import { ConfirmModalLayout } from '@/shared/components/modals/confirmModalLayout'
+import { useModal } from '@/shared/lib/hooks/useModal'
+import { Button, ButtonVariant } from '@/shared/ui/buttons/button'
 
 type PropsType = {
   className?: string

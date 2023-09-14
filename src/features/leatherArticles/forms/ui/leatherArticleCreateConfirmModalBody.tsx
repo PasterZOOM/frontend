@@ -2,8 +2,8 @@ import { FC } from 'react'
 
 import { useTranslation } from 'next-i18next'
 
-import { CreateLeatherArticleFormType } from 'features/leatherArticles/forms/model/type'
-import { useGetAllLeatherFactories } from 'features/leatherFactories/hooks/useGetAllLeatherFactories'
+import { CreateLeatherArticleFormType } from '@/features/leatherArticles/forms/model/type'
+import { useGetAllLeatherFactories } from '@/features/leatherFactories/hooks/useGetAllLeatherFactories'
 
 type PropsType = {
   values: CreateLeatherArticleFormType

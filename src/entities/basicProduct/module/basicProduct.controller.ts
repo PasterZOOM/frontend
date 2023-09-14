@@ -1,13 +1,13 @@
 import { BasicProductService } from './basicProduct.service'
 import { BasicProductEntity } from './interfaces/basicProduct.entity'
 
-import { LeatherArticleService } from 'entities/leatherArticle'
-import { LeatherColorService } from 'entities/leatherColor'
-import { LeatherFactoryService } from 'entities/leatherFactory'
-import { BasicProductResponseType, BasicProductType } from 'features/basicProducts/api/types'
-import { LocaleFieldEntity } from 'shared/entities/localeFieldEntity'
-import { LOCALES } from 'shared/types/localeType'
-import { FiltersType } from 'store/useBasicProductsFilterStore'
+import { LeatherArticleService } from '@/entities/leatherArticle'
+import { LeatherColorService } from '@/entities/leatherColor'
+import { LeatherFactoryService } from '@/entities/leatherFactory'
+import { BasicProductResponseType, BasicProductType } from '@/features/basicProducts/api/types'
+import { LocaleFieldEntity } from '@/shared/entities/localeFieldEntity'
+import { LOCALES } from '@/shared/types/localeType'
+import { FiltersType } from '@/store/useBasicProductsFilterStore'
 
 export class BasicProductsController {
   private readonly basicProductService

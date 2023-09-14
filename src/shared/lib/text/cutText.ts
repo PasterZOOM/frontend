@@ -1,4 +1,4 @@
-import { DEFAULT_CUT_TEXT } from 'shared/consts/text/defaultCutText'
+import { DEFAULT_CUT_TEXT } from '@/shared/consts/text/defaultCutText'
 
 export const cutText: CutTextFnType = (str = '', length = DEFAULT_CUT_TEXT) => {
   const cut = str.slice(0, length)

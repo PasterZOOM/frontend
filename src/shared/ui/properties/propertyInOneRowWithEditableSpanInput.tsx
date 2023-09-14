@@ -1,7 +1,7 @@
 import { ReactElement } from 'react'
 
-import { EditableSpanInput } from 'shared/ui/editable/editableSpanInput'
-import { PropertyInOneRow } from 'shared/ui/properties/propertyInOneRow'
+import { EditableSpanInput } from '@/shared/ui/editable/editableSpanInput'
+import { PropertyInOneRow } from '@/shared/ui/properties/propertyInOneRow'
 
 type PropsType<T> = {
   children: T

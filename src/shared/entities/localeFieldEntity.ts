@@ -1,4 +1,4 @@
-import { LOCALES } from 'shared/types/localeType'
+import { LOCALES } from '@/shared/types/localeType'
 
 export interface LocaleFieldEntity {
   [LOCALES.EN]: string

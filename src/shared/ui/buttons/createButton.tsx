@@ -3,9 +3,9 @@ import { ComponentPropsWithoutRef, FC, ReactNode } from 'react'
 import { useTranslation } from 'next-i18next'
 import { useFormContext } from 'react-hook-form'
 
-import { ConfirmModalLayout } from 'shared/components/modals/confirmModalLayout'
-import { useModal } from 'shared/lib/hooks/useModal'
-import { Button } from 'shared/ui/buttons/button'
+import { ConfirmModalLayout } from '@/shared/components/modals/confirmModalLayout'
+import { useModal } from '@/shared/lib/hooks/useModal'
+import { Button } from '@/shared/ui/buttons/button'
 
 type PropsType = {
   buttonProps?: ComponentPropsWithoutRef<'button'>

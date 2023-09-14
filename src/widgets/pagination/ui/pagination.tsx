@@ -2,8 +2,8 @@ import { ChangeEvent, FC, KeyboardEvent, useEffect, useMemo, useState } from 're
 
 import { generatePaginationArray } from '../model/lib/generatePaginationArray'
 
-import { Button, ButtonVariant } from 'shared/ui/buttons/button'
-import { Input } from 'shared/ui/inputs/input'
+import { Button, ButtonVariant } from '@/shared/ui/buttons/button'
+import { Input } from '@/shared/ui/inputs/input'
 
 type PaginatorPropsType = {
   currentPage: number

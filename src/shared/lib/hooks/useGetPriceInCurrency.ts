@@ -1,12 +1,12 @@
-import { useGetFormattedPrice } from 'features/currancy/hooks/useGetFormattedPrice'
-import { DEFAULT_PRODUCT_CURRENCY } from 'features/currancy/lib/consts/defaultProductCurrency'
-import { ECost } from 'features/currancy/lib/enum/eCost'
+import { useGetFormattedPrice } from '@/features/currancy/hooks/useGetFormattedPrice'
+import { DEFAULT_PRODUCT_CURRENCY } from '@/features/currancy/lib/consts/defaultProductCurrency'
+import { ECost } from '@/features/currancy/lib/enum/eCost'
 import {
   selectGetCurrentPrice,
   selectRate,
   useCurrencyRatesStore,
-} from 'features/currancy/store/useCurrencyRatesStore'
-import { selectCurrentCurrency, useUserSettings } from 'store/useUserSettings'
+} from '@/features/currancy/store/useCurrencyRatesStore'
+import { selectCurrentCurrency, useUserSettings } from '@/store/useUserSettings'
 
 export const useGetPriceInCurrency: UseGetPriceInCurrencyType = price => {
   const currentCurrency = useUserSettings(selectCurrentCurrency)

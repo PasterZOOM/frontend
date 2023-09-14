@@ -3,8 +3,8 @@ import { array, number, object, Schema, string } from 'yup'
 
 import { ECreateBasicProductParams } from './paramsKeys'
 
-import { MIN_TITLE_LENGTH, REQUIRED_MESSAGE } from 'shared/consts/forms/validate'
-import { EProductAssignment } from 'shared/enums/product'
+import { MIN_TITLE_LENGTH, REQUIRED_MESSAGE } from '@/shared/consts/forms/validate'
+import { EProductAssignment } from '@/shared/enums/product'
 
 type FormData = Record<ECreateBasicProductParams, Schema>
 

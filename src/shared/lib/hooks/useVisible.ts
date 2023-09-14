@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 
-import { selectSetIsVisible, useAppStore } from 'store/useAppStore'
+import { selectSetIsVisible, useAppStore } from '@/store/useAppStore'
 
 export const useVisible = (): void => {
   const setIsVisible = useAppStore(selectSetIsVisible)

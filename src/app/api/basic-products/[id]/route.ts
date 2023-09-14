@@ -1,11 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server'
 
-import { BasicProductsController } from 'entities/basicProduct'
-import { BasicProductType } from 'features/basicProducts/api/types'
-import { LocaleFieldEntity } from 'shared/entities/localeFieldEntity'
-import { StatusCode } from 'shared/enums/statusCode'
-import dbConnect from 'shared/lib/db/dbConnect'
-import { LOCALES } from 'shared/types/localeType'
+import { BasicProductsController } from '@/entities/basicProduct'
+import { BasicProductType } from '@/features/basicProducts/api/types'
+import { LocaleFieldEntity } from '@/shared/entities/localeFieldEntity'
+import { StatusCode } from '@/shared/enums/statusCode'
+import dbConnect from '@/shared/lib/db/dbConnect'
+import { LOCALES } from '@/shared/types/localeType'
 
 const basicProductsController = new BasicProductsController()
 

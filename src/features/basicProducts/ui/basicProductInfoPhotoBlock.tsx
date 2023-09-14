@@ -1,13 +1,13 @@
 import { FC, KeyboardEventHandler, useCallback, useEffect, useState } from 'react'
 
-import { BasicProductType } from 'features/basicProducts/api/types'
-import { useAddBasicProductPhoto } from 'features/basicProducts/hooks/useAddBasicProductPhoto'
-import { useRemoveBasicProductPhoto } from 'features/basicProducts/hooks/useRemoveBasicProductPhoto'
-import { BasicProductPhoto } from 'features/basicProducts/ui/basicProductPhoto'
-import { useGetLeatherArticle } from 'features/leatherArticles/hooks/useGetLeatherArticle'
-import { PropertyPreviewWrapper } from 'shared/components/common/wrappers/propertyPreviewWrapper'
-import { Input } from 'shared/ui/inputs/input'
-import { DefaultSelect } from 'shared/ui/selects/defaultSelect'
+import { BasicProductType } from '@/features/basicProducts/api/types'
+import { useAddBasicProductPhoto } from '@/features/basicProducts/hooks/useAddBasicProductPhoto'
+import { useRemoveBasicProductPhoto } from '@/features/basicProducts/hooks/useRemoveBasicProductPhoto'
+import { BasicProductPhoto } from '@/features/basicProducts/ui/basicProductPhoto'
+import { useGetLeatherArticle } from '@/features/leatherArticles/hooks/useGetLeatherArticle'
+import { PropertyPreviewWrapper } from '@/shared/components/common/wrappers/propertyPreviewWrapper'
+import { Input } from '@/shared/ui/inputs/input'
+import { DefaultSelect } from '@/shared/ui/selects/defaultSelect'
 
 type PropsType = {
   product: BasicProductType

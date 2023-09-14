@@ -4,8 +4,8 @@ import classnames from 'classnames'
 
 import cls from './productColorsButtons.module.scss'
 
-import { ProductColorType } from 'features/basicProducts/api/types'
-import { LeatherColorButton } from 'shared/ui/buttons/leatherColorButton/leatherColorButton'
+import { ProductColorType } from '@/features/basicProducts/api/types'
+import { LeatherColorButton } from '@/shared/ui/buttons/leatherColorButton/leatherColorButton'
 
 type PropsType = {
   activeColor: string

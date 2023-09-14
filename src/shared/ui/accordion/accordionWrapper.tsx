@@ -1,6 +1,6 @@
 import { FC, ReactNode, useState } from 'react'
 
-import Accordion from 'shared/ui/accordion/accordion'
+import Accordion from '@/shared/ui/accordion/accordion'
 
 interface AccordionWrapperProps {
   children: ReactNode

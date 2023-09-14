@@ -2,8 +2,8 @@ import { FC } from 'react'
 
 import { useTranslation } from 'next-i18next'
 
-import { useClearAllQueryParams } from 'shared/lib/hooks/queryParams/useClearAllQueryParams'
-import { Button, ButtonVariant } from 'shared/ui/buttons/button'
+import { useClearAllQueryParams } from '@/shared/lib/hooks/queryParams/useClearAllQueryParams'
+import { Button, ButtonVariant } from '@/shared/ui/buttons/button'
 
 interface FilterButtonsProps {
   closeFilters: () => void

@@ -1,13 +1,13 @@
 import { FC } from 'react'
 
-import { MainContainer } from 'shared/components/common/containers/mainContainer'
-import { CatalogFilters } from 'shared/components/pages/catalog/filters/catalogFilters'
-import { ProductPagination } from 'shared/components/pages/catalog/productPagination'
-import Products from 'shared/components/pages/catalog/products'
-import { ProductSearch } from 'shared/components/pages/catalog/productSearch'
-import { useDisclosure } from 'shared/lib/hooks/useDisclosure'
-import { FilterButtons } from 'shared/ui/buttons/filterButtons'
-import { selectIsVisible, useAppStore } from 'store/useAppStore'
+import { MainContainer } from '@/shared/components/common/containers/mainContainer'
+import { CatalogFilters } from '@/shared/components/pages/catalog/filters/catalogFilters'
+import { ProductPagination } from '@/shared/components/pages/catalog/productPagination'
+import Products from '@/shared/components/pages/catalog/products'
+import { ProductSearch } from '@/shared/components/pages/catalog/productSearch'
+import { useDisclosure } from '@/shared/lib/hooks/useDisclosure'
+import { FilterButtons } from '@/shared/ui/buttons/filterButtons'
+import { selectIsVisible, useAppStore } from '@/store/useAppStore'
 
 export const Catalog: FC = () => {
   const [isOpenFilters, { open, close }] = useDisclosure(false)

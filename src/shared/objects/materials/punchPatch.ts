@@ -1,8 +1,8 @@
 import { v1 } from 'uuid'
 
-import { EPunchPitch } from 'shared/enums/materials'
-import { ObjectForSelectType } from 'shared/types/objectForSelectType'
-import { SelectItemType } from 'shared/ui/selects/defaultSelectType'
+import { EPunchPitch } from '@/shared/enums/materials'
+import { ObjectForSelectType } from '@/shared/types/objectForSelectType'
+import { SelectItemType } from '@/shared/ui/selects/defaultSelectType'
 
 export const punchPatches: ObjectForSelectType<EPunchPitch> = {
   [EPunchPitch.LARGE]: {

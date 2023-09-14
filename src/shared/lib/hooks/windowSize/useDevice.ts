@@ -1,6 +1,6 @@
-import { SCREEN } from 'shared/enums/screen'
-import { useIsFirstRender } from 'shared/lib/hooks/useFirstRender'
-import { useWindowSize } from 'shared/lib/hooks/windowSize/useWindowSize'
+import { SCREEN } from '@/shared/enums/screen'
+import { useIsFirstRender } from '@/shared/lib/hooks/useFirstRender'
+import { useWindowSize } from '@/shared/lib/hooks/windowSize/useWindowSize'
 
 export const useDevice = (): {
   is4K: boolean

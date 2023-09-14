@@ -13,7 +13,7 @@ import classnames from 'classnames'
 
 import cls from './numberOfCardsInput.module.scss'
 
-import { useDebounce } from 'shared/lib/hooks/useDebounce'
+import { useDebounce } from '@/shared/lib/hooks/useDebounce'
 
 type PropsType = Omit<
   ComponentPropsWithoutRef<'input'>,

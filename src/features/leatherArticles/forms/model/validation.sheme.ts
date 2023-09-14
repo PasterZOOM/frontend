@@ -3,7 +3,7 @@ import { object, string, StringSchema } from 'yup'
 
 import { ECreateLeatherArticleParams } from './paramsKeys'
 
-import { MIN_TITLE_LENGTH, REQUIRED_MESSAGE } from 'shared/consts/forms/validate'
+import { MIN_TITLE_LENGTH, REQUIRED_MESSAGE } from '@/shared/consts/forms/validate'
 
 type FormData = Record<ECreateLeatherArticleParams, StringSchema>
 

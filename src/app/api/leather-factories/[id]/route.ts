@@ -1,11 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server'
 
-import { LeatherFactoryController } from 'entities/leatherFactory'
-import { LeatherFactoryType } from 'features/leatherFactories/api/types'
-import { LocaleFieldEntity } from 'shared/entities/localeFieldEntity'
-import { StatusCode } from 'shared/enums/statusCode'
-import dbConnect from 'shared/lib/db/dbConnect'
-import { LOCALES } from 'shared/types/localeType'
+import { LeatherFactoryController } from '@/entities/leatherFactory'
+import { LeatherFactoryType } from '@/features/leatherFactories/api/types'
+import { LocaleFieldEntity } from '@/shared/entities/localeFieldEntity'
+import { StatusCode } from '@/shared/enums/statusCode'
+import dbConnect from '@/shared/lib/db/dbConnect'
+import { LOCALES } from '@/shared/types/localeType'
 
 const leatherFactoryController = new LeatherFactoryController()
 

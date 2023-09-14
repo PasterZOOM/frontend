@@ -2,7 +2,7 @@ import { FC } from 'react'
 
 import { useTranslation } from 'next-i18next'
 
-import { BasicProductType } from 'features/basicProducts/api/types'
+import { BasicProductType } from '@/features/basicProducts/api/types'
 
 type PropsType = {
   basicProduct: BasicProductType

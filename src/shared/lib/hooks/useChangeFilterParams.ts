@@ -2,8 +2,8 @@ import { useEffect } from 'react'
 
 import { useRouter } from 'next/router'
 
-import { EFilterKeys } from 'shared/components/pages/catalog/filters/filters'
-import { selectSetFilter, useBasicProductsFilterStore } from 'store/useBasicProductsFilterStore'
+import { EFilterKeys } from '@/shared/components/pages/catalog/filters/filters'
+import { selectSetFilter, useBasicProductsFilterStore } from '@/store/useBasicProductsFilterStore'
 
 export const useChangeFilterParams: UseChangeFilterParamsType = filterKey => {
   const { query } = useRouter()

@@ -7,8 +7,8 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 
 import cls from './productCardViewMobile.module.scss'
 
-import { getImageSizes } from 'shared/lib/images/getImageSizes'
-import { ProductPhotoType } from 'shared/types/productType'
+import { getImageSizes } from '@/shared/lib/images/getImageSizes'
+import { ProductPhotoType } from '@/shared/types/productType'
 
 type PropsType = {
   className?: string

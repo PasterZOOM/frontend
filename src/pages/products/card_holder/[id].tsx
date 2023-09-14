@@ -2,12 +2,12 @@ import { GetServerSideProps } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { dehydrate, QueryClient } from 'react-query'
 
-import { BasicProductsAPI } from 'features/basicProducts/api/basicProductsAPI'
-import { NextPageWithLayout } from 'pages/_app'
-import { CardHolder } from 'shared/components/pages/products/card_holder'
-import { QUERY_KEY } from 'shared/enums/QUERY_KEY'
-import { LOCALES } from 'shared/types/localeType'
-import { MainLayout } from 'widgets/layouts/mainLayout'
+import { BasicProductsAPI } from '@/features/basicProducts/api/basicProductsAPI'
+import { NextPageWithLayout } from '@/pages/_app'
+import { CardHolder } from '@/shared/components/pages/products/card_holder'
+import { QUERY_KEY } from '@/shared/enums/QUERY_KEY'
+import { LOCALES } from '@/shared/types/localeType'
+import { MainLayout } from '@/widgets/layouts/mainLayout'
 
 export const getServerSideProps: GetServerSideProps<NonNullable<unknown>, { id: string }> = async ({
   locale,

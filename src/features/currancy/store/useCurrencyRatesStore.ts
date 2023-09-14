@@ -2,8 +2,8 @@ import { create } from 'zustand'
 
 import { DEFAULT_PRODUCT_CURRENCY } from '../lib/consts'
 
-import { ECost } from 'features/currancy/lib/enum/eCost'
-import { CostType } from 'features/currancy/lib/types/costType'
+import { ECost } from '@/features/currancy/lib/enum/eCost'
+import { CostType } from '@/features/currancy/lib/types/costType'
 
 export const initialCurrencyRatesState: CostType = {
   BYN: 0,

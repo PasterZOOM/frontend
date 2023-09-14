@@ -1,4 +1,4 @@
-import { ELeatherColor } from 'shared/enums/materials'
+import { ELeatherColor } from '@/shared/enums/materials'
 
 export type LeatherColorType = {
   _id: string

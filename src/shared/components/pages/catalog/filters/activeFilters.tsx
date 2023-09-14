@@ -2,9 +2,9 @@ import { FC } from 'react'
 
 import { useTranslation } from 'next-i18next'
 
-import { ActiveFilterTag } from 'shared/components/pages/catalog/filters/activeFilterTag'
-import { useActiveFilters } from 'shared/components/pages/catalog/filters/useActiveFilters'
-import { useClearAllQueryParams } from 'shared/lib/hooks/queryParams/useClearAllQueryParams'
+import { ActiveFilterTag } from '@/shared/components/pages/catalog/filters/activeFilterTag'
+import { useActiveFilters } from '@/shared/components/pages/catalog/filters/useActiveFilters'
+import { useClearAllQueryParams } from '@/shared/lib/hooks/queryParams/useClearAllQueryParams'
 
 type PropsType = {
   className?: string

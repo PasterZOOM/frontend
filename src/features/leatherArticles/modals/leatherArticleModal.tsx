@@ -1,9 +1,9 @@
 import { FC } from 'react'
 
-import { useGetLeatherArticle } from 'features/leatherArticles/hooks/useGetLeatherArticle'
-import { useRemoveLeatherArticle } from 'features/leatherArticles/hooks/useRemoveLeatherArticle'
-import { LeatherArticleInfo } from 'features/leatherArticles/ui/leatherArticleInfo'
-import { ModalLayout } from 'shared/components/modals/modalLayout'
+import { useGetLeatherArticle } from '@/features/leatherArticles/hooks/useGetLeatherArticle'
+import { useRemoveLeatherArticle } from '@/features/leatherArticles/hooks/useRemoveLeatherArticle'
+import { LeatherArticleInfo } from '@/features/leatherArticles/ui/leatherArticleInfo'
+import { ModalLayout } from '@/shared/components/modals/modalLayout'
 
 type PropsType = {
   closeModal: () => void

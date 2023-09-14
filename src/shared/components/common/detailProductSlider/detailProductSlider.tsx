@@ -9,7 +9,7 @@ import { Swiper as SwiperClass } from 'swiper/types'
 
 import cls from './detailProductSlider.module.scss'
 
-import { PhotosType } from 'shared/types/productType'
+import { PhotosType } from '@/shared/types/productType'
 
 type PropsType = {
   activeColor: string

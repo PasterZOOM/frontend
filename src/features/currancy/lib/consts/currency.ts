@@ -1,8 +1,8 @@
 import { v1 } from 'uuid'
 
-import { ECost } from 'features/currancy/lib/enum/eCost'
-import { ObjectForSelectType } from 'shared/types/objectForSelectType'
-import { SelectItemType } from 'shared/ui/selects/defaultSelectType'
+import { ECost } from '@/features/currancy/lib/enum/eCost'
+import { ObjectForSelectType } from '@/shared/types/objectForSelectType'
+import { SelectItemType } from '@/shared/ui/selects/defaultSelectType'
 
 export const currencies: ObjectForSelectType<ECost> = {
   [ECost.USD]: {

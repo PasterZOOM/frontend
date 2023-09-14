@@ -3,19 +3,19 @@ import { FC } from 'react'
 import classnames from 'classnames'
 import { useTranslation } from 'next-i18next'
 
-import { useGetAllLeatherArticles } from 'features/leatherArticles/hooks/useGetAllLeatherArticles'
-import { SubWrapper } from 'shared/components/common/containers/subWrapper'
+import { useGetAllLeatherArticles } from '@/features/leatherArticles/hooks/useGetAllLeatherArticles'
+import { SubWrapper } from '@/shared/components/common/containers/subWrapper'
 import {
   EFilterKeys,
   leatherColorFilters,
   productAssignmentsFilters,
   productCategoriesFilters,
-} from 'shared/components/pages/catalog/filters/filters'
-import { MultipleFilter } from 'shared/components/pages/catalog/filters/multipleFilter'
-import AccordionWrapper from 'shared/ui/accordion/accordionWrapper'
-import { ColorFilterCheckbox } from 'shared/ui/checkbox/colorFilterCheckbox'
-import { PriceRange } from 'widgets/priceRange'
-import { Sort } from 'widgets/sort'
+} from '@/shared/components/pages/catalog/filters/filters'
+import { MultipleFilter } from '@/shared/components/pages/catalog/filters/multipleFilter'
+import AccordionWrapper from '@/shared/ui/accordion/accordionWrapper'
+import { ColorFilterCheckbox } from '@/shared/ui/checkbox/colorFilterCheckbox'
+import { PriceRange } from '@/widgets/priceRange'
+import { Sort } from '@/widgets/sort'
 
 type PropsType = {
   className?: string

@@ -1,10 +1,10 @@
 import { FC } from 'react'
 
-import { useGetLeatherFactory } from 'features/leatherFactories/hooks/useGetLeatherFactory'
-import { useRemoveLeatherFactory } from 'features/leatherFactories/hooks/useRemoveLeatherFactory'
+import { useGetLeatherFactory } from '@/features/leatherFactories/hooks/useGetLeatherFactory'
+import { useRemoveLeatherFactory } from '@/features/leatherFactories/hooks/useRemoveLeatherFactory'
 // eslint-disable-next-line import/no-cycle
-import { LeatherFactoryInfo } from 'features/leatherFactories/ui/leatherFactoryInfo'
-import { ModalLayout } from 'shared/components/modals/modalLayout'
+import { LeatherFactoryInfo } from '@/features/leatherFactories/ui/leatherFactoryInfo'
+import { ModalLayout } from '@/shared/components/modals/modalLayout'
 
 type PropsType = {
   closeModal: () => void

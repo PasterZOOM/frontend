@@ -2,8 +2,8 @@ import { FC, ReactNode } from 'react'
 
 import { useTranslation } from 'next-i18next'
 
-import { ModalOverlay } from 'shared/components/modals/modalOverlay'
-import { LanguageSwitcher } from 'widgets/switchers'
+import { ModalOverlay } from '@/shared/components/modals/modalOverlay'
+import { LanguageSwitcher } from '@/widgets/switchers'
 
 type PropsType = {
   children: ReactNode

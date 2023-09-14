@@ -1,5 +1,5 @@
-import { EFilterKeys } from 'shared/components/pages/catalog/filters/filters'
-import { FiltersType } from 'store/useBasicProductsFilterStore'
+import { EFilterKeys } from '@/shared/components/pages/catalog/filters/filters'
+import { FiltersType } from '@/store/useBasicProductsFilterStore'
 
 export const getQueryFilters: GetFiltersFnType = query => {
   const filters: Partial<FiltersType> = {}

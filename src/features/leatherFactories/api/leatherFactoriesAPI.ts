@@ -2,9 +2,9 @@ import {
   CreateLeatherFactoryParamsType,
   LeatherFactoryType,
   UpdateLeatherFactoryParamsType,
-} from 'features/leatherFactories/api/types'
-import { instance } from 'shared/api/instance/axios-instance'
-import { UpdateParamsType } from 'shared/api/paramsTypes'
+} from '@/features/leatherFactories/api/types'
+import { instance } from '@/shared/api/instance/axios-instance'
+import { UpdateParamsType } from '@/shared/api/paramsTypes'
 
 const BASE_URL = 'leather-factories'
 

@@ -2,13 +2,13 @@ import { FC } from 'react'
 
 import { useTranslation } from 'next-i18next'
 
-import { CreateBasicProductForm } from 'features/basicProducts/forms/ui/createBasicProductForm'
-import { useGetAllBasicProducts } from 'features/basicProducts/hooks/useGetAllBasicProducts'
-import { BasicProductModal } from 'features/basicProducts/modals/basicProductModal'
-import { CreateFormAndListWrapper } from 'shared/components/common/wrappers/createFormAndListWrapper'
-import { useRedirect } from 'shared/lib/hooks/useRedirect'
-import { TableItem } from 'shared/ui/tabel/tableItem'
-import { TypographyHeader } from 'shared/ui/typographyHeader/typographyHeader'
+import { CreateBasicProductForm } from '@/features/basicProducts/forms/ui/createBasicProductForm'
+import { useGetAllBasicProducts } from '@/features/basicProducts/hooks/useGetAllBasicProducts'
+import { BasicProductModal } from '@/features/basicProducts/modals/basicProductModal'
+import { CreateFormAndListWrapper } from '@/shared/components/common/wrappers/createFormAndListWrapper'
+import { useRedirect } from '@/shared/lib/hooks/useRedirect'
+import { TableItem } from '@/shared/ui/tabel/tableItem'
+import { TypographyHeader } from '@/shared/ui/typographyHeader/typographyHeader'
 
 export const BasicProducts: FC = () => {
   useRedirect()
